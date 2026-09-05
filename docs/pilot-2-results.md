@@ -36,3 +36,9 @@ worker未生成のためnative-usage.jsonは未生成であり、パッケージ
 allowed_startsは空。normalの予約は消さず、anti・旧Run再実装・比較6 Run・自動取り直しを開始しない。全起動経路の拒否を[停止検証](pilot-2-stop-guard-verification.json)で確認した。
 
 有料モデルを使わない修正版の復元試験結果は別ファイルへ記録する。成功しても新規実装Runの許可を復活させない。正常に測定できる新しいパイロットの取得は未完了であり、再開には新しいRun IDと実行範囲のユーザー判断が必要。研究全体とIssue #1/#11は完了として閉じない。
+
+### 修正版の復元検証結果
+
+[ネットワーク分離後の復元検証](preservation-restore-isolated-verification.json)は合格。空のDocker/containerdへimage実体を読み込み、通常終了・打切り・異常終了、合成usage再集計、両登録経路の正常57/57と閾値変異各13失敗、採点結果の保存・復元を確認した。ホストbridgeのifindex・MAC・IP情報は前後一致し、終了後の認証なしTCP通信も成功した。実装Runの許可は復活させていない。
+
+コード検証は[32件の保全・実行系、25件の分析、57 ID/AP-001検査](preservation-final-code-verification.json)。成功した校正・保全検証と、新規パイロットが未完遂であることを区別する。

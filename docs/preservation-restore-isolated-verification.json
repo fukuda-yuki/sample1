@@ -1,6 +1,6 @@
 {
   "model_called": false,
-  "recorded_at": "2026-09-05T17:04:50.292047+00:00",
+  "recorded_at": "2026-09-05T17:33:51.951582+00:00",
   "checks": {
     "normal_exit": true,
     "timeout_exit": true,
@@ -14,35 +14,35 @@
     "evaluation_restored": true
   },
   "common": {
-    "package_id": "common-75252aa0-c86c-462f-b687-ce19f187a679",
-    "sha256": "0c9b44d90870d861fd1bc88607de8d5f9becfd2ae7d132638b5545db9fce7419"
+    "package_id": "common-02528c1b-30a9-4a39-8f0b-cb550b05ff8d",
+    "sha256": "733f04b476847f2d0f9578740938dc5af211dabacc60e324b1ab31446e0c0846"
   },
   "receipts": [
     {
-      "path": "receipts/fe880201-96ad-453e-9ebe-f9e6ee1b3446.json",
-      "sha256": "0e9387096d6abf4164b1b4054831d5fffadbffca03dd34ffeb3a29cc34dbbb1c"
+      "path": "receipts/4dc87392-7dde-406f-a3eb-65fe7d59e006.json",
+      "sha256": "a53ccfbdd20b1cacac0c0eca62977d85f92489253bd17e51af8b6ae0af2ff456"
     },
     {
-      "path": "receipts/c8c26394-48e8-4e0a-b205-b798db9788a5.json",
-      "sha256": "a2e87b2528129395569de6302d172fbba3f6c218f2124318370eae48e0d5fef0"
+      "path": "receipts/d3e19521-261e-408d-a5bb-6aa52676850f.json",
+      "sha256": "bc2dd794ae50c7cea1b32ec8143c95a17b36144b42b58d5422586c041536d294"
     },
     {
-      "path": "receipts/b7e5ed3b-119f-4dd6-9a81-eca2c7dd6402.json",
-      "sha256": "d2647682cb09dabbf0091715c2ef0e4725a4161a63228a322f8c267cb9e870ef"
+      "path": "receipts/fffde267-313b-497c-a2c0-2d54ec7065b6.json",
+      "sha256": "ef488d106391321afc4a6d0149f28812ca4e4302ee1fbe437439238c90f253de"
     },
     {
-      "path": "receipts/e72fa991-e7a2-4bff-b19d-77f6df68344c.json",
-      "sha256": "edfbdf235a50f726d7adabc87e08caf2296ad410f67182669cfc683750548040"
+      "path": "receipts/eebf559d-2988-483b-b25c-074595e2b6de.json",
+      "sha256": "f0bdf69773b1dd083c7043c4e3100c87814a2a7a3c056c1a3b2bb2a8c8ed387d"
     },
     {
-      "path": "receipts/88ad6ad1-bbad-4ff9-a418-e8162541e67b.json",
-      "sha256": "b2ba434296eddd184e0f9ea22efde00076af63081c6e533852075552b0d06810"
+      "path": "receipts/915eaab7-9951-4855-ab3f-1328606a3b7c.json",
+      "sha256": "b6ea9566e830e3990ee4f8f04ed927b66c55a0a1c8e9c2731232e7f7f69ae0b5"
     }
   ],
   "lifecycle": [
     {
       "case": "normal",
-      "run_id": "c8bed9b9-dcde-4541-aae4-cc672b88da30",
+      "run_id": "3ff1deac-b659-4fcb-a922-8a4d07ced934",
       "end_reason": "agent_completed",
       "usage": {
         "normalizer_version": "1",
@@ -58,13 +58,13 @@
         "source": "fixed-upstream-gateway"
       },
       "reference": {
-        "package_id": "run-c8bed9b9-dcde-4541-aae4-cc672b88da30",
-        "sha256": "c49de4df63976b042b62bc5c4679cc7d4f2cd4d27eb45dc872ae99037fdfda30"
+        "package_id": "run-3ff1deac-b659-4fcb-a922-8a4d07ced934",
+        "sha256": "49a543500803a17d779253ccd82400acff5fce360792f6c44f3000cb4944d777"
       }
     },
     {
       "case": "timeout",
-      "run_id": "2bfc4a5d-cd8a-4b4b-8537-7743ae9f4cfe",
+      "run_id": "4a1f958b-55e3-4af8-ace1-301dbec3cd23",
       "end_reason": "budget_exhausted",
       "usage": {
         "normalizer_version": "1",
@@ -88,13 +88,13 @@
         "source": "fixed-upstream-gateway"
       },
       "reference": {
-        "package_id": "run-2bfc4a5d-cd8a-4b4b-8537-7743ae9f4cfe",
-        "sha256": "c3f811b9be9cd327799f28efa9ecd34db1f74f334462c622ea5e2b021488533c"
+        "package_id": "run-4a1f958b-55e3-4af8-ace1-301dbec3cd23",
+        "sha256": "cf9a98de230797a668910ba097afff9ce5009a904addbbf1093c3bb5bba9bd54"
       }
     },
     {
       "case": "abnormal",
-      "run_id": "b9b69e97-aec7-4d47-a7d0-1ae88c53c149",
+      "run_id": "438ca727-de50-4a60-b306-c89e1ba94294",
       "end_reason": "agent_error",
       "usage": {
         "normalizer_version": "1",
@@ -118,8 +118,8 @@
         "source": "fixed-upstream-gateway"
       },
       "reference": {
-        "package_id": "run-b9b69e97-aec7-4d47-a7d0-1ae88c53c149",
-        "sha256": "a6bc2735b1aaffb5656f9d14a7d39d25b4b33c505e7d025e4872a14fead14257"
+        "package_id": "run-438ca727-de50-4a60-b306-c89e1ba94294",
+        "sha256": "84ff10ef7577cccefafd1ce2208267402688808dbf0d6f532a622e1cae92dcdb"
       }
     }
   ],
@@ -152,7 +152,7 @@
         "--env",
         "TZ=Asia/Tokyo",
         "--mount",
-        "type=bind,source=/home/mwam0/sample1-restore-drill-20260906/common/evaluator,target=/evaluator",
+        "type=bind,source=/home/mwam0/sample1-restore-drill-isolated-20260906/common/evaluator,target=/evaluator",
         "--workdir",
         "/evaluator",
         "sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
@@ -192,7 +192,7 @@
         "--env",
         "TZ=Asia/Tokyo",
         "--mount",
-        "type=bind,source=/home/mwam0/sample1-restore-drill-20260906/common/evaluator,target=/evaluator",
+        "type=bind,source=/home/mwam0/sample1-restore-drill-isolated-20260906/common/evaluator,target=/evaluator",
         "--workdir",
         "/evaluator",
         "sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
@@ -232,7 +232,7 @@
         "--env",
         "TZ=Asia/Tokyo",
         "--mount",
-        "type=bind,source=/home/mwam0/sample1-restore-drill-20260906/common/evaluator,target=/evaluator",
+        "type=bind,source=/home/mwam0/sample1-restore-drill-isolated-20260906/common/evaluator,target=/evaluator",
         "--workdir",
         "/evaluator",
         "sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
@@ -272,7 +272,7 @@
         "--env",
         "TZ=Asia/Tokyo",
         "--mount",
-        "type=bind,source=/home/mwam0/sample1-restore-drill-20260906/common/evaluator,target=/evaluator",
+        "type=bind,source=/home/mwam0/sample1-restore-drill-isolated-20260906/common/evaluator,target=/evaluator",
         "--workdir",
         "/evaluator",
         "sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
@@ -290,25 +290,28 @@
     "scripts/check_gateway_isolation.py": "a4bca7629298533cb7143637fb391c83700f5bc492ed7e4b3bbb85d1124057c5",
     "scripts/check_isolated_host_access.py": "e3c7495892ca9aca52e1cd600e750e9bffa5a7b3b3eb6d26cb58c10f6b752ee2",
     "scripts/check_offline_runtime.py": "14402e1e91e4ac1a08bca9e7e0bfc1c119bde8fa2cf731092e929d1820ebd793",
-    "scripts/check_preservation_restore.py": "00e873a301748b2e3a0a5de139e4733d7fbbcb6d0f8348678dd24e235017bb14",
+    "scripts/check_preservation_restore.py": "6e41b518fa7bc91cd732cbe43bac7842da5bf473f2ed19bd667d427e9ed3e437",
+    "scripts/check_restore_namespace.py": "fe057ff3423d9c32dd5b2fd9c6f2af2e51d6d994b7b58f0dfebdfc6207f9ee09",
     "scripts/check_run_separation.py": "8ff688cb6282a6615c51e33cb20a22031a697bd34f08de084e0d1e32dea3736e",
     "scripts/execution_scope.py": "837d2fa7d2105d3043963cafccbc3c2863edb483f21fcaf3d52b990c1c60a2c9",
     "scripts/gateway_usage.py": "5aef377602b0ab747fb56307474ee86e70677a85b60283bd448debf4c676ac87",
+    "scripts/launch_restore_drill.py": "f228bbbf9da50e07bf48e414bbc144bdf88a25d8eee0561bd8d46a77a6429499",
     "scripts/make_run_config.py": "f22d7e09cbb4d993b0eb0a844affa8e61f86cec17965bad48999dba385aaf1fa",
     "scripts/model_gateway.py": "a799c441dabddee2af035603b3a6d7821f34c1232ee22a6206abb419aa46fe5d",
     "scripts/normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
     "scripts/prepare_preservation.py": "dc38fe1e4ebcb497ee5c636f0637aeb9946f9609f692b7e143da44525aa6ecb2",
     "scripts/prepare_workspace.py": "badaeb9195c4a3477ea1265362056de145d362767f5846f1034dc51bba630979",
-    "scripts/preservation_gate.py": "ee2451c5b6e131af552fd4a07ecc68532ba617c1b4a42dbce73c3697fbdd54ff",
+    "scripts/preservation_gate.py": "d5826d0e5fed743c27bafb684ba1463bafd40ad79ca4d30b47b1a671360ce659",
     "scripts/preserve.py": "a130b487a7fe679fa639fc38c8aa4e639913345627efd5a6c7607c92d44b0369",
-    "scripts/run_codex.py": "1ad3e7dbcb654f0b745941f1252bf44365124e4015ecdbed2a968d1fa424c8f9",
+    "scripts/run_codex.py": "61a263e77036326bdd3f2d1d4e5d9e9580dea8cf3598ab78a18f008eafb90614",
     "scripts/run_experiment.py": "254b66f9e3261fb2063cd1896baf5e1923ff1cd8bdd294b1caacfd4110182e46",
     "scripts/seal_common.py": "2320e2a0eaeecd5026256a2b49dff7741d20bc1ed388b6f7b080d8987c0586b6",
     "scripts/smoke_model.py": "d44f0efef1828fc7e1c39de64e48d2799a22f4beb836a546b36de882518764fb",
     "scripts/test_execution_scope.py": "937fb4e5e8e1de514870a4fff924afe9e1b3d5372a495e6d55483faf4e39975e",
     "scripts/test_preservation.py": "dc205a544d3fd83d0b77cbd1a6841790036bf62b2a867c42637413e23e7cc7e5",
     "scripts/test_protocol.py": "10d7026c97096377cfeda96fcf851779af47f9a26f1bf1d069a3935a26e1da5a",
-    "scripts/test_usage_retention.py": "988fb57624111d530d325f7aa412bf18c0fbe1ca83dd6fefe1b674944dd2392c",
+    "scripts/test_restore_namespace_guard.py": "a94f0d01b283f737b3a29e6b1457330ba21fac86d81910b0ae507f70351f5cf9",
+    "scripts/test_usage_retention.py": "16782948f6b77d7b2499d60a64098c9a59e3384cdbb06b9013c8a9ac0e4fba2a",
     "analysis/aggregate.py": "bff0451e55b929b0eb456a91148eca9a8f5fcd06cec25569d984110d7c8130f4",
     "analysis/calibrate.py": "89933a95579a9ada203d7d0b2377f181a156cf0237dd72c03504dfcfa8dfd38c",
     "analysis/collect_runs.py": "6f34eef410b10f35ad84dcce257a5c54e2c0801525a6db4a522e9de8233da43e",
@@ -335,13 +338,65 @@
     "anti/spec.md": "4efee9a74d163f6fabad8c5392e395717869e074b34d81cb46489124f714c551",
     "implementation_prompt.md": "27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2"
   },
-  "docker_host": "unix:///tmp/sample1-restore-daemon/docker.sock",
+  "docker_host": "unix:///tmp/sample1-restore-isolated-u8gli6c4/docker.sock",
   "initial_images": [],
+  "network_namespace": "net:[4026532287]",
+  "host_network_namespace": "net:[4026531840]",
   "limitation": "Same physical C drive; no disk failure guarantee",
   "gate": {
-    "package_id": "restoration-proof-1bf75aa0-e78c-4a71-8547-446703778386",
-    "sha256": "f5d9d5303a7b21dd8026a27576d4cf67551cb4a5fba28b7037a4cc1497eb45c7"
+    "package_id": "restoration-proof-3137c1fc-2641-4ba4-ad51-b415c174e7d4",
+    "sha256": "cb45f8375dc85b4999f65142d464017d7b4ea0ee82bcaecf1237ec7b1852cdfb"
   },
-  "retired_for_new_starts": true,
-  "retirement_reason": "The first drill shared the host network namespace and interfered with docker0; retain its successful file/calibration evidence but use the corrected namespace-isolated drill for future protocol validation."
+  "host_bridge_unchanged": true,
+  "host_bridge_before": {
+    "ifindex": 14,
+    "ifname": "docker0",
+    "address": "8e:fb:bc:63:fd:b6",
+    "addr_info": [
+      {
+        "family": "inet",
+        "local": "172.17.0.1",
+        "prefixlen": 16,
+        "scope": "global",
+        "label": "docker0",
+        "valid_life_time": 4294967295,
+        "preferred_life_time": 4294967295
+      },
+      {
+        "family": "inet6",
+        "local": "fe80::8cfb:bcff:fe63:fdb6",
+        "prefixlen": 64,
+        "scope": "link",
+        "valid_life_time": 4294967295,
+        "preferred_life_time": 4294967295
+      }
+    ]
+  },
+  "host_bridge_after": {
+    "ifindex": 14,
+    "ifname": "docker0",
+    "address": "8e:fb:bc:63:fd:b6",
+    "addr_info": [
+      {
+        "family": "inet",
+        "local": "172.17.0.1",
+        "prefixlen": 16,
+        "scope": "global",
+        "label": "docker0",
+        "valid_life_time": 4294967295,
+        "preferred_life_time": 4294967295
+      },
+      {
+        "family": "inet6",
+        "local": "fe80::8cfb:bcff:fe63:fdb6",
+        "prefixlen": 64,
+        "scope": "link",
+        "valid_life_time": 4294967295,
+        "preferred_life_time": 4294967295
+      }
+    ]
+  },
+  "post_drill_connectivity": "Unauthenticated TCP connection to api.openai.com:443 succeeded; no model request",
+  "source_commit": "4d76352",
+  "implementation_start_permission_restored": false
 }

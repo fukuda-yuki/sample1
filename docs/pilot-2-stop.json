@@ -18,7 +18,7 @@
   "native_usage_missing_reason": "Worker was never created; original package records missing native-usage.json.",
   "elapsed_seconds_caveat": "The fallback manifest elapsed_seconds measures fallback finalization, not implementation or full gateway setup time.",
   "restoration_gate_retired": true,
-  "next_action": "No automatic retries or anti start. New implementation starts require a new user-authorized plan and fresh namespace-isolated restoration proof.",
+  "next_action": "Implementation remains stopped. Corrected free restoration drill passed; any new acquisition requires user-authorized new Run IDs and scope.",
   "preservation": {
     "run": {
       "independently_stored": true,
@@ -42,5 +42,13 @@
         "sha256": "ca2500063fb6f735f803993f81edf85e85a814aaf8e980749c56ab0a9e41f385"
       }
     }
+  },
+  "corrected_restore": {
+    "reference": {
+      "package_id": "restoration-proof-3137c1fc-2641-4ba4-ad51-b415c174e7d4",
+      "sha256": "cb45f8375dc85b4999f65142d464017d7b4ea0ee82bcaecf1237ec7b1852cdfb"
+    },
+    "host_bridge_unchanged": true,
+    "all_checks_passed": true
   }
 }
