@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import time
 import uuid
+from execution_scope import check_start
 
 
 def write_json(path, data):
@@ -18,7 +19,7 @@ def write_json(path, data):
 
 EXCLUDED_DIRS = {'node_modules', 'bin', 'obj', '.git', '.codex', '.cache', 'maildrop'}
 EXCLUDED_SUFFIXES = {'.db', '.sqlite', '.sqlite3', '.db-shm', '.db-wal'}
-MANAGEMENT_FILES = ('run_experiment.py', 'run_codex.py', 'model_gateway.py', 'gateway_usage.py', 'normalize_usage.py')
+MANAGEMENT_FILES = ('run_experiment.py', 'run_codex.py', 'model_gateway.py', 'gateway_usage.py', 'normalize_usage.py', 'execution_scope.py')
 
 
 def snapshot(root, source_only=True):
@@ -43,6 +44,7 @@ def verify_snapshot(root, expected, source_only=True):
 
 
 def run(distribution, config, output, *, network='none', run_id_override=None, setup_failure=False):
+    config = dict(config, start_authorization=check_start(config))
     required = ['experiment_version', 'model_id', 'effort', 'agent_version', 'tool_versions',
                 'subagent_policy', 'environment', 'budget', 'execution_order', 'command']
     for field in required:
@@ -102,6 +104,7 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                         '--workdir', '/workspace', *input_mounts, image, *config['command']],
                        check=True, capture_output=True, timeout=60)
         container_created = True
+        manifest['start_authorization'] = check_start(config)
         subprocess.run(['docker', 'start', name], check=True, capture_output=True, timeout=30)
         remaining = max(0.001, budget['value'] - (time.monotonic() - started))
         budget_waiting = True
@@ -116,8 +119,9 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
         manifest['timeout_stage'] = failure.cmd[1] if isinstance(failure.cmd, list) and len(failure.cmd) > 1 else 'unknown'
     except KeyboardInterrupt:
         reason = 'operator_aborted'
-    except (OSError, subprocess.CalledProcessError, RuntimeError, ValueError):
+    except (OSError, subprocess.CalledProcessError, RuntimeError, ValueError) as failure:
         reason = 'environment_failure'
+        manifest['error'] = str(failure)
     finally:
         if container_created:
             try:

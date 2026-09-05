@@ -34,6 +34,17 @@ def aggregate(runs, results, ledger):
     for run in sorted(runs, key=lambda r: r['run_id']):
         if run['phase'] not in ('calibration', 'pilot', 'comparison') or run['condition'] not in ('normal', 'anti'):
             raise ValueError('Invalid phase or condition')
+        validity = run.get('evaluation_validity', 'pending')
+        if validity not in ('valid', 'invalid', 'pending'):
+            raise ValueError('Unknown evaluation validity')
+        expected_kind = 'calibration' if run['phase'] == 'calibration' else 'evaluation'
+        if run.get('evaluation_kind') not in (None, expected_kind):
+            raise ValueError('Evaluation kind does not match Run phase')
+        effective_valid = (validity == 'valid' and run.get('evaluation_kind') == expected_kind
+                           and bool(run.get('validity_record_hash')))
+        if validity == 'valid' and not effective_valid:
+            validity = 'pending'
+        validity_reason = run.get('validity_reason') or ('Missing evaluation validity evidence' if not effective_valid else '')
         count = {s: 0 for s in STATUSES}
         for eid, item in ids.items():
             cases = ('lower', 'upper') if eid == 'T-006-05' else ('main',)
@@ -44,16 +55,19 @@ def aggregate(runs, results, ledger):
             status = next(s for s in ('error', 'fail', 'blocked', 'pass') if s in statuses)
             count[status] += 1
             details.append(dict(run_id=run['run_id'], evaluation_id=eid, status=status,
-                                ap001_relation=item['ap001_relation'], cases=entries))
+                                ap001_relation=item['ap001_relation'], cases=entries,
+                                evaluation_validity=validity, validity_reason=validity_reason,
+                                validity_record_hash=run.get('validity_record_hash')))
         total = run.get('total_tokens')
         complete = run.get('usage_complete') is True and type(total) is int and total >= 0
         if run.get('usage_complete') is True and total is not None and not complete:
             raise ValueError('Complete usage requires a nonnegative integer total')
-        quality = None if count['error'] or run.get('evaluation_error') else 100 * count['pass'] / len(ids)
+        quality = None if count['error'] or run.get('evaluation_error') or not effective_valid else 100 * count['pass'] / len(ids)
         row = {k: run[k] for k in ('run_id', 'phase', 'condition', 'experiment_version',
                                   'score_version', 'submission_hash', 'end_reason')}
-        for field in ('evaluation_attempt', 'ledger_hash', 'manifest_hash', 'usage_hash', 'results_hash'):
+        for field in ('evaluation_attempt', 'evaluation_id', 'evaluation_kind', 'ledger_hash', 'manifest_hash', 'usage_hash', 'results_hash', 'validity_record_hash', 'validity_registry_hash'):
             row[field] = run.get(field)
+        row.update(evaluation_validity=validity, validity_reason=validity_reason)
         row.update(total_tokens=total if complete else None, usage_complete=complete,
                    observed_tokens=run.get('observed_tokens'), denominator=len(ids),
                    passed=count['pass'], failed=count['fail'], blocked=count['blocked'],
@@ -61,7 +75,7 @@ def aggregate(runs, results, ledger):
                    all_passed=(count['pass'] == len(ids)) if quality is not None else None,
                    evaluation_error=run.get('evaluation_error', ''),
                    missing_reason=('usage incomplete; ' if not complete else '') +
-                                  ('evaluation unavailable' if quality is None else ''))
+                                  (validity_reason or run.get('evaluation_error') or 'evaluation unavailable' if quality is None else ''))
         rows.append(row)
     return rows, details
 

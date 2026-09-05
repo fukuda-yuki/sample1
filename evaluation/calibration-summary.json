@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
   "purpose": "Evaluator calibration only; not normal/anti implementation comparison Runs.",
-  "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
-  "ledger_hash": "baec6d3eefd2d6adb9d5715e36d93245692d5a1e994817b3cd0492e7cc780be5",
+  "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+  "ledger_hash": "af3a9ce88bcafc1dd980a2ff918bc27bd737d6bd964eace1c416265577312c1e",
   "node_windows": "v24.15.0",
   "node_linux": "v22.23.2",
   "browser_version": "145.0.7632.6",
@@ -344,6 +344,473 @@
       "summary_sha256": "e4ff0d07c5ecd4842ccfbb60d2dbecdb1fa35c445105cdbc1fec6399ca70ba5e",
       "results_sha256": "dced90335412b5e0630cc7430188ac5c00ea12a445efb8bc34a7b5c252a41196",
       "diagnostics_sha256": "212afd0c6a7908d5d10e5c322073aa6d8e10855feed8898b2e54996b5254eca4"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T15:52:59.118Z",
+      "finished_at": "2026-09-05T15:54:01.366Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "9c4b6a53d1dd34a66cbb636f09d271f137bfbb5a37c0e99421fdba1a5307ff5f",
+      "calibration_id": "repair-20260906-admin",
+      "configuration_sha256": "16886031bbda8c78fb5c5b8223c909120a6d26991e355d5d213efe8d102ea261",
+      "summary_sha256": "56538fbe38e7f48ea342f516ea5a8b96df9518df70a520b0e307a4debb3212f7",
+      "results_sha256": "f02e100d1fe07d6112468cb62821e8fce33259f461d189676c922324733e65c1",
+      "diagnostics_sha256": "4a756b4c086dba417e6e86cc219a3611e717f5d80c3b3de470e4e1da643ecbff"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T15:54:25.119Z",
+      "finished_at": "2026-09-05T15:57:11.840Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "9c4b6a53d1dd34a66cbb636f09d271f137bfbb5a37c0e99421fdba1a5307ff5f",
+      "calibration_id": "repair-20260906-admin-threshold",
+      "configuration_sha256": "a85448a0b2438a34546b3891ad07b5a15e78ae8396d8c920706f802113545893",
+      "summary_sha256": "00d010b23c1c5cde38dcf44c7b93c1faa9ceae149f7b54020d369796bb74bfc4",
+      "results_sha256": "949c937fd96ac7e476e52cdd79950eb0882d35957ff8a85d18030ccca451d3ca",
+      "diagnostics_sha256": "b7a97573cfe6ffb7543c06a66394023e55b87e6e78037e198608c0733de3c617"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T15:52:29.409Z",
+      "finished_at": "2026-09-05T15:53:34.675Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "9c4b6a53d1dd34a66cbb636f09d271f137bfbb5a37c0e99421fdba1a5307ff5f",
+      "calibration_id": "repair-20260906-self",
+      "configuration_sha256": "3efc7fe98103f86c0aa4e662928de4b5302916ec6befd50a214b2daf17aa1081",
+      "summary_sha256": "0feefd3e5b8a17acd50a72751e0d0b026fbcb6c25428d1622b757094295561b1",
+      "results_sha256": "62d819232ffaae25f687b912cadc49843223cdcd2c2cdcce8eb4c8ff2e2e67b2",
+      "diagnostics_sha256": "21f6500ec1726d628ea93eb30586f03a78bf5e44f1bb84ee03449a5e0c2e81c0"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 56,
+        "fail": 1,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T15:54:35.484Z",
+      "finished_at": "2026-09-05T15:55:41.440Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "9c4b6a53d1dd34a66cbb636f09d271f137bfbb5a37c0e99421fdba1a5307ff5f",
+      "calibration_id": "repair-20260906-self-duplicate",
+      "configuration_sha256": "dd0a6e16d31380700f25bf76b16a15875a788013af41e8aff9c0e29cf14a822c",
+      "summary_sha256": "47e6170a0c952d698d438ea0624d2723e978664be549270f0dcc6f450844b5f2",
+      "results_sha256": "218745e94d6e9164e8309df1cd6c491428bb1ad7961a9a0d08dffe8a152d08b6",
+      "diagnostics_sha256": "97e0afd7dfef00d0f3dcb6cf51ee1f9a30e41cc0b8fac23ac3cf2e65f991a4d5"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T15:54:14.793Z",
+      "finished_at": "2026-09-05T15:57:00.554Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "9c4b6a53d1dd34a66cbb636f09d271f137bfbb5a37c0e99421fdba1a5307ff5f",
+      "calibration_id": "repair-20260906-self-threshold",
+      "configuration_sha256": "d25cc19f8dfce4695b8d03090576ee94e4e28ee6b221153cde0cac7ccaa410d9",
+      "summary_sha256": "789423c4fb84889dd07cb5efd443254f6db862011c0fe0f41336db03bb7fa984",
+      "results_sha256": "bbec16173e46cc4442a49940ad0748f7486653b753ff7dfcbd8110936d0cd178",
+      "diagnostics_sha256": "e8ae9f078e97caaf5fab164f4c1f2a1c0e3716afbfd7d1ca13de3d349ea2c80d"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 53,
+        "fail": 4,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T15:53:09.509Z",
+      "finished_at": "2026-09-05T15:55:08.614Z",
+      "submission_hash": "b654459495a30c160287236e41b67606d83ab7c327c943c8b695fcb5b2eb4715",
+      "evaluator_hash": "9c4b6a53d1dd34a66cbb636f09d271f137bfbb5a37c0e99421fdba1a5307ff5f",
+      "calibration_id": "repair-20260906-stress",
+      "configuration_sha256": "9af8f4b13cc688053807beadc7572bf73bd1875308a2b3becab8c4a9be565b83",
+      "summary_sha256": "6ebe5b086a6600f97a72c2428bd4b463c6388b787b5916412c7fad3416cbd4f8",
+      "results_sha256": "069160256e9f45048da5f425ff9d8401ef16598615086f4fe6906c0eef5a1ab7",
+      "diagnostics_sha256": "f611c971d613c150e99c973475b564227da0f040cdc9ecaecb19bf022eb356e2"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 55,
+        "fail": 2,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T15:59:04.177Z",
+      "finished_at": "2026-09-05T16:00:08.039Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "89be6b34ebc3d6c8e9d54fa93318f4ab0af2a7dd4a4def4356c07abdae049306",
+      "calibration_id": "repair2-20260906-admin",
+      "configuration_sha256": "64d541b2350a6fd26465b41cba3d21bb67b86d937ad72b000dd5956cd40116f5",
+      "summary_sha256": "002b98aabd1c535f6b26641dbebe13b4e3791f245f405656895911b81342833b",
+      "results_sha256": "0e6e39fb536cf624b28d929512dd1f7d8de744f79916b53891d31f0439331b33",
+      "diagnostics_sha256": "c8080fbb98e2be0a2de274125c2bef3c5add96adba63ece7e32ac33ef6834196"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 42,
+        "fail": 15,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:00:38.057Z",
+      "finished_at": "2026-09-05T16:03:28.093Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "89be6b34ebc3d6c8e9d54fa93318f4ab0af2a7dd4a4def4356c07abdae049306",
+      "calibration_id": "repair2-20260906-admin-threshold",
+      "configuration_sha256": "d2567a89ac630f3e3038ed79ad6e1ccb82d08a46491f619fc7007ef7b4de1d5a",
+      "summary_sha256": "95e825ea5ee6dca4f53c5bccc207f68cb81753edb73d247104c3922405591068",
+      "results_sha256": "6c846a8a0c005421bd25f013284c0b3fd1486d3b5061fde52fa5a396f674bb4c",
+      "diagnostics_sha256": "90b0843907dd580a5bafbb410473778d7bc1692631e930d86123085cad29346b"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 55,
+        "fail": 2,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:00:27.687Z",
+      "finished_at": "2026-09-05T16:01:30.822Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "89be6b34ebc3d6c8e9d54fa93318f4ab0af2a7dd4a4def4356c07abdae049306",
+      "calibration_id": "repair2-20260906-self",
+      "configuration_sha256": "4d5f69cf436c194d376685d524076e2b6d2f28b8b4764c4f2d14cb1baf03a064",
+      "summary_sha256": "b62e970c48982218bda9c21aab1eeb00dc1ed8dad0e199cb83a0bf99ed34fb22",
+      "results_sha256": "119f389d79c09976c70f7d1c232898505aff9d05491ae57bbd7433cf877ce252",
+      "diagnostics_sha256": "dedbd73c709c119657e5ac6cda6efa08b4b7ef083879d74a2961ecb1739a5ebd"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 42,
+        "fail": 15,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:00:48.351Z",
+      "finished_at": "2026-09-05T16:03:37.355Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "89be6b34ebc3d6c8e9d54fa93318f4ab0af2a7dd4a4def4356c07abdae049306",
+      "calibration_id": "repair2-20260906-self-threshold",
+      "configuration_sha256": "edab6b06ce466c9e0a147fe3ebed2a6340e5af3c0ef4d92140e2249093469f76",
+      "summary_sha256": "907ab9d2399980aa340367a3484f6f3cfbadf85c19774c17edc43d0015101b57",
+      "results_sha256": "6bda02d2c63bca0b308ee685c64a8916cb24ef46538cb922a284d690d4606c05",
+      "diagnostics_sha256": "33419c9f1d577947f66d9a1d4326adcec22c07011d374543eda77bc20abcbdd3"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 55,
+        "fail": 2,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T15:59:14.575Z",
+      "finished_at": "2026-09-05T16:01:10.332Z",
+      "submission_hash": "b654459495a30c160287236e41b67606d83ab7c327c943c8b695fcb5b2eb4715",
+      "evaluator_hash": "89be6b34ebc3d6c8e9d54fa93318f4ab0af2a7dd4a4def4356c07abdae049306",
+      "calibration_id": "repair2-20260906-stress",
+      "configuration_sha256": "c9aeae91d46e9d2b76f48189339a0cd1999962b0fd477cdd5e001f557b9812d4",
+      "summary_sha256": "b279737db9befa259f34a1bd08f81d469153c1bb5242cedcf33cf67fe294452b",
+      "results_sha256": "63c002ce2be1b38161b23af54eaf352abde5bf094f3805ef6b12eba48c8f4910",
+      "diagnostics_sha256": "425709d9180d25bbdcab5aec469ecbca5f0e2d9d31ce1d7f4d868561c7506509"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:05:47.234Z",
+      "finished_at": "2026-09-05T16:06:51.182Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "calibration_id": "repair3-20260906-admin",
+      "configuration_sha256": "05e7f04f736173e6d923f40f4cdb4dc518be57361952facbbc106783896f4779",
+      "summary_sha256": "9ed21a5725385d4349dcc053b4a0aacb83c190d810a0bc81bf7602ee351a6420",
+      "results_sha256": "7d6e2c617a79e0b9160f49825c5977f215e70fa4372023d614175bf246a41f62",
+      "diagnostics_sha256": "c39a70e92a00185618a80335682d5666f21fb3d48cf342fa1dc0eb10421eb0b9"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:06:23.553Z",
+      "finished_at": "2026-09-05T16:09:28.722Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "calibration_id": "repair3-20260906-admin-threshold",
+      "configuration_sha256": "d68669c11f7b322bca97f71732f88563166ffb606d1e5599bbea7ea0acc7e521",
+      "summary_sha256": "5c94c66cbc8773f6087f03d483a131258cc32496aa8ff0dc6ebab89cb568b035",
+      "results_sha256": "9f839c9eca57da2391401621f32cf8f3b207bddb6e9589b07a6cb6865b79c32a",
+      "diagnostics_sha256": "af92e062562e50e3c376eb887e599c4df1a0788a622000055d8f16c2e1414ca0"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:06:23.322Z",
+      "finished_at": "2026-09-05T16:07:34.075Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "calibration_id": "repair3-20260906-self",
+      "configuration_sha256": "57275c7b6384275cb5185eda27b9156c5f11de91d403807e358d5aa3e9efee94",
+      "summary_sha256": "cc592f765eda709faa6ced5889a54dfe64391249a356abac2553d6269c8663ce",
+      "results_sha256": "11cff1df980d9fcb0d8f54788d493cf1cea3994323bc23f1e8ecfc56e1d74675",
+      "diagnostics_sha256": "b2d41e5f51c4ad85e6dc2e0149affc89a1ea12b33a42e32ebb22ea98a526c4d7"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 56,
+        "fail": 1,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:06:23.928Z",
+      "finished_at": "2026-09-05T16:07:43.314Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "calibration_id": "repair3-20260906-self-duplicate",
+      "configuration_sha256": "4f82f3c252f8e7e5467781d34b9fb60477a0cbd498bb87da2218ab9fdac0ef80",
+      "summary_sha256": "5a823bdb53fc24f7d30d4f81cf8bb77ea9c57f93d676a9ebba67251717fce4ec",
+      "results_sha256": "0fbd5c9fe54141b46884b1d6252ed7ff6354a4df538a5a33efec7cb4c1e29396",
+      "diagnostics_sha256": "7d6c1f4463f7b9009f5a70dc4be443f4623d195ed05cdf18a0608abafca97c9f"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:06:23.742Z",
+      "finished_at": "2026-09-05T16:09:26.572Z",
+      "submission_hash": "641118d868d8a73c1231a168f5820c9c94b5f62166085a3703b996aab094e8d9",
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "calibration_id": "repair3-20260906-self-threshold",
+      "configuration_sha256": "a1bf18cc3df92e446e1b98c4565cbf4189adcf08d7a9875e5e057bcf63e923f6",
+      "summary_sha256": "c8b227acb569485404aab3402cb4974da553c270926abc2e3eaf275b2cf34f6c",
+      "results_sha256": "8467533ac9ef3b546e066a1fe6396279f9bef823e571d9ca49115549b94100ba",
+      "diagnostics_sha256": "40cd71e98a69ec6856a6dff5459cc8acbb2fb3cd745f4ec58789b731b3ea16ce"
+    },
+    {
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T16:05:57.663Z",
+      "finished_at": "2026-09-05T16:07:56.617Z",
+      "submission_hash": "b654459495a30c160287236e41b67606d83ab7c327c943c8b695fcb5b2eb4715",
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "calibration_id": "repair3-20260906-stress",
+      "configuration_sha256": "3743e01be66647a0d4e24a3e1b8b3aa1539daf2a508578c4b3468a2d32f529f0",
+      "summary_sha256": "ff02d79dc4a4f27e938a3e5ac6c655a6489b0ee29409e59b0457c11ed6923f32",
+      "results_sha256": "e6463744e403555c7b3da9e4042cd7122380a833cf6c779013f4cb0f454f485a",
+      "diagnostics_sha256": "4ad584bb47b88006b1e552ebc46a6af284245922a55117edfcfe1ee61995c23a"
+    },
+    {
+      "calibration_id": "calibration-linux-35576b15-1573-4a62-b87d-85ddd929473d",
+      "platform": "WSL Docker",
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "submission_hash": "8caa7825b34841cc7a63fe651e53bea5acba0920c76471a02de6a92edf9ef7c3",
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "configuration_sha256": "9a45d1a28716f64445f2676c6ac71981c2e73c6064be961b93e5cf7687931671",
+      "summary_sha256": "9b5535746470955ef0bc0e8449ff43148cfe9e094d60cd9eb47c4cfad39f70cd",
+      "results_sha256": "679861ae032c32675e3e01ef074fc880fe20d4d24adc94125cb6e92df42c9fcd",
+      "resources_sha256": "e26e9916f76cd07c1eb60e781df058a2cd092b9262924b6136f0aa0ddfa6431e"
     }
   ],
   "repeated_submission_identical_results": true,
@@ -474,11 +941,39 @@
     "case_expectations_changed": false
   },
   "actual_pilot_validation": {
+    "status": "not_re_evaluated_missing_fixed_originals",
+    "effective_quality": null,
+    "reason": "Both frozen directories are empty; manifest/snapshot/usage originals missing. User reports no backup. Working directories are not substituted.",
+    "comparison_runs_started": 0
+  },
+  "previous_actual_pilot_validation": {
     "status": "quality_unconfirmed",
     "effective_quality": null,
     "reason": "The evaluated application permits public self-registration as allowed by normal/spec.md F-001, but the evaluator only follows registration from an authenticated administrator user-management screen. This additional unpublished navigation assumption invalidates actual-pilot quality scoring despite passing the calibration fixtures.",
     "public_basis": "normal/spec.md:37-39; implementation_prompt.md section 5.5",
     "action": "Stop and preserve both incomplete evaluations and immutable submissions. No further evaluator changes, rescoring or comparison Runs in the current scope.",
     "calibration_limitation": "Passing the researcher-authored normal and UI-variant fixtures did not cover every specification-permitted registration entry path."
+  },
+  "current_release": {
+    "windows_normal_fixtures": [
+      "repair3-20260906-admin",
+      "repair3-20260906-self",
+      "repair3-20260906-stress"
+    ],
+    "normal_fixture_pass_ids": 57,
+    "threshold_mutations": [
+      "repair3-20260906-admin-threshold",
+      "repair3-20260906-self-threshold"
+    ],
+    "threshold_pass_ids": 44,
+    "threshold_fail_ids": 13,
+    "duplicate_email_mutation": "repair3-20260906-self-duplicate",
+    "duplicate_email_detected_by": "T-001-02",
+    "linux_self_registration_fixture": "calibration-linux-35576b15-1573-4a62-b87d-85ddd929473d",
+    "linux_pass_ids": 57,
+    "resolver_controls_pass": 3,
+    "resolver_controls_source_sha256": "cbf460588f3785827147acfa54cd095e550ccba3194dd7602189be30a93d3f5e",
+    "windows_linux_evaluator_files_match": true,
+    "limitation": "Calibration success does not prove acceptance of all specification-permitted UIs."
   }
 }

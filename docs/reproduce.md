@@ -10,7 +10,7 @@
 
 ## 実装
 
-以下はDockerホスト上のシェルから実行する例。`/research` は研究者専用の作業先へ置き換える。既存の出力先は再利用しない。実行設定・入力の生成は初回だけ行い、同じ固定版で繰り返す。
+現在はexecution-scope.jsonにより新しい実装Runの設定生成・開始を拒否する（pilotの再実装も含む）。以下は将来ユーザーが再開範囲を明示した後のDockerホスト上の操作例。`/research` は研究者専用の作業先へ置き換える。既存の出力先は再利用しない。実行設定・入力の生成は初回だけ行い、同じ固定版で繰り返す。
 
 ```sh
 python3 scripts/prepare_workspace.py normal /research/distribution-normal
@@ -46,7 +46,7 @@ docker start -a <返されたresearcher_container>
 
 ```sh
 python3 -m pip install -r analysis/requirements.txt
-python3 analysis/collect_runs.py /research/selections.json /research/aggregate --ledger /research/private-eval-linux/evaluations/<id>/result/evaluator-snapshot/requirements-ledger.json
+python3 analysis/collect_runs.py /research/selections.json /research/aggregate --validity /research/private-eval-linux/evaluation-validity.json --ledger /research/private-eval-linux/evaluations/<id>/result/evaluator-snapshot/requirements-ledger.json
 python3 analysis/plot.py /research/aggregate/runs.csv /research/aggregate/tokens-quality.png
 ```
 
@@ -62,3 +62,11 @@ python -m unittest discover -s analysis -p 'test_*.py'
 ```
 
 合成集計の再生成は `python analysis/calibrate.py <新規出力先>`。これは効果比較のデータではない。Dockerの隔離・通常起動・モデル接続・独立E2Eの実測結果と、Python検証の成功を区別する。
+
+## 採点有効性の正本
+
+研究者専用 `../sample1-private-eval-linux/evaluation-validity.json` が採点実行ごとの有効性の正本。集計の `--validity` は必須であり、選択JSONには有効・無効を指定しない。schema_version=1、attempts配列の各記録は evaluation_id、run_id、status（valid/invalid/pending）、reason、submission_hash、evaluator_hash、summary_hash、results_hash、adjudications（原本への相対pathとsha256）を持つ。同じIDを重複させない。
+
+旧adjudicationは上書きせず参照する。旧記録にRun IDがない場合だけ、legacy_adjudication_bindingに当時のresearcher-configのconfig_pathとconfig_sha256を保存し対応を検査する。途中停止でsummary/resultsが未生成の記録はハッシュnullを残すが、完全な採点として取り込まない。これらは未採点として選択し、元の無効理由は公開停止記録と有効性台帳に残す。
+
+記録なしはpending。invalid/pendingはraw結果が満点でも品質・全件合格をnullにする。raw件数・版・品質の整合性検査は省略しない。invalid原本を参照したままvalidに変更することはできず、同じ提出物の新しい採点実行で判断する。validは校正成功だけでは付けず、実際の採点と根拠を研究者が確認して記録する。CSV・項目内訳のpass/failはraw判定であり、有効性列がvalidでない限り実装品質とは解釈しない。

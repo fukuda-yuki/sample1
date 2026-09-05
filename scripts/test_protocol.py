@@ -70,6 +70,11 @@ class UsageTests(unittest.TestCase):
 
 
 class FilesTests(unittest.TestCase):
+    def setUp(self):
+        patcher=patch('run_experiment.check_start',return_value={'scope_sha256':'synthetic'})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_generated_symlink_excluded_but_source_link_rejected(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)

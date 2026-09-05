@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "registry_path": "../sample1-private-eval-linux/evaluation-validity.json",
+  "registry_sha256": "f1d33699c1b3006994f5fe01a367684912851f9b5daec834837cf7eca4b440f9",
+  "purpose": "Current research adjudication registry; no historical attempt was inferred valid",
+  "attempt_count": 11,
+  "status_counts": {
+    "valid": 0,
+    "invalid": 5,
+    "pending": 6
+  },
+  "attempts": [
+    {
+      "evaluation_id": "22c4f5cc-5fff-4819-b88b-15b2caf403c5",
+      "run_id": "250df4e7-f8f9-44cd-8324-db24e050962f",
+      "status": "invalid",
+      "submission_hash": "1f3a93ecf04706b45d1a17bc4a698a63d8fb1d02f82b92a1d5abf46ea415e8d6",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "summary_hash": null,
+      "results_hash": null
+    },
+    {
+      "evaluation_id": "23bdf156-e124-44ae-80d5-4fc545ad9ba4",
+      "run_id": "250df4e7-f8f9-44cd-8324-db24e050962f",
+      "status": "invalid",
+      "submission_hash": "1f3a93ecf04706b45d1a17bc4a698a63d8fb1d02f82b92a1d5abf46ea415e8d6",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27",
+      "summary_hash": "5d16e8ff809776c8768b78ab17a3590e5e09fb4b0826c8deb3a802fcf4f8530d",
+      "results_hash": "9f18e7e58adaf0403f94f251368df35d1a22caeab63285cfa3c692b2572e3534"
+    },
+    {
+      "evaluation_id": "280120ee-9163-4b29-b461-dc6e7742854a",
+      "run_id": "e849b8d9-60e2-464f-bea9-11d24134674f",
+      "status": "invalid",
+      "submission_hash": "774e742b0b3893517f3847bc9a92974a7664d1f8b9048dde1c64a246473d856c",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "summary_hash": null,
+      "results_hash": null
+    },
+    {
+      "evaluation_id": "442c504b-574a-413d-bba9-8c674684d87a",
+      "run_id": "11633a3c-73d5-49b8-8f8a-5836f45bfc8f",
+      "status": "pending",
+      "submission_hash": "8cb38dfff424a341764f900f823778ac2d840793b3e38a91b377c97bf660db77",
+      "evaluator_hash": "9f3e0731f9a3225f70af1e17ab8e81d6d868efd46bac4e53fe56c18c882d7cc9",
+      "summary_hash": "88997aef82a3608646c8dbd5b8ec8e0a305acdd71341df91318e02e05e3a6f44",
+      "results_hash": "2340bc8e065a4aa99684b2b36f63dda3d4d8a220076cad37bb4e498db4c99d42"
+    },
+    {
+      "evaluation_id": "6146dfbc-c890-4687-af04-f1aca58b2ca9",
+      "run_id": "11633a3c-73d5-49b8-8f8a-5836f45bfc8f",
+      "status": "pending",
+      "submission_hash": "8cb38dfff424a341764f900f823778ac2d840793b3e38a91b377c97bf660db77",
+      "evaluator_hash": "090040c4be305f1b04b75ba810fdf0c6a9f57158e80d70cd4ef63bae5aa153ee",
+      "summary_hash": "7cc31eea6c2f99e8cc038ebad1ca41908b3a09061809e917ced28c0aed32012e",
+      "results_hash": "e30968a8e5b043516df2ab919fb28faf23dbadda1fb5ca5796942e40785ccb4f"
+    },
+    {
+      "evaluation_id": "722b27ba-940d-4f6e-9f2d-a27094cdbceb",
+      "run_id": "250df4e7-f8f9-44cd-8324-db24e050962f",
+      "status": "invalid",
+      "submission_hash": "1f3a93ecf04706b45d1a17bc4a698a63d8fb1d02f82b92a1d5abf46ea415e8d6",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "summary_hash": null,
+      "results_hash": null
+    },
+    {
+      "evaluation_id": "79297646-3122-40ca-a551-cf55e2dc7a1d",
+      "run_id": "classifier-unlabelled-121-a439f125-de56-4777-8283-90ba2a162595",
+      "status": "pending",
+      "submission_hash": "9af9f4437b51bc394b4a237a22b3a5214c4951fcea289889c0eea897e40aae61",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "summary_hash": "a842eb5779bd0437e90e14a6edfde0340998cb3e326c4bb095557ad3373f323a",
+      "results_hash": "9b1051e682bc031703d99d49f7e3589dac28f882e53d7495f5bee61d80af11de"
+    },
+    {
+      "evaluation_id": "a5cf123d-5de8-41d9-bdd4-f3dcd6a7852f",
+      "run_id": "classifier-application-remapped-122-65a90732-4719-4d63-b244-1f1ec435a3fd",
+      "status": "pending",
+      "submission_hash": "9af9f4437b51bc394b4a237a22b3a5214c4951fcea289889c0eea897e40aae61",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "summary_hash": "32da09ea012176339638091d0f7e6651a4603dc0c43fe3d4a49ce26edf3eed54",
+      "results_hash": "7ef63fd6ff53fe78dcfec9addad528deaa816fac1f95dbbc6493c93e7c042a14"
+    },
+    {
+      "evaluation_id": "b228155a-fe0d-4bd7-9b85-81bf59934350",
+      "run_id": "e849b8d9-60e2-464f-bea9-11d24134674f",
+      "status": "invalid",
+      "submission_hash": "774e742b0b3893517f3847bc9a92974a7664d1f8b9048dde1c64a246473d856c",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "summary_hash": null,
+      "results_hash": null
+    },
+    {
+      "evaluation_id": "bb97bb08-3e14-445c-a616-2fe4ca2631d0",
+      "run_id": "classifier-helper-setup-121-497752e7-41d0-4d9f-8f08-ce4144155faf",
+      "status": "pending",
+      "submission_hash": "9af9f4437b51bc394b4a237a22b3a5214c4951fcea289889c0eea897e40aae61",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "summary_hash": "5f6122c93c452f5445402aac43ef016607a0291093b813a71114aaacd8c6ae19",
+      "results_hash": "ec16ae95e0c9d100eca6eaabffd8e919c0af8cd98e272bfdd42055b5bf83fbc1"
+    },
+    {
+      "evaluation_id": "f5380fe6-a21a-46e9-922d-1edacc675048",
+      "run_id": "classifier-application-build-1-09a9348d-6546-4897-a379-d0c82e2bbe7b",
+      "status": "pending",
+      "submission_hash": "9af9f4437b51bc394b4a237a22b3a5214c4951fcea289889c0eea897e40aae61",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "summary_hash": "9cf813c60ae70ff780c1c7fa68820b4d592627bae0e48475bdfd2cbe82812959",
+      "results_hash": "3dbfb8dd2cb6428d1a64200980dd93120aaf1a7ed7264ce4928d5761a97c72f4"
+    }
+  ]
+}

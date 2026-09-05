@@ -44,3 +44,7 @@ management-source内の実体を保存し、業務入力・image・budgetの版�
 management.jsonはそのRun内に保存し、終了時のmanifest書戻し後にmanagement欄へ関連付ける。
 次Runからv2の原本保持・timeout分類・管理ソース保存を適用する。モデルへの入力、image、
 60分予算は変えていない。途中バックアップは最終usageの代わりにはならない。
+
+## 現在の開始許可
+
+execution-scope.jsonは予定順と別の現在の許可である。設定生成とrun_codex/run_experimentの直接呼出しは共通検査を通り、現在は新規実装Runを全て拒否する。既存設定のstart_authorizationは許可として利用せず、起動直前にも現在のファイルを読む。欠落・未知の範囲・Run/版不一致も拒否する。将来の明示再開時だけ authorized_scope=explicit_planned_runs と allowed_starts のRun名を管理者が更新し、do_not_startを優先する。許可検査のコードと設定hashはRunの来歴に残す。過去の凍結runnerは証拠であり、再開コマンドとして実行しない。

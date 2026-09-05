@@ -26,6 +26,9 @@ def originals(root, *, complete=True):
 
 class UsageRetentionTests(unittest.TestCase):
     def setUp(self):
+        patcher=patch('run_codex.check_start',return_value={'scope_sha256':'synthetic'})
+        patcher.start()
+        self.addCleanup(patcher.stop)
         self.temp=tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name)

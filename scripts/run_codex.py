@@ -9,6 +9,7 @@ import time
 import uuid
 from gateway_usage import collect
 from run_experiment import run, write_json
+from execution_scope import check_start
 
 GATEWAY_IMAGE = 'python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea'
 
@@ -37,6 +38,7 @@ def save_usage(output, raw, *, producer_stopped, error=None):
 
 
 def execute(distribution, config, output, auth, prompt=None):
+    config = dict(config, start_authorization=check_start(config))
     if output.exists():
         raise ValueError('Run output must not already exist')
     run_id = str(uuid.uuid4())
@@ -67,6 +69,7 @@ def execute(distribution, config, output, auth, prompt=None):
             gateway_created, producer_stopped = True, False
             subprocess.run(['docker', 'network', 'connect', '--alias', 'model-gateway', network, gateway],
                            check=True, capture_output=True)
+            config['start_authorization'] = check_start(config)
             subprocess.run(['docker', 'start', gateway], check=True, capture_output=True)
             time.sleep(1)
             instruction = prompt or 'Read /workspace/RUN_CONTRACT.md and /workspace/spec.md. Complete implementation. Follow the supplied instructions.'

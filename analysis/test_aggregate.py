@@ -10,7 +10,8 @@ LEDGER = json.loads((Path(__file__).resolve().parents[1] / 'evaluation/requireme
 def fixture():
     run = dict(run_id='synth-1', phase='calibration', condition='normal', experiment_version='synthetic',
                score_version='synthetic', submission_hash='synthetic', end_reason='agent_completed',
-               total_tokens=100, usage_complete=True)
+               total_tokens=100, usage_complete=True, evaluation_kind='calibration',
+               evaluation_validity='valid', validity_record_hash='synthetic-evidence', validity_reason='Synthetic calibration')
     results = []
     for item in LEDGER['items']:
         eid = item['evaluation_id']
@@ -77,6 +78,13 @@ class AggregationTests(unittest.TestCase):
         runs, results = fixture()
         with self.assertRaises(ValueError):
             aggregate(runs, results + [copy.deepcopy(results[0])], LEDGER)
+
+    def test_direct_call_without_validity_is_pending(self):
+        runs,results=fixture()
+        runs[0].pop('evaluation_validity')
+        row=aggregate(runs,results,LEDGER)[0][0]
+        self.assertIsNone(row['quality_percent'])
+        self.assertIsNone(row['all_passed'])
 
     def test_deterministic(self):
         runs, results = fixture()

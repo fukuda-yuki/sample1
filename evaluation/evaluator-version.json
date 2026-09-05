@@ -4,11 +4,11 @@
     "playwright.config.ts": "142c397730b35facf8ecee1f20314115c86d1d10f118f1e1d5723426dc5cb533",
     "package-lock.json": "8969aa7d1926bdcf26ea363c240f54a1d3bea70da48b73086b8c01a6035171f8",
     "case-manifest.json": "8c5dc76598500231fbba1bda4c15b61b707914b4e2ce2544374e2259cc31edde",
-    "requirements-ledger.json": "baec6d3eefd2d6adb9d5715e36d93245692d5a1e994817b3cd0492e7cc780be5",
-    "tests/ui.ts": "c32601fbdaf8a46f508b186a5e646d6c213220c61e7c9580b3cb4e9e68be1a42",
-    "tests/application.spec.ts": "2efdca620fea7123add58a0c1fd69293017756903184557a39edd08c154b8250"
+    "requirements-ledger.json": "af3a9ce88bcafc1dd980a2ff918bc27bd737d6bd964eace1c416265577312c1e",
+    "tests/ui.ts": "e8f9634750287be60da898dc3911739f45cc2ede8a127427a0186b2157232699",
+    "tests/application.spec.ts": "1a7c938620de76dce1ce45c37632834db40ca8920f3ec1bce091c51dd4710a18"
   },
-  "sha256": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+  "sha256": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
   "schema_version": 1,
   "playwright_version": "1.58.2",
   "browser_version": "145.0.7632.6",
@@ -18,9 +18,10 @@
   "fixed_denominator": 57,
   "required_scored_cases": 58,
   "non_scoring_diagnostics": 5,
-  "source_archive": "<private-eval-root>/<calibration-run>/result/evaluator-snapshot/",
-  "previous_version": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
-  "change_reason": "Remove unpublished DOM assumptions about label association/help, decorated operation names, record/table structure, pagination, summary text order and asynchronous form/dialog rendering. Fixed 57 IDs, required cases, input business values and ledger unchanged. Invalid pilot evaluations retain original evidence; both immutable submissions use this same corrected version.",
+  "source_archive": "../sample1-private-eval/calibration-runs/repair3-20260906-self/result/evaluator-snapshot/",
+  "previous_version": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+  "change_reason": "Separate public registration entry resolution from business assertions and shared user setup; count records rather than occurrences of request numbers. Audit all 57 IDs into required outcomes, allowed realizations and evaluator operations. Same fixed denominator and AP-001 scoring threshold.",
   "helper_protocol": "2",
-  "helper_sha256": "f83f0009a67a4572c3fc9c3c796f11540d56b2caaca6c4f8ce971bcbd0265cb1"
+  "helper_sha256": "f83f0009a67a4572c3fc9c3c796f11540d56b2caaca6c4f8ce971bcbd0265cb1",
+  "actual_pilot_re_evaluation": "not performed: fixed originals missing"
 }

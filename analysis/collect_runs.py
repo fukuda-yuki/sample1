@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 from aggregate import aggregate, write_outputs, ROOT
+from validity import load_registry, resolve
 
 
 def read(path):
@@ -14,7 +15,8 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'):
+def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json', *, validity_path):
+    validity_records, registry_hash = load_registry(validity_path)
     ledger = read(ledger_path)
     ledger_hash = digest(ledger_path)
     required = {(item['evaluation_id'], case) for item in ledger['items']
@@ -37,6 +39,8 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
             continue
         evaluation = Path(selected['evaluation_directory'])
         summary = read(evaluation / 'summary.json')
+        if manifest['phase'] not in ('pilot', 'comparison') or summary.get('kind') != 'evaluation':
+            raise ValueError('Implementation Run requires kind=evaluation; calibrations use a separate report')
         if manifest['run_id'] != summary['run_id']:
             raise ValueError('Run/evaluation identity mismatch')
         if summary['ledger_hash'] != ledger_hash:
@@ -55,11 +59,15 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
         if len(rows) != len(required) or {(r['evaluation_id'], r['case_id']) for r in rows} != required:
             raise ValueError('Incomplete or duplicated evaluator result file')
         run = dict(base, score_version=summary['evaluator_hash'], submission_hash=summary['submission_hash'],
-                   evaluation_attempt=str(evaluation.resolve()), results_hash=digest(evaluation / 'results.jsonl'))
+                   evaluation_attempt=str(evaluation.resolve()), results_hash=digest(evaluation / 'results.jsonl'),
+                   evaluation_id=evaluation.parent.name if evaluation.name == 'result' else evaluation.name,
+                   evaluation_kind=summary['kind'])
         if evaluation_error:
             run['evaluation_error'] = summary.get('error') or summary['outcome']
         # Reject silent report truncation, wrong cases and altered summary metrics.
-        calculated, _ = aggregate([run], rows, ledger)
+        # Validate the raw score first, separately from the researcher's effective validity.
+        raw_run = dict(run, evaluation_validity='valid', validity_record_hash='raw-integrity-only')
+        calculated, _ = aggregate([raw_run], rows, ledger)
         row = calculated[0]
         expected_counts = {'denominator': row['denominator'], 'pass': row['passed'], 'fail': row['failed'],
                            'blocked': row['blocked'], 'error': row['errors']}
@@ -68,6 +76,7 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
         quality = None if row['quality_percent'] is None else row['passed'] / row['denominator']
         if summary['quality'] != quality:
             raise ValueError('Summary/result quality mismatch')
+        run.update(resolve(validity_records, registry_hash, run['evaluation_id'], summary, evaluation))
         runs.append(run)
         results.extend(rows)
     return runs, results
@@ -78,6 +87,7 @@ if __name__ == '__main__':
     parser.add_argument('selections', type=Path, help='Explicit list of Run and selected evaluation directories')
     parser.add_argument('output', type=Path)
     parser.add_argument('--ledger', type=Path, default=ROOT / 'evaluation/requirements-ledger.json')
+    parser.add_argument('--validity', required=True, type=Path, help='Current researcher-owned evaluation validity registry')
     args = parser.parse_args()
-    runs, results = collect(read(args.selections), args.ledger)
+    runs, results = collect(read(args.selections), args.ledger, validity_path=args.validity)
     write_outputs(*aggregate(runs, results, read(args.ledger)), args.output)
