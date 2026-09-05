@@ -23,7 +23,7 @@ CSVには採点実行ディレクトリ、台帳・manifest・usage・resultsの
 
 ```
 python analysis/aggregate.py --runs <runs.json> --results <evaluation.jsonl> --out <output>
-python analysis/collect_runs.py <selections.json> <output> --ledger <frozen-ledger.json>
+python analysis/collect_runs.py <selections.json> <output> --validity <current-validity.json> --ledger <frozen-ledger.json>
 python -m pip install -r analysis/requirements.txt
 python analysis/plot.py <output>/runs.csv <output>/tokens-quality.png
 python -m unittest discover -s analysis -p "test_*.py"
@@ -38,3 +38,6 @@ pilot各1回は小標本で差の確定値ではない。予定数以上にデ�
 図ごとの欠測表は `<図名>.missing-runs.csv` として保存する。異なる図を同じフォルダへ保存しても、以前の図の欠測表を上書きしない。採点版がない未採点Runは品質nullのまま欠測表へ含める。NaN/Inf、負の座標、100%を超える品質、重複Run IDは不正入力として拒否する。
 
 集計器の実JSON形式との接続検証は [analysis-integration.json](analysis-integration.json) に保存する。実際に完了した校正の58ケースを使い、Run manifestのみ合成、usageは明示欠測として57ID・品質100%・トークンnullへ集計できた記録である。実装モデルの実測トークンや比較効果の結果ではない。再現には記録内のsynthetic_manifest/usageを一時Runディレクトリへ保存し、snapshot_sourceをsnapshot.jsonへコピーして、sourceをevaluation_directory、ledger_sourceを--ledgerへ指定する。
+
+
+2026-09-06以降、実装Runの取り込みはkind=evaluationと採点有効性台帳を必須検査する。上記analysis-integration.jsonは旧実装の接続検証履歴であり、calibrationをpilotへ取り込む手順は現在拒否される。校正は専用の校正概要または明示的な合成校正として分離する。aggregate直接利用でも有効性証拠が欠ければ品質nullになる。invalid/pendingのraw判定件数を有効品質と解釈せず、CSV・内訳の有効性と理由を参照する。

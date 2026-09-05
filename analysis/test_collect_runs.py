@@ -8,7 +8,8 @@ import tempfile
 import unittest
 
 from aggregate import aggregate, write_outputs
-from collect_runs import collect
+from collect_runs import collect as collect_runs
+from validity import digest
 from test_aggregate import LEDGER, fixture
 
 
@@ -23,6 +24,8 @@ class CollectionTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.ledger = self.root / 'ledger.json'
         save(self.ledger, LEDGER)
+        self.validity = self.root / 'validity.json'
+        save(self.validity, {'schema_version': 1, 'attempts': []})
         self.ledger_hash = hashlib.sha256(self.ledger.read_bytes()).hexdigest()
 
     def build(self, name='run-1', status='pass', outcome='completed', complete=True):
@@ -48,14 +51,24 @@ class CollectionTests(unittest.TestCase):
         self.save_report(eval_dir, summary, rows)
         return {'run_directory':str(run_dir),'evaluation_directory':str(eval_dir)}, summary, rows
 
+    def collect(self, selections, ledger):
+        return collect_runs(selections, ledger, validity_path=self.validity)
+
     def save_report(self, directory, summary, rows):
         save(directory / 'summary.json', summary)
         (directory / 'results.jsonl').write_text('\n'.join(json.dumps(r) for r in rows)+'\n', encoding='utf-8')
+        registry=json.loads(self.validity.read_text())
+        registry['attempts']=[r for r in registry['attempts'] if r['evaluation_id']!=directory.name]
+        registry['attempts'].append(dict(evaluation_id=directory.name, status='valid', reason='Synthetic test fixture',
+            **{k:summary[k] for k in ('run_id','submission_hash','evaluator_hash')},
+            summary_hash=digest(directory/'summary.json'), results_hash=digest(directory/'results.jsonl'), adjudications=[]))
+        save(self.validity,registry)
+
 
     def test_58_cases_become_57_ids_and_csv_preserves_provenance(self):
         selected, _, rows = self.build()
         self.assertEqual(len(rows), 58)
-        runs, results = collect([selected], self.ledger)
+        runs, results = self.collect([selected], self.ledger)
         aggregated, details = aggregate(runs, results, LEDGER)
         self.assertEqual((aggregated[0]['passed'],aggregated[0]['quality_percent'],len(details)),(57,100,57))
         out=self.root/'output';write_outputs(aggregated,details,out)
@@ -70,7 +83,7 @@ class CollectionTests(unittest.TestCase):
         next(r for r in rows if r['case_id']=='upper')['status']='fail'
         summary.update(quality=56/57, counts={'denominator':57,'pass':56,'fail':1,'blocked':0,'error':0})
         self.save_report(Path(selected['evaluation_directory']),summary,rows)
-        runs,results=collect([selected],self.ledger)
+        runs,results=self.collect([selected],self.ledger)
         result=aggregate(runs,results,LEDGER)[0][0]
         self.assertIsNone(result['total_tokens'])
         self.assertEqual(result['observed_tokens'],60)
@@ -81,7 +94,7 @@ class CollectionTests(unittest.TestCase):
         summary.update(submission_hash=None,error='browserType.launch failed before snapshot')
         for row in rows:row['submission_hash']=None
         self.save_report(Path(selected['evaluation_directory']),summary,rows)
-        runs,results=collect([selected],self.ledger)
+        runs,results=self.collect([selected],self.ledger)
         result=aggregate(runs,results,LEDGER)[0][0]
         self.assertIsNone(result['quality_percent'])
         self.assertIsNone(result['submission_hash'])
@@ -91,7 +104,7 @@ class CollectionTests(unittest.TestCase):
         selected,_,_=self.build()
         missing,_,_=self.build('run-2')
         missing['evaluation_directory']=None
-        runs,results=collect([selected,missing],self.ledger)
+        runs,results=self.collect([selected,missing],self.ledger)
         rows,_=aggregate(runs,results,LEDGER)
         self.assertEqual([r['run_id'] for r in rows],['run-1','run-2'])
         self.assertEqual(rows[0]['quality_percent'],100)
@@ -111,16 +124,77 @@ class CollectionTests(unittest.TestCase):
                 if mutation=='version':rows[0]['score_version']='other'
                 if mutation=='unknown_case':rows[0]['case_id']='unexpected'
                 self.save_report(Path(selected['evaluation_directory']),summary,rows)
-                with self.assertRaises(ValueError):collect([selected],self.ledger)
+                with self.assertRaises(ValueError):self.collect([selected],self.ledger)
 
     def test_duplicate_run_attempts_are_rejected_and_inputs_unchanged(self):
         selected,_,_=self.build()
         files=list(self.root.rglob('*.json'))+list(self.root.rglob('*.jsonl'))
         before={p:p.read_bytes() for p in files}
-        runs,results=collect([selected,selected],self.ledger)
+        runs,results=self.collect([selected,selected],self.ledger)
         with self.assertRaises(ValueError):aggregate(runs,results,LEDGER)
         self.assertEqual(before,{p:p.read_bytes() for p in files})
 
+    def test_invalid_pending_and_missing_never_score_full(self):
+        selected,_,_=self.build()
+        original=json.loads(self.validity.read_text())
+        for status in ('invalid','pending','missing'):
+            registry=copy.deepcopy(original)
+            if status=='missing':registry['attempts']=[]
+            else:registry['attempts'][0].update(status=status,reason='UI contract invalidated')
+            save(self.validity,registry)
+            runs,results=self.collect([selected],self.ledger)
+            rows,details=aggregate(runs,results,LEDGER)
+            self.assertEqual(rows[0]['passed'],57)
+            self.assertIsNone(rows[0]['quality_percent'])
+            self.assertIsNone(rows[0]['all_passed'])
+            self.assertTrue(rows[0]['validity_reason'])
+            self.assertEqual(details[0]['evaluation_validity'], 'pending' if status=='missing' else status)
+
+    def test_validity_binding_and_duplicate_rejected(self):
+        selected,_,_=self.build()
+        original=json.loads(self.validity.read_text())
+        for field in ('run_id','submission_hash','evaluator_hash','summary_hash','results_hash','duplicate'):
+            registry=copy.deepcopy(original)
+            if field=='duplicate':registry['attempts'].append(copy.deepcopy(registry['attempts'][0]))
+            else:registry['attempts'][0][field]='wrong'
+            save(self.validity,registry)
+            with self.assertRaises(ValueError):self.collect([selected],self.ledger)
+
+    def test_kind_missing_or_calibration_rejected(self):
+        selected,summary,rows=self.build()
+        for kind in ('calibration',None):
+            summary['kind']=kind
+            self.save_report(Path(selected['evaluation_directory']),summary,rows)
+            with self.assertRaises(ValueError):self.collect([selected],self.ledger)
+
+    def test_adjudication_original_must_match_hash(self):
+        selected,_,_=self.build()
+        source=self.root/'adjudication.json';save(source,{'outcome':'invalid_evaluation_ui_contract','evaluation_id':Path(selected['evaluation_directory']).name,'run_id':'run-1'})
+        registry=json.loads(self.validity.read_text())
+        registry['attempts'][0].update(status='invalid',adjudications=[{'path':source.name,'sha256':digest(source)}])
+        save(self.validity,registry)
+        self.collect([selected],self.ledger)
+        save(source,{'outcome':'changed'})
+        with self.assertRaises(ValueError):self.collect([selected],self.ledger)
+
+    def test_invalid_adjudication_cannot_be_marked_valid(self):
+        selected,_,_=self.build()
+        source=self.root/'invalid.json'
+        save(source,dict(evaluation_id=Path(selected['evaluation_directory']).name,run_id='run-1',
+                         disposition='invalid_evaluation_infrastructure'))
+        registry=json.loads(self.validity.read_text())
+        registry['attempts'][0]['adjudications']=[{'path':source.name,'sha256':digest(source)}]
+        save(self.validity,registry)
+        with self.assertRaises(ValueError):self.collect([selected],self.ledger)
+
+    def test_invalid_raw_still_requires_complete_consistent_report(self):
+        selected,summary,rows=self.build()
+        summary['counts']['pass']=56
+        self.save_report(Path(selected['evaluation_directory']),summary,rows)
+        registry=json.loads(self.validity.read_text())
+        registry['attempts'][0]['status']='invalid'
+        save(self.validity,registry)
+        with self.assertRaisesRegex(ValueError,'counts mismatch'):self.collect([selected],self.ledger)
 
 if __name__=='__main__':
     unittest.main()

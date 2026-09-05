@@ -20,7 +20,7 @@ for label, count in counts.items():
     assert f'| {label}テスト | {count}件 |' in source
 assert '| **合計** | **57件** |' in source
 for item in ledger['items']:
-    for key in ['public_basis','inputs_and_preconditions','required_external_behavior','scoring_unit','decision','audit_note','ap001_relation']:
+    for key in ['public_basis','inputs_and_preconditions','required_external_behavior','allowed_realizations','evaluator_operations','scoring_unit','decision','audit_note','ap001_relation']:
         assert item[key], (item['evaluation_id'], key)
     assert item['scoring_unit']['id_count'] == 1
     assert item['scoring_unit']['required_subcases'] == (2 if item['evaluation_id']=='T-006-05' else 1)

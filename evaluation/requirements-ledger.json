@@ -47,7 +47,7 @@
           "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
         }
       ],
-      "inputs_and_preconditions": "- 管理者アカウントでログイン済み\n- 登録対象メールアドレスは未登録\n\n**操作手順**:\n1. 「ユーザー管理」→「新規ユーザー登録」ボタンをクリックする\n2. 氏名に「山田 太郎」を入力する\n3. メールアドレスに「yamada@example.com」を入力する\n4. パスワードに「Password1」を入力する\n5. パスワード確認に「Password1」を入力する\n6. 所属部署に「営業部」を入力する\n7. 役職に「一般」を選択する\n8. 「登録」ボタンをクリックする",
+      "inputs_and_preconditions": "- 公開自己登録フォームを利用、または管理者ログイン後に代理登録フォームを利用\n- 登録対象メールアドレスは未登録\n\n**操作手順**:\n1. 公開UIの登録入口から登録フォームを開く（自己登録または管理者代理登録）\n2. 氏名に「山田 太郎」を入力する\n3. メールアドレスに「yamada@example.com」を入力する\n4. パスワードに「Password1」を入力する\n5. パスワード確認に「Password1」を入力する\n6. 所属部署に「営業部」を入力する\n7. 役職に「一般」を選択する\n8. 「登録」ボタンをクリックする",
       "required_external_behavior": [
         "**期待結果**:\n- 登録完了メッセージが表示される\n- 「yamada@example.com」宛に登録完了メールが届く\n- ユーザー一覧に「山田 太郎」が表示される"
       ],
@@ -58,8 +58,16 @@
       },
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
-      "audit_note": "UI入口の文言・配置は固定しない。F-018の一覧で登録結果も確認する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "audit_note": "UI入口の文言・配置は固定しない。F-018の一覧で登録結果も確認する。 登録経路はF-001の選択肢であり管理者登録の実装は必須ではない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-001前提条件の自己登録または管理者代理登録。登録結果のF-018一覧確認は登録後に別途管理者ログインする。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "UI.registerで登録機能を直接検証"
+      }
     },
     {
       "evaluation_id": "T-001-02",
@@ -108,8 +116,16 @@
       },
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
-      "audit_note": "管理者でログインし重複対象を独立作成。その他入力は正常値。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "audit_note": "許容された登録経路で重複対象を独立作成。その他入力は正常値。 登録経路はF-001の選択肢であり管理者登録の実装は必須ではない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-001前提条件の自己登録または管理者代理登録。登録結果のF-018一覧確認は登録後に別途管理者ログインする。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "UI.registerで登録機能を直接検証"
+      }
     },
     {
       "evaluation_id": "T-001-03",
@@ -147,7 +163,7 @@
           "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
         }
       ],
-      "inputs_and_preconditions": "管理者でログイン済み、パスワード以外は正常値で入力済み、確認欄にはabcを入力\n\n**操作手順**:\n1. 新規ユーザー登録フォームを開く\n2. パスワードに「abc」を入力する（3文字、数字なし）\n3. 「登録」ボタンをクリックする",
+      "inputs_and_preconditions": "自己登録または管理者代理登録のフォームを表示、パスワード以外は正常値で入力済み、確認欄にはabcを入力\n\n**操作手順**:\n1. 新規ユーザー登録フォームを開く\n2. パスワードに「abc」を入力する（3文字、数字なし）\n3. 「登録」ボタンをクリックする",
       "required_external_behavior": [
         "**期待結果**:\n- 「パスワードは8文字以上で英字と数字を含めてください」エラーが表示される"
       ],
@@ -158,8 +174,16 @@
       },
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
-      "audit_note": "管理者で登録フォームを開く。他の入力は正常、確認欄はabcと一致させ強度だけを隔離。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "audit_note": "自己登録または管理者代理登録フォームを開く。他の入力は正常、確認欄はabcと一致させ強度だけを隔離。 登録経路はF-001の選択肢であり管理者登録の実装は必須ではない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-001前提条件の自己登録または管理者代理登録。登録結果のF-018一覧確認は登録後に別途管理者ログインする。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "UI.registerで登録機能を直接検証"
+      }
     },
     {
       "evaluation_id": "T-001-04",
@@ -197,7 +221,7 @@
           "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
         }
       ],
-      "inputs_and_preconditions": "管理者でログイン済み、対象以外の必須入力は正常値\n\n**操作手順**:\n1. 新規ユーザー登録フォームを開く\n2. パスワードに「Password1」を入力する\n3. パスワード確認に「Password2」を入力する\n4. 「登録」ボタンをクリックする",
+      "inputs_and_preconditions": "自己登録または管理者代理登録のフォームを表示、対象以外の必須入力は正常値\n\n**操作手順**:\n1. 新規ユーザー登録フォームを開く\n2. パスワードに「Password1」を入力する\n3. パスワード確認に「Password2」を入力する\n4. 「登録」ボタンをクリックする",
       "required_external_behavior": [
         "**期待結果**:\n- 「パスワードが一致しません」エラーが表示される"
       ],
@@ -208,8 +232,16 @@
       },
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
-      "audit_note": "管理者で登録フォームを開く。他の必須項目も正常値。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "audit_note": "自己登録または管理者代理登録フォームを開く。他の必須項目も正常値。 登録経路はF-001の選択肢であり管理者登録の実装は必須ではない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-001前提条件の自己登録または管理者代理登録。登録結果のF-018一覧確認は登録後に別途管理者ログインする。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "UI.registerで登録機能を直接検証"
+      }
     },
     {
       "evaluation_id": "T-002-01",
@@ -241,7 +273,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "未提示の画面上部ユーザー名表示は削除。ダッシュボード遷移を採点。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-002の認証・ログアウトとF-017のダッシュボード。認証保存方式やユーザー名の配置を固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "UI.registeredUserで許容登録経路を利用"
+      }
     },
     {
       "evaluation_id": "T-002-02",
@@ -273,7 +313,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "右上という配置制約を削除。ブラウザバック後は保護データの再取得が拒否されることを確認。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-002の認証・ログアウトとF-017のダッシュボード。認証保存方式やユーザー名の配置を固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-002-03",
@@ -305,7 +353,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-002の認証・ログアウトとF-017のダッシュボード。認証保存方式やユーザー名の配置を固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-002-04",
@@ -337,7 +393,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "ロック閾値5に設定。5回失敗直後の文言出現タイミングは固定せず、6回目の正しい認証の拒否と公開ロック文言を確認。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-002の認証・ログアウトとF-017のダッシュボード。認証保存方式やユーザー名の配置を固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-003-01",
@@ -381,7 +445,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "経費申請の選択肢を前提として準備する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-003の種別選択から入力フォームへの遷移。DOMタグ・固定ルートを要求しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-003-02",
@@ -425,7 +497,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-003の種別選択から入力フォームへの遷移。DOMタグ・固定ルートを要求しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-004-01",
@@ -457,7 +537,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "タイトルの年月も実行年月から生成。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-004の入力反映とエラー表示。入力欄と表示ラベルのDOM結合方法や補助説明は固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-004-02",
@@ -489,7 +577,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "原手順は0円だけなので目的も0円に限定。上限や負数を実行済みと主張しない。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-004の入力反映とエラー表示。入力欄と表示ラベルのDOM結合方法や補助説明は固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-004-03",
@@ -521,7 +617,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "6MB超/6MBの手順矛盾を6 MiBの有効なPDFに統一。単位の解釈によらず公開5MB上限を超える入力を使用。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-004の入力反映とエラー表示。入力欄と表示ラベルのDOM結合方法や補助説明は固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-005-01",
@@ -577,7 +681,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "必須省略そのものを検証する唯一の明示例外。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-005の下書き保存・再編集。詳細から編集する経路と直接編集フォームを開く経路を許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-005-02",
@@ -633,7 +745,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "編集者本人の下書きを作成し再表示で保存を確認。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-005の下書き保存・再編集。詳細から編集する経路と直接編集フォームを開く経路を許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-006-01",
@@ -701,7 +821,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "提出確認ダイアログの有無は得点条件にしない。公開された提出後の状態・採番・承認者・メールで評価。",
-      "ap001_relation": "直接：normalの100万円基準で評価"
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "allowed_realizations": [
+        "F-006の提出結果を確認。任意の提出確認画面の有無を許容する。100万円の採点基準は不変。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-006-02",
@@ -769,7 +897,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "提出確認ダイアログの有無は得点条件にしない。",
-      "ap001_relation": "直接：normalの100万円基準で評価"
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "allowed_realizations": [
+        "F-006の提出結果を確認。任意の提出確認画面の有無を許容する。100万円の採点基準は不変。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-006-03",
@@ -837,7 +973,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "提出確認ダイアログの有無は得点条件にしない。",
-      "ap001_relation": "直接：normalの100万円基準で評価"
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "allowed_realizations": [
+        "F-006の提出結果を確認。任意の提出確認画面の有無を許容する。100万円の採点基準は不変。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-006-04",
@@ -905,7 +1049,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "提出確認ダイアログの有無は得点条件にしない。",
-      "ap001_relation": "直接：normalの100万円基準で評価"
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "allowed_realizations": [
+        "F-006の提出結果を確認。任意の提出確認画面の有無を許容する。100万円の採点基準は不変。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-006-05",
@@ -974,7 +1126,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "他の必須項目と両役職を準備し、2入力を独立した申請で検証。両方合格で1評価ID。",
-      "ap001_relation": "直接：normalの100万円基準で評価"
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "allowed_realizations": [
+        "F-006の提出結果を確認。任意の提出確認画面の有無を許容する。100万円の採点基準は不変。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-006-06",
@@ -1042,7 +1202,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "タイトル以外の必須入力・承認者を正常に準備しエラー優先順位を仮定しない。",
-      "ap001_relation": "直接：normalの100万円基準で評価"
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "allowed_realizations": [
+        "F-006の提出結果を確認。任意の提出確認画面の有無を許容する。100万円の採点基準は不変。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-007-01",
@@ -1074,7 +1242,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "申請日は異なる相対日付を使用。同日内の未規定ソート順は問わない。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-007の役割別一覧・日付降順・20件ページ。番号ボタン、次ページリンク等のUIを許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-007-02",
@@ -1106,7 +1282,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "自身の申請と承認待ち集合は重複なしで準備。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-007の役割別一覧・日付降順・20件ページ。番号ボタン、次ページリンク等のUIを許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-007-03",
@@ -1138,7 +1322,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "ページ番号ボタンの形状は固定せずUIから2ページ目へ移動。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-007の役割別一覧・日付降順・20件ページ。番号ボタン、次ページリンク等のUIを許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-008-01",
@@ -1170,7 +1362,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "件数の公開例示文言の完全一致要求を削除。閲覧可能な前提データに限定。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-008の検索入力と一致結果・件数。件数の例示文言は意味と数値で確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-008-02",
@@ -1202,7 +1402,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "件数の公開例示文言の完全一致要求を削除。閲覧可能な前提データに限定。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-008の検索入力と一致結果・件数。件数の例示文言は意味と数値で確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-008-03",
@@ -1234,7 +1442,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "固定日付を共通タイムゾーン当日と前日に置換。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-008の検索入力と一致結果・件数。件数の例示文言は意味と数値で確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-008-04",
@@ -1266,7 +1482,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-008の検索入力と一致結果・件数。件数の例示文言は意味と数値で確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-009-01",
@@ -1310,7 +1534,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "本人の提出済み申請に有効な添付を1件作成。添付なしでリンクを要求しない。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-009は申請番号またはタイトルリンクを許容。実在する詳細URLを取得し別セッションの権限を検証する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-009-02",
@@ -1354,7 +1586,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "固定パス・申請番号を削除。Bの実際のURLをAで開き、Aは承認者・管理者ではない。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-009は申請番号またはタイトルリンクを許容。実在する詳細URLを取得し別セッションの権限を検証する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "UI.registeredUserで許容登録経路を利用"
+      }
     },
     {
       "evaluation_id": "T-010-01",
@@ -1446,7 +1686,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "500000円の前提はnormalの課長ルート。経路誤りで準備不能なら当該項目の未達を記録し分母から除外しない。",
-      "ap001_relation": "前提経路に影響しうる。500000円の課長ルートをnormal基準で準備"
+      "ap001_relation": "前提経路に影響しうる。500000円の課長ルートをnormal基準で準備",
+      "allowed_realizations": [
+        "F-010の承認確認と結果。禁止操作は非表示・無効・操作時拒否を許容し状態不変を確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-010-02",
@@ -1532,7 +1780,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-010の承認確認と結果。禁止操作は非表示・無効・操作時拒否を許容し状態不変を確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-010-03",
@@ -1618,7 +1874,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "一般ユーザー本人の申請で詳細閲覧権を満たす。承認ボタン非表示限定を緩和し、無効化または操作拒否でも承認不能を確認。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-010の承認確認と結果。禁止操作は非表示・無効・操作時拒否を許容し状態不変を確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-011-01",
@@ -1692,7 +1956,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-011の理由入力・確認と差し戻し結果。差し戻しコメント／理由のラベルを許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-011-02",
@@ -1766,7 +2038,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-011の理由入力・確認と差し戻し結果。差し戻しコメント／理由のラベルを許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-012-01",
@@ -1840,7 +2120,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "取消ダイアログと取り消せない旨は公開済みで維持。警告の完全一致は不要。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-012の取消確認と不可逆の意味を持つ警告。承認済み取消は非表示・無効・拒否を許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-012-02",
@@ -1914,7 +2202,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "非表示限定を緩和。無効化または拒否で取消不能なら適合。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-012の取消確認と不可逆の意味を持つ警告。承認済み取消は非表示・無効・拒否を許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-013-01",
@@ -2012,7 +2308,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "再提出確認ダイアログを必須にしない。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-013の遷移規則。再提出確認の有無と禁止操作の非表示・無効・拒否を許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-013-02",
@@ -2110,7 +2414,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "目的を実際の状態・操作不能の観測に合わせる。非表示限定を緩和し、無効化・拒否も認める。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-013の遷移規則。再提出確認の有無と禁止操作の非表示・無効・拒否を許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-014-01",
@@ -2172,7 +2484,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-014の宛先・件名・本文要素をmaildropで確認。詳細URLはUIで取得したリンクと照合する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-014-02",
@@ -2234,7 +2554,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-014の宛先・件名・本文要素をmaildropで確認。詳細URLはUIで取得したリンクと照合する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-015-01",
@@ -2314,7 +2642,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "本人または設定承認者・管理者として閲覧。任意コメントがない履歴は空欄を許容。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-015の履歴内容・時刻・順序。表・カード等のDOM形状は固定せず、同分の日時を許容する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-016-01",
@@ -2370,7 +2706,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "公開のファイル名形式・BOM・列は維持。日時は共通タイムゾーンで実行前後範囲を許容。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-016のCSV名・BOM・列・検索結果。無権限の非表示・無効・拒否を許容し取得不能を確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-016-02",
@@ -2426,7 +2770,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-016のCSV名・BOM・列・検索結果。無権限の非表示・無効・拒否を許容し取得不能を確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-016-03",
@@ -2482,7 +2834,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "未提示のボタン非表示限定を緩和。無効化または公開文言による権限拒否を認め、CSVデータは取得不可。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-016のCSV名・BOM・列・検索結果。無権限の非表示・無効・拒否を許容し取得不能を確認する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-017-01",
@@ -2514,7 +2874,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "最近の5件は異なる作成・申請時点で準備し同時刻の未規定順序を要求しない。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-017の役割別件数と直近一覧。サマリーの配置・件数例示文言を固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-017-02",
@@ -2546,7 +2914,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "要対応の表記は例示。件数と一覧の意味を確認。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-017の役割別件数と直近一覧。サマリーの配置・件数例示文言を固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-018-01",
@@ -2578,7 +2954,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-018の管理者一覧・編集・有効状態。対象行のDOM形状や編集リンクの形式は固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "UI.registeredUserで許容登録経路を利用"
+      }
     },
     {
       "evaluation_id": "T-018-02",
@@ -2610,7 +2994,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-018の管理者一覧・編集・有効状態。対象行のDOM形状や編集リンクの形式は固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-018-03",
@@ -2642,7 +3034,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "管理UIから実パスを取得。権限拒否を確認し未提示のURLや特定HTTP実装を要求しない。公開エラーを表示する経路ではその文言を確認。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-018の管理者一覧・編集・有効状態。対象行のDOM形状や編集リンクの形式は固定しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-019-01",
@@ -2674,7 +3074,15 @@
       "had_unpublished_requirement": false,
       "decision": "公開要件に整合、維持",
       "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-019のパスワード変更と再認証。認証保存方式や固定ルートを要求しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-019-02",
@@ -2706,7 +3114,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "新パスワード確認欄をNewPass2で満たし、誤った現在パスワードだけを検証。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-019のパスワード変更と再認証。認証保存方式や固定ルートを要求しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-019-03",
@@ -2738,7 +3154,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "新パスワード確認欄をPassword1で満たす。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-019のパスワード変更と再認証。認証保存方式や固定ルートを要求しない。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-020-01",
@@ -2776,7 +3200,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "SMTP等ほかの全必須設定を正常値で満たす。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-020の設定保存・範囲・権限。SMTP成功は意味で確認し、設定URLは実際の管理UIから取得する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-020-02",
@@ -2814,7 +3246,15 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "SMTP成功は公開文言未定義のため意味確認。既存implementation_prompt §5.3のmaildropで送信を観測。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-020の設定保存・範囲・権限。SMTP成功は意味で確認し、設定URLは実際の管理UIから取得する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-020-03",
@@ -2852,7 +3292,15 @@
       "had_unpublished_requirement": false,
       "decision": "前提・対象明確化",
       "audit_note": "SMTP等ほかの全必須設定を正常値で満たしタイムアウト範囲だけを検証。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-020の設定保存・範囲・権限。SMTP成功は意味で確認し、設定URLは実際の管理UIから取得する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     },
     {
       "evaluation_id": "T-020-04",
@@ -2890,7 +3338,16 @@
       "had_unpublished_requirement": true,
       "decision": "評価緩和（公開要件追加なし）",
       "audit_note": "管理UIから実パスを取得し一般ユーザーの別セッションで拒否を確認。",
-      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない",
+      "allowed_realizations": [
+        "F-020の設定保存・範囲・権限。SMTP成功は意味で確認し、設定URLは実際の管理UIから取得する。"
+      ],
+      "evaluator_operations": {
+        "procedure_ref": "inputs_and_preconditions",
+        "policy": "手順中の操作順・入口・セレクタは評価器の選択。公開根拠にないUI制約を必須にしない。",
+        "registration_setup": "公開resetの初期ユーザーとUI操作で項目ごとに独立構築"
+      }
     }
-  ]
+  ],
+  "audit_version": "public-outcome-route-separation-2026-09-06"
 }

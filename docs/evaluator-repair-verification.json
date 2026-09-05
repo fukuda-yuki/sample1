@@ -1,0 +1,87 @@
+{
+  "recorded_at": "2026-09-05T16:10:30.016241+00:00",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "evaluation/validate-requirements.py"
+      ],
+      "exit_code": 0,
+      "output": "PASS: 57 IDs; normal=32 boundary=3 negative=22; sequential per-feature IDs; ledger/summary; AP-001 preserved\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "output": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.209s\n\nOK\n"
+    },
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "output": ".........................\n----------------------------------------------------------------------\nRan 25 tests in 1.038s\n\nOK\n"
+    }
+  ],
+  "fixed_originals": [
+    {
+      "condition": "normal",
+      "run_directory": "results/runs/pilot-1-normal",
+      "frozen_file_count": 0,
+      "files_present": {
+        "manifest.json": false,
+        "snapshot.json": false,
+        "usage.json": false,
+        "native-usage.json": false
+      }
+    },
+    {
+      "condition": "anti",
+      "run_directory": "results/runs/pilot-1-anti",
+      "frozen_file_count": 0,
+      "files_present": {
+        "manifest.json": false,
+        "snapshot.json": false,
+        "usage.json": false,
+        "native-usage.json": false
+      }
+    }
+  ],
+  "backup_available": false,
+  "backup_information_source": "User response: no alternate backup location",
+  "implementation_runs_started": 0,
+  "pilot_re_evaluation_performed": false,
+  "status": "code_and_calibration_repair; pilot_re_evaluation_blocked_by_missing_originals",
+  "usage_verification": "Historical published reconciliation only; native originals not reverified",
+  "public_figures_visually_checked": true,
+  "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+  "windows_linux_evaluator_files_match": true,
+  "current_calibration_summary": "evaluation/calibration-summary.json",
+  "linux_calibration": {
+    "id": "calibration-linux-35576b15-1573-4a62-b87d-85ddd929473d",
+    "counts": {
+      "denominator": 57,
+      "pass": 57,
+      "fail": 0,
+      "blocked": 0,
+      "error": 0
+    },
+    "private_read_denied_and_docker_socket_absent": true,
+    "resources_sha256": "e26e9916f76cd07c1eb60e781df058a2cd092b9262924b6136f0aa0ddfa6431e"
+  }
+}
