@@ -1,0 +1,8 @@
+backend/bin/
+backend/obj/
+backend/app.db
+backend/app.db-shm
+backend/app.db-wal
+backend/maildrop/
+frontend/node_modules/
+frontend/dist/
