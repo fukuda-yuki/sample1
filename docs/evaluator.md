@@ -8,7 +8,7 @@
 
 研究者の独立環境で private root の `npm ci` と `npx playwright install chromium` を実行する。依存はlockfileで固定し、Playwright 1.58.2、Chromium 145.0.7632.6、workers 1、retries 0、Asia/Tokyo、アサーション・操作待ち6秒、画面遷移待ち10秒、テスト全体120秒、毎ケース新しいブラウザコンテキストと公開resetから開始する。
 
-`node <private-eval-root>/run.mjs <researcher-config.json>` がアプリを外部から起動し、固定設定で採点する。設定は研究者が作成し、提出物に含まれた実行スクリプトを評価器の権限で動かさない。
+`node <private-eval-root>/run.mjs <researcher-config.json>` がアプリを外部から起動し、フロントエンドとAPIそれぞれ最大120秒の起動待ちを行い、固定設定で採点する。設定は研究者が作成し、提出物に含まれた実行スクリプトを評価器の権限で動かさない。
 
 ```json
 {
@@ -46,3 +46,9 @@
 校正は `kind: calibration` と研究者管理の `launch: {command,args,cwd,env}` を使う。このモードは隔離済みの比較実験を意味しない。校正fixtureは比較Runのnormal/anti提出物として扱わない。校正完了後の比較提出者へ失敗ケースを返さない。
 
 校正の検証概要と版は [calibration-summary.json](../evaluation/calibration-summary.json) と [evaluator-version.json](../evaluation/evaluator-version.json) を参照する。これは実装条件間の実験結果ではなく、採点器そのものの校正記録である。
+
+Linux研究者コンテナのブラウザ配置（PLAYWRIGHT_BROWSERS_PATH）とHOMEはテスト子プロセスへ引き継ぐ。アプリには研究者のfilesystemやDocker socketを渡さない。インフラ統合時の是正と版の経緯はprivate CHANGELOGに残し、比較Runは同じ最終版で評価する。
+
+起動helper protocol 2では、setup前処理失敗だけが予約終了コード121を返す。評価器はDocker label `sample1.helper_protocol=2` と終了コード121の両方を確認した場合にevaluator_error/57件error/品質nullとする。アプリのrestore/build/start失敗はblockedのまま。アプリ自身の121はhelperが122へ変換するため前処理失敗と混同しない。labelなし121もアプリ停止として扱う。終了状態を起動待ち中に確認するため、既に停止したプロセスを待ち続けない。
+
+校正概要schema 2はUI挙動の校正版と起動分類の校正版を個別に記録する。旧版の実測を新版の実行結果へ付け替えない。起動分類以外の採点ケース・設定・依存・台帳ハッシュは同一である。

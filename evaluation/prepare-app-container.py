@@ -48,25 +48,33 @@ def main(run_root, private_root, evaluator_image):
         info = json.loads(docker('network', 'inspect', network))[0]
         subnet = ipaddress.ip_network(info['IPAM']['Config'][0]['Subnet'])
         app_ip = str(subnet.network_address + 10)
-        startup = '''set -eu
+        startup = '''set -Eeuo pipefail
+trap 'printf "%s\\n" SAMPLE1_HELPER_SETUP_FAILURE >&2; exit 121' ERR
 mkdir -p /tmp/app /home/agent/.nuget/NuGet
 cp -R /submission/. /tmp/app/
 cp -R /opt/npm-cache /tmp/npm-cache
 printf %s '<configuration><packageSources><clear /></packageSources></configuration>' > /home/agent/.nuget/NuGet/NuGet.Config
+if [ -d /tmp/app/backend ]; then ln -s /maildrop /tmp/app/backend/maildrop; fi
+trap - ERR
 (cd /tmp/app/backend && dotnet restore && exec dotnet run --no-restore) &
 backend_pid=$!
 (cd /tmp/app/frontend && npm ci && exec npm run dev -- --host 0.0.0.0) &
 frontend_pid=$!
+set +e
 wait -n "$backend_pid" "$frontend_pid"
+app_status=$?
+if [ "$app_status" -eq 121 ]; then app_status=122; fi
+exit "$app_status"
 '''
         docker('create', '--name', app, '--network', network, '--ip', app_ip,
+               '--label', 'sample1.helper_protocol=2',
                '--user', f'{uid}:{gid}', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges',
                '--read-only', '--tmpfs', '/tmp:mode=1777,exec', '--tmpfs', '/home/agent:mode=1777,exec',
                '--env', 'HOME=/home/agent', '--env', 'npm_config_offline=true', '--env', 'npm_config_audit=false',
                '--env', 'ASPNETCORE_ENVIRONMENT=Development', '--env', 'ASPNETCORE_URLS=http://0.0.0.0:5080',
                '--env', 'TZ=Asia/Tokyo',
                '--mount', f'type=bind,source={source},target=/submission,readonly',
-               '--mount', f'type=bind,source={maildrop},target=/tmp/app/backend/maildrop',
+               '--mount', f'type=bind,source={maildrop},target=/maildrop',
                image, 'bash', '-c', startup)
         config = dict(kind='evaluation', run_id=manifest['run_id'], evaluation_id=evaluation_id,
                       submission_root=str(source), snapshot_file=str(snapshot), container_id=app,
@@ -94,7 +102,8 @@ wait -n "$backend_pid" "$frontend_pid"
         resources = dict(evaluation_id=evaluation_id, app_container=app, researcher_container=researcher,
                          network=network, config=str(config_path), output=str(output),
                          evaluator_image=evaluator_image, app_image=image, evaluator_node_version=node_version,
-                         evaluator_node_sha256=hashlib.sha256(private_node.read_bytes()).hexdigest())
+                         evaluator_node_sha256=hashlib.sha256(private_node.read_bytes()).hexdigest(),
+                         helper_protocol=2)
         (evaluation_root / 'resources.json').write_text(json.dumps(resources, indent=2))
         print(json.dumps(resources, indent=2))
     except Exception:
