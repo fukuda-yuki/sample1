@@ -1,0 +1,57 @@
+{
+  "kind": "pilot_evaluator_ui_contract_incident",
+  "recorded_at": "2026-09-05T14:36:16.745979+00:00",
+  "invalid_evaluator_version": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+  "reason": "UI resolver imposed unpublished DOM label associations and exact accessible names that disallowed visible decorative glyphs and input help text. Broader public-contract audit also identified unsupported structural assumptions.",
+  "implementation_feedback": false,
+  "implementation_edits": false,
+  "next_action": "Correct common evaluator UI resolution, calibrate with independent alternate UI fixtures, then evaluate both unchanged frozen submissions under one new version.",
+  "attempts": [
+    {
+      "evaluation_id": "22c4f5cc-5fff-4819-b88b-15b2caf403c5",
+      "adjudication": {
+        "evaluation_id": "22c4f5cc-5fff-4819-b88b-15b2caf403c5",
+        "run_id": "250df4e7-f8f9-44cd-8324-db24e050962f",
+        "outcome": "invalid_evaluation_ui_contract",
+        "effective_quality": null,
+        "reason": "normal\u30e9\u30d9\u30ebfor/id\u7d50\u5408\u5fc5\u9808\u6271\u3044\u3001anti\u88c5\u98feglyph exact\u64cd\u4f5c\u540d",
+        "adjudicated_at": "2026-09-05T14:34:03.088853+00:00",
+        "action": "Stop the invalid evaluation; preserve evidence and re-evaluate the same immutable submission.",
+        "raw_and_trace_policy": "Existing raw reports, partial traces, screenshots and evaluator snapshots remain unchanged in the evaluation directory.",
+        "phase": "preserved_and_removed",
+        "submission_unchanged": true,
+        "submission_file_count": 21,
+        "submission_snapshot_sha256": "1f3a93ecf04706b45d1a17bc4a698a63d8fb1d02f82b92a1d5abf46ea415e8d6",
+        "researcher_stopped": true,
+        "app_stopped": true,
+        "target_resources_removed": true,
+        "result_file_count": 94,
+        "completed_at": "2026-09-05T14:34:24.793355+00:00"
+      },
+      "adjudication_sha256": "df689eb2d0476c5c035b386dd2c511f41180d5a7f6ff0734e666eeddd1dbaaf9"
+    },
+    {
+      "evaluation_id": "280120ee-9163-4b29-b461-dc6e7742854a",
+      "adjudication": {
+        "evaluation_id": "280120ee-9163-4b29-b461-dc6e7742854a",
+        "run_id": "e849b8d9-60e2-464f-bea9-11d24134674f",
+        "outcome": "invalid_evaluation_ui_contract",
+        "effective_quality": null,
+        "reason": "normal\u30e9\u30d9\u30ebfor/id\u7d50\u5408\u5fc5\u9808\u6271\u3044\u3001anti\u88c5\u98feglyph exact\u64cd\u4f5c\u540d",
+        "adjudicated_at": "2026-09-05T14:34:24.799768+00:00",
+        "action": "Stop the invalid evaluation; preserve evidence and re-evaluate the same immutable submission.",
+        "raw_and_trace_policy": "Existing raw reports, partial traces, screenshots and evaluator snapshots remain unchanged in the evaluation directory.",
+        "phase": "preserved_and_removed",
+        "submission_unchanged": true,
+        "submission_file_count": 24,
+        "submission_snapshot_sha256": "774e742b0b3893517f3847bc9a92974a7664d1f8b9048dde1c64a246473d856c",
+        "researcher_stopped": true,
+        "app_stopped": true,
+        "target_resources_removed": true,
+        "result_file_count": 64,
+        "completed_at": "2026-09-05T14:34:46.658474+00:00"
+      },
+      "adjudication_sha256": "40414e2bdbcf591bd34c044b1faa3b3fde99efa1ac06209c969700c3bd6e1043"
+    }
+  ]
+}

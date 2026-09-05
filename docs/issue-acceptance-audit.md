@@ -21,3 +21,9 @@
 normal の Run ID は `250df4e7-f8f9-44cd-8324-db24e050962f`、anti は `e849b8d9-60e2-464f-bea9-11d24134674f`。実行記録は `results/runs/pilot-1-normal/` と `results/runs/pilot-1-anti/` にある。normal の実装完了は要件充足を意味しない。採点 helper 不具合による無効結果を実装失敗や確定した品質値として引用しない。comparison は監査時点で未実施であり、効果の方向・大きさは未確認。
 
 [最新の親 Issue コメント](https://github.com/fukuda-yuki/sample1/issues/1#issuecomment-5552357663) に進行状況と Push 制約を記録済み。監査時点のローカル HEAD は `609a293`、`git ls-remote` で確認した `origin/codex/issue-1-experiment` は `94c9502b904afa0371f8ffb562b08984c799515e`。Push は自動承認レビューで拒否されており、`609a293` 以降の変更はリモート未反映。したがって、ローカル基盤の達成を GitHub 側の成果物反映・Issue 完了と同一視しない。この監査では Issue 更新・close・commit・push を行っていない。
+
+## 2026-09-05 23:43 JST の追記
+
+両 pilot は実装終了・プロセス停止・提出物固定済み。normal 5,798,122、anti 4,754,779 tokens を native input+output と照合し、一致・欠測なしを確認した（[照合記録](pilot-usage-reconciliation.json)）。#8/#9 の pilot 実測は両条件で得られた。
+
+起動 helper 修正後の採点で未提示 UI 制約による誤判定を確認したため、両採点を無効として停止・保全した（[障害記録](pilot-ui-contract-incident.json)）。#7/#10/#11 の有効採点・実測図・比較反復は未完了である。独立した UI 変種 fixture で校正を追加し、修正後の同じ版で両固定提出物を再評価する。[Issue #11 更新](https://github.com/fukuda-yuki/sample1/issues/11#issuecomment-5552503871)に原本・版・未達事項を記録した。

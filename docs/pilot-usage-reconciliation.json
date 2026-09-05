@@ -1,0 +1,36 @@
+{
+  "kind": "pilot_usage_reconciliation",
+  "rule": "native input_tokens + output_tokens; cached input and reasoning output are subsets, not added again",
+  "runs": [
+    {
+      "planned_run": "pilot-1-normal",
+      "run_id": "250df4e7-f8f9-44cd-8324-db24e050962f",
+      "request_count": 75,
+      "gateway_total": 5798122,
+      "native_input": 5740061,
+      "native_output": 58061,
+      "native_total": 5798122,
+      "matched": true,
+      "usage_complete": true,
+      "source_hashes": {
+        "usage.json": "de6806fa9a46ef92888dd1f6ed1df92b96d2473202805ee84e43381f9e0bedce",
+        "native-usage.json": "83220bfa246ee25843c0862b79f1a6f7096ac744bea5574fa6d2711fb1bd1c4f"
+      }
+    },
+    {
+      "planned_run": "pilot-1-anti",
+      "run_id": "e849b8d9-60e2-464f-bea9-11d24134674f",
+      "request_count": 60,
+      "gateway_total": 4754779,
+      "native_input": 4695327,
+      "native_output": 59452,
+      "native_total": 4754779,
+      "matched": true,
+      "usage_complete": true,
+      "source_hashes": {
+        "usage.json": "04d0263a21b3175d3be97178c043973330f41f13035e480c82baedaf26e0ebb7",
+        "native-usage.json": "c6f45b64b273e600441bace55b830594fb331dfbd631d81e376850a9e03f76fe"
+      }
+    }
+  ]
+}
