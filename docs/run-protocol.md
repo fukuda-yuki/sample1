@@ -48,3 +48,5 @@ management.jsonはそのRun内に保存し、終了時のmanifest書戻し後に
 ## 現在の開始許可
 
 execution-scope.jsonは予定順と別の現在の許可である。設定生成とrun_codex/run_experimentの直接呼出しは共通検査を通り、現在は新規実装Runを全て拒否する。既存設定のstart_authorizationは許可として利用せず、起動直前にも現在のファイルを読む。欠落・未知の範囲・Run/版不一致も拒否する。将来の明示再開時だけ authorized_scope=explicit_planned_runs と allowed_starts のRun名を管理者が更新し、do_not_startを優先する。許可検査のコードと設定hashはRunの来歴に残す。過去の凍結runnerは証拠であり、再開コマンドとして実行しない。
+
+現在の開始条件は[原本保全・復元](preservation.md)と判断D009に従う。旧pilot-1は再実装せず、新予定表execution-order-pilot-2.jsonの2件のみが条件付き許可対象。原本・usage確定後の独立保管と復元、採点原本の保全を次Run開始条件に追加した。管理版はmeasurement-control-v3。

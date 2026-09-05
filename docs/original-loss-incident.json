@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-09-05T16:35:58.259458+00:00",
+  "status": "originals_missing_unevaluable",
+  "cause": "unconfirmed",
+  "last_presence_evidence": "Historical Issue #11 stop record and docs/pilot-artifacts/pilot-provenance.json; not a current original verification",
+  "first_missing_evidence": "docs/evaluator-repair-verification.json recorded_at=2026-09-05T16:10:30.016241+00:00",
+  "operation_history": "Git history and preserved Issue records reviewed; no evidenced deletion operation identified",
+  "quality": null,
+  "usage_status": "historical_reconciliation_only",
+  "runs": [
+    {
+      "condition": "normal",
+      "frozen_files": 0,
+      "missing": [
+        "manifest.json",
+        "snapshot.json",
+        "usage.json",
+        "native-usage.json"
+      ],
+      "working_is_submission": false
+    },
+    {
+      "condition": "anti",
+      "frozen_files": 0,
+      "missing": [
+        "manifest.json",
+        "snapshot.json",
+        "usage.json",
+        "native-usage.json"
+      ],
+      "working_is_submission": false
+    }
+  ],
+  "preservation": {
+    "reference": {
+      "package_id": "legacy-investigation-06e87cd6-7137-40fe-9cb1-d6d4a411f73d",
+      "sha256": "7f9e28e4eb2b284f426b4685f5b3dabda2c0ea9bbbaaa3a559b61d8721c3f48d"
+    },
+    "receipt": {
+      "path": "receipts/ffc34690-4d00-4a9e-af72-0b3a5d279c62.json",
+      "sha256": "ad6dd60836c6804fc7d82a0305c42fcb15dc6a4242b00dda70d656eba481d2a3"
+    }
+  }
+}

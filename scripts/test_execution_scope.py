@@ -42,7 +42,7 @@ class ScopeTests(unittest.TestCase):
                 scope_path.write_text(json.dumps(dict(scope, **change)))
                 with self.assertRaises(ValueError):check_start(self.config)
             scope_path.write_text(json.dumps(scope))
-            self.assertEqual(len(check_start(self.config)['scope_sha256']),64)
+            with self.assertRaises(ValueError):check_start(self.config)  # Explicit permission alone cannot bypass preservation.
             bad=copy.deepcopy(self.config);bad['condition']='anti'
             with self.assertRaises(ValueError):check_start(bad)
             # A previously accepted config is rechecked against current instructions.
@@ -65,7 +65,7 @@ class ScopeTests(unittest.TestCase):
         def command(args, **kwargs):
             commands.append(args)
             return subprocess.CompletedProcess(args,0,stdout='false\n' if args[1]=='inspect' else '',stderr='')
-        with patch('run_experiment.check_start',side_effect=[{'scope_sha256':'old'},ValueError('Scope revoked')]), patch('run_experiment.subprocess.run',side_effect=command):
+        with patch('run_experiment.reserve_start'), patch('run_experiment.check_start',side_effect=[{'scope_sha256':'old'},ValueError('Scope revoked')]), patch('run_experiment.subprocess.run',side_effect=command):
             result = run(distribution,config,self.root/'run')
         self.assertFalse(any(c[:2]==['docker','start'] for c in commands))
         self.assertEqual(result['error'],'Scope revoked')

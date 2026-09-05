@@ -29,6 +29,8 @@ class UsageRetentionTests(unittest.TestCase):
         patcher=patch('run_codex.check_start',return_value={'scope_sha256':'synthetic'})
         patcher.start()
         self.addCleanup(patcher.stop)
+        for name in ('run_codex.reserve_start', 'run_codex.validate_distribution', 'preservation_gate.preserve_finished'):
+            mocked=patch(name);mocked.start();self.addCleanup(mocked.stop)
         self.temp=tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name)

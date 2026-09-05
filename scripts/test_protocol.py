@@ -74,6 +74,8 @@ class FilesTests(unittest.TestCase):
         patcher=patch('run_experiment.check_start',return_value={'scope_sha256':'synthetic'})
         patcher.start()
         self.addCleanup(patcher.stop)
+        reservation=patch('run_experiment.reserve_start')
+        reservation.start();self.addCleanup(reservation.stop)
 
     def test_generated_symlink_excluded_but_source_link_rejected(self):
         with tempfile.TemporaryDirectory() as d:
@@ -152,7 +154,7 @@ class FilesTests(unittest.TestCase):
                 self.assertEqual(result['end_reason'],'budget_exhausted' if stage=='wait' else 'environment_failure')
                 self.assertEqual(result['timeout_stage'],stage)
                 self.assertTrue(result['submission_fixed'])
-                self.assertEqual(result['management']['version'],'measurement-control-v2')
+                self.assertEqual(result['management']['version'],'measurement-control-v3')
                 for filename,digest in result['management']['files'].items():
                     import hashlib
                     self.assertEqual(hashlib.sha256((root/'run/management-source'/filename).read_bytes()).hexdigest(),digest)

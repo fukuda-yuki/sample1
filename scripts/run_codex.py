@@ -9,9 +9,22 @@ import time
 import uuid
 from gateway_usage import collect
 from run_experiment import run, write_json
-from execution_scope import check_start
+from execution_scope import check_start, reserve_start, ROOT
 
 GATEWAY_IMAGE = 'python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea'
+
+
+def validate_distribution(distribution, config):
+    import hashlib
+    from run_experiment import snapshot
+    expected = {'spec.md': (ROOT / config['condition'] / 'spec.md').read_text(encoding='utf-8').encode('utf-8'),
+                'RUN_CONTRACT.md': (ROOT / 'implementation_prompt.md').read_text(encoding='utf-8-sig').encode('utf-8')}
+    hashes = {name: hashlib.sha256(data).hexdigest() for name, data in expected.items()}
+    record = json.loads((distribution / 'distribution.json').read_text())
+    if (snapshot(distribution / 'workspace', source_only=False) != hashes
+            or record['condition'] != config['condition']
+            or {name: value['sha256'] for name, value in record['files'].items()} != hashes):
+        raise ValueError('Pilot distribution differs from the approved inputs')
 
 
 def save_usage(output, raw, *, producer_stopped, error=None):
@@ -26,6 +39,19 @@ def save_usage(output, raw, *, producer_stopped, error=None):
     summary = collect(raw)
     summary['raw_directory'] = str(raw.resolve())
     summary['producer_stopped'] = producer_stopped
+    native = output / 'native-usage.json'
+    if native.exists():
+        try:
+            records = json.loads(native.read_text())
+            native_total = sum(row['input_tokens'] + row['output_tokens'] for row in records)
+            matched = bool(records) and native_total == summary.get('total_tokens')
+            summary['native_reconciliation'] = {'matched': matched, 'total_tokens': native_total}
+            if not matched:
+                summary.update(usage_complete=False, total_tokens=None)
+                summary['missing'].append({'reason': 'native_usage_reconciliation_failed'})
+        except (ValueError, KeyError, TypeError):
+            summary.update(usage_complete=False, total_tokens=None)
+            summary['missing'].append({'reason': 'native_usage_invalid'})
     for reason, detail in [('usage_finalization_error', error), ('raw_usage_copy_error', copy_error),
                            ('gateway_stop_unconfirmed', not producer_stopped)]:
         if detail:
@@ -38,10 +64,14 @@ def save_usage(output, raw, *, producer_stopped, error=None):
 
 
 def execute(distribution, config, output, auth, prompt=None):
+    if prompt is not None:
+        raise ValueError('Custom prompts are not permitted in the authorized pilot batch')
     config = dict(config, start_authorization=check_start(config))
     if output.exists():
         raise ValueError('Run output must not already exist')
+    validate_distribution(distribution, config)
     run_id = str(uuid.uuid4())
+    reserve_start(config, run_id)
     network = 'sample1-private-' + run_id
     gateway = 'sample1-gateway-' + run_id
     script = Path(__file__).with_name('model_gateway.py').resolve()
@@ -69,7 +99,7 @@ def execute(distribution, config, output, auth, prompt=None):
             gateway_created, producer_stopped = True, False
             subprocess.run(['docker', 'network', 'connect', '--alias', 'model-gateway', network, gateway],
                            check=True, capture_output=True)
-            config['start_authorization'] = check_start(config)
+            config['start_authorization'] = check_start(config, run_id)
             subprocess.run(['docker', 'start', gateway], check=True, capture_output=True)
             time.sleep(1)
             instruction = prompt or 'Read /workspace/RUN_CONTRACT.md and /workspace/spec.md. Complete implementation. Follow the supplied instructions.'
@@ -90,7 +120,7 @@ def execute(distribution, config, output, auth, prompt=None):
             config['environment'] = dict(config['environment'], gateway_image=GATEWAY_IMAGE,
                                          gateway_sha256=__import__('hashlib').sha256(script.read_bytes()).hexdigest(),
                                          network_policy='dedicated-internal-fixed-responses-gateway')
-            result = run(distribution, config, output, network=network, run_id_override=run_id)
+            result = run(distribution, config, output, network=network, run_id_override=run_id, _reserved=True)
             # Terminal SSE usage normally arrives before CLI exits. Give disconnected streams a bounded drain.
             for _ in range(10):
                 summary = collect(usage)
@@ -102,7 +132,7 @@ def execute(distribution, config, output, auth, prompt=None):
             finalization_error = type(failure).__name__
             if not output.exists():
                 failure_config = dict(config, command=['false'])
-                result = run(distribution, failure_config, output, run_id_override=run_id, setup_failure=True)
+                result = run(distribution, failure_config, output, run_id_override=run_id, setup_failure=True, _reserved=True)
                 return result
             raise
         except KeyboardInterrupt:
@@ -122,7 +152,23 @@ def execute(distribution, config, output, auth, prompt=None):
                 except (OSError, subprocess.SubprocessError):
                     pass  # Run manifest remains available even when Docker is unavailable.
     finally:
-        save_usage(output, usage, producer_stopped=producer_stopped, error=finalization_error)
+        try:
+            save_usage(output, usage, producer_stopped=producer_stopped, error=finalization_error)
+        except Exception as failure:
+            if output.exists():
+                write_json(output / 'usage-finalization-failure.json', {'error': type(failure).__name__})
+            raise
+        finally:
+            if output.exists():
+                from preservation_gate import preserve_finished
+                scope = json.loads((ROOT / 'config/execution-scope.json').read_text(encoding='utf-8-sig'))
+                try:
+                    preserve_finished(scope, output)
+                except Exception as failure:
+                    write_json(output / 'preservation-failure.json',
+                               {'independently_stored': False, 'restore_verified': False,
+                                'error': type(failure).__name__ + ': ' + str(failure)})
+                    raise
 
 
 if __name__ == '__main__':

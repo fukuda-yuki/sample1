@@ -1,8 +1,8 @@
 {
   "experiment_version": "exp-001",
   "recorded_at": "2026-09-05T14:59:56.682582+00:00",
-  "authorized_scope": "finish_or_adjudicate_existing_pilots_then_stop",
-  "planned_manifest": "config/execution-order.json",
+  "authorized_scope": "explicit_planned_runs",
+  "planned_manifest": "config/execution-order-pilot-2.json",
   "existing_pilots": [
     "pilot-1-normal",
     "pilot-1-anti"
@@ -13,9 +13,24 @@
     "comparison-2-normal",
     "comparison-2-anti",
     "comparison-3-normal",
-    "comparison-3-anti"
+    "comparison-3-anti",
+    "pilot-1-normal",
+    "pilot-1-anti"
   ],
   "stop_on_additional_evaluator_issue": true,
   "quality_on_additional_evaluator_issue": null,
-  "resume_authority": "User instruction; GitHub Issues #1 and #11 hold current completion and restart status."
+  "resume_authority": "User approved restoration-gated normal/anti one new Run each, then stop; 2026-09-06",
+  "batch_id": "pilot-preservation-002",
+  "allowed_starts": [
+    "pilot-2-normal",
+    "pilot-2-anti"
+  ],
+  "preservation": {
+    "archive": {
+      "windows": "C:\\Users\\mwam0\\ResearchArchives\\sample1",
+      "linux": "/mnt/c/Users/mwam0/ResearchArchives/sample1"
+    },
+    "gate": null,
+    "common": null
+  }
 }
