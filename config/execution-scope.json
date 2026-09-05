@@ -43,8 +43,16 @@
     "latest_verified_gate": {
       "package_id": "restoration-proof-3137c1fc-2641-4ba4-ad51-b415c174e7d4",
       "sha256": "cb45f8375dc85b4999f65142d464017d7b4ea0ee82bcaecf1237ec7b1852cdfb"
+    },
+    "current_validity_registry": {
+      "windows": "C:\\Users\\mwam0\\Documents\\ls\\sample1-private-eval-linux\\evaluation-validity.json",
+      "linux": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluation-validity.json"
     }
   },
   "stop_reason": "pilot-2-normal gateway environment_failure and incomplete usage; anti not started; no automatic retry",
-  "stopped_at": "2026-09-05T17:16:13.428892+00:00"
+  "stopped_at": "2026-09-05T17:16:13.428892+00:00",
+  "diagnostics": {
+    "allowed_starts": [],
+    "starts": {}
+  }
 }

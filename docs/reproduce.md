@@ -76,3 +76,5 @@ python -m unittest discover -s analysis -p 'test_*.py'
 D009と[保全手順](preservation.md)が現在の再開手順。旧Runの再採点待ちは終了し、保管パッケージからの復元試験成功後のみpilot-2を順次実行する。上記pilot-1の開始例は過去手順であり現在は許可しない。共通imageは保管パッケージのruntime/images.jsonとtar実体から復元する。Run・評価器・usageを作業領域なしで回復できる証拠を必要とする。
 
 D010適用後はallowed_startsが空で、pilot-2も再開しない。normalの失敗とanti未開始、ネットワーク隔離修正後の復元試験合格は[pilot-2結果](pilot-2-results.md)を参照。新規実装取得には別のユーザー判断が必要。
+
+D011のレビュー対応は修正・非モデル検証まで。[保全手順](preservation.md)に現行台帳の開始判断と固定入力診断の入口を記載した。診断の個別許可も空で、実モデルを呼ばない。今回の検証範囲・限界は [レビュー対応検証](review-code-verification.json) と [WSL接続・隔離検証](review-network-verification.json) を参照する。旧復元証拠は履歴として保持し、新コードでのフル復元・校正成功を意味しない。

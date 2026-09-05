@@ -9,6 +9,8 @@ from run_codex import GATEWAY_IMAGE
 
 
 def main(output):
+    from execution_scope import ROOT
+    worker_image = json.loads((ROOT / 'config/experiment.json').read_text())['environment']['image']
     identity=str(uuid.uuid4())
     network='sample1-check-' + identity
     gateway='sample1-gateway-check-' + identity
@@ -45,9 +47,11 @@ print(json.dumps({'host_canaries_denied':4,'github_egress_denied':True,'arbitrar
 """.replace('CANARIES',repr([str(root/name) for name in ['other-condition','AGENTS.md','evaluator','past-run']]))
             result=subprocess.run(['docker','run','--rm','--network',network,'--read-only',
                                    '--cap-drop','ALL','--security-opt','no-new-privileges',
-                                   GATEWAY_IMAGE,'python','-c',probe],check=True,capture_output=True,text=True,timeout=30)
+                                   worker_image,'python3','-c',probe],check=True,capture_output=True,text=True,timeout=30)
             evidence=json.loads(result.stdout)
-            evidence.update(kind='gateway_isolation_integration',model_called=False,image=GATEWAY_IMAGE)
+            evidence.update(kind='gateway_isolation_integration',model_called=False,
+                            image=GATEWAY_IMAGE,worker_image=worker_image,
+                            credentials_mounted=False,provider_requests_sent=0)
             output.write_text(json.dumps(evidence,indent=2),encoding='utf-8')
         finally:
             subprocess.run(['docker','rm','-f',gateway],capture_output=True)

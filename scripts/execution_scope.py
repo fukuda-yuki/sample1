@@ -7,6 +7,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def check_start(config, run_id=None):
+    if config.get('phase') == 'diagnostic':
+        from diagnostic_scope import check
+        return check(config, ROOT, run_id)
     scope_file = ROOT / 'config/execution-scope.json'
     scope_bytes = scope_file.read_bytes()
     scope = json.loads(scope_bytes.decode('utf-8-sig'))
@@ -33,6 +36,9 @@ def check_start(config, run_id=None):
 
 
 def reserve_start(config, run_id):
+    if config.get('phase') == 'diagnostic':
+        from diagnostic_scope import reserve
+        return reserve(config, ROOT, run_id)
     check_start(config)
     from preservation_gate import reserve
     scope = json.loads((ROOT / 'config/execution-scope.json').read_text(encoding='utf-8-sig'))

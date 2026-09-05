@@ -1,0 +1,126 @@
+{
+  "recorded_at": "2026-09-05T18:09:23.256814+00:00",
+  "model_called": false,
+  "credentials_mounted": false,
+  "provider_requests_sent": 0,
+  "bridge_before": [
+    {
+      "ifindex": 5,
+      "ifname": "docker0",
+      "flags": [
+        "NO-CARRIER",
+        "BROADCAST",
+        "MULTICAST",
+        "UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "noqueue",
+      "operstate": "DOWN",
+      "group": "default",
+      "link_type": "ether",
+      "address": "aa:36:13:f2:c5:44",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "172.17.0.1",
+          "prefixlen": 16,
+          "broadcast": "172.17.255.255",
+          "scope": "global",
+          "label": "docker0",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        },
+        {
+          "family": "inet6",
+          "local": "fe80::a836:13ff:fef2:c544",
+          "prefixlen": 64,
+          "scope": "link",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "bridge_after": [
+    {
+      "ifindex": 5,
+      "ifname": "docker0",
+      "flags": [
+        "NO-CARRIER",
+        "BROADCAST",
+        "MULTICAST",
+        "UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "noqueue",
+      "operstate": "DOWN",
+      "group": "default",
+      "link_type": "ether",
+      "address": "aa:36:13:f2:c5:44",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "172.17.0.1",
+          "prefixlen": 16,
+          "broadcast": "172.17.255.255",
+          "scope": "global",
+          "label": "docker0",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        },
+        {
+          "family": "inet6",
+          "local": "fe80::a836:13ff:fef2:c544",
+          "prefixlen": 64,
+          "scope": "link",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "host_bridge_unchanged": true,
+  "gateway_before": {
+    "host_canaries_denied": 4,
+    "github_egress_denied": true,
+    "arbitrary_gateway_path_denied": true,
+    "remote_tools_denied": true,
+    "model_change_denied": true,
+    "kind": "gateway_isolation_integration",
+    "model_called": false,
+    "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+    "worker_image": "sha256:ef3f18f22a92cc7cf24870468bba127ded8aeb18c8030a6b082ffa58b91c6b09",
+    "credentials_mounted": false,
+    "provider_requests_sent": 0
+  },
+  "gateway_after": {
+    "host_canaries_denied": 4,
+    "github_egress_denied": true,
+    "arbitrary_gateway_path_denied": true,
+    "remote_tools_denied": true,
+    "model_change_denied": true,
+    "kind": "gateway_isolation_integration",
+    "model_called": false,
+    "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+    "worker_image": "sha256:ef3f18f22a92cc7cf24870468bba127ded8aeb18c8030a6b082ffa58b91c6b09",
+    "credentials_mounted": false,
+    "provider_requests_sent": 0
+  },
+  "namespace_check": {
+    "model_called": false,
+    "network_namespace": "net:[4026532633]",
+    "host_network_namespace": "net:[4026531840]",
+    "isolated_daemon_started": true,
+    "marker_existed_before": true,
+    "marker_exists_after": false,
+    "conclusion": "Separate Docker data-root does not isolate host networking; use unshare --net for both daemons."
+  },
+  "source_hashes": {
+    "scripts/check_gateway_isolation.py": "0b173e825c86704c0738926b89c982461cf8aba61d6b1597b091b8a80b769cda",
+    "scripts/check_restore_namespace.py": "fe057ff3423d9c32dd5b2fd9c6f2af2e51d6d994b7b58f0dfebdfc6207f9ee09",
+    "scripts/model_gateway.py": "a799c441dabddee2af035603b3a6d7821f34c1232ee22a6206abb419aa46fe5d"
+  },
+  "scope": "Real configured worker and gateway images, dedicated internal network, deny-only HTTP probes; isolated empty daemon startup. No full evaluator/image restore drill or real model check."
+}
