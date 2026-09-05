@@ -29,6 +29,8 @@ class UsageRetentionTests(unittest.TestCase):
         patcher=patch('run_codex.check_start',return_value={'scope_sha256':'synthetic'})
         patcher.start()
         self.addCleanup(patcher.stop)
+        for name in ('run_codex.reserve_start', 'run_codex.validate_distribution', 'preservation_gate.preserve_finished'):
+            mocked=patch(name);mocked.start();self.addCleanup(mocked.stop)
         self.temp=tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name)
@@ -103,6 +105,24 @@ class UsageRetentionTests(unittest.TestCase):
         self.assertTrue(summary['usage_complete'])
         self.assertEqual(summary['total_tokens'],13)
         self.assertEqual((raw/'events.jsonl').read_bytes(),(output/'raw-usage/events.jsonl').read_bytes())
+
+    def test_setup_failure_preserves_stage_and_stderr_without_argv(self):
+        output=self.root/'setup-failure'
+        captured=[]
+        def fake_run(distribution,config,target,**kwargs):
+            captured.append(config)
+            target.mkdir()
+            (target/'manifest.json').write_text(json.dumps(config))
+            return {'end_reason':'environment_failure'}
+        def command(argv,**kwargs):
+            if argv[:2]==['docker','start']:
+                raise subprocess.CalledProcessError(1,argv,stderr=b'docker0 missing')
+            return subprocess.CompletedProcess(argv,0)
+        with patch('run_codex.os.getuid',return_value=1000,create=True),patch('run_codex.os.getgid',return_value=1000,create=True),patch('run_codex.subprocess.run',side_effect=command),patch('run_codex.run',side_effect=fake_run):
+            execute(self.root,{'model_id':'model','effort':'xhigh','environment':{}},output,self.root/'auth-path')
+        detail=captured[0]['setup_failure_detail']
+        self.assertEqual(detail,{'type':'CalledProcessError','stage':['docker','start'],'stderr':'docker0 missing'})
+        self.assertFalse(json.loads((output/'usage.json').read_text())['usage_complete'])
 
     def test_successful_wrapper_stops_gateway_before_final_snapshot(self):
         output=self.root/'wrapper-run'

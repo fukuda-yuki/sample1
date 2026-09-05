@@ -70,3 +70,9 @@ python -m unittest discover -s analysis -p 'test_*.py'
 旧adjudicationは上書きせず参照する。旧記録にRun IDがない場合だけ、legacy_adjudication_bindingに当時のresearcher-configのconfig_pathとconfig_sha256を保存し対応を検査する。途中停止でsummary/resultsが未生成の記録はハッシュnullを残すが、完全な採点として取り込まない。これらは未採点として選択し、元の無効理由は公開停止記録と有効性台帳に残す。
 
 記録なしはpending。invalid/pendingはraw結果が満点でも品質・全件合格をnullにする。raw件数・版・品質の整合性検査は省略しない。invalid原本を参照したままvalidに変更することはできず、同じ提出物の新しい採点実行で判断する。validは校正成功だけでは付けず、実際の採点と根拠を研究者が確認して記録する。CSV・項目内訳のpass/failはraw判定であり、有効性列がvalidでない限り実装品質とは解釈しない。
+
+## 原本欠落後の更新
+
+D009と[保全手順](preservation.md)が現在の再開手順。旧Runの再採点待ちは終了し、保管パッケージからの復元試験成功後のみpilot-2を順次実行する。上記pilot-1の開始例は過去手順であり現在は許可しない。共通imageは保管パッケージのruntime/images.jsonとtar実体から復元する。Run・評価器・usageを作業領域なしで回復できる証拠を必要とする。
+
+D010適用後はallowed_startsが空で、pilot-2も再開しない。normalの失敗とanti未開始、ネットワーク隔離修正後の復元試験合格は[pilot-2結果](pilot-2-results.md)を参照。新規実装取得には別のユーザー判断が必要。

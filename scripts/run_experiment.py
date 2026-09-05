@@ -10,7 +10,7 @@ import shutil
 import subprocess
 import time
 import uuid
-from execution_scope import check_start
+from execution_scope import check_start, reserve_start
 
 
 def write_json(path, data):
@@ -19,7 +19,7 @@ def write_json(path, data):
 
 EXCLUDED_DIRS = {'node_modules', 'bin', 'obj', '.git', '.codex', '.cache', 'maildrop'}
 EXCLUDED_SUFFIXES = {'.db', '.sqlite', '.sqlite3', '.db-shm', '.db-wal'}
-MANAGEMENT_FILES = ('run_experiment.py', 'run_codex.py', 'model_gateway.py', 'gateway_usage.py', 'normalize_usage.py', 'execution_scope.py')
+MANAGEMENT_FILES = ('run_experiment.py', 'run_codex.py', 'model_gateway.py', 'gateway_usage.py', 'normalize_usage.py', 'execution_scope.py', 'preservation_gate.py', 'preserve.py')
 
 
 def snapshot(root, source_only=True):
@@ -43,8 +43,8 @@ def verify_snapshot(root, expected, source_only=True):
         raise ValueError('Submission changed')
 
 
-def run(distribution, config, output, *, network='none', run_id_override=None, setup_failure=False):
-    config = dict(config, start_authorization=check_start(config))
+def run(distribution, config, output, *, network='none', run_id_override=None, setup_failure=False, _reserved=False):
+    config = dict(config, start_authorization=check_start(config, run_id_override) if _reserved else check_start(config))
     required = ['experiment_version', 'model_id', 'effort', 'agent_version', 'tool_versions',
                 'subagent_policy', 'environment', 'budget', 'execution_order', 'command']
     for field in required:
@@ -58,15 +58,18 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
         raise ValueError('Pin the prepared image by digest')
     if not isinstance(config['command'], list) or not config['command']:
         raise ValueError('command must be a nonempty argument list')
+    run_id = run_id_override or str(uuid.uuid4())
+    if not _reserved:
+        reserve_start(config, run_id)
     output.mkdir(parents=True, exist_ok=False)
     workspace = output / 'working'
     shutil.copytree(distribution / 'workspace', workspace)
     dist = json.loads((distribution / 'distribution.json').read_text(encoding='utf-8'))
     expected = {name: entry['sha256'] for name, entry in dist['files'].items()}
     verify_snapshot(workspace, expected, source_only=False)
-    run_id = run_id_override or str(uuid.uuid4())
+    shutil.copytree(distribution, output / 'inputs')
     name = 'sample1-' + run_id
-    management = {'version': 'measurement-control-v2', 'files': {}}
+    management = {'version': 'measurement-control-v3', 'files': {}}
     sources = output / 'management-source'
     sources.mkdir()
     for filename in MANAGEMENT_FILES:
@@ -104,7 +107,7 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                         '--workdir', '/workspace', *input_mounts, image, *config['command']],
                        check=True, capture_output=True, timeout=60)
         container_created = True
-        manifest['start_authorization'] = check_start(config)
+        manifest['start_authorization'] = check_start(config, run_id)
         subprocess.run(['docker', 'start', name], check=True, capture_output=True, timeout=30)
         remaining = max(0.001, budget['value'] - (time.monotonic() - started))
         budget_waiting = True

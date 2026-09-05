@@ -1,0 +1,22 @@
+{
+  "experiment_version": "exp-001",
+  "batch_id": "pilot-preservation-002",
+  "seed": 1469545041,
+  "algorithm": "Python random.Random(seed).shuffle within pairs",
+  "order": [
+    {
+      "execution_order": 1,
+      "phase": "pilot",
+      "pair": 2,
+      "condition": "normal",
+      "planned_run": "pilot-2-normal"
+    },
+    {
+      "execution_order": 2,
+      "phase": "pilot",
+      "pair": 2,
+      "condition": "anti",
+      "planned_run": "pilot-2-anti"
+    }
+  ]
+}

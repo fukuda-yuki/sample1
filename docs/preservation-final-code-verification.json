@@ -1,0 +1,55 @@
+{
+  "recorded_at": "2026-09-05T17:28:47.977496+00:00",
+  "source_commit": "4d7635229451c6021f9a14da41f95485e8428c4e",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "................................\n----------------------------------------------------------------------\nRan 32 tests in 0.480s\n\nOK\n"
+    },
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".........................\n----------------------------------------------------------------------\nRan 25 tests in 0.964s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python",
+        "evaluation/validate-requirements.py"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: 57 IDs; normal=32 boundary=3 negative=22; sequential per-feature IDs; ledger/summary; AP-001 preserved\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

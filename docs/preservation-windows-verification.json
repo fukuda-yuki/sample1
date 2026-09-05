@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-09-05T17:00:34.639280+00:00",
+  "platform": "Windows",
+  "reference": {
+    "package_id": "common-75252aa0-c86c-462f-b687-ce19f187a679",
+    "sha256": "0c9b44d90870d861fd1bc88607de8d5f9becfd2ae7d132638b5545db9fce7419"
+  },
+  "verified_files": 80,
+  "status": "passed"
+}

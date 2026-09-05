@@ -1,8 +1,8 @@
 {
   "experiment_version": "exp-001",
   "recorded_at": "2026-09-05T14:59:56.682582+00:00",
-  "authorized_scope": "finish_or_adjudicate_existing_pilots_then_stop",
-  "planned_manifest": "config/execution-order.json",
+  "authorized_scope": "explicit_planned_runs",
+  "planned_manifest": "config/execution-order-pilot-2.json",
   "existing_pilots": [
     "pilot-1-normal",
     "pilot-1-anti"
@@ -13,9 +13,38 @@
     "comparison-2-normal",
     "comparison-2-anti",
     "comparison-3-normal",
-    "comparison-3-anti"
+    "comparison-3-anti",
+    "pilot-1-normal",
+    "pilot-1-anti"
   ],
   "stop_on_additional_evaluator_issue": true,
   "quality_on_additional_evaluator_issue": null,
-  "resume_authority": "User instruction; GitHub Issues #1 and #11 hold current completion and restart status."
+  "resume_authority": "User approved restoration-gated normal/anti one new Run each, then stop; 2026-09-06",
+  "batch_id": "pilot-preservation-002",
+  "allowed_starts": [],
+  "preservation": {
+    "archive": {
+      "windows": "C:\\Users\\mwam0\\ResearchArchives\\sample1",
+      "linux": "/mnt/c/Users/mwam0/ResearchArchives/sample1"
+    },
+    "gate": {
+      "package_id": "restoration-proof-1bf75aa0-e78c-4a71-8547-446703778386",
+      "sha256": "f5d9d5303a7b21dd8026a27576d4cf67551cb4a5fba28b7037a4cc1497eb45c7"
+    },
+    "common": {
+      "package_id": "common-75252aa0-c86c-462f-b687-ce19f187a679",
+      "sha256": "0c9b44d90870d861fd1bc88607de8d5f9becfd2ae7d132638b5545db9fce7419"
+    },
+    "gate_valid_for_future_starts": false,
+    "latest_verified_common": {
+      "package_id": "common-02528c1b-30a9-4a39-8f0b-cb550b05ff8d",
+      "sha256": "733f04b476847f2d0f9578740938dc5af211dabacc60e324b1ab31446e0c0846"
+    },
+    "latest_verified_gate": {
+      "package_id": "restoration-proof-3137c1fc-2641-4ba4-ad51-b415c174e7d4",
+      "sha256": "cb45f8375dc85b4999f65142d464017d7b4ea0ee82bcaecf1237ec7b1852cdfb"
+    }
+  },
+  "stop_reason": "pilot-2-normal gateway environment_failure and incomplete usage; anti not started; no automatic retry",
+  "stopped_at": "2026-09-05T17:16:13.428892+00:00"
 }
