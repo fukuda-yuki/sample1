@@ -1,0 +1,12 @@
+{
+  "dotnet_restore_offline": true,
+  "sqlite_native_query": true,
+  "npm_ci_offline": true,
+  "backend_http_5080": true,
+  "vite_http_5173": true,
+  "react_module_transformed": true,
+  "nuget_packages": "/opt/nuget-cache",
+  "kind": "offline_runtime_calibration",
+  "image": "sha256:22a00e040431dcff95fb8f7dfc46b8b055fe9d5fd9a36d8fe0479244d223f7bf",
+  "model_called": false
+}

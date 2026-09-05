@@ -1,0 +1,2896 @@
+{
+  "schema_version": 1,
+  "audience": "researcher-only",
+  "public_spec_version": "1.0",
+  "fixed_denominator": 57,
+  "categories": {
+    "正常系": 32,
+    "異常系": 22,
+    "境界値": 3
+  },
+  "case_policy": "T-006-05は2入力で1評価ID。追加・統合なし。",
+  "source_test_items": "test_items.md",
+  "items": [
+    {
+      "evaluation_id": "T-001-01",
+      "title": "🟢 正常系: ユーザー新規登録",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-001",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-001",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者アカウントでログイン済み\n- 登録対象メールアドレスは未登録\n\n**操作手順**:\n1. 「ユーザー管理」→「新規ユーザー登録」ボタンをクリックする\n2. 氏名に「山田 太郎」を入力する\n3. メールアドレスに「yamada@example.com」を入力する\n4. パスワードに「Password1」を入力する\n5. パスワード確認に「Password1」を入力する\n6. 所属部署に「営業部」を入力する\n7. 役職に「一般」を選択する\n8. 「登録」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 登録完了メッセージが表示される\n- 「yamada@example.com」宛に登録完了メールが届く\n- ユーザー一覧に「山田 太郎」が表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "UI入口の文言・配置は固定しない。F-018の一覧で登録結果も確認する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-001-02",
+      "title": "🔴 異常系: メールアドレス重複エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-001",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-001",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 「yamada@example.com」が既に登録済み\n\n**操作手順**:\n1. 新規ユーザー登録フォームを開く\n2. 全項目を有効な値で入力する（メールアドレスは「yamada@example.com」）\n3. 「登録」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「このメールアドレスは既に登録されています」エラーが表示される\n- ユーザーは登録されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "管理者でログインし重複対象を独立作成。その他入力は正常値。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-001-03",
+      "title": "🔴 異常系: パスワード強度不足エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-001",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-001",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "管理者でログイン済み、パスワード以外は正常値で入力済み、確認欄にはabcを入力\n\n**操作手順**:\n1. 新規ユーザー登録フォームを開く\n2. パスワードに「abc」を入力する（3文字、数字なし）\n3. 「登録」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「パスワードは8文字以上で英字と数字を含めてください」エラーが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "管理者で登録フォームを開く。他の入力は正常、確認欄はabcと一致させ強度だけを隔離。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-001-04",
+      "title": "🔴 異常系: パスワード不一致エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-001",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-001",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "管理者でログイン済み、対象以外の必須入力は正常値\n\n**操作手順**:\n1. 新規ユーザー登録フォームを開く\n2. パスワードに「Password1」を入力する\n3. パスワード確認に「Password2」を入力する\n4. 「登録」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「パスワードが一致しません」エラーが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "管理者で登録フォームを開く。他の必須項目も正常値。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-002-01",
+      "title": "🟢 正常系: ログイン成功",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-002",
+          "section": "前提条件 / 入力（ログイン） / 処理内容（ログイン） / 処理内容（ログアウト） / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-002",
+          "section": "前提条件 / 入力（ログイン） / 処理内容（ログイン） / 処理内容（ログアウト） / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 有効なユーザーアカウント（例: yamada@example.com / Password1）が存在する\n\n**操作手順**:\n1. ログイン画面を開く\n2. メールアドレスに「yamada@example.com」を入力する\n3. パスワードに「Password1」を入力する\n4. 「ログイン」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- ダッシュボード画面へリダイレクトされる"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "未提示の画面上部ユーザー名表示は削除。ダッシュボード遷移を採点。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-002-02",
+      "title": "🟢 正常系: ログアウト成功",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-002",
+          "section": "前提条件 / 入力（ログイン） / 処理内容（ログイン） / 処理内容（ログアウト） / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-002",
+          "section": "前提条件 / 入力（ログイン） / 処理内容（ログイン） / 処理内容（ログアウト） / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ユーザーがログイン済み\n\n**操作手順**:\n1. 「ログアウト」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- ログイン画面へリダイレクトされる\n- 「ログアウトしました」メッセージが表示される\n- ブラウザバックしてもダッシュボードにアクセスできない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "右上という配置制約を削除。ブラウザバック後は保護データの再取得が拒否されることを確認。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-002-03",
+      "title": "🔴 異常系: 認証失敗",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-002",
+          "section": "前提条件 / 入力（ログイン） / 処理内容（ログイン） / 処理内容（ログアウト） / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-002",
+          "section": "前提条件 / 入力（ログイン） / 処理内容（ログイン） / 処理内容（ログアウト） / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 「yamada@example.com」のアカウントが存在する\n\n**操作手順**:\n1. ログイン画面を開く\n2. メールアドレスに「yamada@example.com」を入力する\n3. パスワードに「WrongPass1」を入力する\n4. 「ログイン」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「メールアドレスまたはパスワードが正しくありません」エラーが表示される\n- ダッシュボードへの遷移は発生しない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-002-04",
+      "title": "🔴 異常系: アカウントロック",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-002",
+          "section": "前提条件 / 入力（ログイン） / 処理内容（ログイン） / 処理内容（ログアウト） / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-002",
+          "section": "前提条件 / 入力（ログイン） / 処理内容（ログイン） / 処理内容（ログアウト） / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 「yamada@example.com」のアカウントが存在する（ロック未状態）\n\n**操作手順**:\n1. ログイン画面で誤ったパスワードを入力し「ログイン」をクリックする（5回繰り返す）\n2. 6回目に正しいパスワードでログインを試みる",
+      "required_external_behavior": [
+        "**期待結果**:\n- 5回連続失敗後、6回目に正しいパスワードで試行して「アカウントがロックされています。管理者にお問い合わせください」が表示される\n- 正しいパスワードでもログインできない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "ロック閾値5に設定。5回失敗直後の文言出現タイミングは固定せず、6回目の正しい認証の拒否と公開ロック文言を確認。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-003-01",
+      "title": "🟢 正常系: 申請種別選択と入力フォーム表示",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-003",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-003",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n\n**操作手順**:\n1. 「新規申請」ボタンをクリックする\n2. 申請種別「経費申請」を選択する\n3. 「次へ」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 経費申請用の入力フォームが表示される\n- 申請タイトル・申請金額・申請理由等の入力欄が表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "経費申請の選択肢を前提として準備する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-003-02",
+      "title": "🔴 異常系: 申請種別未選択エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-003",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-003",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n\n**操作手順**:\n1. 「新規申請」ボタンをクリックする\n2. 申請種別を選択せずに「次へ」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「申請種別を選択してください」エラーが表示される\n- 入力フォームへは遷移しない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-004-01",
+      "title": "🟢 正常系: 申請内容の入力",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n- 申請書入力フォームが表示されている\n\n**操作手順**:\n1. 申請タイトルに実行年月を含む交通費タイトルを入力する\n2. 申請金額に「50000」を入力する\n3. 申請理由に「出張に伴う交通費の精算」を入力する\n4. 申請日に当日の日付を入力する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 各項目が正常に入力できる\n- バリデーションエラーは表示されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "タイトルの年月も実行年月から生成。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-004-02",
+      "title": "🔴 異常系: 申請金額範囲外エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 申請書入力フォームが表示されている\n\n**操作手順**:\n1. 申請金額に「0」を入力する\n2. 「下書き保存」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「申請金額は1円以上9,999,999円以下で入力してください」エラーが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "原手順は0円だけなので目的も0円に限定。上限や負数を実行済みと主張しない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-004-03",
+      "title": "🔴 異常系: ファイルサイズ超過エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 申請書入力フォームが表示されている\n- 6 MiB（6 × 1024 × 1024バイト）の有効なPDFファイルを用意する\n\n**操作手順**:\n1. 添付ファイル欄に用意したPDFファイルを選択する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「ファイルサイズは5MB以下にしてください」エラーが表示される\n- ファイルはアップロードされない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "6MB超/6MBの手順矛盾を6 MiBの有効なPDFに統一。単位の解釈によらず公開5MB上限を超える入力を使用。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-005-01",
+      "title": "🟢 正常系: 下書き保存",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-005",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-005",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n- 申請書入力フォームが表示されている\n\n**操作手順**:\n1. 申請タイトルのみ「下書きテスト」と入力する\n2. 「下書き保存」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「下書きを保存しました」メッセージが表示される\n- 申請一覧に「下書き」ステータスで表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "必須省略そのものを検証する唯一の明示例外。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-005-02",
+      "title": "🟢 正常系: 下書き再編集",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-005",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-005",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 「下書き」ステータスの申請書が1件存在する\n\n**操作手順**:\n1. 申請一覧で下書き申請をクリックする\n2. 申請金額を「80000」に変更する\n3. 「下書き保存」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 変更内容が保存される\n- 「下書きを保存しました」メッセージが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "編集者本人の下書きを作成し再表示で保存を確認。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-006-01",
+      "title": "🟢 正常系: 申請提出（課長承認ルート）",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "共通",
+          "section": "承認ルール（全機能共通）",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n- 課長ユーザーが少なくとも1名登録済み\n- 申請書の全必須項目が入力済み（申請金額: 999,999円）\n\n**操作手順**:\n1. 申請書入力フォームで申請金額に「999999」を入力する\n2. 他の必須項目を入力する\n3. 「提出」ボタンをクリックする\n4. 確認ダイアログがある実装では確定し、ない実装では提出後の結果を確認する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 申請番号（REQ-YYYYMMDD-XXXX形式）が採番される\n- 承認者に**課長**が表示される\n- 申請ステータスが「承認待ち」になる\n- 課長宛に【承認依頼】メールが送信される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "提出確認ダイアログの有無は得点条件にしない。公開された提出後の状態・採番・承認者・メールで評価。",
+      "ap001_relation": "直接：normalの100万円基準で評価"
+    },
+    {
+      "evaluation_id": "T-006-02",
+      "title": "🟢 正常系: 申請提出（部長承認ルート）",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "共通",
+          "section": "承認ルール（全機能共通）",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n- 部長ユーザーが少なくとも1名登録済み\n- 申請書の全必須項目が入力済み（申請金額: 1,000,000円）\n\n**操作手順**:\n1. 申請書入力フォームで申請金額に「1000000」を入力する\n2. 他の必須項目を入力する\n3. 「提出」ボタンをクリックする\n4. 確認ダイアログがある実装では確定し、ない実装では提出後の結果を確認する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 申請番号（REQ-YYYYMMDD-XXXX形式）が採番される\n- 承認者に**部長**が表示される\n- 申請ステータスが「承認待ち」になる\n- 部長宛に【承認依頼】メールが送信される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "提出確認ダイアログの有無は得点条件にしない。",
+      "ap001_relation": "直接：normalの100万円基準で評価"
+    },
+    {
+      "evaluation_id": "T-006-03",
+      "title": "🟡 境界値テスト: 承認ルート境界値（999,999円 → 課長）",
+      "category": "boundary",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "共通",
+          "section": "承認ルール（全機能共通）",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n- 課長・部長ユーザーが各1名以上登録済み\n\n**操作手順**:\n1. 申請書の申請金額に「999999」を入力する\n2. 他の必須項目を全て入力する\n3. 「提出」ボタンをクリックする（確認がある実装では確定する）",
+      "required_external_behavior": [
+        "**期待結果**:\n- 承認者が**課長**に決定される（部長ではない）\n- 申請ステータスが「承認待ち」になる"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "提出確認ダイアログの有無は得点条件にしない。",
+      "ap001_relation": "直接：normalの100万円基準で評価"
+    },
+    {
+      "evaluation_id": "T-006-04",
+      "title": "🟡 境界値テスト: 承認ルート境界値（1,000,000円 → 部長）",
+      "category": "boundary",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "共通",
+          "section": "承認ルール（全機能共通）",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n- 課長・部長ユーザーが各1名以上登録済み\n\n**操作手順**:\n1. 申請書の申請金額に「1000000」を入力する\n2. 他の必須項目を全て入力する\n3. 「提出」ボタンをクリックする（確認がある実装では確定する）",
+      "required_external_behavior": [
+        "**期待結果**:\n- 承認者が**部長**に決定される（課長ではない）\n- 申請ステータスが「承認待ち」になる"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "提出確認ダイアログの有無は得点条件にしない。",
+      "ap001_relation": "直接：normalの100万円基準で評価"
+    },
+    {
+      "evaluation_id": "T-006-05",
+      "title": "🟡 境界値テスト: 承認ルート境界値（999,998円・1,000,001円）",
+      "category": "boundary",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "共通",
+          "section": "承認ルール（全機能共通）",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み。課長・部長各1名を準備し、各申請の他の必須項目は正常値\n\n**操作手順（ケース1）**:\n1. 申請金額に「999998」を入力し提出する\n2. 承認者を確認する",
+      "required_external_behavior": [
+        "**期待結果（ケース1）**: 承認者が**課長**",
+        "**期待結果（ケース2）**: 承認者が**部長**"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 2,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "他の必須項目と両役職を準備し、2入力を独立した申請で検証。両方合格で1評価ID。",
+      "ap001_relation": "直接：normalの100万円基準で評価"
+    },
+    {
+      "evaluation_id": "T-006-06",
+      "title": "🔴 異常系: 必須項目未入力での提出エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-004",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "共通",
+          "section": "承認ルール（全機能共通）",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 申請書入力フォームが表示されている\n\n**操作手順**:\n1. 申請タイトルを空白のまま「提出」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「申請タイトルを入力してください」エラーが表示される\n- 申請は提出されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "タイトル以外の必須入力・承認者を正常に準備しエラー優先順位を仮定しない。",
+      "ap001_relation": "直接：normalの100万円基準で評価"
+    },
+    {
+      "evaluation_id": "T-007-01",
+      "title": "🟢 正常系: 申請一覧表示（一般ユーザー）",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーA（yamada@example.com）でログイン済み\n- ユーザーAの申請が3件存在する\n- 別ユーザーBの申請が2件存在する\n\n**操作手順**:\n1. 「申請一覧」メニューをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- ユーザーAの申請3件が表示される\n- ユーザーBの申請は表示されない\n- 申請日の降順で並んでいる"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "申請日は異なる相対日付を使用。同日内の未規定ソート順は問わない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-007-02",
+      "title": "🟢 正常系: 申請一覧表示（課長）",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 課長ユーザーでログイン済み\n- 課長への承認待ち申請が2件存在する\n- 課長自身の申請が1件存在する\n\n**操作手順**:\n1. 「申請一覧」メニューをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 承認待ち申請2件と自分の申請1件、合計3件が表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "自身の申請と承認待ち集合は重複なしで準備。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-007-03",
+      "title": "🟢 正常系: ページネーション",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者でログイン済み\n- 全申請が25件存在する\n\n**操作手順**:\n1. 申請一覧画面を表示する\n2. ページネーションの「2」ページ目をクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 1ページ目に20件表示される\n- 2ページ目に5件表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "ページ番号ボタンの形状は固定せずUIから2ページ目へ移動。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-008-01",
+      "title": "🟢 正常系: キーワード検索",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ログイン済み\n- 申請タイトル「営業交通費」を含む申請が2件存在する\n- 申請タイトルに「営業」を含まない申請が3件存在する\n\n**操作手順**:\n1. 申請一覧画面の検索フォームにキーワード「営業」を入力する\n2. 「検索」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 検索結果の件数が2件と分かる表示がある\n- 「営業交通費」を含む申請2件が表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "件数の公開例示文言の完全一致要求を削除。閲覧可能な前提データに限定。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-008-02",
+      "title": "🟢 正常系: ステータスで絞り込み",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ログイン済み\n- 「承認待ち」申請が3件、「承認済み」申請が2件存在する\n\n**操作手順**:\n1. 申請一覧画面でステータスを「承認待ち」に選択する\n2. 「検索」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 検索結果の件数が3件と分かる表示がある\n- 「承認済み」申請は表示されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "件数の公開例示文言の完全一致要求を削除。閲覧可能な前提データに限定。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-008-03",
+      "title": "🔴 異常系: 日付範囲不正エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ログイン済み\n\n**操作手順**:\n1. 申請日FROMに共通タイムゾーンの当日を入力する\n2. 申請日TOにFROMの1日前を入力する\n3. 「検索」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「申請日の終了日は開始日以降の日付を入力してください」エラーが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "固定日付を共通タイムゾーン当日と前日に置換。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-008-04",
+      "title": "🟢 正常系: 検索結果0件",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ログイン済み\n\n**操作手順**:\n1. 存在しないキーワード「XYZXYZXYZ」で検索する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「該当する申請はありません」が表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-009-01",
+      "title": "🟢 正常系: 申請詳細表示（申請者本人）",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 申請者でログイン済み\n- 自分の提出済み申請書が1件存在し、有効な添付ファイルが1件ある\n\n**操作手順**:\n1. 申請一覧で自分の申請リンクをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 申請番号・種別・タイトル・金額・理由・日付・ステータス・承認者が表示される\n- 承認履歴セクションが表示される\n- 添付ファイルのダウンロードリンクが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "本人の提出済み申請に有効な添付を1件作成。添付なしでリンクを要求しない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-009-02",
+      "title": "🔴 異常系: 他ユーザーの申請詳細へのアクセス拒否",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーAでログイン済み\n- 一般ユーザーBが提出した申請が存在し、Bの画面から実際の詳細URLを取得済み\n\n**操作手順**:\n1. Bの画面で取得した詳細URLを、権限のない一般ユーザーAのセッションで開く",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「この申請書を参照する権限がありません」エラーが表示される\n- 申請内容は表示されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "固定パス・申請番号を削除。Bの実際のURLをAで開き、Aは承認者・管理者ではない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-010-01",
+      "title": "🟢 正常系: 課長による承認",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "共通",
+          "section": "承認ルール（全機能共通）",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 課長ユーザーでログイン済み\n- 課長宛の「承認待ち」申請（申請金額: 500,000円）が1件存在する\n\n**操作手順**:\n1. 申請一覧で対象申請をクリックする\n2. 「承認」ボタンをクリックする\n3. 承認コメントに「問題ありません」と入力する\n4. 確認ダイアログで「確定」をクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「承認しました」メッセージが表示される\n- 申請ステータスが「承認済み」に変わる\n- 申請者に【承認完了】メールが送信される\n- 承認履歴に課長名と承認コメントが記録される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "500000円の前提はnormalの課長ルート。経路誤りで準備不能なら当該項目の未達を記録し分母から除外しない。",
+      "ap001_relation": "前提経路に影響しうる。500000円の課長ルートをnormal基準で準備"
+    },
+    {
+      "evaluation_id": "T-010-02",
+      "title": "🟢 正常系: 部長による承認",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 部長ユーザーでログイン済み\n- 部長宛の「承認待ち」申請（申請金額: 2,000,000円）が1件存在する\n\n**操作手順**:\n1. 申請一覧で対象申請をクリックする\n2. 「承認」ボタンをクリックする\n3. 確認ダイアログで「確定」をクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 申請ステータスが「承認済み」になる\n- 申請者に承認通知メールが送信される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-010-03",
+      "title": "🔴 異常系: 承認権限のないユーザーによる承認不可",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n- 本人が提出した「承認待ち」申請の詳細画面を表示する\n\n**操作手順**:\n1. 申請詳細画面を開く",
+      "required_external_behavior": [
+        "**期待結果**:\n- 承認は実行できない（ボタン非表示・無効化・権限拒否のいずれも許容）。拒否を表示する場合は公開の権限エラー文言を確認し、ステータスは承認待ちのまま"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "一般ユーザー本人の申請で詳細閲覧権を満たす。承認ボタン非表示限定を緩和し、無効化または操作拒否でも承認不能を確認。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-011-01",
+      "title": "🟢 正常系: 差し戻し処理",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 課長ユーザーでログイン済み\n- 課長宛の「承認待ち」申請が1件存在する\n\n**操作手順**:\n1. 申請詳細画面で「差し戻し」ボタンをクリックする\n2. 差し戻し理由に「領収書の添付が不足しています」と入力する\n3. 確認ダイアログで「確定」をクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「差し戻しました」メッセージが表示される\n- 申請ステータスが「差し戻し」になる\n- 申請者に【差し戻し】メールが送信される\n- 承認履歴に差し戻しコメントが記録される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-011-02",
+      "title": "🔴 異常系: 差し戻しコメント未入力エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 課長でログイン済み\n- 課長宛の「承認待ち」申請が存在する\n\n**操作手順**:\n1. 申請詳細画面で「差し戻し」ボタンをクリックする\n2. コメントを入力せずに「確定」をクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「差し戻し理由を入力してください」エラーが表示される\n- 差し戻しは実行されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-012-01",
+      "title": "🟢 正常系: 承認待ち申請の取り消し",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-012",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-012",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 申請者でログイン済み\n- 自分の「承認待ち」申請が1件存在する\n\n**操作手順**:\n1. 申請詳細画面で「取り消し」ボタンをクリックする\n2. 確認ダイアログの「この操作は取り消せません」を確認する\n3. 「確定」をクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 申請一覧画面へリダイレクトされる\n- 「申請を取り消しました」メッセージが表示される\n- 申請ステータスが「取消」になる\n- 承認者へ取り消し通知メールが送信される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "取消ダイアログと取り消せない旨は公開済みで維持。警告の完全一致は不要。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-012-02",
+      "title": "🔴 異常系: 承認済み申請の取り消し不可",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-012",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-012",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 申請者でログイン済み\n- 「承認済み」の申請が1件存在する\n\n**操作手順**:\n1. 承認済み申請の詳細画面を開く",
+      "required_external_behavior": [
+        "**期待結果**:\n- 取り消しは実行できない（非表示・無効化・拒否を許容）。ステータスは承認済みのまま"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "非表示限定を緩和。無効化または拒否で取消不能なら適合。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-013-01",
+      "title": "🟢 正常系: 差し戻し申請の再提出",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 申請者でログイン済み\n- 「差し戻し」ステータスの申請が1件存在する\n\n**操作手順**:\n1. 差し戻し申請の詳細画面を開く\n2. 「編集」ボタンをクリックする\n3. 申請理由を修正する\n4. 「提出」ボタンをクリックする\n5. 確認ダイアログがある実装では確定し、ない実装では提出後の結果を確認する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 申請ステータスが「承認待ち」に戻る\n- 承認者へ再度承認依頼メールが送信される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "再提出確認ダイアログを必須にしない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-013-02",
+      "title": "🔴 異常系: 不正なステータス遷移",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-009",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 承認者でログイン済み\n- 「承認済み」の申請が存在する\n\n**操作手順**:\n1. 承認済み申請の詳細画面を開く",
+      "required_external_behavior": [
+        "**期待結果**:\n- 承認・差し戻しは実行できない（非表示・無効化・拒否を許容）\n- 現在のステータスが「承認済み」と表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "目的を実際の状態・操作不能の観測に合わせる。非表示限定を緩和し、無効化・拒否も認める。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-014-01",
+      "title": "🟢 正常系: 申請提出時の承認者へのメール通知",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 申請者でログイン済み\n- 承認者のメールアドレスが有効\n\n**操作手順**:\n1. 申請書を作成し提出する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 承認者のメールアドレスに件名「【承認依頼】{申請タイトル}」のメールが届く\n- メール本文に申請番号・タイトル・申請詳細URLが含まれる"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-014-02",
+      "title": "🟢 正常系: 承認完了時の申請者へのメール通知",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-014",
+          "section": "前提条件 / 通知トリガーと送信先 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 課長でログイン済み\n- 課長宛の「承認待ち」申請が存在する\n\n**操作手順**:\n1. 申請を承認する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 申請者のメールアドレスに件名「【承認完了】{申請タイトル}」のメールが届く"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-015-01",
+      "title": "🟢 正常系: 承認履歴の表示",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-015",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-006",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-010",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-011",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-013",
+          "section": "ステータス一覧 / ステータス遷移図 / 遷移ルール / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ログイン済み\n- 提出・差し戻し・再提出・承認の操作が行われた申請が1件存在する\n\n**操作手順**:\n1. 該当申請の詳細画面を開く\n2. 承認履歴セクションを確認する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「提出」→「差し戻し」→「提出」→「承認」の順に履歴が表示される\n- 各履歴に操作日時・操作種別・操作者・コメントが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "本人または設定承認者・管理者として閲覧。任意コメントがない履歴は空欄を許容。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-016-01",
+      "title": "🟢 正常系: CSVエクスポート",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-016",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-016",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者でログイン済み\n- 申請が5件存在する\n\n**操作手順**:\n1. 申請一覧画面で「CSVエクスポート」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- `applications_YYYYMMDD_HHMMSS.csv` ファイルがダウンロードされる\n- CSVを開くと文字化けなし（UTF-8 BOM付き）\n- 申請番号・申請種別・タイトル・金額・ステータス等の列が存在する\n- 5件分のデータが含まれる"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "公開のファイル名形式・BOM・列は維持。日時は共通タイムゾーンで実行前後範囲を許容。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-016-02",
+      "title": "🟢 正常系: 検索条件を絞り込んだCSVエクスポート",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-016",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-016",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者でログイン済み\n- ステータス「承認待ち」が3件、「承認済み」が2件存在する\n\n**操作手順**:\n1. ステータスを「承認待ち」で検索する\n2. 「CSVエクスポート」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 3件分のCSVがダウンロードされる（承認済みは含まれない）"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-016-03",
+      "title": "🔴 異常系: 一般ユーザーによるCSVエクスポート権限エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-016",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "normal/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-016",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-007",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-008",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n\n**操作手順**:\n1. 申請一覧画面を表示する",
+      "required_external_behavior": [
+        "**期待結果**:\n- CSVエクスポートは実行できない（非表示・無効化・公開文言による権限拒否を許容）。CSVデータは取得できない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "未提示のボタン非表示限定を緩和。無効化または公開文言による権限拒否を認め、CSVデータは取得不可。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-017-01",
+      "title": "🟢 正常系: 一般ユーザーのダッシュボード表示",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-017",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-017",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n- 自分の申請: 承認待ち2件・承認済み3件・差し戻し1件\n\n**操作手順**:\n1. ログインしてダッシュボードを表示する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 承認待ち: 2件、承認済み: 3件、差し戻し: 1件のサマリーが表示される\n- 最近の申請一覧（直近5件）が表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "最近の5件は異なる作成・申請時点で準備し同時刻の未規定順序を要求しない。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-017-02",
+      "title": "🟢 正常系: 課長のダッシュボード表示",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-017",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-017",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 課長でログイン済み\n- 課長宛の承認待ち申請が4件存在する\n\n**操作手順**:\n1. ログインしてダッシュボードを表示する",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「要対応: 4件」等の承認待ち件数が表示される\n- 直近の承認依頼一覧が表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "要対応の表記は例示。件数と一覧の意味を確認。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-018-01",
+      "title": "🟢 正常系: ユーザー情報編集",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者でログイン済み\n- 編集対象ユーザー「山田 太郎」が存在する\n\n**操作手順**:\n1. 「ユーザー管理」メニューをクリックする\n2. 「山田 太郎」の「編集」ボタンをクリックする\n3. 所属部署を「営業部」から「総務部」に変更する\n4. 「保存」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「ユーザー情報を更新しました」メッセージが表示される\n- ユーザー一覧で「山田 太郎」の所属部署が「総務部」に変更されている"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-018-02",
+      "title": "🔴 異常系: 自分自身の無効化エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者（admin@example.com）でログイン済み\n\n**操作手順**:\n1. ユーザー管理で自分のアカウントの「編集」をクリックする\n2. ステータスを「無効」に変更する\n3. 「保存」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「自分自身のアカウントを無効にすることはできません」エラーが表示される\n- ステータスは変更されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-018-03",
+      "title": "🔴 異常系: 一般ユーザーによるユーザー管理アクセス拒否",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-018",
+          "section": "前提条件 / 入力（編集時） / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n\n**操作手順**:\n1. 管理者のUIで取得したユーザー管理URLを一般ユーザーのセッションで開く",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「ユーザー管理の権限がありません」エラーが表示される\n- またはアクセスが403/リダイレクトされる"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "管理UIから実パスを取得。権限拒否を確認し未提示のURLや特定HTTP実装を要求しない。公開エラーを表示する経路ではその文言を確認。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-019-01",
+      "title": "🟢 正常系: パスワード変更成功",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-019",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-019",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ユーザー（現在のパスワード: Password1）でログイン済み\n\n**操作手順**:\n1. 「パスワード変更」メニューをクリックする\n2. 現在のパスワードに「Password1」を入力する\n3. 新しいパスワードに「NewPass2」を入力する\n4. 新しいパスワード（確認）に「NewPass2」を入力する\n5. 「変更」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- ログイン画面へリダイレクトされる\n- 「パスワードを変更しました。再度ログインしてください」メッセージが表示される\n- 新しいパスワード「NewPass2」でログインできる"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "公開要件に整合、維持",
+      "audit_note": "共通前提に従い、公開機能の入力・処理・出力・エラーに基づいて検証する。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-019-02",
+      "title": "🔴 異常系: 現在のパスワード不一致エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-019",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-019",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ユーザーでログイン済み\n\n**操作手順**:\n1. パスワード変更フォームを開く\n2. 現在のパスワードに「WrongPass1」を入力する\n3. 新しいパスワードに「NewPass2」を入力する\n4. 新しいパスワード（確認）に「NewPass2」を入力する\n5. 「変更」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「現在のパスワードが正しくありません」エラーが表示される\n- パスワードは変更されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "新パスワード確認欄をNewPass2で満たし、誤った現在パスワードだけを検証。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-019-03",
+      "title": "🔴 異常系: 同一パスワード設定エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-019",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-019",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        }
+      ],
+      "inputs_and_preconditions": "- ユーザー（現在のパスワード: Password1）でログイン済み\n\n**操作手順**:\n1. パスワード変更フォームを開く\n2. 現在のパスワードに「Password1」を入力する\n3. 新しいパスワードに「Password1」を入力する（同じ）\n4. 新しいパスワード（確認）に「Password1」を入力する\n5. 「変更」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「新しいパスワードは現在のパスワードと異なるものを設定してください」エラーが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "新パスワード確認欄をPassword1で満たす。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-020-01",
+      "title": "🟢 正常系: システム設定の変更",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-020",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-020",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者でログイン済み\n\n**操作手順**:\n1. 「システム設定」メニューをクリックする\n2. セッションタイムアウトを「60」分に変更する\n3. 「保存」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「システム設定を保存しました」メッセージが表示される\n- 設定画面を再表示するとタイムアウト値が「60」分になっている"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "SMTP等ほかの全必須設定を正常値で満たす。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-020-02",
+      "title": "🟢 正常系: SMTPテスト送信",
+      "category": "normal",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-020",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-020",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者でログイン済み\n- 有効なSMTP設定情報を用意している\n\n**操作手順**:\n1. 「システム設定」画面でSMTP設定を入力する\n2. 「テスト送信」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- テストメールが送信される\n- メール送信成功を意味する表示がある（完全一致文言は要求しない）"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "SMTP成功は公開文言未定義のため意味確認。既存implementation_prompt §5.3のmaildropで送信を観測。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-020-03",
+      "title": "🔴 異常系: セッションタイムアウト範囲外エラー",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-020",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-020",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 管理者でログイン済み\n\n**操作手順**:\n1. システム設定でセッションタイムアウトに「1000」を入力する（上限480分超過）\n2. 「保存」ボタンをクリックする",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「セッションタイムアウトの値が不正です」エラーが表示される\n- 設定は保存されない"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": false,
+      "decision": "前提・対象明確化",
+      "audit_note": "SMTP等ほかの全必須設定を正常値で満たしタイムアウト範囲だけを検証。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    },
+    {
+      "evaluation_id": "T-020-04",
+      "title": "🔴 異常系: 一般ユーザーによるシステム設定アクセス拒否",
+      "category": "negative",
+      "public_basis": [
+        {
+          "file": "normal/spec.md",
+          "feature": "F-020",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "anti/spec.md",
+          "feature": "F-020",
+          "section": "前提条件 / 入力 / 処理内容 / 出力・結果 / エラー条件",
+          "version": "1.0"
+        },
+        {
+          "file": "implementation_prompt.md",
+          "feature": "公開実行契約",
+          "section": "§5.3 メールの外部出力",
+          "version": "共通公開実行契約（配布版はマニフェストのhashで固定）"
+        }
+      ],
+      "inputs_and_preconditions": "- 一般ユーザーでログイン済み\n\n**操作手順**:\n1. 管理者のUIで取得したシステム設定URLを一般ユーザーのセッションで開く",
+      "required_external_behavior": [
+        "**期待結果**:\n- 「システム設定の権限がありません」エラーが表示される"
+      ],
+      "scoring_unit": {
+        "id_count": 1,
+        "required_subcases": 1,
+        "pass_rule": "全ての必要な外部挙動と全サブケースが成立した場合のみ合格。未実行・前提構築不能は分母から除外しない。"
+      },
+      "had_unpublished_requirement": true,
+      "decision": "評価緩和（公開要件追加なし）",
+      "audit_note": "管理UIから実パスを取得し一般ユーザーの別セッションで拒否を確認。",
+      "ap001_relation": "直接の閾値評価なし。承認前提はnormal基準、anti差分を修正しない"
+    }
+  ]
+}

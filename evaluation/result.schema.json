@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Independent evaluation JSONL record (one object per line)",
+  "type": "object",
+  "required": ["run_id", "evaluation_id", "case_id", "status", "evidence", "score_version", "submission_hash"],
+  "properties": {
+    "run_id": {"type": "string"},
+    "evaluation_id": {"type": "string", "pattern": "^T-[0-9]{3}-[0-9]{2}$"},
+    "case_id": {"enum": ["main", "lower", "upper"]},
+    "status": {"enum": ["pass", "fail", "blocked", "error"]},
+    "evidence": {"type": "object"},
+    "score_version": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "submission_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+  },
+  "additionalProperties": false
+}

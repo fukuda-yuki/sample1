@@ -1,0 +1,11 @@
+{
+  "check": "real sealed evaluator JSONL + synthetic Run manifest and explicit missing usage",
+  "source": "C:\\Users\\mwam0\\Documents\\ls\\sample1-private-eval\\calibration-runs\\sealed-normal-1\\result",
+  "result_rows": 58,
+  "fixed_ids": 57,
+  "quality_percent": 100.0,
+  "total_tokens": null,
+  "results_hash": "527cd8bd06b63a08c4c0170eeef941f1cdb2f515c3f9097b595f0988753d1c9b",
+  "ledger_hash": "baec6d3eefd2d6adb9d5715e36d93245692d5a1e994817b3cd0492e7cc780be5",
+  "score_version": "9f3e0731f9a3225f70af1e17ab8e81d6d868efd46bac4e53fe56c18c882d7cc9"
+}

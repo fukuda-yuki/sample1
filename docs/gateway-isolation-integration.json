@@ -1,0 +1,10 @@
+{
+  "host_canaries_denied": 4,
+  "github_egress_denied": true,
+  "arbitrary_gateway_path_denied": true,
+  "remote_tools_denied": true,
+  "model_change_denied": true,
+  "kind": "gateway_isolation_integration",
+  "model_called": false,
+  "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea"
+}
