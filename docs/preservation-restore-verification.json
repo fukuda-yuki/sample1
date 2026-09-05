@@ -1,0 +1,345 @@
+{
+  "model_called": false,
+  "recorded_at": "2026-09-05T17:04:50.292047+00:00",
+  "checks": {
+    "normal_exit": true,
+    "timeout_exit": true,
+    "abnormal_exit": true,
+    "hashes_match": true,
+    "usage_recomputed": true,
+    "normal_fixture": true,
+    "threshold_mutation": true,
+    "empty_daemon_restore": true,
+    "source_unavailable": true,
+    "evaluation_restored": true
+  },
+  "common": {
+    "package_id": "common-75252aa0-c86c-462f-b687-ce19f187a679",
+    "sha256": "0c9b44d90870d861fd1bc88607de8d5f9becfd2ae7d132638b5545db9fce7419"
+  },
+  "receipts": [
+    {
+      "path": "receipts/fe880201-96ad-453e-9ebe-f9e6ee1b3446.json",
+      "sha256": "0e9387096d6abf4164b1b4054831d5fffadbffca03dd34ffeb3a29cc34dbbb1c"
+    },
+    {
+      "path": "receipts/c8c26394-48e8-4e0a-b205-b798db9788a5.json",
+      "sha256": "a2e87b2528129395569de6302d172fbba3f6c218f2124318370eae48e0d5fef0"
+    },
+    {
+      "path": "receipts/b7e5ed3b-119f-4dd6-9a81-eca2c7dd6402.json",
+      "sha256": "d2647682cb09dabbf0091715c2ef0e4725a4161a63228a322f8c267cb9e870ef"
+    },
+    {
+      "path": "receipts/e72fa991-e7a2-4bff-b19d-77f6df68344c.json",
+      "sha256": "edfbdf235a50f726d7adabc87e08caf2296ad410f67182669cfc683750548040"
+    },
+    {
+      "path": "receipts/88ad6ad1-bbad-4ff9-a418-e8162541e67b.json",
+      "sha256": "b2ba434296eddd184e0f9ea22efde00076af63081c6e533852075552b0d06810"
+    }
+  ],
+  "lifecycle": [
+    {
+      "case": "normal",
+      "run_id": "c8bed9b9-dcde-4541-aae4-cc672b88da30",
+      "end_reason": "agent_completed",
+      "usage": {
+        "normalizer_version": "1",
+        "usage_complete": true,
+        "total_tokens": 13,
+        "observed_tokens": 13,
+        "observed_request_count": 1,
+        "sessions": {
+          "implementation": 13
+        },
+        "missing": [],
+        "cumulative_sessions": [],
+        "source": "fixed-upstream-gateway"
+      },
+      "reference": {
+        "package_id": "run-c8bed9b9-dcde-4541-aae4-cc672b88da30",
+        "sha256": "c49de4df63976b042b62bc5c4679cc7d4f2cd4d27eb45dc872ae99037fdfda30"
+      }
+    },
+    {
+      "case": "timeout",
+      "run_id": "2bfc4a5d-cd8a-4b4b-8537-7743ae9f4cfe",
+      "end_reason": "budget_exhausted",
+      "usage": {
+        "normalizer_version": "1",
+        "usage_complete": false,
+        "total_tokens": null,
+        "observed_tokens": 0,
+        "observed_request_count": 0,
+        "sessions": {},
+        "missing": [
+          {
+            "session_id": "implementation",
+            "event_id": "synthetic-1",
+            "reason": "usage_missing"
+          },
+          {
+            "session_id": "implementation",
+            "reason": "session_unobserved"
+          }
+        ],
+        "cumulative_sessions": [],
+        "source": "fixed-upstream-gateway"
+      },
+      "reference": {
+        "package_id": "run-2bfc4a5d-cd8a-4b4b-8537-7743ae9f4cfe",
+        "sha256": "c3f811b9be9cd327799f28efa9ecd34db1f74f334462c622ea5e2b021488533c"
+      }
+    },
+    {
+      "case": "abnormal",
+      "run_id": "b9b69e97-aec7-4d47-a7d0-1ae88c53c149",
+      "end_reason": "agent_error",
+      "usage": {
+        "normalizer_version": "1",
+        "usage_complete": false,
+        "total_tokens": null,
+        "observed_tokens": 0,
+        "observed_request_count": 0,
+        "sessions": {},
+        "missing": [
+          {
+            "session_id": "implementation",
+            "event_id": "synthetic-1",
+            "reason": "usage_missing"
+          },
+          {
+            "session_id": "implementation",
+            "reason": "session_unobserved"
+          }
+        ],
+        "cumulative_sessions": [],
+        "source": "fixed-upstream-gateway"
+      },
+      "reference": {
+        "package_id": "run-b9b69e97-aec7-4d47-a7d0-1ae88c53c149",
+        "sha256": "a6bc2735b1aaffb5656f9d14a7d39d25b4b33c505e7d025e4872a14fead14257"
+      }
+    }
+  ],
+  "calibration": [
+    {
+      "name": "restore-standard-1000000",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--user",
+        "1000:1000",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:mode=1777,exec",
+        "--env",
+        "TZ=Asia/Tokyo",
+        "--mount",
+        "type=bind,source=/home/mwam0/sample1-restore-drill-20260906/common/evaluator,target=/evaluator",
+        "--workdir",
+        "/evaluator",
+        "sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
+        "/evaluator/tools/node",
+        "/evaluator/calibrate.mjs",
+        "restore-standard-1000000",
+        "standard",
+        "1000000"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "restore-standard-500000",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--user",
+        "1000:1000",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:mode=1777,exec",
+        "--env",
+        "TZ=Asia/Tokyo",
+        "--mount",
+        "type=bind,source=/home/mwam0/sample1-restore-drill-20260906/common/evaluator,target=/evaluator",
+        "--workdir",
+        "/evaluator",
+        "sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
+        "/evaluator/tools/node",
+        "/evaluator/calibrate.mjs",
+        "restore-standard-500000",
+        "standard",
+        "500000"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "restore-self-registration-1000000",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--user",
+        "1000:1000",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:mode=1777,exec",
+        "--env",
+        "TZ=Asia/Tokyo",
+        "--mount",
+        "type=bind,source=/home/mwam0/sample1-restore-drill-20260906/common/evaluator,target=/evaluator",
+        "--workdir",
+        "/evaluator",
+        "sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
+        "/evaluator/tools/node",
+        "/evaluator/calibrate.mjs",
+        "restore-self-registration-1000000",
+        "self-registration",
+        "1000000"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "restore-self-registration-500000",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "evaluator_hash": "7bbfb2423cde28c9a7b0b6a62ac3731fe5be6c64336918c83b698bb02722ae45",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--user",
+        "1000:1000",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:mode=1777,exec",
+        "--env",
+        "TZ=Asia/Tokyo",
+        "--mount",
+        "type=bind,source=/home/mwam0/sample1-restore-drill-20260906/common/evaluator,target=/evaluator",
+        "--workdir",
+        "/evaluator",
+        "sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
+        "/evaluator/tools/node",
+        "/evaluator/calibrate.mjs",
+        "restore-self-registration-500000",
+        "self-registration",
+        "500000"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "source_hashes": {
+    "scripts/check_container_protocol.py": "070a44ff56967d79731cf0d4734effe6d7a841a65f525d9f474f0e1e5f5257fc",
+    "scripts/check_gateway_isolation.py": "a4bca7629298533cb7143637fb391c83700f5bc492ed7e4b3bbb85d1124057c5",
+    "scripts/check_isolated_host_access.py": "e3c7495892ca9aca52e1cd600e750e9bffa5a7b3b3eb6d26cb58c10f6b752ee2",
+    "scripts/check_offline_runtime.py": "14402e1e91e4ac1a08bca9e7e0bfc1c119bde8fa2cf731092e929d1820ebd793",
+    "scripts/check_preservation_restore.py": "00e873a301748b2e3a0a5de139e4733d7fbbcb6d0f8348678dd24e235017bb14",
+    "scripts/check_run_separation.py": "8ff688cb6282a6615c51e33cb20a22031a697bd34f08de084e0d1e32dea3736e",
+    "scripts/execution_scope.py": "837d2fa7d2105d3043963cafccbc3c2863edb483f21fcaf3d52b990c1c60a2c9",
+    "scripts/gateway_usage.py": "5aef377602b0ab747fb56307474ee86e70677a85b60283bd448debf4c676ac87",
+    "scripts/make_run_config.py": "f22d7e09cbb4d993b0eb0a844affa8e61f86cec17965bad48999dba385aaf1fa",
+    "scripts/model_gateway.py": "a799c441dabddee2af035603b3a6d7821f34c1232ee22a6206abb419aa46fe5d",
+    "scripts/normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+    "scripts/prepare_preservation.py": "dc38fe1e4ebcb497ee5c636f0637aeb9946f9609f692b7e143da44525aa6ecb2",
+    "scripts/prepare_workspace.py": "badaeb9195c4a3477ea1265362056de145d362767f5846f1034dc51bba630979",
+    "scripts/preservation_gate.py": "ee2451c5b6e131af552fd4a07ecc68532ba617c1b4a42dbce73c3697fbdd54ff",
+    "scripts/preserve.py": "a130b487a7fe679fa639fc38c8aa4e639913345627efd5a6c7607c92d44b0369",
+    "scripts/run_codex.py": "1ad3e7dbcb654f0b745941f1252bf44365124e4015ecdbed2a968d1fa424c8f9",
+    "scripts/run_experiment.py": "254b66f9e3261fb2063cd1896baf5e1923ff1cd8bdd294b1caacfd4110182e46",
+    "scripts/seal_common.py": "2320e2a0eaeecd5026256a2b49dff7741d20bc1ed388b6f7b080d8987c0586b6",
+    "scripts/smoke_model.py": "d44f0efef1828fc7e1c39de64e48d2799a22f4beb836a546b36de882518764fb",
+    "scripts/test_execution_scope.py": "937fb4e5e8e1de514870a4fff924afe9e1b3d5372a495e6d55483faf4e39975e",
+    "scripts/test_preservation.py": "dc205a544d3fd83d0b77cbd1a6841790036bf62b2a867c42637413e23e7cc7e5",
+    "scripts/test_protocol.py": "10d7026c97096377cfeda96fcf851779af47f9a26f1bf1d069a3935a26e1da5a",
+    "scripts/test_usage_retention.py": "988fb57624111d530d325f7aa412bf18c0fbe1ca83dd6fefe1b674944dd2392c",
+    "analysis/aggregate.py": "bff0451e55b929b0eb456a91148eca9a8f5fcd06cec25569d984110d7c8130f4",
+    "analysis/calibrate.py": "89933a95579a9ada203d7d0b2377f181a156cf0237dd72c03504dfcfa8dfd38c",
+    "analysis/collect_runs.py": "6f34eef410b10f35ad84dcce257a5c54e2c0801525a6db4a522e9de8233da43e",
+    "analysis/pilot_snapshot.py": "6ea1fdb8707481c32a12ff73b59f3eb89837a3909ea6c677febe03ba3868c167",
+    "analysis/plot.py": "a75984336d490f343b9a97288c5193c3cc6e4d496c3c9711a8eb186c185131c6",
+    "analysis/requirements.txt": "12a0a7bc6e1b1254c2f593a250e6ccff4dbd3cf0b27d6819696a9db86f4e530d",
+    "analysis/test_aggregate.py": "7780880604131a566e5fc6611098d1f5477c6f7c22bee1a8b177bb8554450f09",
+    "analysis/test_collect_runs.py": "9fb9613ec2892446ba87393e3575f49e5fbc1ec1c0a4c8431878a9a38a6d6fab",
+    "analysis/test_plot.py": "3f230911c3d8c5d1d1ae09aaf7786f58dfefe653f4f9b741eb3795628b23998c",
+    "analysis/validity.py": "f256f2e3e7923b3ac162783f4780f432f193f7581f4860848a062970629505e6",
+    "config/execution-order-pilot-2.json": "3f7796dd7c3f89cef7d481ff646d8bb394b0d0aafc574d708f5663c3b00f2387",
+    "config/execution-order.json": "ee767f31aede68270633bf6f1ba14c42060a49875e7f69250d4a37ccdbf8bb84",
+    "config/experiment.json": "71cac6ebed0df2d4734ce77ba33feede7760349991e27ddf8d0fd83285ebb515",
+    "config/version-manifest.json": "622a519051159b2d4437c1abce52558ec83991044cf08d752dbae3bfc3092676",
+    "evaluation/calibration-summary.json": "936922c29663efb2cf7587f692303df9edafd5b24e615d9eece20cdb7764ebcf",
+    "evaluation/case-manifest.json": "4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461",
+    "evaluation/evaluator-version.json": "2819a6efb7eca0d1b671e24979c7f0016861b339169847aef5915a7164d14f72",
+    "evaluation/prepare-app-container.py": "f83f0009a67a4572c3fc9c3c796f11540d56b2caaca6c4f8ce971bcbd0265cb1",
+    "evaluation/requirements-ledger.json": "af3a9ce88bcafc1dd980a2ff918bc27bd737d6bd964eace1c416265577312c1e",
+    "evaluation/result.schema.json": "986df061db41a8f9be969b69afe31a10c950eb6989226e061ed09fa46cd59a90",
+    "evaluation/validate-requirements.py": "7b036c8d06cd7aaebf5604ee96c8f26457029a8b11204fd5da9292648814b029",
+    "evaluation/validity-registry-summary.json": "95f7ed61b56b49428e800008c4828ddc40c348963438b6b90bca05d6a0e27790",
+    "normal/spec.md": "60591f585f9a0bc57085819acc4462f0bd596c360fac79cff249fee8d510b1a0",
+    "anti/spec.md": "4efee9a74d163f6fabad8c5392e395717869e074b34d81cb46489124f714c551",
+    "implementation_prompt.md": "27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2"
+  },
+  "docker_host": "unix:///tmp/sample1-restore-daemon/docker.sock",
+  "initial_images": [],
+  "limitation": "Same physical C drive; no disk failure guarantee",
+  "gate": {
+    "package_id": "restoration-proof-1bf75aa0-e78c-4a71-8547-446703778386",
+    "sha256": "f5d9d5303a7b21dd8026a27576d4cf67551cb4a5fba28b7037a4cc1497eb45c7"
+  }
+}

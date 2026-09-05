@@ -30,9 +30,11 @@
     }
   ],
   "current_verification": {
-    "status": "blocked_missing_fixed_originals",
+    "status": "originals_missing_unevaluable",
     "backup_available": false,
     "re_evaluation_performed": false,
-    "note": "Historical hashes and usage values are retained as earlier records; not independently reverified in this repair."
+    "note": "Historical hashes and usage values are retained as earlier records; not independently reverified in this repair.",
+    "current_rescoring_closed": true,
+    "reopen_condition": "Only if authentic originals are recovered and matched to historical hashes; never substitute a new implementation."
   }
 }
