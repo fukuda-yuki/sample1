@@ -12,8 +12,10 @@ from run_experiment import snapshot
 
 
 def compact(common, stage):
-    for relative in ('evaluator/node_modules', 'historical-calibration'):
+    for relative in ('evaluator/node_modules', 'evaluator/tools', 'historical-calibration'):
         source = common / relative
+        if not source.exists():
+            continue
         with tarfile.open(str(source) + '.tar', 'w', dereference=True) as target:
             target.add(source, arcname=source.name)
         # Keep the staging source outside the package; no original is deleted.

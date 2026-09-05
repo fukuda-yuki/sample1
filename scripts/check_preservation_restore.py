@@ -38,14 +38,15 @@ def drill(archive, common, destination):
             raise ValueError('Loaded wrong image')
     manager = restored / 'management'
     evaluator = restored / 'evaluator'
-    with tarfile.open(evaluator / 'node_modules.tar', 'r') as dependency_tar:
-        members = dependency_tar.getmembers()
-        from preserve import safe_name
-        for member in members:
-            safe_name(member.name.rstrip('/'))
-            if not (member.isfile() or member.isdir()):
-                raise ValueError('Only regular dependency files/directories can be restored')
-        dependency_tar.extractall(evaluator, members=members, filter='data')
+    for bundle in ('node_modules.tar', 'tools.tar'):
+        with tarfile.open(evaluator / bundle, 'r') as dependency_tar:
+            members = dependency_tar.getmembers()
+            from preserve import safe_name
+            for member in members:
+                safe_name(member.name.rstrip('/'))
+                if not (member.isfile() or member.isdir()):
+                    raise ValueError('Only regular dependency files/directories can be restored')
+            dependency_tar.extractall(evaluator, members=members, filter='data')
     # Execute archived manager, not this checkout, for lifecycle/usage checks.
     import sys
     sys.path.insert(0, str(manager / 'scripts'))
