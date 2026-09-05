@@ -63,13 +63,46 @@ def save_usage(output, raw, *, producer_stopped, error=None):
     temporary.replace(output / 'usage.json')
 
 
+def worker_command(config, instruction):
+    command = ['codex', 'exec', '--ignore-user-config', '--ignore-rules', '--skip-git-repo-check',
+               '--json', '--dangerously-bypass-approvals-and-sandbox',
+               '-m', config['model_id'], '-c', 'model_reasoning_effort=' + json.dumps(config['effort']),
+               '-c', 'model_provider="research"',
+               '-c', 'model_providers.research={name="Research",base_url="http://model-gateway:8080",wire_api="responses",requires_openai_auth=false}',
+               '-c', 'web_search="disabled"', '-c', 'features.multi_agent=false',
+               '-c', 'check_for_update_on_startup=false', instruction]
+    import shlex
+    bootstrap = ('mkdir -p /home/agent/.codex /home/agent/.nuget/NuGet && '
+                 'printf %s \'<configuration><packageSources><clear /></packageSources></configuration>\' '
+                 '> /home/agent/.nuget/NuGet/NuGet.Config && '
+                 'cp -r /opt/npm-cache /tmp/npm-cache && '
+                 'export npm_config_offline=true npm_config_audit=false && exec ')
+    return ['sh', '-c', bootstrap + shlex.join(command)]
+
+
 def execute(distribution, config, output, auth, prompt=None):
     if prompt is not None:
         raise ValueError('Custom prompts are not permitted in the authorized pilot batch')
+    if config.get('phase') == 'diagnostic':
+        raise ValueError('Use the fixed diagnostic entry point')
+    return _execute(distribution, config, output, auth)
+
+
+def execute_diagnostic(distribution, config, output, auth):
+    if config.get('phase') != 'diagnostic':
+        raise ValueError('Diagnostic phase required')
+    return _execute(distribution, config, output, auth)
+
+
+def _execute(distribution, config, output, auth):
     config = dict(config, start_authorization=check_start(config))
     if output.exists():
         raise ValueError('Run output must not already exist')
-    validate_distribution(distribution, config)
+    if config.get('phase') == 'diagnostic':
+        from diagnostic_scope import validate_distribution as validate_diagnostic
+        validate_diagnostic(distribution)
+    else:
+        validate_distribution(distribution, config)
     run_id = str(uuid.uuid4())
     reserve_start(config, run_id)
     network = 'sample1-private-' + run_id
@@ -102,21 +135,9 @@ def execute(distribution, config, output, auth, prompt=None):
             config['start_authorization'] = check_start(config, run_id)
             subprocess.run(['docker', 'start', gateway], check=True, capture_output=True)
             time.sleep(1)
-            instruction = prompt or 'Read /workspace/RUN_CONTRACT.md and /workspace/spec.md. Complete implementation. Follow the supplied instructions.'
-            command = ['codex', 'exec', '--ignore-user-config', '--ignore-rules', '--skip-git-repo-check',
-                       '--json', '--dangerously-bypass-approvals-and-sandbox',
-                       '-m', config['model_id'], '-c', 'model_reasoning_effort=' + json.dumps(config['effort']),
-                       '-c', 'model_provider="research"',
-                       '-c', 'model_providers.research={name="Research",base_url="http://model-gateway:8080",wire_api="responses",requires_openai_auth=false}',
-                       '-c', 'web_search="disabled"', '-c', 'features.multi_agent=false',
-                       '-c', 'check_for_update_on_startup=false', instruction]
-            import shlex
-            bootstrap = ('mkdir -p /home/agent/.codex /home/agent/.nuget/NuGet && '
-                         'printf %s \'<configuration><packageSources><clear /></packageSources></configuration>\' '
-                         '> /home/agent/.nuget/NuGet/NuGet.Config && '
-                         'cp -r /opt/npm-cache /tmp/npm-cache && '
-                         'export npm_config_offline=true npm_config_audit=false && exec ')
-            config = dict(config, command=['sh', '-c', bootstrap + shlex.join(command)])
+            from diagnostic_scope import PROMPT
+            instruction = PROMPT if config.get('phase') == 'diagnostic' else 'Read /workspace/RUN_CONTRACT.md and /workspace/spec.md. Complete implementation. Follow the supplied instructions.'
+            config = dict(config, command=worker_command(config, instruction))
             config['environment'] = dict(config['environment'], gateway_image=GATEWAY_IMAGE,
                                          gateway_sha256=__import__('hashlib').sha256(script.read_bytes()).hexdigest(),
                                          network_policy='dedicated-internal-fixed-responses-gateway')
@@ -139,7 +160,9 @@ def execute(distribution, config, output, auth, prompt=None):
                 detail = {'type': type(failure).__name__,
                           'stage': command[:2] if isinstance(command, list) else None,
                           'stderr': stderr}
-                failure_config = dict(config, command=['false'], setup_failure_detail=detail)
+                from diagnostic_scope import PROMPT
+                failure_command = worker_command(config, PROMPT) if config.get('phase') == 'diagnostic' else ['false']
+                failure_config = dict(config, command=failure_command, setup_failure_detail=detail)
                 result = run(distribution, failure_config, output, run_id_override=run_id, setup_failure=True, _reserved=True)
                 return result
             raise

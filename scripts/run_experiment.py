@@ -19,7 +19,7 @@ def write_json(path, data):
 
 EXCLUDED_DIRS = {'node_modules', 'bin', 'obj', '.git', '.codex', '.cache', 'maildrop'}
 EXCLUDED_SUFFIXES = {'.db', '.sqlite', '.sqlite3', '.db-shm', '.db-wal'}
-MANAGEMENT_FILES = ('run_experiment.py', 'run_codex.py', 'model_gateway.py', 'gateway_usage.py', 'normalize_usage.py', 'execution_scope.py', 'preservation_gate.py', 'preserve.py')
+MANAGEMENT_FILES = ('run_experiment.py', 'run_codex.py', 'model_gateway.py', 'gateway_usage.py', 'normalize_usage.py', 'execution_scope.py', 'diagnostic_scope.py', 'preservation_gate.py', 'preserve.py')
 
 
 def snapshot(root, source_only=True):
@@ -45,6 +45,9 @@ def verify_snapshot(root, expected, source_only=True):
 
 def run(distribution, config, output, *, network='none', run_id_override=None, setup_failure=False, _reserved=False):
     config = dict(config, start_authorization=check_start(config, run_id_override) if _reserved else check_start(config))
+    if config.get('phase') == 'diagnostic':
+        from diagnostic_scope import validate_distribution
+        validate_distribution(distribution)
     required = ['experiment_version', 'model_id', 'effort', 'agent_version', 'tool_versions',
                 'subagent_policy', 'environment', 'budget', 'execution_order', 'command']
     for field in required:

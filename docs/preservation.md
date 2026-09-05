@@ -16,6 +16,18 @@ execution-scope.jsonは新予定表と個別許可、固定共通パッケージ
 
 run_codexの終了処理はgateway停止→usage確定・native照合→Runパッケージ作成→独立領域への復元照合まで実行する。submission_fixedとは別にpreservation.jsonへ保管・復元の証拠を記録する。失敗はpreservation-failure.jsonに残し、予約と部分パッケージも保持する。採点には復元したRunを使用し、採点原本の復元と有効性確認を終えてarchive/completedへ追記するまで次を開始しない。
 
+先行Runは保存時台帳と、`preservation.current_validity_registry` のwindows/linuxパスで指定した現在の研究者台帳の双方で検査する。現在の正本は `../sample1-private-eval-linux/evaluation-validity.json`。Run・採点ID・提出物・評価器・summary・resultsのhashを既存集計器で照合し、台帳不在・記録なし・pending・invalid・不一致は開始不可。保存済みパッケージの台帳は履歴として変更しない。
+
+開始条件は使用量が完全で採点が有効、評価器エラーがなく、集計後の品質が0〜100％の有限値であること。品質0％は有効な観測として許容する。品質nullや評価器のerrorケースを実装0点として通過させない。
+
+## 固定入力のモデル診断（現在は未許可）
+
+`smoke_model.py --planned-run <診断予定ID> --auth <認証ファイル> --output <新規保存先>` は `execute_diagnostic()` を使う。旧 `--image` / `--evidence` 方式は置換した。モデル・effort・CLI・環境はexperiment.jsonから取得し、入力はコードに固定した短文のみ。pilotの任意プロンプト禁止は維持する。通信・CLI起動・停止・usage確定・保管復元は共通処理を使用する。
+
+診断開始にはexecution-scope.jsonの `diagnostics.allowed_starts` への個別ID指定と、`diagnostics.starts[ID].budget`（kind=wall_clock_seconds、scope=container、value=正の整数秒）が必要。固定版の復元証拠も確認する。許可は毎回読み直し、`archive/starts/diagnostics/<ID>.json` へ排他予約する。同じIDの再利用や失敗時の自動再試行は拒否する。現在は許可一覧・予算とも空であり、この説明は実行許可ではない。
+
+manifestはphase/condition=diagnostic、experiment_version=model-smoke-onlyとし、normal/antiの集計器は受け付けない。診断完了には終了成功、usage完全・native一致、保全復元を必要とし、evidence.jsonへ記録する。実モデル確認なしのテスト成功を診断成功と扱わない。
+
 ## 有料モデルなしの復元試験
 
 prepare_preservation.pyで旧残存資料とimage実体を保全し、seal_common.pyで固定版を保存する。check_preservation_restore.pyは空の専用Docker/containerdのデータ領域と専用socketを使用する。既存daemonやキャッシュを削除しない。保管先から全依存を復元し、imageをloadする。

@@ -1,4 +1,5 @@
 """Fail-closed preservation prerequisites and single-use pilot starts."""
+import math
 import os
 from pathlib import Path
 import sys
@@ -10,22 +11,12 @@ def archive_root(scope):
     return Path(paths['windows' if os.name == 'nt' else 'linux'])
 
 
-def check(scope, config, root, run_id=None):
+def check_restoration(scope, root):
     settings = scope.get('preservation')
     if not settings:
         raise ValueError('Preservation prerequisites required')
     if settings.get('gate_valid_for_future_starts') is False:
         raise ValueError('Restoration gate retired; a fresh verified protocol is required')
-    if (root / 'config/experiment.json').exists():
-        fixed = read(root / 'config/experiment.json')
-        for key in ('model_id', 'effort', 'agent_version', 'tool_versions', 'subagent_policy', 'budget'):
-            if config.get(key) != fixed[key]:
-                raise ValueError('Unapproved execution setting: ' + key)
-        for key, value in fixed['environment'].items():
-            if config.get('environment', {}).get(key) != value:
-                raise ValueError('Unapproved environment setting: ' + key)
-        if config.get('batch_id') != scope['batch_id']:
-            raise ValueError('Wrong management batch')
     archive = archive_root(scope)
     gate = settings.get('gate')
     if not gate:
@@ -48,6 +39,23 @@ def check(scope, config, root, run_id=None):
     for relative, expected in proof['source_hashes'].items():
         if digest(root / relative) != expected:
             raise ValueError('Management/input version changed: ' + relative)
+    return archive
+
+
+def check(scope, config, root, run_id=None):
+    if (root / 'config/experiment.json').exists():
+        fixed = read(root / 'config/experiment.json')
+        for key in ('model_id', 'effort', 'agent_version', 'tool_versions', 'subagent_policy', 'budget'):
+            if config.get(key) != fixed[key]:
+                raise ValueError('Unapproved execution setting: ' + key)
+        for key, value in fixed['environment'].items():
+            if config.get('environment', {}).get(key) != value:
+                raise ValueError('Unapproved environment setting: ' + key)
+        if config.get('batch_id') != scope['batch_id']:
+            raise ValueError('Wrong management batch')
+    archive = check_restoration(scope, root)
+    settings = scope['preservation']
+    cache = {}
     reservation = archive / 'starts' / scope['batch_id'] / (config['planned_run'] + '.json')
     if reservation.exists() and (run_id is None or read(reservation)['run_id'] != run_id):
         raise ValueError('Planned Run already consumed; no automatic retry')
@@ -71,12 +79,28 @@ def check(scope, config, root, run_id=None):
             raise ValueError('Wrong previous Run archived')
         sys.path.insert(0, str(root / 'analysis'))
         from collect_runs import collect
-        runs, _ = collect([{'run_directory': str(run_root),
-                           'evaluation_directory': str(eval_root / completion['evaluation_directory'])}],
-                          eval_root / completion['evaluation_directory'] / 'evaluator-snapshot/requirements-ledger.json',
-                          validity_path=eval_root / 'evaluation-validity.json')
-        if not runs[0]['usage_complete'] or runs[0]['evaluation_validity'] != 'valid':
-            raise ValueError('Previous Run measurement/evaluation not valid')
+        from aggregate import aggregate
+        selection = [{'run_directory': str(run_root),
+                      'evaluation_directory': str(eval_root / completion['evaluation_directory'])}]
+        ledger_path = eval_root / completion['evaluation_directory'] / 'evaluator-snapshot/requirements-ledger.json'
+        registry_paths = settings.get('current_validity_registry')
+        platform = 'windows' if os.name == 'nt' else 'linux'
+        if not isinstance(registry_paths, dict) or not registry_paths.get(platform):
+            raise ValueError('Current researcher validity registry required')
+        current_registry = Path(registry_paths[platform])
+        if not current_registry.is_absolute():
+            current_registry = root / current_registry
+        # Preserve the archived decision as evidence, then apply the current decision.
+        # Both passes use the collector's complete identity and raw-result binding.
+        for registry in (eval_root / 'evaluation-validity.json', current_registry):
+            runs, results = collect(selection, ledger_path, validity_path=registry)
+            rows, _ = aggregate(runs, results, read(ledger_path))
+            row = rows[0]
+            quality = row['quality_percent']
+            if (not row['usage_complete'] or row['evaluation_validity'] != 'valid'
+                    or row.get('evaluation_error') or quality is None
+                    or not math.isfinite(quality) or not 0 <= quality <= 100):
+                raise ValueError('Previous Run measurement/evaluation not valid')
     return archive
 
 
