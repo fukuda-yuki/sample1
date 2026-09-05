@@ -5,6 +5,7 @@
 題材は20機能の申請管理システムです。normalとantiの差はAP-001（共通ルールとF-006の承認閾値の不整合）。無関係な長文やノイズ一般の実験とは区別します。差なし、品質向上、トークン増加も観測結果であり、悪影響を出すことを成功条件にしません。
 
 - [研究設計・情報境界](docs/experiment-design.md)
+- [環境復元から実行・採点・集計までの手順](docs/reproduce.md)
 - [研究支援役と作業手順](docs/agent-roles.md)
 - [判断履歴](docs/decision-log.md)
 - 公開入力: [共通実装指示](implementation_prompt.md)、条件別の [normal](normal/spec.md) / [anti](anti/spec.md)

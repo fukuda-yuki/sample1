@@ -6,7 +6,7 @@
 
 ## 実行
 
-研究者の独立環境で private root の `npm ci` と `npx playwright install chromium` を実行する。依存はlockfileで固定し、Playwright 1.58.2、Chromium 145.0.7632.6、workers 1、retries 0、Asia/Tokyo、毎ケース新しいブラウザコンテキストと公開resetから開始する。
+研究者の独立環境で private root の `npm ci` と `npx playwright install chromium` を実行する。依存はlockfileで固定し、Playwright 1.58.2、Chromium 145.0.7632.6、workers 1、retries 0、Asia/Tokyo、アサーション・操作待ち6秒、画面遷移待ち10秒、テスト全体120秒、毎ケース新しいブラウザコンテキストと公開resetから開始する。
 
 `node <private-eval-root>/run.mjs <researcher-config.json>` がアプリを外部から起動し、固定設定で採点する。設定は研究者が作成し、提出物に含まれた実行スクリプトを評価器の権限で動かさない。
 
@@ -28,11 +28,11 @@
 
 ## 分離と提出固定
 
-比較Runの実装プロセスを終了してsnapshotを固定した後、評価器が停止済み評価用コンテナを起動する。評価器はDockerから、非root、全capability除去、host namespace非共有、digest固定image、提出物のread-only mountを確認する。許可するhost mountは提出物とmaildropだけ。private root・認証情報・Docker socket・親ディレクトリをmountしない。評価出力はprivate rootに限定する。
+比較Runの実装プロセスを終了してsnapshotを固定した後、評価器が停止済み評価用コンテナを起動する。評価器はDockerから、非root、全capability除去、host namespace非共有、digest固定image、提出物のread-only mountを確認する。許可するhost mountは提出物とmaildropだけ。アプリにはprivate root・認証情報・Docker socket・親ディレクトリをmountしない。ネットワークは専用internal networkかnoneとし、外部インターネットへ接続させない。評価出力はprivate rootに限定する。
 
 提出物はread-onlyの `/submission` 等からコンテナの作業領域へコピーして標準起動する。DB・依存ビルド生成物はコンテナ内に置き、maildropだけ専用外部出力先へ接続する。研究者用の実運用資格情報をコンテナへ渡さない。Docker bindのhostパスを同一ホストで解決できる環境を使う。Windowsの校正実行とLinux上の本評価を混同しない。
 
-開始前・終了後に提出物全ファイルをsnapshotと照合する。snapshot.json自身のSHA-256をsubmission_hashとする。評価器コード・設定・lockfile・台帳・ケース一覧のハッシュを `version.json` へ保存し、その集合のSHA-256をscore_version/evaluator_hashとする。アプリのソースコードは品質採点しない。
+開始前・終了後に提出物全ファイルをsnapshotと照合する。snapshot.json自身のSHA-256をsubmission_hashとする。評価器コード・設定・lockfile・台帳・ケース一覧のハッシュを `version.json` へ保存し、その集合のSHA-256をscore_version/evaluator_hashとする。各Runのevaluator-snapshot/に同じ版のコード・設定・依存lock・台帳の実体を保存し、開始時と終了時に評価器自身の変更も検知する。アプリのソースコードは品質採点しない。
 
 ## 出力と障害分類
 
@@ -41,6 +41,8 @@
 - `summary.json`: 57 ID別判定、件数、ブラウザ版、各ハッシュ、開始・終了時刻、Runの状態。
 - `raw.json`, `browser/`, `application.*.log`, `playwright.stderr.log`: 評価環境の根拠。
 
-`server_unavailable` は起動不能で全IDをblocked、画面から観測した要件未達はfail。採点器の起動・出力・依存・snapshot検証障害はerrorで品質得点をnullとする。分離が確認できない場合はisolation_blockedで得点null。missing/skipは合格にしない。未実行IDを分母から落とさない。
+`server_unavailable` は起動不能で全IDをblocked、画面から観測した要件未達はfail。採点器の起動・出力・依存・snapshot検証障害はerrorで品質得点をnullとする。分離が確認できない場合はisolation_blockedで全ケースerror、得点null。前提用のreset・ログイン・データ一括準備が失敗した場合はPRECONDITION_BLOCKEDの根拠を残す。missing/skipは合格にしない。未実行IDを分母から落とさない。
 
 校正は `kind: calibration` と研究者管理の `launch: {command,args,cwd,env}` を使う。このモードは隔離済みの比較実験を意味しない。校正fixtureは比較Runのnormal/anti提出物として扱わない。校正完了後の比較提出者へ失敗ケースを返さない。
+
+校正の検証概要と版は [calibration-summary.json](../evaluation/calibration-summary.json) と [evaluator-version.json](../evaluation/evaluator-version.json) を参照する。これは実装条件間の実験結果ではなく、採点器そのものの校正記録である。

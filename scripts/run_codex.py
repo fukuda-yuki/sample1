@@ -5,7 +5,6 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
-import tempfile
 import time
 import uuid
 from gateway_usage import collect
@@ -14,13 +13,42 @@ from run_experiment import run, write_json
 GATEWAY_IMAGE = 'python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea'
 
 
+def save_usage(output, raw, *, producer_stopped, error=None):
+    """Retain numeric originals even if collection or Run finalization was interrupted."""
+    if not output.exists():
+        return  # Persistent raw directory still holds evidence even before a manifest exists.
+    copy_error = None
+    try:
+        shutil.copytree(raw, output / 'raw-usage', dirs_exist_ok=True)
+    except (OSError, shutil.Error) as failure:
+        copy_error = type(failure).__name__
+    summary = collect(raw)
+    summary['raw_directory'] = str(raw.resolve())
+    summary['producer_stopped'] = producer_stopped
+    for reason, detail in [('usage_finalization_error', error), ('raw_usage_copy_error', copy_error),
+                           ('gateway_stop_unconfirmed', not producer_stopped)]:
+        if detail:
+            summary.update(usage_complete=False, total_tokens=None)
+            summary['missing'].append({'reason': reason, 'error': str(detail)})
+    # Atomic replacement prevents a killed writer from leaving an empty usage.json.
+    temporary = output / 'usage.json.tmp'
+    write_json(temporary, summary)
+    temporary.replace(output / 'usage.json')
+
+
 def execute(distribution, config, output, auth, prompt=None):
+    if output.exists():
+        raise ValueError('Run output must not already exist')
     run_id = str(uuid.uuid4())
     network = 'sample1-private-' + run_id
     gateway = 'sample1-gateway-' + run_id
     script = Path(__file__).with_name('model_gateway.py').resolve()
-    with tempfile.TemporaryDirectory(prefix='sample1-usage-') as temp:
-        usage = Path(temp)
+    usage = (output.parent / '.raw-usage' / run_id).resolve()
+    usage.mkdir(parents=True, exist_ok=False)
+    write_json(usage / 'provenance.json', {'run_id': run_id, 'run_directory': str(output.resolve())})
+    config = dict(config, usage_raw_directory=str(usage.resolve()))
+    gateway_created, producer_stopped, finalization_error = False, True, None
+    try:
         uid, gid = os.getuid(), os.getgid()
         try:
             subprocess.run(['docker', 'network', 'create', '--internal',
@@ -36,6 +64,7 @@ def execute(distribution, config, output, auth, prompt=None):
                             '--mount', f'type=bind,source={script},target=/gateway.py,readonly',
                             '--mount', f'type=bind,source={usage},target=/usage',
                             GATEWAY_IMAGE, 'python', '/gateway.py'], check=True, capture_output=True)
+            gateway_created, producer_stopped = True, False
             subprocess.run(['docker', 'network', 'connect', '--alias', 'model-gateway', network, gateway],
                            check=True, capture_output=True)
             subprocess.run(['docker', 'start', gateway], check=True, capture_output=True)
@@ -65,23 +94,32 @@ def execute(distribution, config, output, auth, prompt=None):
                 if summary['usage_complete']:
                     break
                 time.sleep(1)
-            subprocess.run(['docker', 'stop', '--time', '2', gateway], capture_output=True, timeout=10)
-            shutil.copytree(usage, output / 'raw-usage')
-            write_json(output / 'usage.json', collect(usage))
             return result
-        except (OSError, subprocess.SubprocessError, ValueError):
+        except (OSError, subprocess.SubprocessError, ValueError) as failure:
+            finalization_error = type(failure).__name__
             if not output.exists():
                 failure_config = dict(config, command=['false'])
                 result = run(distribution, failure_config, output, run_id_override=run_id, setup_failure=True)
-                write_json(output / 'usage.json', collect(usage))
                 return result
             raise
+        except KeyboardInterrupt:
+            finalization_error = 'operator_aborted_during_gateway_finalization'
+            raise
         finally:
+            if gateway_created:
+                try:
+                    subprocess.run(['docker', 'stop', '--time', '2', gateway], capture_output=True, timeout=10)
+                except (OSError, subprocess.SubprocessError):
+                    pass  # Forced removal below provides the second bounded stop attempt.
             for cleanup in (['docker', 'rm', '-f', gateway], ['docker', 'network', 'rm', network]):
                 try:
-                    subprocess.run(cleanup, capture_output=True, timeout=30)
+                    response = subprocess.run(cleanup, capture_output=True, timeout=30)
+                    if cleanup[1] == 'rm' and response.returncode == 0:
+                        producer_stopped = True
                 except (OSError, subprocess.SubprocessError):
                     pass  # Run manifest remains available even when Docker is unavailable.
+    finally:
+        save_usage(output, usage, producer_stopped=producer_stopped, error=finalization_error)
 
 
 if __name__ == '__main__':

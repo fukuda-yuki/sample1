@@ -1,0 +1,8 @@
+{
+  "image": "sha256:ef3f18f22a92cc7cf24870468bba127ded8aeb18c8030a6b082ffa58b91c6b09",
+  "local_archive": "results/runtime/sample1-worker-exp-001.tar",
+  "bytes": 1512787456,
+  "sha256": "be70b8861b8896225b00776fd669c0ca30f7b6185c9d4262c2a557f0c88025e2",
+  "restore": "docker image load -i results/runtime/sample1-worker-exp-001.tar",
+  "scope": "Runtime and package/browser caches only; no application scaffold or credentials"
+}

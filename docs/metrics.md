@@ -36,3 +36,5 @@ python -m unittest discover -s analysis -p "test_*.py"
 pilot各1回は小標本で差の確定値ではない。予定数以上にデータを水増しせず、疎な図にも実測点を全て残し正確な値はCSVで併記する。phaseと実験版・採点版を跨いで平均を作らない。校正の合成データは明示して実測比較に混ぜない。PNGを開いて軸・凡例・文字・欠測表示を確認する。
 
 図ごとの欠測表は `<図名>.missing-runs.csv` として保存する。異なる図を同じフォルダへ保存しても、以前の図の欠測表を上書きしない。採点版がない未採点Runは品質nullのまま欠測表へ含める。NaN/Inf、負の座標、100%を超える品質、重複Run IDは不正入力として拒否する。
+
+集計器の実JSON形式との接続検証は [analysis-integration.json](analysis-integration.json) に保存する。実際に完了した校正の58ケースを使い、Run manifestのみ合成、usageは明示欠測として57ID・品質100%・トークンnullへ集計できた記録である。実装モデルの実測トークンや比較効果の結果ではない。再現には記録内のsynthetic_manifest/usageを一時Runディレクトリへ保存し、snapshot_sourceをsnapshot.jsonへコピーして、sourceをevaluation_directory、ledger_sourceを--ledgerへ指定する。

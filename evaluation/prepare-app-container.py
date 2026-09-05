@@ -3,11 +3,13 @@
 Run on the Docker host (WSL). No hidden assertions are included here.
 """
 import argparse
+import hashlib
 import ipaddress
 import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import uuid
 
@@ -29,13 +31,16 @@ def main(run_root, private_root, evaluator_image):
     network = 'sample1-eval-' + evaluation_id
     app = 'sample1-app-' + evaluation_id
     researcher = 'sample1-researcher-' + evaluation_id
-    output = private_root / 'evaluations' / evaluation_id
+    evaluation_root = private_root / 'evaluations' / evaluation_id
+    output = evaluation_root / 'result'
     maildrop = private_root / 'maildrops' / evaluation_id
-    output.mkdir(parents=True)
+    evaluation_root.mkdir(parents=True)
     maildrop.mkdir(parents=True)
     source = run_root / 'frozen'
     snapshot = run_root / 'snapshot.json'
     uid, gid = os.getuid(), os.getgid()
+    private_node = private_root / 'tools/node'
+    node_version = subprocess.check_output([str(private_node), '--version'], text=True).strip()
     try:
         docker('network', 'create', '--internal', '--opt',
                'com.docker.network.bridge.gateway_mode_ipv4=isolated', '--label',
@@ -69,27 +74,28 @@ wait -n "$backend_pid" "$frontend_pid"
                       maildrop=str(maildrop), output=str(output))
         if (source / 'ui-map.json').exists():
             config['ui_map'] = str(source / 'ui-map.json')
-        config_path = output / 'researcher-config.json'
+        config_path = evaluation_root / 'researcher-config.json'
         config_path.write_text(json.dumps(config, indent=2))
         socket = Path('/var/run/docker.sock')
-        docker_binary = Path(docker.__globals__['subprocess'].check_output(['which', 'docker'], text=True).strip()).resolve()
+        docker_binary = Path(shutil.which('docker')).resolve()
         docker('create', '--name', researcher, '--network', network, '--user', f'{uid}:{gid}',
                '--group-add', str(socket.stat().st_gid), '--cap-drop', 'ALL',
                '--security-opt', 'no-new-privileges', '--read-only',
                '--tmpfs', '/tmp:mode=1777,exec', '--tmpfs', '/home/pwuser:mode=1777,exec',
                '--env', 'HOME=/home/pwuser', '--env', 'TZ=Asia/Tokyo',
                '--mount', f'type=bind,source={private_root},target={private_root},readonly',
-               '--mount', f'type=bind,source={output},target={output}',
+               '--mount', f'type=bind,source={evaluation_root},target={evaluation_root}',
                '--mount', f'type=bind,source={source},target={source},readonly',
                '--mount', f'type=bind,source={snapshot},target={snapshot},readonly',
                '--mount', f'type=bind,source={maildrop},target={maildrop},readonly',
                '--mount', f'type=bind,source={socket},target=/var/run/docker.sock',
                '--mount', f'type=bind,source={docker_binary},target=/usr/local/bin/docker,readonly',
-               '--workdir', str(private_root), evaluator_image, 'node', str(private_root / 'run.mjs'), str(config_path))
+               '--workdir', str(private_root), evaluator_image, str(private_node), str(private_root / 'run.mjs'), str(config_path))
         resources = dict(evaluation_id=evaluation_id, app_container=app, researcher_container=researcher,
                          network=network, config=str(config_path), output=str(output),
-                         evaluator_image=evaluator_image, app_image=image)
-        (output / 'resources.json').write_text(json.dumps(resources, indent=2))
+                         evaluator_image=evaluator_image, app_image=image, evaluator_node_version=node_version,
+                         evaluator_node_sha256=hashlib.sha256(private_node.read_bytes()).hexdigest())
+        (evaluation_root / 'resources.json').write_text(json.dumps(resources, indent=2))
         print(json.dumps(resources, indent=2))
     except Exception:
         for name in (researcher, app):

@@ -18,6 +18,7 @@ def write_json(path, data):
 
 EXCLUDED_DIRS = {'node_modules', 'bin', 'obj', '.git', '.codex', '.cache', 'maildrop'}
 EXCLUDED_SUFFIXES = {'.db', '.sqlite', '.sqlite3', '.db-shm', '.db-wal'}
+MANAGEMENT_FILES = ('run_experiment.py', 'run_codex.py', 'model_gateway.py', 'gateway_usage.py', 'normalize_usage.py')
 
 
 def snapshot(root, source_only=True):
@@ -63,13 +64,22 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
     verify_snapshot(workspace, expected, source_only=False)
     run_id = run_id_override or str(uuid.uuid4())
     name = 'sample1-' + run_id
+    management = {'version': 'measurement-control-v2', 'files': {}}
+    sources = output / 'management-source'
+    sources.mkdir()
+    for filename in MANAGEMENT_FILES:
+        data = Path(__file__).with_name(filename).read_bytes()
+        (sources / filename).write_bytes(data)
+        management['files'][filename] = hashlib.sha256(data).hexdigest()
     manifest = dict(config, schema_version=1, run_id=run_id, distribution=dist,
                     started_at=datetime.now(timezone.utc).isoformat(),
-                    rerun_of=config.get('rerun_of'), status='running', evaluation=None)
+                    rerun_of=config.get('rerun_of'), status='running', evaluation=None,
+                    management=management)
     write_json(output / 'manifest.json', manifest)
     started = time.monotonic()
     reason, exit_code, stopped = 'environment_failure', None, False
     container_created = False
+    budget_waiting = False
     try:
         if setup_failure:
             raise RuntimeError('Gateway setup failed')
@@ -94,13 +104,16 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
         container_created = True
         subprocess.run(['docker', 'start', name], check=True, capture_output=True, timeout=30)
         remaining = max(0.001, budget['value'] - (time.monotonic() - started))
+        budget_waiting = True
         result = subprocess.run(['docker', 'wait', name], capture_output=True, text=True, timeout=remaining)
+        budget_waiting = False
         if result.returncode:
             raise RuntimeError('docker wait failed')
         exit_code = int(result.stdout.strip())
         reason = 'agent_completed' if exit_code == 0 else 'agent_error'
-    except subprocess.TimeoutExpired:
-        reason = 'budget_exhausted'
+    except subprocess.TimeoutExpired as failure:
+        reason = 'budget_exhausted' if budget_waiting else 'environment_failure'
+        manifest['timeout_stage'] = failure.cmd[1] if isinstance(failure.cmd, list) and len(failure.cmd) > 1 else 'unknown'
     except KeyboardInterrupt:
         reason = 'operator_aborted'
     except (OSError, subprocess.CalledProcessError, RuntimeError, ValueError):

@@ -1,0 +1,33 @@
+{
+  "recorded_at": "2026-09-05T13:53:43.748037+00:00",
+  "kind": "measurement and process-control correction",
+  "old_run": "pilot-1-normal",
+  "old": {
+    "version": "measurement-control-v1",
+    "source_commit": "94c9502",
+    "files": {
+      "run_experiment.py": "c302e49ce8f835b2f853f7df1866f645c18456301fcf5856ad45a2a32ca44c21",
+      "run_codex.py": "763a8474d9dd646a64c0203ff20f0bbf0060c61b228c515710e8118396187fd6",
+      "model_gateway.py": "a799c441dabddee2af035603b3a6d7821f34c1232ee22a6206abb419aa46fe5d",
+      "gateway_usage.py": "8a6c89485791f3ea42df9afba894e4b80fe4668c6cf1a99d2731019b52593022",
+      "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674"
+    },
+    "recorded_after_start": true,
+    "basis": "Run began immediately after this preparation commit; these scripts were read before the later control-only edits."
+  },
+  "new": {
+    "version": "measurement-control-v2",
+    "files": {
+      "run_experiment.py": "d6ce7dcdcd9b0a3d0e3d236f99dc56dc8adef61bf3969055e41eb5d88ca74a70",
+      "run_codex.py": "9c3b584177758a3392ec518f6a9141f454fa1d7598f4af2a2c156cb429201508",
+      "model_gateway.py": "a799c441dabddee2af035603b3a6d7821f34c1232ee22a6206abb419aa46fe5d",
+      "gateway_usage.py": "5aef377602b0ab747fb56307474ee86e70677a85b60283bd448debf4c676ac87",
+      "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674"
+    }
+  },
+  "model_inputs_changed": false,
+  "image_changed": false,
+  "budget_changed": false,
+  "current_run_action": "Read-only interim usage backup only; old loaded code remains active. Merge management.json into Run manifest after it ends.",
+  "next_run_action": "Use v2 automatic management/source capture and persistent usage originals."
+}

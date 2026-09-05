@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import tempfile
+import subprocess
 import unittest
 from unittest.mock import patch
 
@@ -124,6 +125,32 @@ class FilesTests(unittest.TestCase):
             self.assertEqual(result['end_reason'], 'environment_failure')
             self.assertTrue(result['submission_fixed'])
             self.assertTrue((root / 'run/frozen/spec.md').exists())
+
+    def test_only_worker_wait_timeout_counts_as_budget_exhausted(self):
+        for stage in ('create', 'start', 'wait'):
+            with self.subTest(stage=stage), tempfile.TemporaryDirectory() as d:
+                root=Path(d)
+                workspace=root/'distribution/workspace';workspace.mkdir(parents=True)
+                (workspace/'spec.md').write_text('spec',encoding='utf-8')
+                manifest={'files':{k:{'sha256':v} for k,v in snapshot(workspace).items()}}
+                (root/'distribution/distribution.json').write_text(json.dumps(manifest),encoding='utf-8')
+                config=dict(experiment_version='test',model_id='test',effort='test',agent_version='test',
+                            tool_versions={},subagent_policy='disabled',execution_order=1,
+                            environment={'image':'sha256:'+'a'*64},command=['true'],
+                            budget={'kind':'wall_clock_seconds','value':3600,'scope':'container'})
+                def command(args,**kwargs):
+                    if args[1]==stage:raise subprocess.TimeoutExpired(args,kwargs.get('timeout',30))
+                    stdout='false\n' if args[1]=='inspect' else ''
+                    return subprocess.CompletedProcess(args,0,stdout=stdout,stderr='')
+                with patch('run_experiment.subprocess.run',side_effect=command):
+                    result=run(root/'distribution',config,root/'run')
+                self.assertEqual(result['end_reason'],'budget_exhausted' if stage=='wait' else 'environment_failure')
+                self.assertEqual(result['timeout_stage'],stage)
+                self.assertTrue(result['submission_fixed'])
+                self.assertEqual(result['management']['version'],'measurement-control-v2')
+                for filename,digest in result['management']['files'].items():
+                    import hashlib
+                    self.assertEqual(hashlib.sha256((root/'run/management-source'/filename).read_bytes()).hexdigest(),digest)
 
 
 if __name__ == '__main__':

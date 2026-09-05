@@ -32,7 +32,25 @@ runnerはCLI stdoutのturn.completed.usage数値だけをnative-usage.jsonへ保
 この値との小Run照合ができるまでsource互換性の検証済みとはしない。
 API credentialsはgatewayにのみmountし、プロンプト/CLI全文を成果物に保存しない。
 
+利用量原本はRun保存先の親にある `.raw-usage/<run UUID>/` へ直接記録し、manifestの
+`usage_raw_directory` と原本内 `provenance.json` でRunに関連付ける。一時ディレクトリは
+使わない。終了時にgatewayを停止・削除してから、原本をRunのraw-usageへコピーし、
+usage.jsonを一時ファイルからatomic replaceで保存する。原本は自動削除しない。
+drain中の例外・中断、コピー失敗、gateway停止未確認でも原本を残し、保存先が存在する限り
+usage.jsonにusage_complete=false / total_tokens=nullと理由を保存する。ホストの強制終了や
+ディスク障害でfinallyが動かない場合も、永続原本とprovenanceから再収集できる。
+
+JSONL末尾の途切れ、イベントidentity不一致、孤立した完了イベント、競合重複は原本を変更せず
+欠測理由にする。正常に読めた無矛盾の呼出し量だけをobserved_tokensへ残し、正規化そのものが
+失敗する場合はobserved_tokensもnullにする。ログが壊れたことを理由にRunのusage全体を消さない。
+同一イベントの完全一致重複は一度だけ数える。
+
+この原本保持修正は実行中だったpilot-1-normalのコードへ遡及適用しない。旧runnerの一時原本は
+研究者側でraw-usage-recoveryへ読み取りコピーし、コピー時点でRun継続中であることを記録した。
+その途中コピーをRun全体の確定総量には使わない。以後のRunには永続保持方式を適用する。
+
 2026-09-05の実モデルsmoke（`model-smoke-integration.json`）では、指定のgpt-5.6-luna / xhighで
 1呼出しが完了し、gatewayのinput 7,228 + output 5 = 7,233とCLI native usageが一致した。
-cached_input_tokens 5,888は入力内訳として再加算しない。reasoning出力はこの小Runでは0だった。
+最新imageとisolated networkでの最終smokeはcached_input_tokensとreasoning出力が0だった。
+先行smokeではcached_input_tokens 5,888を含み、再加算なしでCLIと同じ7,233になった。
 これは接続・基本集計の校正であり、実装Runの成績や長時間Runの完全性の代用ではない。

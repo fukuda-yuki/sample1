@@ -1,0 +1,8 @@
+{
+  "kind": "isolated_host_service_probe",
+  "gateway_mode": "isolated",
+  "host_interface_canary_denied": true,
+  "bridge_address_canary_denied": true,
+  "model_called": false,
+  "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea"
+}

@@ -1,6 +1,6 @@
 {
   "kind": "model_usage_smoke",
-  "run_directory": "/tmp/sample1-model-smoke-nnhauh7z/run",
+  "run_directory": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/calibration/model-smoke-final",
   "run_id": "11633a3c-73d5-49b8-8f8a-5836f45bfc8f",
   "end_reason": "agent_completed",
   "usage": {
