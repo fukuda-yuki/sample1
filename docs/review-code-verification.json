@@ -120,5 +120,11 @@
       "full fixed-evaluator/runtime restoration drill or calibration"
     ]
   },
-  "start_permissions_unchanged": true
+  "start_permissions_unchanged": true,
+  "source_hash_basis": "source_hashes records exact local file bytes used in verification; git_blob_hashes_differing records Git LF-normalized blobs for unchanged input files whose checkout uses CRLF. All changed executable/config source hashes match the committed bytes.",
+  "git_blob_hashes_differing": {
+    "normal/spec.md": "30a00b562107c25a856acd377d7dc88ce8b6b282716e98c525b464e25b004292",
+    "anti/spec.md": "322a4ee779cc18014852a4ac6e7925e28e844c2aba09e4f933bd3bab64fbc288"
+  },
+  "changed_sources_match_git": true
 }
