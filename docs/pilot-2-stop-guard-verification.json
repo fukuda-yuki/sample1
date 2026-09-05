@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-09-05T17:24:11.984878+00:00",
+  "checks": [
+    {
+      "planned_run": "pilot-2-normal",
+      "entrypoint": "make",
+      "rejected": true,
+      "reason": "Execution scope: no explicit authorization to start this Run"
+    },
+    {
+      "planned_run": "pilot-2-normal",
+      "entrypoint": "execute",
+      "rejected": true,
+      "reason": "Execution scope: no explicit authorization to start this Run"
+    },
+    {
+      "planned_run": "pilot-2-normal",
+      "entrypoint": "run",
+      "rejected": true,
+      "reason": "Execution scope: no explicit authorization to start this Run"
+    },
+    {
+      "planned_run": "pilot-2-anti",
+      "entrypoint": "make",
+      "rejected": true,
+      "reason": "Execution scope: no explicit authorization to start this Run"
+    },
+    {
+      "planned_run": "pilot-2-anti",
+      "entrypoint": "execute",
+      "rejected": true,
+      "reason": "Execution scope: no explicit authorization to start this Run"
+    },
+    {
+      "planned_run": "pilot-2-anti",
+      "entrypoint": "run",
+      "rejected": true,
+      "reason": "Execution scope: no explicit authorization to start this Run"
+    }
+  ],
+  "new_runs_started": 0,
+  "side_effects": false
+}

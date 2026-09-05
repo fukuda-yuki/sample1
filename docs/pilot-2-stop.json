@@ -1,0 +1,46 @@
+{
+  "recorded_at": "2026-09-05T17:18:27.637501+00:00",
+  "run_id": "b6b16b13-af18-4243-b38c-764481115357",
+  "planned_run": "pilot-2-normal",
+  "batch_id": "pilot-preservation-002",
+  "status": "stopped_environment_failure_before_model",
+  "quality": null,
+  "total_tokens": null,
+  "observed_request_count": 0,
+  "model_called": false,
+  "anti_started": false,
+  "implementation_failure": false,
+  "cause_fact": "Docker journal: gateway start could not attach its interface to docker0 because docker0 did not exist.",
+  "cause_reproduction": "A dockerd with separate data-root but shared network namespace and --bridge=none deleted a marker docker0 in an isolated namespace.",
+  "cause_assessment": "The restoration-test daemon interfered with the host network; this is a management-induced environment failure, not a candidate application failure.",
+  "repair": "Restored docker0 from the existing network configuration (172.17.0.1/16); unauthenticated TCP connectivity to api.openai.com:443 passed. Future restoration daemons require unshare --net.",
+  "retry_performed": false,
+  "native_usage_missing_reason": "Worker was never created; original package records missing native-usage.json.",
+  "elapsed_seconds_caveat": "The fallback manifest elapsed_seconds measures fallback finalization, not implementation or full gateway setup time.",
+  "restoration_gate_retired": true,
+  "next_action": "No automatic retries or anti start. New implementation starts require a new user-authorized plan and fresh namespace-isolated restoration proof.",
+  "preservation": {
+    "run": {
+      "independently_stored": true,
+      "restore_verified": true,
+      "reference": {
+        "package_id": "run-b6b16b13-af18-4243-b38c-764481115357",
+        "sha256": "df5bba37b28d4543e70b32da05f94f535506b2b5de7fbe25394e1285ccbe092f"
+      },
+      "receipt": {
+        "path": "receipts/b05152c8-1b40-4b43-8787-25c25e2d0dad.json",
+        "sha256": "ab2d321216e267587c7d2d36e196e83f56ee8891a5cd37d2b864a843ed71e32c"
+      }
+    },
+    "stop": {
+      "reference": {
+        "package_id": "stop-b6b16b13-af18-4243-b38c-764481115357",
+        "sha256": "f7a8e410233a6fe87e2bd0b4abd076cbe3761a7f0c5f821f5161765b44efb369"
+      },
+      "receipt": {
+        "path": "receipts/728e96d9-f98e-4d5f-95f0-88d3ed477080.json",
+        "sha256": "ca2500063fb6f735f803993f81edf85e85a814aaf8e980749c56ab0a9e41f385"
+      }
+    }
+  }
+}

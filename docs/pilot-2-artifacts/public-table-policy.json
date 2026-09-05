@@ -1,0 +1,6 @@
+{
+  "source": "restored stop package aggregate/runs.csv",
+  "transformation": "Add batch/preservation state; suppress aggregate placeholder counts because no evaluation ran. Keep run_id, all numeric original usage fields and null coordinates.",
+  "evaluation_performed": false,
+  "anti_started": false
+}

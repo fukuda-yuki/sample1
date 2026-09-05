@@ -1,0 +1,10 @@
+{
+  "normal": {
+    "run_id": "b6b16b13-af18-4243-b38c-764481115357",
+    "status": "stopped_environment_failure_before_model"
+  },
+  "anti": {
+    "run_id": null,
+    "status": "not_started_due_to_predecessor_failure"
+  }
+}

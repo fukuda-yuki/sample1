@@ -19,6 +19,12 @@ from run_experiment import run, snapshot
 
 
 def drill(archive, common, destination):
+    # A second data-root on the host can remove the production docker0 bridge.
+    # Run this harness and BOTH daemons in a separate network namespace.
+    namespace = os.readlink('/proc/self/ns/net')
+    host_namespace = os.environ.get('SAMPLE1_HOST_NETWORK_NAMESPACE')
+    if not host_namespace or namespace == host_namespace:
+        raise ValueError('Run the drill and both daemons under unshare --net; host namespace required')
     if not os.environ.get('DOCKER_HOST', '').startswith('unix:///tmp/sample1-restore-'):
         raise ValueError('A dedicated restoration Docker daemon is required')
     initial = subprocess.check_output(['docker', 'image', 'ls', '-q'], text=True).strip()
@@ -130,6 +136,7 @@ def drill(archive, common, destination):
              'checks': checks, 'common': common, 'receipts': receipts, 'lifecycle': lifecycle,
              'calibration': calibration, 'source_hashes': read(restored / 'source-hashes.json'),
              'docker_host': os.environ['DOCKER_HOST'], 'initial_images': [],
+             'network_namespace': namespace, 'host_network_namespace': host_namespace,
              'limitation': 'Same physical C drive; no disk failure guarantee'}
     write_new(destination / 'proof.json', proof)
     gate = pack(archive, 'restoration-proof-' + str(uuid.uuid4()), {'proof.json': destination / 'proof.json'},

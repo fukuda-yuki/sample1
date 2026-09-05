@@ -23,3 +23,11 @@ prepare_preservation.pyで旧残存資料とimage実体を保全し、seal_commo
 固定した合成shell（network=none、認証なし）で通常終了・時間切れ・異常終了を確認する。合成usageは実測と区別し、打切り・異常の欠測理由も復元する。校正コンテナには復元済み評価器・fixture・依存だけをmountし、元の作業コピーやDocker socketを渡さない。両登録経路の正常解受入と閾値変異検出、採点原本の再復元まで成功した証拠を開始ゲートに登録する。
 
 旧Runはdocs/original-loss-incident.jsonのとおり原本欠落で評価不能。保全したworkingは調査用であり提出物ではない。過去の使用量と新Runの品質を同じ点にしない。現在の実施状態と再開判断はGitHub #1/#11を参照する。
+
+## 復元daemonのネットワーク隔離（2026-09-06修正）
+
+別data-root/socket/containerdだけではホストのネットワークを隔離できない。最初の復元試験daemonがdocker0へ干渉し、新規normalのgateway起動を失敗させた。同方式のmarker削除を隔離namespaceで再現した。旧Runの原本欠落とは別の管理障害である。
+
+フル復元試験は必ず、Dockerホスト上でrootによる `unshare --net python3 scripts/launch_restore_drill.py <研究者Linuxユーザー> <archive> <common-reference.json> <新規復元先>` から行う。launcherはホストnamespaceでは起動を拒否し、隔離namespace内で両daemonを立ち上げ、研究者ユーザーへ権限を下げてdrillを実行する。DRILLのnamespaceとホストnamespaceを証拠に残す。既存Docker/ネットワークの一括停止・初期化はしない。試験前後にホストbridgeの同一性と通信を確認する。
+
+最初の保全・復元試験結果は履歴として残すが、追加開始許可には使わない。現行allowed_startsは空。失敗Run・原本・保全receiptは消さず、修正版試験が成功しても実装を自動で取り直さない。詳細は[pilot-2結果](pilot-2-results.md)。

@@ -131,7 +131,15 @@ def execute(distribution, config, output, auth, prompt=None):
         except (OSError, subprocess.SubprocessError, ValueError) as failure:
             finalization_error = type(failure).__name__
             if not output.exists():
-                failure_config = dict(config, command=['false'])
+                # Preserve the failed Docker stage and stderr, without command
+                # arguments (which can include credential mount paths).
+                command = getattr(failure, 'cmd', None)
+                stderr = getattr(failure, 'stderr', None)
+                if isinstance(stderr, bytes):stderr = stderr.decode('utf-8', errors='replace')
+                detail = {'type': type(failure).__name__,
+                          'stage': command[:2] if isinstance(command, list) else None,
+                          'stderr': stderr}
+                failure_config = dict(config, command=['false'], setup_failure_detail=detail)
                 result = run(distribution, failure_config, output, run_id_override=run_id, setup_failure=True, _reserved=True)
                 return result
             raise

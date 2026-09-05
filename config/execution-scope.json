@@ -21,10 +21,7 @@
   "quality_on_additional_evaluator_issue": null,
   "resume_authority": "User approved restoration-gated normal/anti one new Run each, then stop; 2026-09-06",
   "batch_id": "pilot-preservation-002",
-  "allowed_starts": [
-    "pilot-2-normal",
-    "pilot-2-anti"
-  ],
+  "allowed_starts": [],
   "preservation": {
     "archive": {
       "windows": "C:\\Users\\mwam0\\ResearchArchives\\sample1",
@@ -37,6 +34,9 @@
     "common": {
       "package_id": "common-75252aa0-c86c-462f-b687-ce19f187a679",
       "sha256": "0c9b44d90870d861fd1bc88607de8d5f9becfd2ae7d132638b5545db9fce7419"
-    }
-  }
+    },
+    "gate_valid_for_future_starts": false
+  },
+  "stop_reason": "pilot-2-normal gateway environment_failure and incomplete usage; anti not started; no automatic retry",
+  "stopped_at": "2026-09-05T17:16:13.428892+00:00"
 }

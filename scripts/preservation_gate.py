@@ -14,6 +14,8 @@ def check(scope, config, root, run_id=None):
     settings = scope.get('preservation')
     if not settings:
         raise ValueError('Preservation prerequisites required')
+    if settings.get('gate_valid_for_future_starts') is False:
+        raise ValueError('Restoration gate retired; a fresh verified protocol is required')
     if (root / 'config/experiment.json').exists():
         fixed = read(root / 'config/experiment.json')
         for key in ('model_id', 'effort', 'agent_version', 'tool_versions', 'subagent_policy', 'budget'):
