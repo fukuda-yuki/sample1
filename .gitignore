@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+results/
+runs/
+dist/
+*.log
+.env
+auth.json
+private-eval/

@@ -1,0 +1,11 @@
+{
+  "kind": "simultaneous_run_separation",
+  "containers": 2,
+  "same_ports": [
+    5080,
+    5173
+  ],
+  "independent_db_mail_memory_cache": true,
+  "simultaneously_running": true,
+  "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea"
+}

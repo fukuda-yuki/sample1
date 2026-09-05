@@ -1,0 +1,30 @@
+{
+  "kind": "model_usage_smoke",
+  "run_directory": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/calibration/model-smoke-final",
+  "run_id": "11633a3c-73d5-49b8-8f8a-5836f45bfc8f",
+  "end_reason": "agent_completed",
+  "usage": {
+    "normalizer_version": "1",
+    "usage_complete": true,
+    "total_tokens": 7233,
+    "observed_tokens": 7233,
+    "observed_request_count": 1,
+    "sessions": {
+      "implementation": 7233
+    },
+    "missing": [],
+    "cumulative_sessions": [],
+    "source": "fixed-upstream-gateway"
+  },
+  "native_usage": [
+    {
+      "input_tokens": 7228,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "model_id": "gpt-5.6-luna",
+  "effort": "xhigh"
+}

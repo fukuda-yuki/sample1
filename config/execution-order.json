@@ -1,0 +1,63 @@
+{
+  "experiment_version": "exp-001",
+  "seed": 3744622341,
+  "algorithm": "Python random.Random(seed).shuffle within pairs",
+  "order": [
+    {
+      "execution_order": 1,
+      "phase": "pilot",
+      "pair": 1,
+      "condition": "normal",
+      "planned_run": "pilot-1-normal"
+    },
+    {
+      "execution_order": 2,
+      "phase": "pilot",
+      "pair": 1,
+      "condition": "anti",
+      "planned_run": "pilot-1-anti"
+    },
+    {
+      "execution_order": 3,
+      "phase": "comparison",
+      "pair": 1,
+      "condition": "normal",
+      "planned_run": "comparison-1-normal"
+    },
+    {
+      "execution_order": 4,
+      "phase": "comparison",
+      "pair": 1,
+      "condition": "anti",
+      "planned_run": "comparison-1-anti"
+    },
+    {
+      "execution_order": 5,
+      "phase": "comparison",
+      "pair": 2,
+      "condition": "normal",
+      "planned_run": "comparison-2-normal"
+    },
+    {
+      "execution_order": 6,
+      "phase": "comparison",
+      "pair": 2,
+      "condition": "anti",
+      "planned_run": "comparison-2-anti"
+    },
+    {
+      "execution_order": 7,
+      "phase": "comparison",
+      "pair": 3,
+      "condition": "normal",
+      "planned_run": "comparison-3-normal"
+    },
+    {
+      "execution_order": 8,
+      "phase": "comparison",
+      "pair": 3,
+      "condition": "anti",
+      "planned_run": "comparison-3-anti"
+    }
+  ]
+}

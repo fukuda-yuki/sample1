@@ -1,0 +1,31 @@
+{
+  "kind": "protocol_integration",
+  "model_called": false,
+  "results": [
+    {
+      "case": "isolation",
+      "end_reason": "agent_completed",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "elapsed_seconds": 0.6256662349999997
+    },
+    {
+      "case": "error",
+      "end_reason": "agent_error",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "elapsed_seconds": 0.37785666799999973
+    },
+    {
+      "case": "timeout",
+      "end_reason": "budget_exhausted",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "elapsed_seconds": 2.1048593010000003
+    },
+    {
+      "case": "descendant_stopped",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "evaluation_id": "23bdf156-e124-44ae-80d5-4fc545ad9ba4",
+  "disposition": "invalid_evaluation_infrastructure",
+  "effective_quality": null,
+  "reason": "Nested maildrop bind auto-created root-owned /tmp/app before uid 1000 copy. Submission copy failed before build or scoring. Raw 57 blocked are not implementation quality.",
+  "recovery": "Fix mount placement and re-evaluate unchanged frozen submission.",
+  "recorded_at": "2026-09-05T14:16:22.546121+00:00",
+  "run_id": "250df4e7-f8f9-44cd-8324-db24e050962f",
+  "raw_outcome": "server_unavailable",
+  "raw_counts": {
+    "denominator": 57,
+    "pass": 0,
+    "fail": 0,
+    "blocked": 57,
+    "error": 0
+  },
+  "submission_hash": "1f3a93ecf04706b45d1a17bc4a698a63d8fb1d02f82b92a1d5abf46ea415e8d6",
+  "evidence_hashes": {
+    "app_container.log": "b753293240db28b22a5859525705f6fba3d1167edb96bce4effc776fcd26d941",
+    "app_container.inspect.json": "e7404d3a4d88b40c901dc9212ae851ec33e41dea2cffadc7598e145f03646918",
+    "result/summary.json": "5d16e8ff809776c8768b78ab17a3590e5e09fb4b0826c8deb3a802fcf4f8530d",
+    "result/results.jsonl": "9f18e7e58adaf0403f94f251368df35d1a22caeab63285cfa3c692b2572e3534",
+    "adjudication.json": "6a2284bfe0a46f43e540c9b40ddd0afd3aa34e3c6cc16def229b6e1bc473378c"
+  },
+  "helper_protocol_after_fix": 2
+}

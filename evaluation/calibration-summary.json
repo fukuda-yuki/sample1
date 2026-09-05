@@ -1,0 +1,484 @@
+{
+  "schema_version": 2,
+  "purpose": "Evaluator calibration only; not normal/anti implementation comparison Runs.",
+  "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+  "ledger_hash": "baec6d3eefd2d6adb9d5715e36d93245692d5a1e994817b3cd0492e7cc780be5",
+  "node_windows": "v24.15.0",
+  "node_linux": "v22.23.2",
+  "browser_version": "145.0.7632.6",
+  "records": [
+    {
+      "calibration_id": "verified-normal-1",
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:16.535Z",
+      "finished_at": "2026-09-05T13:58:34.155Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "3552c5d706d42bdccb3297be2f2cfb29920660fa7d77eb46f6f40ab5572c0e35",
+      "summary_sha256": "0aea5b9e27115ee283c3fe0eed6d49ad34ab8fc054fe259ceba55fd6286a5c00",
+      "results_sha256": "d8a0986148dccfb8c0b3f44cd1d8284662b63a7c2a8919c891701338c23e6373",
+      "diagnostics_sha256": "609cf686cd201abba96bda32a5c35807db9adf561e93818ab3367320ff916654",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "verified-normal-2",
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:16.743Z",
+      "finished_at": "2026-09-05T13:58:34.489Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "7cfc56fe9555ac8c6096e36a5de5b1e121e4db686c6533a5d35ddd4709a3fd7a",
+      "summary_sha256": "7f0fe2b249e0941d1786789f2cfac3cbb98738b180869c879233e3bc840710a3",
+      "results_sha256": "b58b14aae8d2c237dfea3037d0c06f5deaa6ac1c07c7159efeb9463889e8ff53",
+      "diagnostics_sha256": "8080d32bdd159612fce54a507ac07f2bdc02a66f42238ca2c3979dfef9266e9b",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "verified-alternate",
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:16.991Z",
+      "finished_at": "2026-09-05T13:58:39.661Z",
+      "submission_hash": "3093b68f0f4789e7f41435848ecfe46c9a99b54b901f6d2dcd32d6e3a2b5ffc9",
+      "configuration_sha256": "47bb9ce3bf9649f9762c7434cc08d3881be214c990ae77283ce0089b7fcef43e",
+      "summary_sha256": "9c0a9cc3f9faaaa89ceacc7ed8d945b75fc2b901a193722a469599a0a190dc19",
+      "results_sha256": "ea685e5b96713e1b651179f26c2dab564d2fde40e30c439644b177cfcecd7890",
+      "diagnostics_sha256": "b478fe843702f4a3ef9691ad0d50a66875e6268219e31af9f083e5824b4fc1eb",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "verified-threshold",
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:17.189Z",
+      "finished_at": "2026-09-05T14:00:20.036Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "9e66abb4133b9e5478c8110a7a9e7b91a57ca7660c2361f7509624b2228d6674",
+      "summary_sha256": "6f7063025a72f9a51294e1b3479db1ba265b8d32487758d0e4e380a9f4490348",
+      "results_sha256": "7c9af9f111e162b70f1dc043491e09633ed8b9678c35fad30e1cbcc14a51b69d",
+      "diagnostics_sha256": "47aa74b32622872da46dbd6e44382c07fdd5d531737358f6c2a398ee2ac7318f",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "verified-display",
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 53,
+        "fail": 4,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:17.440Z",
+      "finished_at": "2026-09-05T13:59:21.885Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "5f6deff802ba0cdbc86e8b32e648c3d71c07f27472df6772b96699ca642d13a4",
+      "summary_sha256": "890a2295fff69e8335b69afc2c90bec61d45244258f0e9933ed1bb80a30d1659",
+      "results_sha256": "efaacfde23fdcce228e0d933b054d8ac59b38c0e274a09744cb6c2b8463df68f",
+      "diagnostics_sha256": "a4e054849fa2d0dd4fe03407df3a844829445dfe2d321959fbb853baa56656bc",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "verified-notification",
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 54,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:17.634Z",
+      "finished_at": "2026-09-05T13:59:09.298Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "ca2029bb61ab9b07f761432244862b1996bf2b725e29bf7fa7f85f3287cbeb40",
+      "summary_sha256": "fee83c2d20c303e093cd967971457085c170035a07b65fbc0821bb0428970ef6",
+      "results_sha256": "976fb536442d646af0476d81f1deefb30181991fa8780a3631d2b2391297a645",
+      "diagnostics_sha256": "72a843f4567cc57e35315b01bc253363b5962f8e92520a72b02b2cb37020e687",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "verified-authority",
+      "kind": "calibration",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 49,
+        "fail": 8,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:17.839Z",
+      "finished_at": "2026-09-05T13:59:46.981Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "e45363b6b7d9754296a3d5ced7c7a4674c5fd5bd50702e6d926d25211ba2e406",
+      "summary_sha256": "a6ae5cb3b5f48d5afdb07fcbb966f61c5cf0eb558331470da3dd6eb9601e0a5f",
+      "results_sha256": "5c648d220afff0522c82648a2a3bbc2089d3037222d5f1bb036a8887c0eebc15",
+      "diagnostics_sha256": "6a51d20c8f269b2383c32da992a24019b5945661cfabf1ae9e68ff9e4426105b",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "verified-startup-unavailable",
+      "kind": "calibration",
+      "outcome": "server_unavailable",
+      "counts": {
+        "denominator": 57,
+        "pass": 0,
+        "fail": 0,
+        "blocked": 57,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 0,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:28.936Z",
+      "finished_at": "2026-09-05T13:57:30.759Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "7c94717c68996781125a594e140bc4b397951421c789b8c0546e668c2ab7bb85",
+      "summary_sha256": "3e6569dc7aa0f0e69d34fb8feed50c8c3f8c209bd0a91b2e91c8c08f113f0e1f",
+      "results_sha256": "97586ef4202521ed250a8e0a6c525ff0020cafa34b3aa8a2c16e8d849914a173",
+      "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "verified-evaluator-config-error",
+      "kind": "calibration",
+      "outcome": "evaluator_error",
+      "counts": {
+        "denominator": 57,
+        "pass": 0,
+        "fail": 0,
+        "blocked": 0,
+        "error": 57
+      },
+      "diagnostic_counts": {
+        "pass": 0,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T13:57:30.893Z",
+      "finished_at": "2026-09-05T13:57:30.940Z",
+      "submission_hash": null,
+      "configuration_sha256": "921558d9f938fbfd81d80411070f0f4cac1dbdfb5958cfb6fe4cc845cf27020c",
+      "summary_sha256": "71f5d292c9ae0f3511713965e8b01c32e0b7cbfb58f072238acb65d87f531bc4",
+      "results_sha256": "ed261b53d089b07f2d86e7f0ca87daa5f8caee8a05ff5f3f51a6bc6e6b19a97e",
+      "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "ui-release-normal",
+      "kind": "calibration",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T14:55:13.672Z",
+      "finished_at": "2026-09-05T14:56:12.915Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "d8ae3f7f2b5f953d88b95351dfe1b95babb413d0826e74e98b10f9a29bdf14d0",
+      "summary_sha256": "cc8e8c2856f230ead5f71e863d77dd0e3b042fe7c7f564fe1dd0db1b79d81c6b",
+      "results_sha256": "fa51a5dd3104cde82f96d0bfaf5fc64d9897648eab40ad93f695e821557f1c60",
+      "diagnostics_sha256": "e3c09a3c2a95d4a9df1591e2225ffd74ea58d9c556ef7f232150bc423cc0c16e"
+    },
+    {
+      "calibration_id": "ui-release-stress",
+      "kind": "calibration",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T14:55:30.244Z",
+      "finished_at": "2026-09-05T14:56:43.321Z",
+      "submission_hash": "4689cf05b1c0f156ac2cd49c23d60c583143ac646faaa3fef82d6d43ac41216a",
+      "configuration_sha256": "9f0edbc4bea1ced22f1b63d848fc07fca7dd497e5a6eaffef7ca17f8a986184d",
+      "summary_sha256": "4c3bdd414dec551169ab29c81aa65b038d11033b348c7ffcbf43d8c17d1a3b19",
+      "results_sha256": "dc0cbcddf18a6f1e7586ecd186764429a8ed14005f4c0f4df465a6914b9234a8",
+      "diagnostics_sha256": "2012f6acc9b49deb391af0d575f74dead458bac5b4c25b2f837560146baae921"
+    },
+    {
+      "calibration_id": "ui-release-alternate",
+      "kind": "calibration",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T14:56:05.783Z",
+      "finished_at": "2026-09-05T14:57:12.709Z",
+      "submission_hash": "3093b68f0f4789e7f41435848ecfe46c9a99b54b901f6d2dcd32d6e3a2b5ffc9",
+      "configuration_sha256": "bc5fd52414f3d03b47019fe27e309fb0b81962087410a6ade62b8608488567ba",
+      "summary_sha256": "7d395d9ba99b3d3b20e9fcc771cd6adc71afdf99f9427cd7d9cb59cb0681e2d4",
+      "results_sha256": "d876134772dde9e71990a810f955deaac4ba99b90c6f6fee771ee788eb95043f",
+      "diagnostics_sha256": "c6f11e00dced487a78c73f4c9cd423eff45b5f3784750768433ed0822daf7fd4"
+    },
+    {
+      "calibration_id": "ui-release-threshold",
+      "kind": "calibration",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T14:55:48.337Z",
+      "finished_at": "2026-09-05T14:58:39.083Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "1b031abacbe5b302badfabbeaa7d78d09b6e687de46f1cc3142834d8d9598482",
+      "summary_sha256": "e4ff0d07c5ecd4842ccfbb60d2dbecdb1fa35c445105cdbc1fec6399ca70ba5e",
+      "results_sha256": "dced90335412b5e0630cc7430188ac5c00ea12a445efb8bc34a7b5c252a41196",
+      "diagnostics_sha256": "212afd0c6a7908d5d10e5c322073aa6d8e10855feed8898b2e54996b5254eca4"
+    }
+  ],
+  "repeated_submission_identical_results": true,
+  "flaky_items_observed": 0,
+  "excluded_scored_items": 0,
+  "linux_isolation": {
+    "run_id": "calibration-linux-c0201d13-611d-4022-a6c0-72ec18229698",
+    "outcome": "completed",
+    "counts": {
+      "denominator": 57,
+      "pass": 57,
+      "fail": 0,
+      "blocked": 0,
+      "error": 0
+    },
+    "diagnostic_counts": {
+      "pass": 5,
+      "fail": 0,
+      "blocked": 0,
+      "error": 0
+    },
+    "app_image": "sha256:ef3f18f22a92cc7cf24870468bba127ded8aeb18c8030a6b082ffa58b91c6b09",
+    "researcher_image": "mcr.microsoft.com/playwright@sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
+    "private_test_read_denied": true,
+    "app_docker_socket_absent": true,
+    "network": "internal, isolated gateway mode; app and researcher in separate containers",
+    "resources_sha256": "630a1ca666d1116d039a6cbfcb54f01cd7bae13e580a9b67a1284e8d6191fe2f",
+    "summary_sha256": "1ef55bd9dcdd7f54cec045b42f7bb85b72bc3a0ee7b37cdf56b2dc7339e0a4c0",
+    "results_sha256": "2729846f5660494c281536d96a465bb8da8f4dbc9132b660d8a707579e0ac8c3",
+    "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+  },
+  "limitations": [
+    "The Node/HTML calibration fixture is not a React/.NET submission and does not claim complete specification, persistence, bcrypt or production security compliance.",
+    "Acceptance evidence covers the 57 audited ID behaviors and tested UI variations; it does not prove acceptance of every possible valid UI.",
+    "No scored cases, screenshots, traces, detailed failures or application credentials are published.",
+    "No failed cases were returned to implementation agents. The final corrected evaluator is shared by both pilot conditions.",
+    "UI behavior calibration records retain their original evaluator version. The current version changes only startup classification and is separately calibrated with real Docker exit controls; no older result is relabelled as a new-version execution."
+  ],
+  "ui_behavior_calibration_version": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27",
+  "startup_classification_version": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+  "ui_case_config_dependency_ledger_hashes_unchanged": true,
+  "startup_classification_controls": [
+    {
+      "control": "helper-setup-121",
+      "run_id": "classifier-helper-setup-121-497752e7-41d0-4d9f-8f08-ce4144155faf",
+      "exit_code": 121,
+      "helper_protocol": "2",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "counts": {
+        "denominator": 57,
+        "pass": 0,
+        "fail": 0,
+        "blocked": 0,
+        "error": 57
+      },
+      "quality": null,
+      "outcome": "evaluator_error",
+      "summary_sha256": "5f6122c93c452f5445402aac43ef016607a0291093b813a71114aaacd8c6ae19",
+      "results_sha256": "ec16ae95e0c9d100eca6eaabffd8e919c0af8cd98e272bfdd42055b5bf83fbc1"
+    },
+    {
+      "control": "application-build-1",
+      "run_id": "classifier-application-build-1-09a9348d-6546-4897-a379-d0c82e2bbe7b",
+      "exit_code": 1,
+      "helper_protocol": "2",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "counts": {
+        "denominator": 57,
+        "pass": 0,
+        "fail": 0,
+        "blocked": 57,
+        "error": 0
+      },
+      "quality": 0,
+      "outcome": "server_unavailable",
+      "summary_sha256": "9cf813c60ae70ff780c1c7fa68820b4d592627bae0e48475bdfd2cbe82812959",
+      "results_sha256": "3dbfb8dd2cb6428d1a64200980dd93120aaf1a7ed7264ce4928d5761a97c72f4"
+    },
+    {
+      "control": "application-remapped-122",
+      "run_id": "classifier-application-remapped-122-65a90732-4719-4d63-b244-1f1ec435a3fd",
+      "exit_code": 122,
+      "helper_protocol": "2",
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "counts": {
+        "denominator": 57,
+        "pass": 0,
+        "fail": 0,
+        "blocked": 57,
+        "error": 0
+      },
+      "quality": 0,
+      "outcome": "server_unavailable",
+      "summary_sha256": "32da09ea012176339638091d0f7e6651a4603dc0c43fe3d4a49ce26edf3eed54",
+      "results_sha256": "7ef63fd6ff53fe78dcfec9addad528deaa816fac1f95dbbc6493c93e7c042a14"
+    },
+    {
+      "control": "unlabelled-121",
+      "run_id": "classifier-unlabelled-121-a439f125-de56-4777-8283-90ba2a162595",
+      "exit_code": 121,
+      "helper_protocol": null,
+      "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+      "counts": {
+        "denominator": 57,
+        "pass": 0,
+        "fail": 0,
+        "blocked": 57,
+        "error": 0
+      },
+      "quality": 0,
+      "outcome": "server_unavailable",
+      "summary_sha256": "a842eb5779bd0437e90e14a6edfde0340998cb3e326c4bb095557ad3373f323a",
+      "results_sha256": "9b1051e682bc031703d99d49f7e3589dac28f882e53d7495f5bee61d80af11de"
+    }
+  ],
+  "ui_calibration_version": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+  "repeated_submission_evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27",
+  "ui_structure_controls": {
+    "fixture_sha256": "180d8ddb7cefa9b7236acddb38edff11f2197f3534725b2b4aad169beced27e4",
+    "manifest_sha256": "e8634f1a2d2a5338e51d4e6c5155ba65fd9828706b1549766fa3b9bd81eca029",
+    "independent_business_preserving_variations": 11,
+    "resolver_controls_pass": 2,
+    "resolver_controls_source_sha256": "3799c7907a3916d4038364fc6c758b026b550a1b5ebd2be34d16115da4f52c04",
+    "controls": [
+      "password and confirmation separation; ambiguous input refusal",
+      "asynchronous permanent registration and request-link rendering"
+    ],
+    "case_expectations_changed": false
+  },
+  "actual_pilot_validation": {
+    "status": "quality_unconfirmed",
+    "effective_quality": null,
+    "reason": "The evaluated application permits public self-registration as allowed by normal/spec.md F-001, but the evaluator only follows registration from an authenticated administrator user-management screen. This additional unpublished navigation assumption invalidates actual-pilot quality scoring despite passing the calibration fixtures.",
+    "public_basis": "normal/spec.md:37-39; implementation_prompt.md section 5.5",
+    "action": "Stop and preserve both incomplete evaluations and immutable submissions. No further evaluator changes, rescoring or comparison Runs in the current scope.",
+    "calibration_limitation": "Passing the researcher-authored normal and UI-variant fixtures did not cover every specification-permitted registration entry path."
+  }
+}

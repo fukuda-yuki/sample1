@@ -1,0 +1,33 @@
+{
+  "experiment_version": "exp-001",
+  "phase": "pre-comparison-freeze",
+  "inputs": {
+    "normal": {
+      "spec.md": {
+        "sha256": "30a00b562107c25a856acd377d7dc88ce8b6b282716e98c525b464e25b004292",
+        "bytes": 31246
+      },
+      "RUN_CONTRACT.md": {
+        "sha256": "27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2",
+        "bytes": 7692
+      }
+    },
+    "anti": {
+      "spec.md": {
+        "sha256": "322a4ee779cc18014852a4ac6e7925e28e844c2aba09e4f933bd3bab64fbc288",
+        "bytes": 31244
+      },
+      "RUN_CONTRACT.md": {
+        "sha256": "27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2",
+        "bytes": 7692
+      }
+    }
+  },
+  "files": {
+    "config/experiment.json": "71cac6ebed0df2d4734ce77ba33feede7760349991e27ddf8d0fd83285ebb515",
+    "config/execution-order.json": "ee767f31aede68270633bf6f1ba14c42060a49875e7f69250d4a37ccdbf8bb84",
+    "evaluation/requirements-ledger.json": "890e9e2b5a7611c0e0fd8bf23d85900a38008d541f1088f12744fd39d68a2a61",
+    "evaluation/case-manifest.json": "4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461"
+  },
+  "canonical_source_encoding": "UTF-8 LF"
+}

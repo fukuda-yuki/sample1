@@ -1,0 +1,30 @@
+{
+  "kind": "pilot_stop_snapshot",
+  "source_of_current_status": "GitHub Issues #1 and #11",
+  "fixed_denominator": 57,
+  "quality_null_is_not_zero": true,
+  "no_scored_pass_fail_counts_published": true,
+  "comparison_runs_started": 0,
+  "sources": [
+    {
+      "condition": "normal",
+      "run_directory": "results/runs/pilot-1-normal",
+      "evaluation_root": "../sample1-private-eval-linux/evaluations/722b27ba-940d-4f6e-9f2d-a27094cdbceb",
+      "manifest_sha256": "3abe24c9c5be44c369ac98bd9cdbfa4b8e5e487e60352850a9f1c8a2181e48e2",
+      "usage_sha256": "de6806fa9a46ef92888dd1f6ed1df92b96d2473202805ee84e43381f9e0bedce",
+      "snapshot_sha256": "1f3a93ecf04706b45d1a17bc4a698a63d8fb1d02f82b92a1d5abf46ea415e8d6",
+      "adjudication_sha256": "0ca4d0b02f10c818a9a8f6ca4d8e51adf995ba57fdb52b1bd7f091718dc57eee",
+      "quality": null
+    },
+    {
+      "condition": "anti",
+      "run_directory": "results/runs/pilot-1-anti",
+      "evaluation_root": "../sample1-private-eval-linux/evaluations/b228155a-fe0d-4bd7-9b85-81bf59934350",
+      "manifest_sha256": "b8a0cdcfe7ac2d33d004bd88e9930b89a14e0f0f7e1682bcede8bdf187023803",
+      "usage_sha256": "04d0263a21b3175d3be97178c043973330f41f13035e480c82baedaf26e0ebb7",
+      "snapshot_sha256": "774e742b0b3893517f3847bc9a92974a7664d1f8b9048dde1c64a246473d856c",
+      "adjudication_sha256": "979966e890561a7ba423eb4515632b304126a6282c137c694e51f4add6a646ec",
+      "quality": null
+    }
+  ]
+}

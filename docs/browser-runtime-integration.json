@@ -1,0 +1,13 @@
+{
+  "kind": "environment_calibration",
+  "image": "sha256:ef3f18f22a92cc7cf24870468bba127ded8aeb18c8030a6b082ffa58b91c6b09",
+  "network": "none",
+  "user": "1000:1000",
+  "readonly_root": true,
+  "capabilities": "all dropped",
+  "tmpfs_tmp": "mode=1777,exec",
+  "command": "npm exec --offline --package @playwright/test@1.63.0 -- playwright screenshot data:text/html,OK /tmp/smoke.png",
+  "exit_code": 0,
+  "screenshot_nonempty": true,
+  "prior_failure": "tmpfs default noexec caused playwright Permission denied; exec option verified"
+}

@@ -1,0 +1,32 @@
+{
+  "experiment_version": "exp-001",
+  "model_id": "gpt-5.6-luna",
+  "effort": "xhigh",
+  "agent_version": "codex-cli 0.153.0",
+  "tool_versions": {
+    "node": "22.23.2",
+    "dotnet": "8.0.424",
+    "optional_self_test_playwright": "1.63.0"
+  },
+  "subagent_policy": "disabled",
+  "environment": {
+    "image": "sha256:ef3f18f22a92cc7cf24870468bba127ded8aeb18c8030a6b082ffa58b91c6b09",
+    "timezone": "Asia/Tokyo",
+    "npm_cache": "/opt/npm-cache",
+    "nuget_cache": "/opt/nuget-cache"
+  },
+  "budget": {
+    "kind": "wall_clock_seconds",
+    "value": 3600,
+    "scope": "container"
+  },
+  "execution_order": 0,
+  "command": [
+    "codex"
+  ],
+  "quality_axis": "fixed_evaluation_id_satisfaction_percent",
+  "fixed_denominator": 57,
+  "pilot_per_condition": 1,
+  "comparison_per_condition": 3,
+  "rerun_of": null
+}

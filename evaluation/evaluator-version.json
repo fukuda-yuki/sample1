@@ -1,0 +1,26 @@
+{
+  "files": {
+    "run.mjs": "0f433fbb2f3d0b66a30436de261cc3262e50f7c811846eb3c4a91b4cc2cd095f",
+    "playwright.config.ts": "142c397730b35facf8ecee1f20314115c86d1d10f118f1e1d5723426dc5cb533",
+    "package-lock.json": "8969aa7d1926bdcf26ea363c240f54a1d3bea70da48b73086b8c01a6035171f8",
+    "case-manifest.json": "8c5dc76598500231fbba1bda4c15b61b707914b4e2ce2544374e2259cc31edde",
+    "requirements-ledger.json": "baec6d3eefd2d6adb9d5715e36d93245692d5a1e994817b3cd0492e7cc780be5",
+    "tests/ui.ts": "c32601fbdaf8a46f508b186a5e646d6c213220c61e7c9580b3cb4e9e68be1a42",
+    "tests/application.spec.ts": "2efdca620fea7123add58a0c1fd69293017756903184557a39edd08c154b8250"
+  },
+  "sha256": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+  "schema_version": 1,
+  "playwright_version": "1.58.2",
+  "browser_version": "145.0.7632.6",
+  "workers": 1,
+  "retries": 0,
+  "timezone": "Asia/Tokyo",
+  "fixed_denominator": 57,
+  "required_scored_cases": 58,
+  "non_scoring_diagnostics": 5,
+  "source_archive": "<private-eval-root>/<calibration-run>/result/evaluator-snapshot/",
+  "previous_version": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+  "change_reason": "Remove unpublished DOM assumptions about label association/help, decorated operation names, record/table structure, pagination, summary text order and asynchronous form/dialog rendering. Fixed 57 IDs, required cases, input business values and ledger unchanged. Invalid pilot evaluations retain original evidence; both immutable submissions use this same corrected version.",
+  "helper_protocol": "2",
+  "helper_sha256": "f83f0009a67a4572c3fc9c3c796f11540d56b2caaca6c4f8ce971bcbd0265cb1"
+}
