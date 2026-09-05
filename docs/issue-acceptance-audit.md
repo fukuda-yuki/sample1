@@ -6,8 +6,8 @@
 |---|---|---|---|
 | [#1 全体](https://github.com/fukuda-yuki/sample1/issues/1) | 未完了 | 下記の仕様整理・隔離・停止固定・計測・集計基盤、および normal の実装 Run 完了。 | 両 pilot の有効な独立採点・最初の実測図・比較反復・観測に基づく判断が必要。 |
 | [#2 実験設計](https://github.com/fukuda-yuki/sample1/issues/2) | 文書要件は達成 | [experiment-design.md](experiment-design.md)、[decision-log.md](decision-log.md) に対象、意図した AP-001、固定条件、評価単位、ユーザー確定値、非対象を記録。 | 実測の完了証拠にはならない。変更時は版と理由を追記する。 |
-| [#3 共通実装指示](https://github.com/fukuda-yuki/sample1/issues/3) | 達成 | [implementation_prompt.md](../implementation_prompt.md) は配布する spec と共通契約で完結。条件名・非公開採点情報を実装入力へ要求せず、共通の起動・初期化・外部出力契約を定義。 | 公開契約を変更する場合は既存 Run と同じ入力として扱えない。 |
-| [#4 役割分離](https://github.com/fukuda-yuki/sample1/issues/4) | 達成 | [agent-roles.md](agent-roles.md) と [AGENTS.md](../AGENTS.md) に研究管理・実装・評価の権限、情報境界、判断例を記録。人格や自己申告を品質として採点しない。 | 実運用でも失敗ケースを実装側へ返さないことを継続する。 |
+| [#4 共通実装指示](https://github.com/fukuda-yuki/sample1/issues/4) | 達成 | [implementation_prompt.md](../implementation_prompt.md) は配布する spec と共通契約で完結。条件名・非公開採点情報を実装入力へ要求せず、共通の起動・初期化・外部出力契約を定義。 | 公開契約を変更する場合は既存 Run と同じ入力として扱えない。 |
+| [#3 役割分離](https://github.com/fukuda-yuki/sample1/issues/3) | 達成 | [agent-roles.md](agent-roles.md) と [AGENTS.md](../AGENTS.md) に研究管理・実装・評価の権限、情報境界、判断例を記録。人格や自己申告を品質として採点しない。 | 実運用でも失敗ケースを実装側へ返さないことを継続する。 |
 | [#5 要件監査](https://github.com/fukuda-yuki/sample1/issues/5) | 台帳・文書は達成 | [requirements-audit.md](requirements-audit.md)、[57 ID 台帳](../evaluation/requirements-ledger.json)、[test_items.md](../test_items.md)、[antipattern_list.md](../antipattern_list.md)。未提示期待値を緩和し、公開契約追加と区別。検証器で件数・重複・連番・AP 差分を検証。 | 台帳との対応だけでは採点 helper の正しさは保証しない。実判定の再確認は #7。 |
 | [#6 入力・実行隔離](https://github.com/fukuda-yuki/sample1/issues/6) | 基盤と隔離検証は達成 | [workspace-isolation.md](workspace-isolation.md)、[gateway-isolation-integration.json](gateway-isolation-integration.json)、[run-separation-integration.json](run-separation-integration.json)。許可リスト配布、ホスト canary・外部 GitHub・任意 gateway 経路の拒否、同ポートの 2 Run 分離を実環境で確認。 | 外部の private evaluator と実行環境は Git の公開ツリーだけでは再現できない。 |
 | [#7 非公開 E2E](https://github.com/fukuda-yuki/sample1/issues/7) | 実装・旧版校正済み／最終判定保留 | [evaluator-version.json](../evaluation/evaluator-version.json)、[calibration-summary.json](../evaluation/calibration-summary.json) に正常・別 UI の 57/57、閾値・表示・通知・権限の変異検出、起動不能と評価器障害の区別を保存。各実行にコード・依存・台帳の snapshot を保存。 | 実 normal の採点で helper 不具合が判明し、その採点は無効。修正版の校正と同じ固定提出物の再採点が必要。旧版 fixture の合格だけで完了としない。 |
@@ -27,3 +27,7 @@ normal の Run ID は `250df4e7-f8f9-44cd-8324-db24e050962f`、anti は `e849b8d
 両 pilot は実装終了・プロセス停止・提出物固定済み。normal 5,798,122、anti 4,754,779 tokens を native input+output と照合し、一致・欠測なしを確認した（[照合記録](pilot-usage-reconciliation.json)）。#8/#9 の pilot 実測は両条件で得られた。
 
 起動 helper 修正後の採点で未提示 UI 制約による誤判定を確認したため、両採点を無効として停止・保全した（[障害記録](pilot-ui-contract-incident.json)）。#7/#10/#11 の有効採点・実測図・比較反復は未完了である。独立した UI 変種 fixture で校正を追加し、修正後の同じ版で両固定提出物を再評価する。[Issue #11 更新](https://github.com/fukuda-yuki/sample1/issues/11#issuecomment-5552503871)に原本・版・未達事項を記録した。
+
+## 2026-09-06 停止時点の追記
+
+[パイロット結果](pilot-results.md)のとおり、校正は完了したが、再採点で自己登録経路を扱えない追加問題が確認された。ユーザーの停止条件に従い品質未確定で停止。#5は公開F001の自己登録許容と研究者用管理者前提の追加監査が残り、#7は評価器修正・追加校正・同じ提出物の再採点が残る。#10は欠測表・図まで作成済みだが有効品質での更新が残る。#11は両実装/使用量完了・有効品質未確定、比較6 Runは開始しない。#1は全体完了として閉じない。現在の正式なIssue状態と再開地点はGitHub #1/#11の停止記録を参照する。

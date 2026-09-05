@@ -49,8 +49,11 @@ def plot(source, destination):
         ax.scatter([], [], marker=markers[reason], c='#555555', s=45, label=reason)
     ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), frameon=False)
     ax.set(xlabel='実装Runの総トークン量', ylabel='非公開E2E項目充足率（%）', ylim=(-5, 108))
-    xmax = max([float(r['total_tokens']) for r in valid] + [1])
+    xmax = max([float(r['total_tokens']) for r in rows if r['total_tokens'] != ''] + [1])
     ax.set_xlim(-0.03 * xmax, 1.25 * xmax)
+    if not valid:
+        ax.text(.5, .5, '品質または使用量が未確定のため、点を描画しない\n全Runの値と欠測理由はCSVを参照',
+                transform=ax.transAxes, ha='center', va='center', color='#555555', fontsize=12)
     ax.spines[['top', 'right']].set_visible(False)
     ax.grid(axis='y', color='#E8E8E8')
     ax.set_axisbelow(True)

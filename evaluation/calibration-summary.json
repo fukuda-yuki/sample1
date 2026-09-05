@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "purpose": "Evaluator calibration only; not normal/anti implementation comparison Runs.",
-  "evaluator_hash": "d3bf7590ae53e794810659297dfbbb014819724b84306352e9c4998efe80a273",
+  "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
   "ledger_hash": "baec6d3eefd2d6adb9d5715e36d93245692d5a1e994817b3cd0492e7cc780be5",
   "node_windows": "v24.15.0",
   "node_linux": "v22.23.2",
@@ -240,6 +240,110 @@
       "results_sha256": "ed261b53d089b07f2d86e7f0ca87daa5f8caee8a05ff5f3f51a6bc6e6b19a97e",
       "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27"
+    },
+    {
+      "calibration_id": "ui-release-normal",
+      "kind": "calibration",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T14:55:13.672Z",
+      "finished_at": "2026-09-05T14:56:12.915Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "d8ae3f7f2b5f953d88b95351dfe1b95babb413d0826e74e98b10f9a29bdf14d0",
+      "summary_sha256": "cc8e8c2856f230ead5f71e863d77dd0e3b042fe7c7f564fe1dd0db1b79d81c6b",
+      "results_sha256": "fa51a5dd3104cde82f96d0bfaf5fc64d9897648eab40ad93f695e821557f1c60",
+      "diagnostics_sha256": "e3c09a3c2a95d4a9df1591e2225ffd74ea58d9c556ef7f232150bc423cc0c16e"
+    },
+    {
+      "calibration_id": "ui-release-stress",
+      "kind": "calibration",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T14:55:30.244Z",
+      "finished_at": "2026-09-05T14:56:43.321Z",
+      "submission_hash": "4689cf05b1c0f156ac2cd49c23d60c583143ac646faaa3fef82d6d43ac41216a",
+      "configuration_sha256": "9f0edbc4bea1ced22f1b63d848fc07fca7dd497e5a6eaffef7ca17f8a986184d",
+      "summary_sha256": "4c3bdd414dec551169ab29c81aa65b038d11033b348c7ffcbf43d8c17d1a3b19",
+      "results_sha256": "dc0cbcddf18a6f1e7586ecd186764429a8ed14005f4c0f4df465a6914b9234a8",
+      "diagnostics_sha256": "2012f6acc9b49deb391af0d575f74dead458bac5b4c25b2f837560146baae921"
+    },
+    {
+      "calibration_id": "ui-release-alternate",
+      "kind": "calibration",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 57,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 5,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T14:56:05.783Z",
+      "finished_at": "2026-09-05T14:57:12.709Z",
+      "submission_hash": "3093b68f0f4789e7f41435848ecfe46c9a99b54b901f6d2dcd32d6e3a2b5ffc9",
+      "configuration_sha256": "bc5fd52414f3d03b47019fe27e309fb0b81962087410a6ade62b8608488567ba",
+      "summary_sha256": "7d395d9ba99b3d3b20e9fcc771cd6adc71afdf99f9427cd7d9cb59cb0681e2d4",
+      "results_sha256": "d876134772dde9e71990a810f955deaac4ba99b90c6f6fee771ee788eb95043f",
+      "diagnostics_sha256": "c6f11e00dced487a78c73f4c9cd423eff45b5f3784750768433ed0822daf7fd4"
+    },
+    {
+      "calibration_id": "ui-release-threshold",
+      "kind": "calibration",
+      "evaluator_hash": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+      "outcome": "completed",
+      "counts": {
+        "denominator": 57,
+        "pass": 44,
+        "fail": 13,
+        "blocked": 0,
+        "error": 0
+      },
+      "diagnostic_counts": {
+        "pass": 2,
+        "fail": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      "started_at": "2026-09-05T14:55:48.337Z",
+      "finished_at": "2026-09-05T14:58:39.083Z",
+      "submission_hash": "3615b49aed07e8360a3654c2243e3f89d50b04d9dd3d01d22918c93b9c6831cb",
+      "configuration_sha256": "1b031abacbe5b302badfabbeaa7d78d09b6e687de46f1cc3142834d8d9598482",
+      "summary_sha256": "e4ff0d07c5ecd4842ccfbb60d2dbecdb1fa35c445105cdbc1fec6399ca70ba5e",
+      "results_sha256": "dced90335412b5e0630cc7430188ac5c00ea12a445efb8bc34a7b5c252a41196",
+      "diagnostics_sha256": "212afd0c6a7908d5d10e5c322073aa6d8e10855feed8898b2e54996b5254eca4"
     }
   ],
   "repeated_submission_identical_results": true,
@@ -354,5 +458,27 @@
       "summary_sha256": "a842eb5779bd0437e90e14a6edfde0340998cb3e326c4bb095557ad3373f323a",
       "results_sha256": "9b1051e682bc031703d99d49f7e3589dac28f882e53d7495f5bee61d80af11de"
     }
-  ]
+  ],
+  "ui_calibration_version": "87b50d07cdcaae89ebc657ffc87ac860b5f0b3062a7d314c59ff19fdf3eca291",
+  "repeated_submission_evaluator_hash": "63f22703023bbaf1e007af5872443a2e605aa38eb8afdd6e563a7df121240b27",
+  "ui_structure_controls": {
+    "fixture_sha256": "180d8ddb7cefa9b7236acddb38edff11f2197f3534725b2b4aad169beced27e4",
+    "manifest_sha256": "e8634f1a2d2a5338e51d4e6c5155ba65fd9828706b1549766fa3b9bd81eca029",
+    "independent_business_preserving_variations": 11,
+    "resolver_controls_pass": 2,
+    "resolver_controls_source_sha256": "3799c7907a3916d4038364fc6c758b026b550a1b5ebd2be34d16115da4f52c04",
+    "controls": [
+      "password and confirmation separation; ambiguous input refusal",
+      "asynchronous permanent registration and request-link rendering"
+    ],
+    "case_expectations_changed": false
+  },
+  "actual_pilot_validation": {
+    "status": "quality_unconfirmed",
+    "effective_quality": null,
+    "reason": "The evaluated application permits public self-registration as allowed by normal/spec.md F-001, but the evaluator only follows registration from an authenticated administrator user-management screen. This additional unpublished navigation assumption invalidates actual-pilot quality scoring despite passing the calibration fixtures.",
+    "public_basis": "normal/spec.md:37-39; implementation_prompt.md section 5.5",
+    "action": "Stop and preserve both incomplete evaluations and immutable submissions. No further evaluator changes, rescoring or comparison Runs in the current scope.",
+    "calibration_limitation": "Passing the researcher-authored normal and UI-variant fixtures did not cover every specification-permitted registration entry path."
+  }
 }

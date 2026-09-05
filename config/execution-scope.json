@@ -1,0 +1,21 @@
+{
+  "experiment_version": "exp-001",
+  "recorded_at": "2026-09-05T14:59:56.682582+00:00",
+  "authorized_scope": "finish_or_adjudicate_existing_pilots_then_stop",
+  "planned_manifest": "config/execution-order.json",
+  "existing_pilots": [
+    "pilot-1-normal",
+    "pilot-1-anti"
+  ],
+  "do_not_start": [
+    "comparison-1-normal",
+    "comparison-1-anti",
+    "comparison-2-normal",
+    "comparison-2-anti",
+    "comparison-3-normal",
+    "comparison-3-anti"
+  ],
+  "stop_on_additional_evaluator_issue": true,
+  "quality_on_additional_evaluator_issue": null,
+  "resume_authority": "User instruction; GitHub Issues #1 and #11 hold current completion and restart status."
+}
