@@ -69,6 +69,47 @@ Real Copilot/Zen/Muse connectivity, usage semantics (including cache/reasoning),
 and same-path end-to-end acceptance remain unverified until separately executed.
 This documentation does not declare production execution readiness.
 
+### Authorized diagnostic and session headers (2026-09-08)
+
+Issue #16 authorizes necessary live validation and revalidation using
+`OPENCODE_ZEN_API_KEY`; this does not authorize forty comparison starts. The
+management diagnostic reads the process environment, then Windows user
+environment when needed. It does not write the credential to disk:
+
+```powershell
+python scripts/zen_diagnostic.py --output results/zen-live-diagnostics --execute-real-model
+```
+
+Each invocation creates a new diagnostic UUID before any request, permits one
+model-list request and at most one model request (128 output tokens, 30-second
+HTTP operation timeout), and preserves failures. It has no automatic retries,
+redirects or model fallback. A failed diagnostic exits nonzero. This is a direct
+HTTP diagnostic, not a Copilot implementation or a comparison Run.
+
+Both diagnostic and Zen gateway send an honest, task-specific User-Agent and
+`x-opencode-session` equal to the preissued UUID. The gateway keeps it constant
+within a Run and records `provider_session_id` in its numerical request inventory.
+The runner's native CLI session ID is also the Run UUID. No OpenCode client
+impersonation headers are added. The session-header convention is documented for
+external coding agents in [OpenCode Go](https://dev.opencode.ai/docs/go/#where-can-i-use-it);
+that Go documentation alone does not prove free Zen/Muse account access.
+
+Live diagnostic evidence on this date:
+
+| Diagnostic UUID | Header | Models | Responses | Usage |
+|---|---|---|---|---|
+| c6ffc17b-765d-40f4-82b8-90a3ebd16b9f | absent | exact ID listed, 200 | 400, free-tier restriction | null |
+| 70075fed-73b9-4fda-8705-221e4df0d157 | same UUID | exact ID listed, 200 | 429 | null |
+
+The second request changed the observed status, but did not prove a successful
+model response. Its original result uses the generic `upstream_rejected` label;
+the diagnostic now classifies HTTP 429 explicitly as `rate_limited`. Originals
+remain unchanged under `results/zen-live-diagnostics/<UUID>/`. The response body
+and Retry-After were not retained, so the precise quota reason and retry time are
+unknown. No further model call was made in this check. Live Copilot/Muse editing,
+tool continuation, usage reconciliation and downstream independent acceptance
+remain unverified. No actual comparison Run was started.
+
 ## Run / monitor linkage
 
 ```sh

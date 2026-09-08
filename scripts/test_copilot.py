@@ -39,6 +39,10 @@ class GatewayTests(unittest.TestCase):
                     server.shutdown()
                     server.server_close()
                     thread.join()
+                if not wrong:
+                    headers = connection.return_value.request.call_args.kwargs['headers']
+                    self.assertEqual(headers['x-opencode-session'], env['RUN_ID'])
+                    self.assertEqual(headers['User-Agent'], 'sample1-copilot-gateway/1')
             text = ''.join(p.read_text() for p in Path(directory).glob('*.jsonl'))
             self.assertNotIn('never-save-this-key', text)
             return collect(Path(directory)), text

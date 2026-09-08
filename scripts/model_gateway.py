@@ -76,6 +76,8 @@ class Handler(BaseHTTPRequestHandler):
                  'model_id': os.environ['MODEL_ID'], 'source': 'fixed-upstream-gateway',
                  'provider': os.environ.get('PROVIDER', 'openai-chatgpt-codex'), 'mode': 'request', 'usage': None,
                  'includes_children': False, 'status': 'unknown'}
+        if event['provider'] == 'opencode-zen':
+            event['provider_session_id'] = event['run_id']
         record('started.jsonl', event)
         try:
             if event['provider'] == 'opencode-zen':
@@ -84,7 +86,9 @@ class Handler(BaseHTTPRequestHandler):
                 if not key:
                     raise ValueError('missing_key')
                 headers = {'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json',
-                           'Accept': 'text/event-stream'}
+                           'Accept': 'text/event-stream',
+                           'User-Agent': 'sample1-copilot-gateway/1',
+                           'x-opencode-session': event['provider_session_id']}
                 connection = http.client.HTTPSConnection('opencode.ai', timeout=300)
                 upstream_path = '/zen/v1/responses'
             else:
