@@ -19,7 +19,7 @@ python3 scripts/run_copilot.py run /research/copilot-config.json --distribution 
 wire_api `responses`, agent_version `1.0.83-5`, model_id (explicitly confirmed exact
 Muse Contributor Free ID), effort `null`, subagent_policy `disabled`, a new opaque
 experiment_id UUID, experiment_version beginning `copilot-`, phase `comparison`
-or `copilot-smoke`, condition, planned_run, execution_order, tool_versions,
+or `copilot-smoke` or `copilot-validation`, condition, planned_run, execution_order, tool_versions,
 environment.image (digest), budget (positive wall_clock_seconds / container),
 and authorization_file (researcher-owned absolute path).
 
@@ -103,12 +103,71 @@ Live diagnostic evidence on this date:
 
 The second request changed the observed status, but did not prove a successful
 model response. Its original result uses the generic `upstream_rejected` label;
-the diagnostic now classifies HTTP 429 explicitly as `rate_limited`. Originals
+the diagnostic at that point classified HTTP 429 as `rate_limited`. Originals
 remain unchanged under `results/zen-live-diagnostics/<UUID>/`. The response body
 and Retry-After were not retained, so the precise quota reason and retry time are
 unknown. No further model call was made in this check. Live Copilot/Muse editing,
 tool continuation, usage reconciliation and downstream independent acceptance
 remain unverified. No actual comparison Run was started.
+
+### Diagnostic success and bounded implementation validation
+
+The diagnostic now exits zero only for HTTP 200, the exact model, nonempty
+`output_text`, and nonnegative integer input/output/total usage whose sum agrees.
+Empty responses, invalid/missing usage and model mismatches are explicit failures.
+HTTP status and cause are separate. Allowlisted response headers (including
+Retry-After and available request identifiers) and bounded, redacted upstream
+error code/type/message are retained; arbitrary headers and credentials are not.
+An HTTP 429 alone does not identify the quota or a retry time. A successful
+diagnostic saves the response text and numerical usage. Historical results are
+not rewritten to the new result shape.
+
+For a new, separate acceptance batch, copy the existing config and set
+`phase` to `copilot-validation` and a distinct `copilot-` experiment version.
+The existing `plan/check/run/status/resume/evaluate/export` commands then operate
+on exactly one normal and one anti slot, with the seed-fixed pair order.
+The absent phase still means the original 20+20 comparison; existing plans
+are neither migrated nor edited. Use a separate authorization file and batch
+directory for validation. Issue #16 authorizes the researcher to register the
+finite validation slots and opt in; it does not authorize comparison starts.
+
+Validation uses the full implementation prompt, the same isolation, freeze,
+gateway, native telemetry, independent evaluator and preservation gates.
+It requires explicit single-use starts and restoration prerequisites, but does
+not require the comparison's pre-existing live acceptance record. Comparison
+continues to require that record. Validation uses the collector/aggregator's
+explicit `validation=True` mode; default analysis rejects it and validation
+analysis rejects comparison, pilot, diagnostic and smoke data. Export refuses
+to reuse a directory belonging to a different phase or experiment.
+
+The intended real sequence is one direct diagnostic, then one `copilot-smoke`
+(300 seconds), then the two validation implementations (3600 seconds each).
+Only proceed after each prior stage succeeds. A fresh verified preservation
+protocol for the current sources/image is required; do not relabel a historical
+Codex proof or clear its retired flag. Pin the calibrated private evaluator and
+verify account/free/data terms before the implementation starts. No fallback,
+automatic reimplementation, or comparison grant is added.
+
+Run with `--private-root`, `--evaluator-image`, `--validity` and the explicit
+monitor locator so each submission is independently evaluated before the next
+start. The linked Run and evaluation archives are restored and hash checked.
+Validation exports after each evaluation and stops if export fails; valid zero
+quality continues, while incomplete usage or evaluator/isolation failures stop.
+After the last Run, export again for the final status and independently reproduce
+the CSV/SQLite from preserved originals. Only actual edit/tool/continuation,
+usage/DB/evaluation/restore evidence may support a hash-bound live acceptance
+record; this command does not manufacture successful acceptance booleans.
+
+Non-model verification of the two-slot path uses an actual monitor with
+synthetic CLI/usage/E2E-shaped data:
+
+```sh
+python scripts/check_copilot_batch.py --output results/new-validation-fixture --validation dotnet /absolute/ConfigCli.dll
+```
+
+This checks two starts, restart after one, archive restoration, valid zero,
+missing usage, wrong submission rejection and identical re-exports. It is not
+a real Muse implementation or a private E2E execution.
 
 ## Run / monitor linkage
 

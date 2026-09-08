@@ -15,7 +15,7 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json', *, validity_path):
+def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json', *, validity_path, validation=False):
     validity_records, registry_hash = load_registry(validity_path)
     ledger = read(ledger_path)
     ledger_hash = digest(ledger_path)
@@ -26,6 +26,9 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
         directory = Path(selected['run_directory'])
         manifest_file, usage_file = directory / 'manifest.json', directory / 'usage.json'
         manifest, usage = read(manifest_file), read(usage_file)
+        phases = ('copilot-validation',) if validation else ('pilot', 'comparison')
+        if manifest['phase'] not in phases:
+            raise ValueError('Run phase is outside the selected analysis mode')
         base = dict(run_id=manifest['run_id'], phase=manifest['phase'],
                     condition=manifest['distribution']['condition'], experiment_version=manifest['experiment_version'],
                     end_reason=manifest['end_reason'], usage_complete=usage['usage_complete'],
@@ -39,7 +42,7 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
             continue
         evaluation = Path(selected['evaluation_directory'])
         summary = read(evaluation / 'summary.json')
-        if manifest['phase'] not in ('pilot', 'comparison') or summary.get('kind') != 'evaluation':
+        if manifest['phase'] not in phases or summary.get('kind') != 'evaluation':
             raise ValueError('Implementation Run requires kind=evaluation; calibrations use a separate report')
         if manifest['run_id'] != summary['run_id']:
             raise ValueError('Run/evaluation identity mismatch')
@@ -67,7 +70,7 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
         # Reject silent report truncation, wrong cases and altered summary metrics.
         # Validate the raw score first, separately from the researcher's effective validity.
         raw_run = dict(run, evaluation_validity='valid', validity_record_hash='raw-integrity-only')
-        calculated, _ = aggregate([raw_run], rows, ledger)
+        calculated, _ = aggregate([raw_run], rows, ledger, validation=validation)
         row = calculated[0]
         expected_counts = {'denominator': row['denominator'], 'pass': row['passed'], 'fail': row['failed'],
                            'blocked': row['blocked'], 'error': row['errors']}

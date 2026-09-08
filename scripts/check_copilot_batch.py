@@ -12,10 +12,13 @@ from preserve import read, digest, pack, restore, verify
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def main(output,command):
+def main(output,command,validation=False):
     output=output.resolve()
     config={'experiment_version':'copilot-synthetic-40','model_id':'muse-fixture-contributor-free',
             'agent_version':'fake-cli','synthetic':True}
+    if validation:config.update(phase='copilot-validation',experiment_version='copilot-synthetic-validation')
+    count=2 if validation else 40
+    first_count=1 if validation else 7
     plan(output/'batch',config,123)
     batch=output/'batch'
     private=output/'private-synthetic-eval';private.mkdir()
@@ -28,7 +31,7 @@ def main(output,command):
             'from pathlib import Path; from test_telemetry_link import fixture; import sys; fixture(Path(sys.argv[1]),sys.argv[2],sys.argv[3])',
             str(run),row['run_id'],c['experiment_id']],cwd=ROOT/'scripts',check=True,capture_output=True)
         m=read(run/'manifest.json')
-        m.update(distribution={'condition':row['condition']},condition=row['condition'],experiment_version=c['experiment_version'])
+        m.update(phase=c.get('phase','comparison'),distribution={'condition':row['condition']},condition=row['condition'],experiment_version=c['experiment_version'])
         atomic(run/'manifest.json',m)
         link(run,locator,ingest=True,initialize=not Path(locator['database_path']).exists())
         receipt=pack(output/'archive','run-'+row['run_id'],{n:run/n for n in
@@ -64,8 +67,8 @@ def main(output,command):
              'evaluation_directory':str(directory),'summary_sha256':digest(directory/'summary.json'),
              'results_sha256':digest(directory/'results.jsonl')})
         return {'evaluation_id':eid,'valid':True}
-    first=advance(batch,runner,evaluator,limit=7)
-    assert first['started']==7
+    first=advance(batch,runner,evaluator,limit=first_count)
+    assert first['started']==first_count
     before=list(invocations)
     with lock(batch):
         try:advance(batch,runner,evaluator)
@@ -73,10 +76,10 @@ def main(output,command):
         else:raise AssertionError('double launch allowed')
     advance(batch,runner,evaluator)
     advance(batch,runner,evaluator)
-    assert len(invocations)==40 and len(set(invocations))==40 and invocations[:7]==before
+    assert len(invocations)==count and len(set(invocations))==count and invocations[:first_count]==before
     index=read(batch/'run-index.json')
-    assert sum(r['condition']=='normal' for r in index['runs'])==20
-    assert sum(r['condition']=='anti' for r in index['runs'])==20
+    assert sum(r['condition']=='normal' for r in index['runs'])==count//2
+    assert sum(r['condition']=='anti' for r in index['runs'])==count//2
     # Preserve a genuine missing observation after completing the synthetic control.
     missing=batch/'runs'/index['runs'][-1]['planned_run']/'attempt'
     original=digest(missing/'raw-usage/events.jsonl')
@@ -86,15 +89,15 @@ def main(output,command):
     assert digest(missing/'raw-usage/events.jsonl')==original
     one=export(batch,registry,output=output/'export-a')
     two=export(batch,registry,output=output/'export-b')
-    assert one==two and one['planned']==40 and one['evaluated']==40 and one['plotted']==39
-    assert one['usage_complete']==39
+    assert one==two and one['planned']==count and one['evaluated']==count and one['plotted']==count-1
+    assert one['usage_complete']==count-1
     for name in ('runs.csv','test-results.jsonl','provenance.json','tokens-quality.png'):
         assert digest(output/'export-a'/name)==digest(output/'export-b'/name),name
     for directory in ('export-a','export-b'):
         with sqlite3.connect(output/directory/'analysis.sqlite') as db:
-            assert db.execute('SELECT count(*) FROM runs').fetchone()[0]==40
-            assert db.execute('SELECT count(*) FROM case_results').fetchone()[0]==40*58
-            assert db.execute('SELECT sum(total_tokens) FROM runs').fetchone()[0]==39*27
+            assert db.execute('SELECT count(*) FROM runs').fetchone()[0]==count
+            assert db.execute('SELECT count(*) FROM case_results').fetchone()[0]==count*58
+            assert db.execute('SELECT sum(total_tokens) FROM runs').fetchone()[0]==(count-1)*27
     # A selected evaluation may not cross the Run/submission boundary.
     ref_path=missing/'evaluation-ref.json';reference=read(ref_path)
     atomic(ref_path,dict(reference,submission_hash='wrong'))
@@ -103,9 +106,9 @@ def main(output,command):
         raise AssertionError('Wrong submission was joined')
     except ValueError:pass
     finally:atomic(ref_path,reference)
-    evidence={'kind':'synthetic-40-real-monitor-fake-cli-e2e-shape','model_called':False,'real_e2e':False,
-              'planned':40,'normal':20,'anti':20,'unique_invocations':40,'resume_after':7,
-              'double_launch_rejected':True,'archive_restore_count':40,'low_quality_continues':True,
+    evidence={'kind':'synthetic-validation-real-monitor-fake-cli-e2e-shape' if validation else 'synthetic-40-real-monitor-fake-cli-e2e-shape','model_called':False,'real_e2e':False,
+              'planned':count,'normal':count//2,'anti':count//2,'unique_invocations':count,'resume_after':first_count,
+              'double_launch_rejected':True,'archive_restore_count':count,'low_quality_continues':True,
               'missing_retained':True,'wrong_evaluation_rejected':True,'reexport_identical':True,'counts':one}
     atomic(output/'evidence.json',evidence)
     print(json.dumps({k:v for k,v in evidence.items() if k!='counts'}))
@@ -113,5 +116,6 @@ def main(output,command):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--validation',action='store_true')
     p.add_argument('import_command',nargs=argparse.REMAINDER)
-    a=p.parse_args();main(a.output,a.import_command)
+    a=p.parse_args();main(a.output,a.import_command,a.validation)
