@@ -8,7 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 STATUSES = {'pass', 'fail', 'blocked', 'error'}
 
 
-def aggregate(runs, results, ledger):
+def aggregate(runs, results, ledger, *, validation=False):
+    phases = ('copilot-validation',) if validation else ('calibration', 'pilot', 'comparison')
     ids = {x['evaluation_id']: x for x in ledger['items']}
     if len(ids) != ledger['fixed_denominator'] or len(ids) != len(ledger['items']):
         raise ValueError('Ledger denominator mismatch')
@@ -32,7 +33,7 @@ def aggregate(runs, results, ledger):
         grouped[key] = result
     rows, details = [], []
     for run in sorted(runs, key=lambda r: r['run_id']):
-        if run['phase'] not in ('calibration', 'pilot', 'comparison') or run['condition'] not in ('normal', 'anti'):
+        if run['phase'] not in phases or run['condition'] not in ('normal', 'anti'):
             raise ValueError('Invalid phase or condition')
         validity = run.get('evaluation_validity', 'pending')
         if validity not in ('valid', 'invalid', 'pending'):

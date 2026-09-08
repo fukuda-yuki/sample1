@@ -3,6 +3,7 @@ import argparse
 import http.client
 import json
 import os
+import re
 from pathlib import Path
 import time
 import uuid
@@ -39,6 +40,52 @@ def classify_error(raw):
     return 'upstream_rejected'
 
 
+def sanitized(value, key, limit=1024):
+    if not isinstance(value, (str, int, float)):
+        return None
+    text = str(value).replace(key, '[REDACTED]')
+    text = re.sub(r'(?i)bearer\s+[^\s"<>]+|\bsk-[\w-]+', '[REDACTED]', text)
+    return ''.join(c for c in text if c.isprintable() or c == '\n')[:limit]
+
+
+def response_metadata(headers, raw, key):
+    allowed = ('retry-after', 'x-request-id', 'request-id', 'openai-request-id', 'cf-ray')
+    saved = {k.lower(): sanitized(v, key, 256) for k, v in headers.items() if k.lower() in allowed}
+    try:
+        data = json.loads(raw)
+    except (ValueError, UnicodeError):
+        data = {}
+    error = data.get('error', {}) if isinstance(data, dict) else {}
+    if not isinstance(error, dict):
+        error = {'message': error}
+    fields = {name: sanitized(error[name], key) for name in ('code', 'type', 'message') if name in error}
+    if not fields and raw:
+        fields['message'] = sanitized(raw.decode('utf-8', errors='replace'), key)
+    return saved, fields
+
+
+def validate_response(data, key):
+    texts = [part['text'] for item in data.get('output', []) if isinstance(item, dict)
+             for part in item.get('content', []) if isinstance(part, dict)
+             and part.get('type') == 'output_text' and isinstance(part.get('text'), str)
+             and part['text'].strip()]
+    usage = data.get('usage')
+    names = ('input_tokens', 'output_tokens', 'total_tokens')
+    valid_usage = (isinstance(usage, dict) and all(type(usage.get(k)) is int and usage[k] >= 0 for k in names)
+                   and usage['input_tokens'] + usage['output_tokens'] == usage['total_tokens'])
+    failures = []
+    if data.get('model') != MODEL:
+        failures.append('response_model_mismatch')
+    if not texts:
+        failures.append('response_text_missing')
+    if not valid_usage:
+        failures.append('usage_missing' if not usage else 'usage_invalid')
+    return {'response_model_matches': data.get('model') == MODEL,
+            'model_response_received': bool(texts), 'response_text': sanitized('\n'.join(texts), key, 16384),
+            'usage': {k: usage[k] for k in names} if valid_usage else None,
+            'validation_errors': failures, 'status': failures[0] if failures else 'response_received'}
+
+
 def request(key, method, path, body=None, session_id=None):
     connection = http.client.HTTPSConnection(HOST, timeout=30)
     try:
@@ -55,7 +102,7 @@ def request(key, method, path, body=None, session_id=None):
         raw = response.read(1024 * 1024 + 1)
         if len(raw) > 1024 * 1024:
             raise ValueError('response_size_limit')
-        return response.status, raw
+        return response.status, dict(response.getheaders()), raw
     finally:
         connection.close()
 
@@ -81,8 +128,11 @@ def run(root):
     save()
     started = time.monotonic()
     try:
-        status, raw = request(key, 'GET', '/zen/v1/models')
+        status, headers, raw = request(key, 'GET', '/zen/v1/models')
         result['models_http_status'] = status
+        result['models_response_headers'], models_error = response_metadata(headers, raw if status != 200 else b'', key)
+        if status != 200:
+            result['models_error'] = models_error
         present = status == 200 and any(item.get('id') == MODEL for item in json.loads(raw).get('data', []))
         result['exact_model_listed'] = present
         if not present:
@@ -92,19 +142,17 @@ def run(root):
         save()  # Record the sole request before sending it.
         body = json.dumps({'model': MODEL, 'input': 'Reply with the single word OK.',
                            'max_output_tokens': 128, 'store': False, 'stream': False})
-        status, raw = request(key, 'POST', '/zen/v1/responses', body, session_id=run_id)
+        status, headers, raw = request(key, 'POST', '/zen/v1/responses', body, session_id=run_id)
         result['response_http_status'] = status
         result['rate_limited'] = status == 429
+        result['response_headers'], error = response_metadata(headers, raw if status != 200 else b'', key)
         if status != 200:
-            result['status'] = 'rate_limited' if status == 429 else classify_error(raw)
+            result['status'] = 'upstream_rejected'
+            result['cause'] = classify_error(raw)
+            result['error'] = error
         else:
             data = json.loads(raw)
-            result['response_model_matches'] = data.get('model') == MODEL
-            result['model_response_received'] = bool(data.get('output'))
-            usage = data.get('usage') or {}
-            result['usage'] = {name: usage[name] for name in ('input_tokens', 'output_tokens', 'total_tokens')
-                               if isinstance(usage.get(name), int) and not isinstance(usage[name], bool)}
-            result['status'] = 'response_received' if result['response_model_matches'] else 'response_model_mismatch'
+            result.update(validate_response(data, key))
     except (OSError, ValueError, TypeError, AttributeError, http.client.HTTPException) as error:
         result['status'] = 'diagnostic_transport_or_format_error'
         result['error_type'] = type(error).__name__

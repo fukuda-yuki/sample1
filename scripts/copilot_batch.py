@@ -36,12 +36,24 @@ def lock(root):
         path.unlink()
 
 
+def batch_phase(config):
+    phase = config.get('phase', 'comparison')
+    if phase not in ('comparison', 'copilot-validation'):
+        raise ValueError('Batch phase must be comparison or copilot-validation')
+    return phase
+
+
+def planned_count(config):
+    return 2 if batch_phase(config) == 'copilot-validation' else 40
+
+
 def plan(root, config, seed):
+    count = planned_count(config)
     root.mkdir(parents=True,exist_ok=False)
     experiment=dict(config,experiment_id=config.get('experiment_id') or str(uuid.uuid4()),seed=seed)
     rng=random.Random(seed)
     planned=[]
-    for block in range(1,21):
+    for block in range(1,count//2+1):
         pair=['normal','anti'];rng.shuffle(pair)
         for condition in pair:
             planned.append({'planned_run':f'{condition}-{block:03d}','condition':condition,
@@ -65,7 +77,7 @@ def load(root):
     for path,value in config['input_hashes'].items():
         if digest(ROOT/path)!=value:raise ValueError('Fixed public input changed: '+path)
     planned=read(root/'planned-runs.json')['order']
-    if len(index['runs'])!=40 or any({k:r[k] for k in p}!=p for r,p in zip(index['runs'],planned)):
+    if len(planned)!=planned_count(config) or len(index['runs'])!=len(planned) or any({k:r[k] for k in p}!=p for r,p in zip(index['runs'],planned)):
         raise ValueError('Planned slots differ')
     ids=[r['run_id'] for r in index['runs'] if r['run_id']]
     if len(ids)!=len(set(ids)):raise ValueError('Duplicate Run UUID')
@@ -81,11 +93,11 @@ def status(root):
         if row['run_id']:
             usage=root/'runs'/row['planned_run']/'attempt/usage.json'
             if not usage.exists() or not read(usage).get('usage_complete'):missing_usage+=1
-    return {'planned':40,'started':sum(r['run_id'] is not None for r in index['runs']),
+    return {'planned':len(index['runs']),'started':sum(r['run_id'] is not None for r in index['runs']),
             'states':counts,'usage_missing_or_unconfirmed':missing_usage}
 
 
-def advance(root, runner, evaluator=None, *, limit=40):
+def advance(root, runner, evaluator=None, *, limit=40, after_evaluation=None):
     """Callbacks are internal test seams. CLI supplies only the real guarded runner."""
     with lock(root):
         config,index=load(root)
@@ -113,6 +125,7 @@ def advance(root, runner, evaluator=None, *, limit=40):
             try:
                 runner(root,config,row,run)
                 m=read(run/'manifest.json')
+                if m.get('phase')!=batch_phase(config):raise ValueError('Run phase differs from fixed batch')
                 if m['run_id']!=row['run_id'] or not m.get('processes_stopped') or not m.get('submission_fixed'):
                     raise ValueError('Run identity/stop/freeze not established')
                 verify_snapshot(run/'frozen',read(run/'snapshot.json'))
@@ -126,6 +139,8 @@ def advance(root, runner, evaluator=None, *, limit=40):
                 evaluation=evaluator(root,config,row,run)
                 row['evaluation_id']=evaluation['evaluation_id']
                 row['status']='completed' if evaluation['valid'] else 'failed'
+                atomic(root/'run-index.json',index)
+                if after_evaluation is not None:after_evaluation(root)
                 if not evaluation['valid']:break
                 executed+=1
             except (Exception, KeyboardInterrupt) as error:
@@ -139,7 +154,7 @@ def advance(root, runner, evaluator=None, *, limit=40):
 
 def real_runner(secret,opt_in,locator):
     def start(root,config,row,run):
-        c=dict(config,**{k:row[k] for k in ('planned_run','condition','execution_order')},phase='comparison')
+        c=dict(config,**{k:row[k] for k in ('planned_run','condition','execution_order')},phase=batch_phase(config))
         distribution=run.parent/'distribution'
         prepare(ROOT,row['condition'],distribution)
         execute(distribution,c,run,secret,opt_in=opt_in,run_id=row['run_id'])
@@ -150,6 +165,8 @@ def real_runner(secret,opt_in,locator):
                      ('manifest.json','snapshot.json','frozen','telemetry','telemetry-link.json','raw-usage','usage.json')},
                      metadata={'kind':'copilot-linked-run','run_id':row['run_id']})
         verify(archive,receipt['package_id'],receipt['sha256'])
+        restored=restore(archive,receipt,run.parent/'restored-linked')
+        atomic(run/'linked-restoration.json',restored)
         atomic(run/'linked-preservation.json',receipt)
     return start
 
@@ -189,7 +206,7 @@ def evaluate_run(root,config,row,run,private_root,image,validity):
     summary=read(result/'summary.json')
     if summary['evaluator_hash']!=config['score_version']:raise ValueError('Wrong evaluator score version')
     ledger=result/'evaluator-snapshot/requirements-ledger.json'
-    collect([selection],ledger,validity_path=validity)  # Validate all 58 raw cases/counts/hashes before registration.
+    collect([selection],ledger,validity_path=validity,validation=batch_phase(config)=='copilot-validation')  # Validate all 58 raw cases/counts/hashes before registration.
     # Register only this new, pinned independent attempt; never replace an adjudication.
     registry_lock=validity.with_suffix(validity.suffix+'.lock')
     with registry_lock.open('x') as guard:guard.write(resources['evaluation_id'])
@@ -203,8 +220,8 @@ def evaluate_run(root,config,row,run,private_root,image,validity):
                 'summary_hash':digest(result/'summary.json'),'results_hash':digest(result/'results.jsonl'),'adjudications':[]})
             atomic(validity,registry)
     finally:registry_lock.unlink()
-    runs,results=collect([selection],ledger,validity_path=validity)
-    rows,_=aggregate(runs,results,read(ledger))
+    runs,results=collect([selection],ledger,validity_path=validity,validation=batch_phase(config)=='copilot-validation')
+    rows,_=aggregate(runs,results,read(ledger),validation=batch_phase(config)=='copilot-validation')
     reference={'run_id':row['run_id'],'submission_hash':before,'evaluation_id':resources['evaluation_id'],
                'evaluation_directory':str(result.resolve()),'summary_sha256':digest(result/'summary.json'),
                'results_sha256':digest(result/'results.jsonl'),'score_version':read(result/'summary.json')['evaluator_hash']}
@@ -218,12 +235,20 @@ def evaluate_run(root,config,row,run,private_root,image,validity):
                  {'result':result,'evaluation-ref.json':run/'evaluation-ref.json','evaluation-validity.json':validity},
                  metadata={'kind':'independent-evaluation','run_id':row['run_id']})
     verify(archive,receipt['package_id'],receipt['sha256'])
+    restored=restore(archive,receipt,run.parent/('restored-evaluation-'+resources['evaluation_id']))
+    atomic(run/'evaluation-restoration.json',restored)
     atomic(run/'evaluation-preservation.json',receipt)
     return {'evaluation_id':resources['evaluation_id'],'valid':rows[0]['quality_percent'] is not None and read(run/'usage.json')['usage_complete']}
 
 
 def export(root,validity,*,output=None):
     config,index=load(root)
+    output=output or root/'export'
+    if (output/'provenance.json').exists():
+        previous=read(output/'provenance.json')
+        if (previous.get('phase','comparison')!=batch_phase(config)
+                or previous.get('experiment_id')!=config['experiment_id']):
+            raise ValueError('Export directory belongs to a different phase or experiment')
     selections=[]; links={}; ledgers=[]
     for slot in index['runs']:
         if slot['run_id'] is None:continue
@@ -231,6 +256,7 @@ def export(root,validity,*,output=None):
         if not (run/'manifest.json').exists() or not (run/'usage.json').exists():continue
         manifest=read(run/'manifest.json')
         if manifest['run_id']!=slot['run_id']:raise ValueError('Wrong Run in slot')
+        if manifest['phase']!=batch_phase(config):raise ValueError('Run phase differs from fixed batch')
         if (run/'frozen').exists():verify_snapshot(run/'frozen',read(run/'snapshot.json'))
         ref=read(run/'evaluation-ref.json') if (run/'evaluation-ref.json').exists() else None
         if ref:
@@ -260,18 +286,18 @@ def export(root,validity,*,output=None):
     if selections:
         ledger=ledgers[0] if ledgers else ROOT/'evaluation/requirements-ledger.json'
         if any(digest(p)!=digest(ledger) for p in ledgers):raise ValueError('Mixed evaluator ledgers')
-        runs,cases=collect(selections,ledger,validity_path=validity)
+        runs,cases=collect(selections,ledger,validity_path=validity,validation=batch_phase(config)=='copilot-validation')
         for r in runs:
             t=links[r['run_id']]
             if not t.get('usage_complete') or t.get('status')!='readback_verified':
                 r.update(usage_complete=False,total_tokens=None)
-        rows,details=aggregate(runs,cases,read(ledger))
+        rows,details=aggregate(runs,cases,read(ledger),validation=batch_phase(config)=='copilot-validation')
     else:rows,details,cases=[],[],[]
     by_id={r['run_id']:r for r in rows}
-    output=output or root/'export';output.mkdir(parents=True,exist_ok=True)
+    output.mkdir(parents=True,exist_ok=True)
     public=[]
     for slot in index['runs']:
-        row=by_id.get(slot['run_id'],{'run_id':slot['run_id'], 'phase':'comparison', 'condition':slot['condition'],
+        row=by_id.get(slot['run_id'],{'run_id':slot['run_id'], 'phase':batch_phase(config), 'condition':slot['condition'],
                  'experiment_version':config['experiment_version'],'score_version':None,'submission_hash':None,
                  'end_reason':'environment_failure','total_tokens':None,'observed_tokens':None,'usage_complete':False,
                  'denominator':57,'passed':None,'failed':None,'blocked':None,'errors':None,'quality_percent':None,
@@ -295,7 +321,7 @@ def export(root,validity,*,output=None):
     safe_cases=[{k:r[k] for k in ('run_id','evaluation_id','case_id','status','score_version','submission_hash')} for r in cases]
     (output/'test-results.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in safe_cases),encoding='utf-8')
     provenance={'experiment_id':config['experiment_id'],'synthetic':config.get('synthetic',False),
-                'input_hashes':config['input_hashes'],'planned':40,'started':sum(s['run_id'] is not None for s in index['runs']),
+                'input_hashes':config['input_hashes'],'planned':len(index['runs']),'phase':batch_phase(config),'started':sum(s['run_id'] is not None for s in index['runs']),
                 'not_started':sum(s['run_id'] is None for s in index['runs']),
                 'evaluated':sum(r['quality_percent'] is not None for r in public),
                 'usage_complete':sum(r['usage_complete'] for r in public),
@@ -324,7 +350,7 @@ def export(root,validity,*,output=None):
         for r in public:
             if r.get('evaluation_id'):db.execute('INSERT INTO evaluations VALUES(?,?,?,?)',tuple(r.get(k) for k in ('run_id','evaluation_id','score_version','submission_hash')))
         db.execute('INSERT INTO provenance VALUES(?)',(json.dumps(provenance),))
-        assert db.execute('SELECT count(*) FROM runs').fetchone()[0]==40
+        assert db.execute('SELECT count(*) FROM runs').fetchone()[0]==len(index['runs'])
         db.commit()
     temp.replace(output/'analysis.sqlite')
     # Existing plot requires unique labels even for unstarted slots. Keep real run_id nullable in exports.
@@ -359,7 +385,7 @@ def main():
             from execution_scope import check_start
             next_slot=next((s for s in index['runs'] if s['status']=='not_started'),None)
             if next_slot:
-                c=dict(config,**{k:next_slot[k] for k in ('planned_run','condition','execution_order')},phase='comparison')
+                c=dict(config,**{k:next_slot[k] for k in ('planned_run','condition','execution_order')},phase=batch_phase(config))
                 validate_config(c);check_start(c)
             result={'model_called':False,'status':status(root)}
         elif a.action=='evaluate':
@@ -370,6 +396,7 @@ def main():
                 result=evaluate_run(root,config,row,root/'runs'/row['planned_run']/'attempt',a.private_root,a.evaluator_image,a.validity)
                 row.update(evaluation_id=result['evaluation_id'],status='completed' if result['valid'] else 'failed')
                 atomic(root/'run-index.json',index)
+                if batch_phase(config)=='copilot-validation':export(root,a.validity)
         else:
             if config.get('synthetic'):p.error('Synthetic test batches cannot start real inference')
             if not all((a.locator,a.secret_file,a.execute_real_model)):p.error('run/resume requires locator/secret-file/execute-real-model')
@@ -377,7 +404,8 @@ def main():
             if a.private_root:
                 if not all((a.evaluator_image,a.validity)):p.error('private-root requires evaluator-image/validity')
                 evaluator=lambda r,c,s,d:evaluate_run(r,c,s,d,a.private_root,a.evaluator_image,a.validity)
-            result=advance(root,real_runner(a.secret_file,a.execute_real_model,read(a.locator)),evaluator,limit=a.limit)
+            after=(lambda r:export(r,a.validity)) if batch_phase(config)=='copilot-validation' and evaluator else None
+            result=advance(root,real_runner(a.secret_file,a.execute_real_model,read(a.locator)),evaluator,limit=a.limit,after_evaluation=after)
     print(json.dumps(result))
 
 if __name__=='__main__':
