@@ -12,15 +12,17 @@ MODEL = 'muse-spark-1.3-contributor-free'
 HOST = 'opencode.ai'
 
 
-def credential():
-    value = os.environ.get('OPENCODE_ZEN_API_KEY', '').strip()
+def credential(name='OPENCODE_ZEN_API_KEY', *, windows_user_only=False):
+    if name not in ('OPENCODE_ZEN_API_KEY', 'OPENAI_API_KEY'):
+        raise ValueError('unsupported_credential')
+    value = '' if windows_user_only else os.environ.get(name, '').strip()
     if value:
         return value, 'process-environment'
     if os.name == 'nt':
         import winreg
         try:
             with winreg.OpenKey(winreg.HKEY_CURRENT_USER, 'Environment') as registry:
-                value = winreg.QueryValueEx(registry, 'OPENCODE_ZEN_API_KEY')[0].strip()
+                value = winreg.QueryValueEx(registry, name)[0].strip()
             if value:
                 return value, 'windows-user-environment'
         except FileNotFoundError:
@@ -44,6 +46,7 @@ def sanitized(value, key, limit=1024):
     if not isinstance(value, (str, int, float)):
         return None
     text = str(value).replace(key, '[REDACTED]')
+    text = re.sub(r'(?i)(incorrect api key provided:\s*)\S+', r'\1[REDACTED]', text)
     text = re.sub(r'(?i)bearer\s+[^\s"<>]+|\bsk-[\w-]+', '[REDACTED]', text)
     return ''.join(c for c in text if c.isprintable() or c == '\n')[:limit]
 
