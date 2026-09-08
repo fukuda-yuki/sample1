@@ -4,6 +4,12 @@ This path measures GitHub Copilot CLI, separately from historical Codex pilots.
 The public specs, common instructions and 57 ID / 58 case definition are unchanged.
 No command below purchases credits or changes account settings. Real inference is opt-in.
 
+[Post-PR #21 live acceptance record](copilot-acceptance-20260908.md): a new bounded
+management inference diagnostic returned provider HTTP 429. Its originals were
+archived and restored; real Copilot smoke, both implementation validations and
+comparison remain unstarted. Diagnostic restoration is not the full Copilot
+preservation gate. Current progress remains in Issues #16–#19.
+
 ## Worker and single Run
 
 Run Docker commands on the Docker host (WSL), using a newly prepared image digest:
