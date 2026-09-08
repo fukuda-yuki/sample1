@@ -75,7 +75,10 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
     management = {'version': 'measurement-control-v3', 'files': {}}
     sources = output / 'management-source'
     sources.mkdir()
-    for filename in MANAGEMENT_FILES:
+    management_files = MANAGEMENT_FILES
+    if config.get('agent') == 'github-copilot-cli':
+        management_files += ('run_copilot.py', 'copilot_scope.py')
+    for filename in management_files:
         data = Path(__file__).with_name(filename).read_bytes()
         (sources / filename).write_bytes(data)
         management['files'][filename] = hashlib.sha256(data).hexdigest()
@@ -99,6 +102,13 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                     or data.get('Options', {}).get('com.docker.network.bridge.gateway_mode_ipv4') != 'isolated'):
                 raise ValueError('Worker requires a dedicated internal network')
         input_mounts = []
+        if config.get('agent') == 'github-copilot-cli':
+            from run_copilot import worker_environment
+            telemetry = output / 'telemetry'
+            telemetry.mkdir(exist_ok=True)
+            input_mounts += ['--mount', f'type=bind,source={telemetry.resolve()},target=/telemetry']
+            for key, value in worker_environment(config, run_id).items():
+                input_mounts += ['--env', key + '=' + value]
         for relative in dist['files']:
             input_mounts += ['--mount', f'type=bind,source={(workspace / relative).resolve()},target=/workspace/{relative},readonly']
         subprocess.run(['docker', 'create', '--name', name, '--network', network,
@@ -138,14 +148,15 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                 if stopped:
                     logs = subprocess.run(['docker', 'logs', name], capture_output=True, text=True, timeout=30)
                     native_usage = []
-                    for line in logs.stdout.splitlines():
+                    for line in ([] if config.get('agent') == 'github-copilot-cli' else logs.stdout.splitlines()):
                         try:
                             event = json.loads(line)
                             if event.get('type') == 'turn.completed' and isinstance(event.get('usage'), dict):
                                 native_usage.append({k: v for k, v in event['usage'].items() if type(v) is int})
                         except (ValueError, AttributeError):
                             pass
-                    write_json(output / 'native-usage.json', native_usage)
+                    if config.get('agent') != 'github-copilot-cli':
+                        write_json(output / 'native-usage.json', native_usage)
                     subprocess.run(['docker', 'rm', name], capture_output=True, timeout=30, check=True)
             except (OSError, subprocess.SubprocessError):
                 stopped = False

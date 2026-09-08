@@ -51,6 +51,8 @@ def collect(directory):
             issues.append({'reason': 'gateway_event_identity_mismatch', 'event_id': identity})
             completion = None
         events.append(completion or event)
+        if completion and completion.get('policy_error'):
+            issues.append({'reason': completion['policy_error'], 'event_id': identity})
     try:
         result = normalize(events, ['implementation'], inventory_complete=bool(started) and not issues)
     except (ValueError, KeyError, TypeError) as error:

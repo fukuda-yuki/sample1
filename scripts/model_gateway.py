@@ -17,8 +17,10 @@ LOCK = threading.Lock()
 
 def record(name, event):
     with LOCK:
-        with (Path('/usage') / name).open('a', encoding='utf-8') as stream:
+        with (Path(os.environ.get('USAGE_DIRECTORY', '/usage')) / name).open('a', encoding='utf-8') as stream:
             stream.write(json.dumps(event) + '\n')
+            stream.flush()
+            os.fsync(stream.fileno())
 
 
 def validate_request(body, model, effort):
@@ -63,7 +65,7 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError('invalid_size')
             raw = self.rfile.read(size)
             body = json.loads(raw)
-            validate_request(body, os.environ['MODEL_ID'], os.environ['EFFORT'])
+            validate_request(body, os.environ['MODEL_ID'], os.environ.get('EFFORT') or None)
         except (ValueError, KeyError) as error:
             self.send_error(403, 'Request policy denied: ' + str(error))
             return
@@ -72,18 +74,29 @@ class Handler(BaseHTTPRequestHandler):
                  'parent_session_id': None, 'event_id': request_id, 'request_id': request_id,
                  'timestamp': datetime.now(timezone.utc).isoformat(),
                  'model_id': os.environ['MODEL_ID'], 'source': 'fixed-upstream-gateway',
-                 'provider': 'openai-chatgpt-codex', 'mode': 'request', 'usage': None,
+                 'provider': os.environ.get('PROVIDER', 'openai-chatgpt-codex'), 'mode': 'request', 'usage': None,
                  'includes_children': False, 'status': 'unknown'}
         record('started.jsonl', event)
         try:
-            auth = json.loads(Path('/secrets/auth.json').read_text())['tokens']
-            headers = {'Authorization': 'Bearer ' + auth['access_token'],
+            if event['provider'] == 'opencode-zen':
+                # Only the gateway mounts this file. No credential in argv/env/logs.
+                key = Path('/secrets/zen-key').read_text().strip()
+                if not key:
+                    raise ValueError('missing_key')
+                headers = {'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json',
+                           'Accept': 'text/event-stream'}
+                connection = http.client.HTTPSConnection('opencode.ai', timeout=300)
+                upstream_path = '/zen/v1/responses'
+            else:
+                auth = json.loads(Path('/secrets/auth.json').read_text())['tokens']
+                headers = {'Authorization': 'Bearer ' + auth['access_token'],
                        'ChatGPT-Account-Id': auth['account_id'],
                        'Content-Type': 'application/json', 'Accept': 'text/event-stream',
                        'User-Agent': 'codex_cli_rs/0.153.0', 'originator': 'codex_cli_rs',
                        'OpenAI-Beta': 'responses=experimental'}
-            connection = http.client.HTTPSConnection('chatgpt.com', timeout=300)
-            connection.request('POST', '/backend-api/codex/responses', body=raw, headers=headers)
+                connection = http.client.HTTPSConnection('chatgpt.com', timeout=300)
+                upstream_path = '/backend-api/codex/responses'
+            connection.request('POST', upstream_path, body=raw, headers=headers)
             response = connection.getresponse()
             self.send_response(response.status)
             self.send_header('Content-Type', response.getheader('Content-Type', 'text/event-stream'))
@@ -107,6 +120,10 @@ class Handler(BaseHTTPRequestHandler):
                             event['status'] = item['type']
                             event['provider_response_id'] = data.get('id')
                             event['response_model_id'] = data.get('model')
+                            if event['response_model_id'] != os.environ['MODEL_ID']:
+                                event['policy_error'] = 'response_model_mismatch'
+                                # Retain consumed usage, but do not deliver a fallback answer.
+                                break
                     except (ValueError, TypeError):
                         pass
                 try:
