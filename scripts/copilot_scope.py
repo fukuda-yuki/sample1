@@ -13,6 +13,55 @@ def settings_hash(config):
     return hashlib.sha256(json.dumps({k: config[k] for k in FIXED}, sort_keys=True).encode()).hexdigest()
 
 
+COMPATIBLE = ('agent', 'provider', 'base_url', 'wire_api', 'model_id', 'agent_version',
+              'budget', 'subagent_policy', 'environment', 'effort', 'tool_versions',
+              'input_hashes', 'score_version', 'evaluator_files')
+INPUTS = ('normal/spec.md', 'anti/spec.md', 'implementation_prompt.md',
+          'evaluation/requirements-ledger.json', 'evaluation/case-manifest.json')
+
+
+def acceptance_conditions(config):
+    """Versioned execution contract, distinct from experiment start authorization."""
+    from run_copilot import validate_config
+    validate_config(config)
+    if any(k not in config for k in COMPATIBLE):
+        raise ValueError('Acceptance conditions missing')
+    if (not config['score_version'] or not config['evaluator_files']
+            or any(not config['input_hashes'].get(k) for k in INPUTS)):
+        raise ValueError('Acceptance input/evaluator pins missing')
+    return {'schema_version': 1, **{k: config[k] for k in COMPATIBLE}}
+
+
+def experiment_identity(config):
+    return {k: config[k] for k in ('experiment_id', 'experiment_version', 'phase')}
+
+
+def check_acceptance(config, reference, base):
+    """Read hash-pinned researcher evidence; never register or promote fixtures."""
+    target = experiment_identity(config)
+    if reference.get('target_experiment') != target or target['phase'] != 'comparison':
+        raise ValueError('Acceptance target experiment mismatch')
+    path = base / reference['path']
+    if hashlib.sha256(path.read_bytes()).hexdigest() != reference['sha256']:
+        raise ValueError('Live acceptance hash mismatch')
+    evidence = read(path)
+    source = evidence.get('source_config', {})
+    if (evidence.get('schema_version') != 1 or source.get('phase') != 'copilot-validation'
+            or evidence.get('kind') != 'real-copilot-muse' or source.get('synthetic')
+            or evidence.get('synthetic') is not False or config.get('synthetic')
+            or not all(evidence.get(k) is True for k in
+                       ('file_edit', 'tool_execution', 'model_continuation', 'usage_reconciled',
+                        'monitor_readback', 'independent_evaluation', 'preservation_verified'))):
+        raise ValueError('Same-path real acceptance is missing')
+    if (evidence.get('source_experiment') != experiment_identity(source)
+            or evidence.get('settings_sha256') != settings_hash(source)):
+        raise ValueError('Acceptance source binding mismatch')
+    if acceptance_conditions(source) != acceptance_conditions(config):
+        raise ValueError('Acceptance execution conditions mismatch')
+    return {'source_experiment': experiment_identity(source), 'target_experiment': target,
+            'evidence_sha256': reference['sha256']}
+
+
 def check(config, run_id=None):
     from run_copilot import validate_config
     validate_config(config)
@@ -28,20 +77,15 @@ def check(config, run_id=None):
     from preservation_gate import check_restoration
     from execution_scope import ROOT
     check_restoration(scope, ROOT)
+    acceptance = None
     if config['phase'] == 'comparison':
-        evidence = read(path.parent / scope['live_acceptance']['path'])
-        if hashlib.sha256((path.parent / scope['live_acceptance']['path']).read_bytes()).hexdigest() != scope['live_acceptance']['sha256']:
-            raise ValueError('Live acceptance hash mismatch')
-        if (evidence.get('settings_sha256') != settings_hash(config)
-                or evidence.get('kind') != 'real-copilot-muse'
-                or not all(evidence.get(k) is True for k in
-                           ('file_edit', 'tool_execution', 'model_continuation', 'usage_reconciled',
-                            'monitor_readback', 'independent_evaluation', 'preservation_verified'))):
-            raise ValueError('Same-path real acceptance is missing')
+        acceptance = check_acceptance(config, scope['live_acceptance'], path.parent)
     reservation = path.parent / 'starts' / (slot + '.json')
     if reservation.exists() and (run_id is None or read(reservation)['run_id'] != run_id):
         raise ValueError('Start already consumed; automatic reimplementation forbidden')
-    return {'scope_sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
+    result = {'scope_sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
+    if acceptance is not None: result['acceptance'] = acceptance
+    return result
 
 
 def reserve(config, run_id):
