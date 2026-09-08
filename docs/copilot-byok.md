@@ -67,3 +67,28 @@ current free/data-training terms and account limits before explicit real use.
 Real Copilot/Zen/Muse connectivity, usage semantics (including cache/reasoning),
 and same-path end-to-end acceptance remain unverified until separately executed.
 This documentation does not declare production execution readiness.
+
+## Run / monitor linkage
+
+```sh
+python scripts/check_monitor_link.py --output results/new-monitor-check dotnet /absolute/path/CopilotAgentObservability.ConfigCli.dll
+python scripts/telemetry_link.py /research/run /research/monitor-locator.json --ingest
+```
+
+The locator JSON contains `instance_id`, the actual absolute `database_path`, and
+`import_command` (an argument array, e.g. `["dotnet", "/absolute/ConfigCli.dll"]`).
+An absent DB fails unless `--initialize --ingest` explicitly creates a new test
+instance. Importer binary hashes and the DB's actual schema versions are saved.
+Import uses official `ingest-raw`; read-back uses a read-only SQLite transaction,
+including WAL, and examines every raw record. Run/session/trace/span/response IDs
+are exact keys; no time/repo/model filtering. Reimported spans deduplicate by
+native identity; conflicts and missing calls invalidate the complete total.
+
+`telemetry-link.json` records native/converted hashes, monitor receipts, native
+sessions/traces, parent relationships, gateway-request/response/chat-span links,
+and submission hash. Only chat request usage is summed. Unreceived usage and
+corrupt tails remain null with observed_tokens separate. Native metric records
+are counted as ignored signals, never added to span totals. Projection completion
+is recorded independently of committed raw read-back; start the matching monitor
+instance to let its normal projection worker catch up, then rerun the command.
+Do not copy a live DB without WAL; this command neither copies nor resets a DB.
