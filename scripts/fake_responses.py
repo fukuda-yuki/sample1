@@ -13,9 +13,14 @@ class Handler(BaseHTTPRequestHandler):
         body = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
         Handler.count += 1
         n = Handler.count
+        numeric={'run_id':os.environ['RUN_ID'],'session_id':'implementation','event_id':f'fixture-{n}',
+                 'request_id':f'fixture-{n}','model_id':body['model'],'provider':'synthetic-responses',
+                 'mode':'request','usage':None}
+        with Path('/telemetry/started.jsonl').open('a') as f:f.write(json.dumps(numeric)+'\n')
         tools = [t.get('name') for t in body.get('tools', [])]
         with Path('/telemetry/requests.jsonl').open('a') as f:
-            f.write(json.dumps({'request': n, 'model': body.get('model'), 'tools': tools}) + '\n')
+            f.write(json.dumps({'request': n, 'model': body.get('model'), 'tools': tools,
+                'policy':{k:body[k] for k in ('model','stream','reasoning','store','background') if k in body}}) + '\n')
         item = ({'id': 'fc_1', 'type': 'function_call', 'call_id': 'call_1', 'name': 'bash',
                  'arguments': json.dumps({'command': 'printf 42 > /workspace/probe.txt; cat /workspace/probe.txt',
                                           'description': 'Write and read synthetic probe'})}
@@ -23,6 +28,8 @@ class Handler(BaseHTTPRequestHandler):
                     'content': [{'type': 'output_text', 'text': 'Observed 42.', 'annotations': []}]})
         response = {'id': f'resp_{n}', 'object': 'response', 'model': body['model'], 'status': 'completed',
                     'output': [item], 'usage': {'input_tokens': 10*n, 'output_tokens': 3}}
+        with Path('/telemetry/events.jsonl').open('a') as f:
+            f.write(json.dumps(dict(numeric,provider_response_id=response['id'],usage=response['usage']))+'\n')
         events = [{'type': 'response.created', 'response': dict(response, status='in_progress', output=[])},
                   {'type': 'response.output_item.added', 'output_index': 0, 'item': dict(item, arguments='') if n == 1 else item}]
         if n == 1:

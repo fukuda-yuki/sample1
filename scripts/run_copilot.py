@@ -66,7 +66,7 @@ def worker_command(c, run_id):
     return ['sh', '-c', bootstrap + shlex.join(command)]
 
 
-def execute(distribution, config, output, secret, *, opt_in=False):
+def execute(distribution, config, output, secret, *, opt_in=False, run_id=None):
     validate_config(config)
     if not opt_in:
         raise ValueError('Real model execution requires --execute-real-model')
@@ -76,7 +76,7 @@ def execute(distribution, config, output, secret, *, opt_in=False):
     validate_distribution(distribution, config)
     if output.exists():
         raise ValueError('Output already exists')
-    run_id = str(uuid.uuid4())
+    run_id = str(uuid.UUID(run_id)) if run_id else str(uuid.uuid4())
     reserve_start(config, run_id)
     raw = output.parent / '.raw-usage' / run_id
     raw.mkdir(parents=True)

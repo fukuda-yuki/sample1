@@ -3,6 +3,8 @@ import argparse
 import json
 from pathlib import Path
 import subprocess
+import sqlite3
+from contextlib import closing
 from test_telemetry_link import fixture
 from telemetry_link import link, atomic, native_to_otlp, inventory, readback
 
@@ -27,6 +29,12 @@ def main(output, command):
     repeat_raw=link(target,locator)
     assert repeat_raw['usage_complete']
     assert json.loads((target/'usage.json').read_text())['total_tokens']==27
+    # SQLite's online backup includes the committed WAL view; never copy .db alone.
+    backup=output/'moved-monitor.db'
+    with closing(sqlite3.connect(Path(locator['database_path']).as_uri()+'?mode=ro',uri=True)) as source:
+        with closing(sqlite3.connect(backup)) as destination:source.backup(destination)
+    relocated=link(target,dict(locator,database_path=str(backup)))
+    assert relocated['trace_ids']==repeat_raw['trace_ids'] and relocated['usage_complete']
     # Wrong DB must not silently create a database or retain a complete total.
     try:
         link(target,dict(locator,database_path=str(output/'absent.db')))
@@ -47,7 +55,7 @@ def main(output, command):
         assert json.loads((target/'usage.json').read_text())['total_tokens'] is None
     evidence={'kind':'actual-monitor-synthetic-input','model_called':False,'target_only':True,
               'reimport_idempotent':True,'raw_duplicate_deduped':True,'multiple_sessions':True,
-              'tokens_before_collision':27,'wrong_db_rejected':True,'id_collision_rejected':True,
+              'tokens_before_collision':27,'wrong_db_rejected':True,'id_collision_rejected':True,'consistent_backup_relocated':True,
               'monitor':locator,'ingestion':repeat_raw['ingestion']}
     atomic(output/'evidence.json',evidence)
     print(json.dumps(evidence))

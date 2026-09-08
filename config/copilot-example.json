@@ -1,0 +1,17 @@
+{
+  "agent": "github-copilot-cli",
+  "provider": "opencode-zen",
+  "base_url": "https://opencode.ai/zen/v1",
+  "wire_api": "responses",
+  "experiment_version": "copilot-zen-001",
+  "model_id": null,
+  "agent_version": "1.0.83-5",
+  "effort": null,
+  "subagent_policy": "disabled",
+  "tool_versions": {},
+  "environment": {"image": null, "timezone": "Asia/Tokyo"},
+  "budget": {"kind": "wall_clock_seconds", "scope": "container", "value": null},
+  "authorization_file": null,
+  "score_version": null,
+  "evaluator_files": {}
+}

@@ -33,8 +33,8 @@ class GatewayTests(unittest.TestCase):
                         headers={'Content-Type': 'application/json'})
                     try:
                         urllib.request.urlopen(req, timeout=5).read()
-                    except urllib.error.HTTPError:
-                        pass
+                    except urllib.error.HTTPError as error:
+                        error.close()
                 finally:
                     server.shutdown()
                     server.server_close()

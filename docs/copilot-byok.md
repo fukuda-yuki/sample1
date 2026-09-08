@@ -47,6 +47,7 @@ python -m unittest discover -s scripts -p 'test_*.py'
 python evaluation/validate-requirements.py
 python3 scripts/check_copilot_native.py --image <copilot-image-digest> --output /research/new-synthetic-cli-check
 python3 scripts/check_offline_runtime.py --image <copilot-image-digest> --evidence /research/offline-runtime.json
+python3 scripts/check_copilot_lifecycle.py --evidence /research/copilot-lifecycle.json
 ```
 
 The native check uses the actual CLI against a synthetic Responses server on an
@@ -92,3 +93,78 @@ are counted as ignored signals, never added to span totals. Projection completio
 is recorded independently of committed raw read-back; start the matching monitor
 instance to let its normal projection worker catch up, then rerun the command.
 Do not copy a live DB without WAL; this command neither copies nor resets a DB.
+
+## Fixed batch and independent evaluation
+
+Use the repository's analysis environment (`.venv/Scripts/python.exe` on this
+Windows checkout; install `analysis/requirements.txt` in a dedicated environment
+if needed). The example deliberately leaves model, budget, image, start authority
+and evaluator version unset. Copy and complete it privately before creating a
+real plan. It does not silently choose a Muse release or a budget.
+
+```sh
+python scripts/copilot_batch.py plan /research/new-batch --config /research/copilot-config.json --seed 123
+python scripts/copilot_batch.py status /research/new-batch
+python scripts/copilot_batch.py check /research/new-batch
+python scripts/copilot_batch.py run /research/new-batch --locator /research/monitor-locator.json --secret-file /private/zen-key --execute-real-model --limit 1
+python scripts/copilot_batch.py evaluate /research/new-batch --slot normal-001 --private-root /research/private-eval --evaluator-image <digest> --validity /research/private-eval/evaluation-validity.json
+python scripts/copilot_batch.py resume /research/new-batch --locator /research/monitor-locator.json --secret-file /private/zen-key --execute-real-model --private-root /research/private-eval --evaluator-image <digest> --validity /research/private-eval/evaluation-validity.json
+python scripts/copilot_batch.py export /research/new-batch --validity /research/private-eval/evaluation-validity.json
+```
+
+Choose the actual started slot from `run-index.json`; seed 123 does not imply
+normal starts first. `run/resume` is serial. Without private-root it stops at the
+first fixed submission awaiting evaluation. With private-root it evaluates each
+submission independently before the next start. It stops on incomplete usage or
+invalid/pending evaluation; valid zero quality continues. It never replaces a
+failed attempt. An exclusive batch.lock prevents concurrent starts; an abrupt
+host kill leaves it for inspection. Verify its recorded host/PID and the named
+Run containers have stopped before manually removing a stale lock. Resume never
+turns an uncertain started slot back into an unstarted slot.
+
+Pin `score_version` and `evaluator_files` from the actual calibrated private
+`version.json` in the plan. The evaluator must retain the public case manifest.
+The collector uses that attempt's frozen private ledger, including its audit
+metadata, rather than relabeling a historical public version. Current researcher
+validity decisions remain required. `evaluate` appends a hash-bound record only
+for its new pinned independent attempt: completed or application-unavailable is
+valid, evaluator/isolation errors stay pending/null. Existing adjudications are
+never replaced. Manually imported results without a decision stay pending/null.
+`evaluate` creates a fresh evaluation ID, preserves earlier attempts
+and replaces only the explicit selected reference. It never resumes implementation.
+Do not mark an evaluator error as valid simply to advance the batch.
+
+`export` verifies Run/submission/usage/original hashes and selected evaluation
+bindings. It writes 40 rows including unstarted slots, 58 case statuses per
+selected evaluation, sanitized provenance, one derived analysis.sqlite and the
+existing plot. Case evidence/screenshots/private paths/raw payloads are excluded.
+Token counts are aggregated before joining cases. Null coordinates stay outside
+the chart. plot-input.csv uses `unstarted:<slot>` solely as an unstarted plot label;
+the main CSV/SQLite keep the Run UUID null. Exports do not upload anything.
+
+### Reproducible acceptance checks
+
+```sh
+python scripts/check_copilot_batch.py --output results/new-synthetic-40 dotnet /absolute/path/CopilotAgentObservability.ConfigCli.dll
+python -m unittest discover -s scripts -p 'test_*.py'
+python -m unittest discover -s analysis -p 'test_*.py'
+python evaluation/validate-requirements.py
+```
+
+The forty-run test uses separate fake CLI processes, numeric fixture usage and
+synthetic 58-case result files with the existing collector/validity/aggregator.
+It uses the actual monitor importer and read-back, verifies 40 archive restores,
+resumes after seven starts, rejects double launch, keeps valid zero scores,
+introduces one missing observation, and regenerates matching CSV/SQLite/PNG.
+Those case files are format fixtures, **not hidden E2E executions or real model
+results**. Real private evaluator calibration is a separate non-model operation:
+on this checkout `python3 ../sample1-private-eval-linux/calibrate-isolated.py
+--variant self-registration` ran in WSL using its existing independent containers.
+
+The actual CLI synthetic test established edit/tool/continuation and the native
+span+metric JSONL layout. The actual dependency probe established cached .NET
+restore/SQLite query, npm ci and Vite/React startup in the prepared Copilot image.
+Actual monitor fixture ingestion/read-back and projection catch-up were checked
+on a separate DB. Real Zen/Muse inference, account/free terms, long-run behavior,
+and full real-implementation-to-E2E acceptance were not performed. No additional
+pilot or forty real comparison Runs were started.
