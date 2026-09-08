@@ -70,12 +70,12 @@ def plan(root, config, seed):
     return status(root)
 
 
-def load(root):
+def load(root, *, input_root=None):
     config,index=read(root/'experiment.json'),read(root/'run-index.json')
     if index['config_sha256']!=digest(root/'experiment.json') or index['plan_sha256']!=digest(root/'planned-runs.json'):
         raise ValueError('Fixed plan/config changed')
     for path,value in config['input_hashes'].items():
-        if digest(ROOT/path)!=value:raise ValueError('Fixed public input changed: '+path)
+        if digest((input_root or ROOT)/path)!=value:raise ValueError('Fixed public input changed: '+path)
     planned=read(root/'planned-runs.json')['order']
     if len(planned)!=planned_count(config) or len(index['runs'])!=len(planned) or any({k:r[k] for k in p}!=p for r,p in zip(index['runs'],planned)):
         raise ValueError('Planned slots differ')
@@ -241,8 +241,26 @@ def evaluate_run(root,config,row,run,private_root,image,validity):
     return {'evaluation_id':resources['evaluation_id'],'valid':rows[0]['quality_percent'] is not None and read(run/'usage.json')['usage_complete']}
 
 
-def export(root,validity,*,output=None):
-    config,index=load(root)
+def export(root,validity,*,output=None,restoration_map=None):
+    relocated = None
+    if restoration_map is not None:
+        from preserve import tree, content_equal
+        mapping=read(restoration_map)
+        if mapping.get('schema_version')!=1:
+            raise ValueError('Unknown restoration map version')
+        restored=restoration_map.resolve().parent / mapping['payload']
+        package=restoration_map.resolve().parent / mapping['package_index']
+        if digest(package)!=mapping['package_sha256']:
+            raise ValueError('Restored package index changed')
+        if not content_equal(tree(restored),read(package)['files']):
+            raise ValueError('Restored originals changed')
+        if root.resolve()!= (restored/'batch').resolve() or validity.resolve()!= (restored/'validity.json').resolve():
+            raise ValueError('Restoration root/validity mismatch')
+        relocated=read(restored/'evaluation-locations.json')
+        output=output or restoration_map.resolve().parent/'export'
+        if output.resolve().is_relative_to(restored.resolve()):
+            raise ValueError('Export must not modify restored originals')
+    config,index=load(root,input_root=restored/'inputs' if relocated is not None else None)
     output=output or root/'export'
     if (output/'provenance.json').exists():
         previous=read(output/'provenance.json')
@@ -263,6 +281,16 @@ def export(root,validity,*,output=None):
             if ref['run_id']!=slot['run_id'] or ref['submission_hash']!=digest(run/'snapshot.json'):
                 raise ValueError('Selected evaluation identity mismatch')
             directory=Path(ref['evaluation_directory'])
+            if relocated is not None:
+                location=relocated[ref['evaluation_id']]
+                if location['original_directory']!=ref['evaluation_directory']:
+                    raise ValueError('Restored evaluation reference mismatch')
+                directory=restored/location['path']
+                if not directory.resolve().is_relative_to(restored.resolve()):
+                    raise ValueError('Restored evaluation outside payload')
+            identity=directory.parent.name if directory.name=='result' else directory.name
+            if identity!=ref['evaluation_id'] or slot['evaluation_id']!=ref['evaluation_id']:
+                raise ValueError('Selected evaluation ID mismatch')
             if digest(directory/'summary.json')!=ref['summary_sha256'] or digest(directory/'results.jsonl')!=ref['results_sha256']:
                 raise ValueError('Selected evaluation original changed')
             if not config.get('synthetic') and read(directory/'summary.json')['evaluator_hash']!=config.get('score_version'):
@@ -282,9 +310,9 @@ def export(root,validity,*,output=None):
             if current_usage['total_tokens']!=sum(sum(c['tokens']) for c in telemetry['model_calls']):
                 raise ValueError('Usage and linked call totals disagree')
         links[slot['run_id']]=telemetry
-        selections.append({'run_directory':str(run),'evaluation_directory':ref['evaluation_directory'] if ref else None})
+        selections.append({'run_directory':str(run),'evaluation_directory':str(directory) if ref else None})
     if selections:
-        ledger=ledgers[0] if ledgers else ROOT/'evaluation/requirements-ledger.json'
+        ledger=ledgers[0] if ledgers else (restored/'inputs' if relocated is not None else ROOT)/'evaluation/requirements-ledger.json'
         if any(digest(p)!=digest(ledger) for p in ledgers):raise ValueError('Mixed evaluator ledgers')
         runs,cases=collect(selections,ledger,validity_path=validity,validation=batch_phase(config)=='copilot-validation')
         for r in runs:
@@ -371,6 +399,7 @@ def main():
     p.add_argument('--execute-real-model',action='store_true')
     p.add_argument('--private-root',type=Path);p.add_argument('--evaluator-image');p.add_argument('--validity',type=Path)
     p.add_argument('--slot');p.add_argument('--limit',type=int,default=40)
+    p.add_argument('--restoration-map',type=Path)
     a=p.parse_args();root=a.root.resolve()
     if a.action=='plan':
         if not a.config:p.error('plan requires --config')
@@ -378,7 +407,8 @@ def main():
     elif a.action=='status':result=status(root)
     elif a.action=='export':
         if not a.validity:p.error('export requires current --validity')
-        result=export(root,a.validity)
+        result=export(root,a.validity,restoration_map=a.restoration_map,
+                      output=a.restoration_map.resolve().parent/'export' if a.restoration_map else None)
     else:
         config,index=load(root)
         if a.action=='check':

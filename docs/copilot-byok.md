@@ -250,6 +250,49 @@ the main CSV/SQLite keep the Run UUID null. Exports do not upload anything.
 
 ### Reproducible acceptance checks
 
+#### Acceptance compatibility and relocated analysis
+
+`copilot_scope.settings_hash()` still binds start authority to its exact experiment
+ID/version and existing execution settings. A comparison authority's
+`live_acceptance` additionally contains `path`, `sha256`, and `target_experiment`
+(`experiment_id`, `experiment_version`, `phase=comparison`). It does not reuse the
+validation experiment's start authorization.
+
+The hash-pinned acceptance document uses `schema_version=1`,
+`kind=real-copilot-muse`, `synthetic=false`, `source_config` (the original complete
+validation configuration), `source_experiment` (its ID/version/phase), and
+`settings_sha256` computed from that source configuration. Existing seven acceptance
+checks must all be true. Source phase must be `copilot-validation`.
+The separate compatibility contract requires equal agent/provider/endpoint/wire API,
+exact model/CLI, budget, environment image and other environment settings, effort,
+subagent policy, tool versions, all input hashes, score version and evaluator file
+hashes. Missing input/evaluator pins are rejected. The start result retains both
+experiment identities and the evidence hash in the Run's authorization provenance.
+Old evidence without these bindings fails closed. Create this document only from
+actual accepted observations; the format tests do not register real acceptance.
+
+For offline analysis, explicitly preserve the fixed batch/index, selected Run and
+evaluation originals, input files and validity snapshot. This is a private analysis
+package, not a full runtime/image backup or a shareable export. The small packaging
+entry rejects validity records with adjudication dependencies rather than silently
+omitting those documents; the existing synthetic validation has no such dependencies.
+
+```sh
+python scripts/copilot_analysis_archive.py pack /research/batch /research/validity.json /archive /research/new-reference.json
+python scripts/copilot_analysis_archive.py restore /archive /research/new-reference.json /research/new-restoration
+python scripts/copilot_batch.py export /research/new-restoration/payload/batch --validity /research/new-restoration/payload/validity.json --restoration-map /research/new-restoration/restoration-map.json
+python scripts/check_copilot_analysis_restore.py results/bounded-validation-final results/new-relocation-drill --archive /archive
+```
+
+The restoration map and hash-pinned package index stay outside the immutable
+payload; original absolute references, IDs and hashes remain unchanged. Export
+verifies every restored file, resolves selected evaluation locations within the
+payload, and writes beside the payload. It uses the preserved validity snapshot to
+reproduce that historical analysis, not to grant current start permission. No live
+monitor or model is contacted. The drill renames its trial source and rejects source,
+archive and repository-input reads using a Python audit hook in a separate export
+process. This tests this exporter; it is not an OS sandbox for arbitrary programs.
+
 ```sh
 python scripts/check_copilot_batch.py --output results/new-synthetic-40 dotnet /absolute/path/CopilotAgentObservability.ConfigCli.dll
 python -m unittest discover -s scripts -p 'test_*.py'

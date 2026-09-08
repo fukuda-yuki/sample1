@@ -3,6 +3,12 @@
 判定は **提供元応答により停止**。実機受入は未完了。本比較40本・旧停止Runは開始していない。
 進捗と後続判断の正本は [Issue #16](https://github.com/fukuda-yuki/sample1/issues/16) と #17〜#19。
 
+後続の非モデル修正では、末尾の残件3・4を実推論成功から切り離して検証した。
+開始許可hashを維持した受入互換性判定と、合成validation 2枠の復元先だけでの
+CSV／SQLite再生成を追加した。手順・適用条件は
+[受入互換性と移設分析](copilot-byok.md#acceptance-compatibility-and-relocated-analysis)を参照。
+以下はPR #21後の当時の記録であり、実Copilot／Muse受入未完了という判定は変わらない。
+
 ## 対象と実施結果
 
 実行ソースはPR #21のマージコミット `e6ee0b8eac8eaadec9c02537347f22118d0b8948`。
