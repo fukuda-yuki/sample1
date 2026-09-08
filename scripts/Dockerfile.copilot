@@ -1,0 +1,6 @@
+# Reuse the already prepared common dependency image; supply its immutable digest.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+USER root
+RUN npm install -g @github/copilot@1.0.83-5 && copilot --version
+WORKDIR /workspace

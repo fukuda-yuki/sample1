@@ -7,6 +7,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def check_start(config, run_id=None):
+    if config.get('agent') == 'github-copilot-cli':
+        from copilot_scope import check
+        return check(config, run_id)
     if config.get('phase') == 'diagnostic':
         from diagnostic_scope import check
         return check(config, ROOT, run_id)
@@ -36,6 +39,9 @@ def check_start(config, run_id=None):
 
 
 def reserve_start(config, run_id):
+    if config.get('agent') == 'github-copilot-cli':
+        from copilot_scope import reserve
+        return reserve(config, run_id)
     if config.get('phase') == 'diagnostic':
         from diagnostic_scope import reserve
         return reserve(config, ROOT, run_id)

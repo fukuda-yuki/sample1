@@ -2,6 +2,7 @@
 import argparse
 import csv
 import math
+from collections import Counter
 from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
@@ -37,12 +38,18 @@ def plot(source, destination):
     valid = [r for r in rows if r['total_tokens'] != '' and r['quality_percent'] != '']
     missing = [r for r in rows if r not in valid]
     fig, ax = plt.subplots(figsize=(12, 7), layout='constrained')
+    coordinates = Counter((float(r['total_tokens']), float(r['quality_percent'])) for r in valid)
+    annotated = set()
     for r in valid:
         x, y = float(r['total_tokens']), float(r['quality_percent'])
         color = colors[r['condition']]
         ax.scatter(x, y, marker=markers[r['end_reason']], s=75, edgecolors=color,
                    facecolors=color if r['condition'] == 'normal' else 'none', linewidths=1.5)
-        ax.annotate(r['run_id'], (x, y), xytext=(5, 6), textcoords='offset points', fontsize=7)
+        if len(valid) <= 10:
+            ax.annotate(r['run_id'], (x, y), xytext=(5, 6), textcoords='offset points', fontsize=7)
+        elif coordinates[(x, y)] > 1 and (x, y) not in annotated:
+            ax.annotate(f'{coordinates[(x, y)]} Runs', (x, y), xytext=(5, 6), textcoords='offset points', fontsize=8)
+            annotated.add((x, y))
     for condition, color in colors.items():
         ax.scatter([], [], s=60, edgecolors=color, facecolors=color if condition == 'normal' else 'none', label=condition)
     for reason in sorted({r['end_reason'] for r in valid}):
