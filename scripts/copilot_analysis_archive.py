@@ -18,6 +18,7 @@ def analysis_sources(root, validity):
     for folder in ('scripts','analysis'):
         for source in (ROOT/folder).glob('*.py'):
             sources['management/'+folder+'/'+source.name]=source
+    sources['management/analysis/requirements.txt']=ROOT/'analysis/requirements.txt'
     for name in ('dispatches','plan-revisions','parallel-control.json',
                  'source-experiment.json','source-run-index.json','rescore-plan.json',
                  'reanalysis-source.json'):

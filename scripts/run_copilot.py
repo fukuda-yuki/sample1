@@ -47,6 +47,8 @@ def validate_config(c):
     b = c['budget']
     if b['kind'] != 'wall_clock_seconds' or b['scope'] != 'container' or type(b['value']) is not int or b['value'] <= 0:
         raise ValueError('Positive common container budget required')
+    if c['phase']=='copilot-smoke' and b['value']>300:
+        raise ValueError('Unscored smoke budget cannot exceed 300 seconds')
     if not re.fullmatch(r'(?:[^\s]+@)?sha256:[0-9a-f]{64}', c['environment']['image']):
         raise ValueError('Digest-pinned prepared image required')
 

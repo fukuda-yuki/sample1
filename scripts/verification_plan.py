@@ -10,7 +10,7 @@ COMPONENTS={
  'usage':('scripts/gateway_usage.py','scripts/normalize_usage.py','scripts/telemetry_link.py'),
  'parallel':('scripts/copilot_parallel.py','scripts/copilot_batch_worker.py','scripts/copilot_recovery.py','scripts/copilot_batch.py','scripts/run_cleanup.py'),
  'scoring':('evaluation/case-manifest.json','evaluation/requirements-ledger.json','analysis/aggregate.py','analysis/measurement.py'),
- 'export':('scripts/copilot_batch.py','analysis/collect_runs.py','analysis/aggregate.py','analysis/measurement.py','analysis/validity.py','analysis/plot.py'),
+ 'export':('scripts/copilot_batch.py','analysis/collect_runs.py','analysis/aggregate.py','analysis/measurement.py','analysis/validity.py','analysis/plot.py','analysis/requirements.txt'),
  'preservation':('scripts/preserve.py','scripts/copilot_analysis_archive.py','scripts/check_copilot_analysis_restore.py'),
 }
 CHECKS={

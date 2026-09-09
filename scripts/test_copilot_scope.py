@@ -86,6 +86,9 @@ class AcceptanceTests(unittest.TestCase):
                 self.assertEqual(full.call_count, int(not short))
         with self.assertRaisesRegex(ValueError, 'only valid for smoke'):
             scope.check_smoke_readiness(self.target, {}, self.root)
+        from run_copilot import validate_config
+        with self.assertRaisesRegex(ValueError,'300 seconds'):
+            validate_config(dict(smoke,budget=dict(smoke['budget'],value=301)))
 
     def test_missing_evidence_pins_and_flags_rejected(self):
         for key in ('source_config','source_experiment','settings_sha256','kind','synthetic',
