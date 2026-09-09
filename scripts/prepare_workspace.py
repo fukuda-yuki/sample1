@@ -24,7 +24,28 @@ def validate_pair(repo):
     return normal, anti
 
 
-def prepare(repo, condition, destination):
+def render_contract(repo, config=None):
+    text = (repo / 'implementation_prompt.md').read_text(encoding='utf-8-sig')
+    if config is None:
+        return text.encode('utf-8')
+    if config.get('subagent_policy') != 'disabled' or config.get('effort') is not None:
+        raise ValueError('Unsupported implementation contract settings')
+    seconds = config['budget']['value']
+    if type(seconds) is not int or seconds <= 0:
+        raise ValueError('Positive integer contract budget required')
+    import re
+    text, count = re.subn(r'- 実装役は .*?サブエージェントは起動しない。',
+        f"- 実装役は `{config['model_id']}`、effortは未指定。サブエージェントは起動しない。", text)
+    if count != 1:
+        raise ValueError('Missing or ambiguous model contract template')
+    text, count = re.subn(r'共通上限は実装プロセス開始から経過60分',
+        f'共通上限は実装プロセス開始から経過{seconds}秒', text)
+    if count != 1:
+        raise ValueError('Missing budget contract template')
+    return text.encode('utf-8')
+
+
+def prepare(repo, condition, destination, config=None):
     normal, anti = validate_pair(repo)
     if destination.exists():
         raise ValueError('Destination must not already exist')
@@ -32,7 +53,7 @@ def prepare(repo, condition, destination):
     workspace = destination / 'workspace'
     workspace.mkdir()
     files = {'spec.md': (normal if condition == 'normal' else anti).encode('utf-8'),
-             'RUN_CONTRACT.md': (repo / 'implementation_prompt.md').read_text(encoding='utf-8-sig').encode('utf-8')}
+             'RUN_CONTRACT.md': render_contract(repo, config)}
     for name, data in files.items():
         (workspace / name).write_bytes(data)
     manifest = {'schema_version': 1, 'condition': condition, 'neutral_path': '/workspace',

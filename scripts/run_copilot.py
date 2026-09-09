@@ -19,7 +19,7 @@ SMOKE = 'Create probe.txt containing 42. Run a shell command that reads it and c
 
 
 def validate_config(c):
-    for key, value in {'agent': 'github-copilot-cli', 'wire_api': 'responses',
+    for key, value in {'agent': 'github-copilot-cli',
                        'agent_version': CLI_VERSION, 'effort': None,
                        'subagent_policy': 'disabled'}.items():
         if c.get(key) != value:
@@ -29,11 +29,14 @@ def validate_config(c):
                  re.fullmatch(r'muse-[a-z0-9.-]+-contributor-free', c.get('model_id') or ''))
     elif c.get('provider') == 'opencode-go':
         valid = (c.get('base_url') == 'https://opencode.ai/zen/go/v1' and
-                 c.get('model_id') in ('muse-spark-1.3-contributor', 'muse-spark-1.2-contributor'))
+                 c.get('model_id') in ('muse-spark-1.3-contributor', 'muse-spark-1.2-contributor', 'omen-alpha', 'mimo-v2.5'))
     else:
         valid = False
     if not valid:
         raise ValueError('Unsupported fixed provider, endpoint or exact model ID')
+    expected_wire = 'completions' if c['model_id'] in ('omen-alpha','mimo-v2.5') else 'responses'
+    if c.get('wire_api') != expected_wire:
+        raise ValueError('Model wire protocol mismatch')
     uuid.UUID(c['experiment_id'])
     if not c['experiment_version'].startswith('copilot-'):
         raise ValueError('New Copilot experiment version required')
@@ -44,6 +47,8 @@ def validate_config(c):
     b = c['budget']
     if b['kind'] != 'wall_clock_seconds' or b['scope'] != 'container' or type(b['value']) is not int or b['value'] <= 0:
         raise ValueError('Positive common container budget required')
+    if c['phase']=='copilot-smoke' and b['value']>300:
+        raise ValueError('Unscored smoke budget cannot exceed 300 seconds')
     if not re.fullmatch(r'(?:[^\s]+@)?sha256:[0-9a-f]{64}', c['environment']['image']):
         raise ValueError('Digest-pinned prepared image required')
 
@@ -51,7 +56,7 @@ def validate_config(c):
 def worker_environment(c, run_id):
     return {'COPILOT_HOME': '/home/agent/.copilot', 'COPILOT_PROVIDER_TYPE': 'openai',
             'COPILOT_PROVIDER_BASE_URL': 'http://model-gateway:8080',
-            'COPILOT_PROVIDER_WIRE_API': 'responses', 'COPILOT_PROVIDER_TRANSPORT': 'http',
+            'COPILOT_PROVIDER_WIRE_API': c.get('wire_api','responses'), 'COPILOT_PROVIDER_TRANSPORT': 'http',
             'COPILOT_MODEL': c['model_id'], 'COPILOT_OTEL_EXPORTER_TYPE': 'file',
             'COPILOT_OTEL_FILE_EXPORTER_PATH': '/telemetry/native.jsonl',
             'OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT': 'false',
@@ -91,19 +96,26 @@ def execute(distribution, config, output, secret, *, opt_in=False, run_id=None):
     network, gateway = 'sample1-private-' + run_id, 'sample1-gateway-' + run_id
     c = dict(config, command=worker_command(config, run_id), usage_raw_directory=str(raw.resolve()))
     stopped, created, failure = True, False, None
+    result = None
+    network_created=None
     def docker(*args):
         return subprocess.run(['docker', *args], check=True, capture_output=True, timeout=60)
     try:
-        docker('network', 'create', '--internal', '--opt', 'com.docker.network.bridge.gateway_mode_ipv4=isolated',
+        network_created=docker('network', 'create', '--internal', '--opt', 'com.docker.network.bridge.gateway_mode_ipv4=isolated',
                '--label', 'sample1.run_id=' + run_id, network)
-        docker('create', '--name', gateway, '--network', 'bridge', '--read-only', '--cap-drop', 'ALL',
+        gateway_created=docker('create', '--name', gateway, '--network', 'bridge', '--read-only', '--cap-drop', 'ALL',
                '--security-opt', 'no-new-privileges', '--user', f'{os.getuid()}:{os.getgid()}',
                '--env', 'RUN_ID=' + run_id, '--env', 'MODEL_ID=' + config['model_id'],
+               '--env', 'EXPERIMENT_ID=' + config['experiment_id'],
+               '--env', 'WIRE_API=' + config['wire_api'],
+               '--env', 'MODEL_HTTP_503_POLICY=' + config.get('model_http_503_policy',''),
+               '--label', 'sample1.run_id=' + run_id,
                '--env', 'PROVIDER=' + config['provider'], '--env', 'PYTHONDONTWRITEBYTECODE=1',
                '--mount', f'type=bind,source={secret.resolve()},target=/secrets/zen-key,readonly',
                '--mount', f'type=bind,source={Path(__file__).with_name("model_gateway.py").resolve()},target=/gateway.py,readonly',
                '--mount', f'type=bind,source={raw.resolve()},target=/usage',
                GATEWAY_IMAGE, 'python', '/gateway.py')
+        c['runtime_resources']={network:network_created.stdout.decode().strip(),gateway:gateway_created.stdout.decode().strip()}
         created, stopped = True, False
         docker('network', 'connect', '--alias', 'model-gateway', network, gateway)
         check_start(c, run_id)
@@ -121,29 +133,57 @@ def execute(distribution, config, output, secret, *, opt_in=False, run_id=None):
             run(distribution, c, output, run_id_override=run_id, setup_failure=True, _reserved=True)
         raise
     finally:
+        failed_503 = (raw / 'provider-failure.json').exists()
         if created:
             try:
-                docker('stop', '--time', '2', gateway)
+                docker('stop', '--time', '2', c['runtime_resources'][gateway])
             except (OSError, subprocess.SubprocessError):
                 pass
+            failed_503 = (raw / 'provider-failure.json').exists()
             try:
-                docker('rm', '-f', gateway)
-                stopped = True
+                if failed_503:
+                    stopped = json.loads(docker('inspect',c['runtime_resources'][gateway]).stdout)[0]['State']['Running'] is False
+                else:
+                    docker('rm', '-f', c['runtime_resources'][gateway])
+                    stopped = True
             except (OSError, subprocess.SubprocessError):
                 pass
-        try:
-            docker('network', 'rm', network)
-        except (OSError, subprocess.SubprocessError):
-            pass
+        # A final response can arrive after worker exit while usage is drained.
+        # Apply the header signal before publishing the preserved manifest/result.
+        failed_503 = (raw / 'provider-failure.json').exists()
+        if failed_503:
+            provider_failure=read(raw/'provider-failure.json')
+            if (provider_failure.get('run_id')!=run_id or provider_failure.get('experiment_id')!=c['experiment_id']
+                    or provider_failure.get('http_status')!=503):
+                raise ValueError('Provider failure identity/status mismatch')
+            if output.exists():
+                manifest=read(output/'manifest.json')
+                manifest.update(end_reason='provider_unavailable',stop_trigger='model_http_503',provider_failure=provider_failure)
+                write_json(output/'manifest.json',manifest)
+                if result is not None:result.update(manifest)
+        if not failed_503 and network_created:
+            try:
+                docker('network', 'rm', network_created.stdout.decode().strip())
+            except (OSError, subprocess.SubprocessError):
+                pass
         save_usage(output, raw, producer_stopped=stopped, error=failure)
         if output.exists():
             scope = read(Path(c['authorization_file']))
             from preservation_gate import archive_root
             sources = {name: output / name for name in ('manifest.json', 'snapshot.json', 'frozen', 'inputs',
-                       'raw-usage', 'usage.json', 'telemetry', 'management-source') if (output / name).exists()}
+                       'raw-usage', 'usage.json', 'telemetry', 'management-source', 'agent.stdout.log', 'agent.stderr.log') if (output / name).exists()}
             receipt = pack(archive_root(scope), 'copilot-' + run_id, sources,
                            metadata={'kind': 'copilot-run', 'run_id': run_id})
             write_json(output / 'preservation.json', receipt)
+            if failed_503 and c.get('model_http_503_policy') == 'stop_run_and_cleanup':
+                from run_cleanup import cleanup
+                try:
+                    if not stopped:
+                        raise ValueError('Gateway stop unconfirmed')
+                    result = cleanup(output,run_id,archive_root(scope),receipt)
+                except (ValueError,OSError,subprocess.SubprocessError) as error:
+                    result = {'run_id':run_id,'status':'failed','reason':str(error)}
+                write_json(output/'cleanup-result.json',result)
 
 
 if __name__ == '__main__':

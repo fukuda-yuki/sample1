@@ -219,6 +219,11 @@ Do not copy a live DB without WAL; this command neither copies nor resets a DB.
 
 ## Fixed batch and independent evaluation
 
+The commands and serial semantics below describe the legacy batch format.
+Explicit schema 2 plans use [the new N/K/limit and measurement protocol](meaningful-evaluation.md).
+They are never silently migrated. Schema 2 completed evaluations remain pending
+until evidence-backed validity review; execution completion alone is not approval.
+
 Use the repository's analysis environment (`.venv/Scripts/python.exe` on this
 Windows checkout; install `analysis/requirements.txt` in a dedicated environment
 if needed). The example deliberately leaves model, budget, image, start authority

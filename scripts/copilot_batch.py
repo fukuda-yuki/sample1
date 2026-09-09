@@ -12,7 +12,7 @@ import sqlite3
 import subprocess
 import sys
 import uuid
-from preserve import read, digest, pack, restore, verify
+from preserve import read, digest, pack, restore, verify, ensure_package
 from run_experiment import snapshot, verify_snapshot
 from telemetry_link import atomic, link, canonical
 from prepare_workspace import prepare
@@ -25,15 +25,41 @@ from aggregate import aggregate
 
 
 @contextmanager
-def lock(root):
-    path=root/'batch.lock'
-    with path.open('x') as stream:
-        stream.write(json.dumps({'pid':os.getpid(),'host':__import__('socket').gethostname()}))
-        stream.flush();os.fsync(stream.fileno())
+def lock(root, name='batch.lock', *, recover_stale=False):
+    path=root/name
+    token=str(uuid.uuid4())
+    owner=None
+    if os.name=='posix':
+        from copilot_parallel import process_identity
+        owner=process_identity()
+    # OS lock releases on process death; a crashed acquisition cannot strand recovery.
+    with (root/'lock-acquisition.lck').open('a+b') as gate:
+        if os.name=='posix':
+            import fcntl
+            fcntl.flock(gate,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        else:
+            import msvcrt
+            if gate.tell()==0:gate.write(b'0');gate.flush()
+            gate.seek(0);msvcrt.locking(gate.fileno(),msvcrt.LK_NBLCK,1)
+        try:
+            if name=='batch.lock' and (root/'recovery.lock').exists():
+                raise ValueError('Recovery in progress; model dispatch is forbidden')
+            if recover_stale and path.exists():
+                from copilot_parallel import alive
+                previous=read(path)
+                if not previous.get('owner') or alive(previous['owner']):
+                    raise ValueError('Lock owner termination is unconfirmed')
+                path.rename(root/('recovered-'+name+'-'+str(uuid.uuid4())+'.json'))
+            with path.open('x') as stream:
+                stream.write(json.dumps({'pid':os.getpid(),'host':__import__('socket').gethostname(),'token':token,'owner':owner}))
+                stream.flush();os.fsync(stream.fileno())
+        finally:
+            if os.name=='posix':fcntl.flock(gate,fcntl.LOCK_UN)
+            else:gate.seek(0);msvcrt.locking(gate.fileno(),msvcrt.LK_UNLCK,1)
     try:
         yield
     finally:
-        path.unlink()
+        if path.exists() and read(path).get('token')==token:path.unlink()
 
 
 def batch_phase(config):
@@ -48,6 +74,9 @@ def planned_count(config):
 
 
 def plan(root, config, seed):
+    if config.get('batch_schema')==2:
+        from copilot_parallel import make_plan
+        return make_plan(root,config,seed)
     count = planned_count(config)
     root.mkdir(parents=True,exist_ok=False)
     experiment=dict(config,experiment_id=config.get('experiment_id') or str(uuid.uuid4()),seed=seed)
@@ -72,6 +101,9 @@ def plan(root, config, seed):
 
 def load(root, *, input_root=None):
     config,index=read(root/'experiment.json'),read(root/'run-index.json')
+    if config.get('batch_schema')==2:
+        from copilot_parallel import load as parallel_load
+        return parallel_load(root,input_root)
     if index['config_sha256']!=digest(root/'experiment.json') or index['plan_sha256']!=digest(root/'planned-runs.json'):
         raise ValueError('Fixed plan/config changed')
     for path,value in config['input_hashes'].items():
@@ -85,7 +117,7 @@ def load(root, *, input_root=None):
 
 
 def status(root):
-    _,index=load(root)
+    config,index=load(root)
     counts={}
     for row in index['runs']:counts[row['status']]=counts.get(row['status'],0)+1
     missing_usage=0
@@ -93,8 +125,19 @@ def status(root):
         if row['run_id']:
             usage=root/'runs'/row['planned_run']/'attempt/usage.json'
             if not usage.exists() or not read(usage).get('usage_complete'):missing_usage+=1
-    return {'planned':len(index['runs']),'started':sum(r['run_id'] is not None for r in index['runs']),
+    result={'planned':len(index['runs']),'started':sum(r['run_id'] is not None for r in index['runs']),
             'states':counts,'usage_missing_or_unconfirmed':missing_usage}
+    if config.get('batch_schema')==2:
+        result['repetitions_per_condition']=index['repetitions_per_condition']
+        if index.get('dispatch_id'):
+            dispatch=read(root/'dispatches'/f"{index['dispatch_id']}.json")
+            result.update({k:dispatch.get(k) for k in ('dispatch_id','applied_max_parallel','active_count','draining_to_target','applied_revision','control_warning')})
+            control=root/'parallel-control.json'
+            try:request=read(control) if control.exists() else {}
+            except (ValueError,OSError):
+                request={};result['control_warning']='unreadable_control_request'
+            result['requested_max_parallel']=request.get('max_parallel') if request.get('dispatch_id')==index['dispatch_id'] else result['applied_max_parallel']
+    return result
 
 
 def advance(root, runner, evaluator=None, *, limit=40, after_evaluation=None):
@@ -156,7 +199,7 @@ def real_runner(secret,opt_in,locator):
     def start(root,config,row,run):
         c=dict(config,**{k:row[k] for k in ('planned_run','condition','execution_order')},phase=batch_phase(config))
         distribution=run.parent/'distribution'
-        prepare(ROOT,row['condition'],distribution)
+        prepare(ROOT,row['condition'],distribution,c if c.get('contract_version') == 2 else None)
         execute(distribution,c,run,secret,opt_in=opt_in,run_id=row['run_id'])
         link(run,locator,ingest=True)
         from preservation_gate import archive_root
@@ -165,7 +208,7 @@ def real_runner(secret,opt_in,locator):
                      ('manifest.json','snapshot.json','frozen','telemetry','telemetry-link.json','raw-usage','usage.json')},
                      metadata={'kind':'copilot-linked-run','run_id':row['run_id']})
         verify(archive,receipt['package_id'],receipt['sha256'])
-        restored=restore(archive,receipt,run.parent/'restored-linked')
+        restored=restore(archive,receipt,run.parent/'restored-linked',resume=True)
         atomic(run/'linked-restoration.json',restored)
         atomic(run/'linked-preservation.json',receipt)
     return start
@@ -189,13 +232,35 @@ def evaluate_run(root,config,row,run,private_root,image,validity):
         if digest(private_root/name)!=value:raise ValueError('Evaluator version changed')
     if read(private_root/'case-manifest.json')!=read(ROOT/'evaluation/case-manifest.json'):
         raise ValueError('Fixed 58-case definition differs')
-    helper=subprocess.run([sys.executable,str(ROOT/'evaluation/prepare-app-container.py'),str(run.resolve()),
-             str(private_root.resolve()),'--evaluator-image',image],check=True,capture_output=True,text=True,timeout=180)
-    resources=json.loads(helper.stdout)
+    job=None;extra=[]
+    if config.get('batch_schema')==2 or config.get('measurement_review_required'):
+        job=run.parent/'evaluation-jobs'/'active.json'
+        if job.exists():
+            assignment=read(job)
+            if any(assignment.get(k)!=v for k,v in {'run_id':row['run_id'],'submission_hash':before,'score_version':config['score_version']}.items()):
+                raise ValueError('Pending evaluation job identity mismatch')
+            resource_file=private_root/'evaluations'/assignment['evaluation_id']/'resources.json'
+            if not resource_file.exists() or not (resource_file.parent/'result/summary.json').exists():
+                raise ValueError('Unfinished evaluation job requires recovery; do not evaluate again')
+            resources=read(resource_file)
+        else:
+            assignment=dict(evaluation_id=str(uuid.uuid4()),run_id=row['run_id'],submission_hash=before,score_version=config['score_version'])
+            atomic(job,assignment);extra=['--evaluation-id',assignment['evaluation_id']]
+    if job is None or extra:
+        helper=subprocess.run([sys.executable,str(ROOT/'evaluation/prepare-app-container.py'),str(run.resolve()),
+                 str(private_root.resolve()),'--evaluator-image',image,*extra],check=True,capture_output=True,text=True,timeout=180)
+        resources=json.loads(helper.stdout)
     try:
-        subprocess.run(['docker','start','-a',resources['researcher_container']],
-                       capture_output=True,timeout=1800)
+        if job is None or extra:
+            subprocess.run(['docker','start','-a',resources['researcher_container']],
+                           capture_output=True,timeout=3600)
     finally:
+        if job is None or extra:
+            from evaluation_receipt import capture
+            try:capture(resources,run)
+            except (OSError,ValueError,KeyError,subprocess.SubprocessError) as error:
+                atomic(Path(resources['output']).parent/'management-evidence/capture-error.json',
+                       {'evaluation_id':resources['evaluation_id'],'state':'not_acquired','error_type':type(error).__name__})
         for name in (resources['app_container'],resources['researcher_container']):
             subprocess.run(['docker','rm','-f',name],capture_output=True,timeout=30)
         subprocess.run(['docker','network','rm',resources['network']],capture_output=True,timeout=30)
@@ -214,8 +279,8 @@ def evaluate_run(root,config,row,run,private_root,image,validity):
         registry=read(validity)
         if not any(r['evaluation_id']==resources['evaluation_id'] for r in registry['attempts']):
             registry['attempts'].append({'evaluation_id':resources['evaluation_id'],'run_id':row['run_id'],
-                'status':'valid' if summary['outcome'] in ('completed','server_unavailable') else 'pending',
-                'reason':'Pinned independent evaluator; infrastructure failures remain pending',
+                'status':'valid' if summary['outcome'] in ('completed','server_unavailable') and not config.get('measurement_review_required') and summary.get('schema_version',1)==1 else 'pending',
+                'reason':'measurement_review_required' if config.get('measurement_review_required') or summary.get('schema_version',1)>1 else 'Pinned independent evaluator; infrastructure failures remain pending',
                 'submission_hash':summary['submission_hash'],'evaluator_hash':summary['evaluator_hash'],
                 'summary_hash':digest(result/'summary.json'),'results_hash':digest(result/'results.jsonl'),'adjudications':[]})
             atomic(validity,registry)
@@ -231,17 +296,36 @@ def evaluate_run(root,config,row,run,private_root,image,validity):
     atomic(run/'evaluation-ref.json',reference)
     from preservation_gate import archive_root
     archive=archive_root(read(Path(config['authorization_file'])))
-    receipt=pack(archive,'evaluation-'+resources['evaluation_id'],
-                 {'result':result,'evaluation-ref.json':run/'evaluation-ref.json','evaluation-validity.json':validity},
+    registry_snapshot=result.parent/'validity-at-evaluation.json'
+    if not registry_snapshot.exists():atomic(registry_snapshot,read(validity))
+    existing=run/'evaluation-preservation.json'
+    evaluation_sources={'result':result,'evaluation-ref.json':run/'evaluation-ref.json','evaluation-validity.json':registry_snapshot}
+    if (result.parent/'management-evidence').exists():evaluation_sources['management-evidence']=result.parent/'management-evidence'
+    receipt=read(existing) if existing.exists() and read(existing)['package_id']=='evaluation-'+resources['evaluation_id'] else ensure_package(archive,'evaluation-'+resources['evaluation_id'],
+                 evaluation_sources,
                  metadata={'kind':'independent-evaluation','run_id':row['run_id']})
     verify(archive,receipt['package_id'],receipt['sha256'])
-    restored=restore(archive,receipt,run.parent/('restored-evaluation-'+resources['evaluation_id']))
+    destination=run.parent/('restored-evaluation-'+resources['evaluation_id'])
+    restored=restore(archive,receipt,destination,resume=True)
+    atomic(run/'evaluation-restorations'/(resources['evaluation_id']+'.json'),restored)
     atomic(run/'evaluation-restoration.json',restored)
     atomic(run/'evaluation-preservation.json',receipt)
-    return {'evaluation_id':resources['evaluation_id'],'valid':rows[0]['quality_percent'] is not None and read(run/'usage.json')['usage_complete']}
+    if job is not None:
+        atomic(job,dict(assignment,status='completed',reference=reference))
+    return {'evaluation_id':resources['evaluation_id'],'valid':rows[0]['quality_percent'] is not None,
+            'usage_complete':read(run/'usage.json')['usage_complete']}
 
 
 def export(root,validity,*,output=None,restoration_map=None):
+    if output is None and restoration_map is None and read(root/'experiment.json').get('batch_schema')==2:
+        with lock(root):
+            generation=root/'exports'/str(uuid.uuid4())
+            result=export(root,validity,output=generation)
+            from preserve import tree
+            atomic(generation/'complete.json',{'files':tree(generation)})
+            atomic(root/'export-current.json',{'directory':str(generation.relative_to(root)),
+                                              'complete_sha256':digest(generation/'complete.json')})
+            return result
     relocated = None
     if restoration_map is not None:
         from preserve import tree, content_equal
@@ -267,10 +351,15 @@ def export(root,validity,*,output=None,restoration_map=None):
         if (previous.get('phase','comparison')!=batch_phase(config)
                 or previous.get('experiment_id')!=config['experiment_id']):
             raise ValueError('Export directory belongs to a different phase or experiment')
-    selections=[]; links={}; ledgers=[]
+    selections=[]; links={}; ledgers=[]; source_states={}; missing_originals={}; partial_manifests={}
     for slot in index['runs']:
         if slot['run_id'] is None:continue
         run=root/'runs'/slot['planned_run']/'attempt'
+        source_states[slot['run_id']]='verified' if (run/'frozen').is_dir() and (run/'snapshot.json').is_file() else 'missing'
+        missing_originals[slot['run_id']]=[name for name in ('manifest.json','usage.json','snapshot.json','frozen') if not (run/name).exists()]
+        if (run/'manifest.json').exists():
+            partial_manifests[slot['run_id']]=read(run/'manifest.json')
+            if partial_manifests[slot['run_id']]['run_id']!=slot['run_id']:raise ValueError('Wrong Run in slot')
         if not (run/'manifest.json').exists() or not (run/'usage.json').exists():continue
         manifest=read(run/'manifest.json')
         if manifest['run_id']!=slot['run_id']:raise ValueError('Wrong Run in slot')
@@ -298,17 +387,20 @@ def export(root,validity,*,output=None,restoration_map=None):
             ledger=directory/'evaluator-snapshot/requirements-ledger.json'
             if ledger.exists():ledgers.append(ledger)
         telemetry=read(run/'telemetry-link.json') if (run/'telemetry-link.json').exists() else {}
-        if telemetry.get('run_id')!=slot['run_id'] or telemetry.get('submission_hash')!=digest(run/'snapshot.json'):
-            raise ValueError('Telemetry/submission identity mismatch')
-        if telemetry.get('native_sha256')!=digest(run/'telemetry/native.jsonl'):
-            raise ValueError('Native spool changed after reconciliation')
-        from gateway_usage import collect as gateway_collect
-        if telemetry.get('gateway_usage_hash')!=canonical(gateway_collect(run/'raw-usage')):
-            raise ValueError('Gateway originals changed after reconciliation')
-        current_usage=read(run/'usage.json')
-        if current_usage.get('usage_complete') and telemetry.get('usage_complete'):
-            if current_usage['total_tokens']!=sum(sum(c['tokens']) for c in telemetry['model_calls']):
-                raise ValueError('Usage and linked call totals disagree')
+        if telemetry and telemetry.get('run_id')!=slot['run_id']:
+            raise ValueError('Telemetry belongs to another Run')
+        if telemetry and telemetry.get('status')!='failed':
+            if telemetry.get('run_id')!=slot['run_id'] or telemetry.get('submission_hash')!=digest(run/'snapshot.json'):
+                raise ValueError('Telemetry/submission identity mismatch')
+            if telemetry.get('native_sha256')!=digest(run/'telemetry/native.jsonl'):
+                raise ValueError('Native spool changed after reconciliation')
+            from gateway_usage import collect as gateway_collect
+            if telemetry.get('gateway_usage_hash')!=canonical(gateway_collect(run/'raw-usage')):
+                raise ValueError('Gateway originals changed after reconciliation')
+            current_usage=read(run/'usage.json')
+            if current_usage.get('usage_complete') and telemetry.get('usage_complete'):
+                if current_usage['total_tokens']!=sum(sum(c['tokens']) for c in telemetry['model_calls']):
+                    raise ValueError('Usage and linked call totals disagree')
         links[slot['run_id']]=telemetry
         selections.append({'run_directory':str(run),'evaluation_directory':str(directory) if ref else None})
     if selections:
@@ -327,16 +419,32 @@ def export(root,validity,*,output=None,restoration_map=None):
     for slot in index['runs']:
         row=by_id.get(slot['run_id'],{'run_id':slot['run_id'], 'phase':batch_phase(config), 'condition':slot['condition'],
                  'experiment_version':config['experiment_version'],'score_version':None,'submission_hash':None,
-                 'end_reason':'environment_failure','total_tokens':None,'observed_tokens':None,'usage_complete':False,
+                 'end_reason':None,'total_tokens':None,'observed_tokens':None,'usage_complete':False,
                  'denominator':57,'passed':None,'failed':None,'blocked':None,'errors':None,'quality_percent':None,
-                 'missing_reason':slot['status']})
+                 'missing_reason':slot['status'],'evaluation_attempted':False,'evaluation_completed':False,'measurement_state':'not_attempted'})
         row=dict(row,planned_run=slot['planned_run'],state=slot['status'],model_id=config.get('model_id'),
                  agent_version=config.get('agent_version'))
+        row['source_availability']=source_states.get(slot['run_id'],'not_acquired')
+        row['missing_originals_json']=json.dumps(missing_originals.get(slot['run_id'],[]))
+        if missing_originals.get(slot['run_id']):
+            row.update(missing_reason='missing_originals: '+','.join(missing_originals[slot['run_id']]),
+                       end_reason=partial_manifests.get(slot['run_id'],{}).get('end_reason'),
+                       measurement_state='unavailable')
+        if row.get('evaluation_outcome') in ('evaluator_error','isolation_blocked','server_unavailable'):
+            row['missing_reason']=row['evaluation_outcome']
+        if row['source_availability']=='missing':
+            row.update(quality_percent=None,all_passed=None,measurement_state='unavailable',
+                       missing_reason='fixed_submission_original_missing')
+            if row.get('coverage_json'):
+                coverage=json.loads(row['coverage_json']);coverage['measurement_state']='unavailable'
+                for feature in coverage['features'].values():feature['effective_quality_percent']=None
+                row['coverage_json']=json.dumps(coverage,sort_keys=True)
         # Do not export private evaluator paths/evidence, only immutable identifiers/hashes.
         row.pop('evaluation_attempt',None)
-        row.pop('validity_reason',None)
         row.pop('evaluation_error',None)
-        if row.get('quality_percent') is None:row['missing_reason']='usage or independent evaluation unavailable'
+        if row.get('quality_percent') is None and not row.get('missing_reason'):
+            row['missing_reason']=row.get('validity_reason') or slot['status']
+        row['telemetry_state']=links.get(slot['run_id'],{}).get('status','not_acquired')
         calls=links.get(slot['run_id'],{}).get('model_calls',[])
         row['input_tokens']=sum(c['tokens'][0] for c in calls) if row['usage_complete'] else None
         row['output_tokens']=sum(c['tokens'][1] for c in calls) if row['usage_complete'] else None
@@ -352,6 +460,12 @@ def export(root,validity,*,output=None,restoration_map=None):
                 'input_hashes':config['input_hashes'],'planned':len(index['runs']),'phase':batch_phase(config),'started':sum(s['run_id'] is not None for s in index['runs']),
                 'not_started':sum(s['run_id'] is None for s in index['runs']),
                 'evaluated':sum(r['quality_percent'] is not None for r in public),
+                'evaluation_attempted':sum(bool(r.get('evaluation_attempted')) for r in public),
+                'evaluation_completed':sum(bool(r.get('evaluation_completed')) for r in public),
+                'evaluation_valid':sum(r.get('measurement_state')=='valid' for r in public),
+                'evaluation_invalid':sum(r.get('measurement_state')=='invalid' for r in public),
+                'evaluation_pending':sum(r.get('measurement_state')=='pending' for r in public),
+                'evaluation_unavailable':sum(r.get('measurement_state')=='unavailable' for r in public),
                 'usage_complete':sum(r['usage_complete'] for r in public),
                 'plotted':sum(r['total_tokens'] is not None and r['quality_percent'] is not None for r in public),
                 'code_hashes':{p:digest(ROOT/p) for p in ('scripts/copilot_batch.py','scripts/telemetry_link.py',
@@ -392,18 +506,31 @@ def export(root,validity,*,output=None,restoration_map=None):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('action',choices=['plan','check','run','status','resume','evaluate','export'])
+    p.add_argument('action',choices=['plan','check','run','status','resume','evaluate','export','extend','set-parallel','recover'])
     p.add_argument('root',type=Path)
     p.add_argument('--config',type=Path);p.add_argument('--seed',type=int,default=20260908)
     p.add_argument('--locator',type=Path);p.add_argument('--secret-file',type=Path)
     p.add_argument('--execute-real-model',action='store_true')
     p.add_argument('--private-root',type=Path);p.add_argument('--evaluator-image');p.add_argument('--validity',type=Path)
-    p.add_argument('--slot');p.add_argument('--limit',type=int,default=40)
+    p.add_argument('--slot');p.add_argument('--limit',type=int)
+    p.add_argument('--repetitions-per-condition',type=int);p.add_argument('--max-parallel',type=int)
+    p.add_argument('--model-http-503-policy',choices=['stop_run','stop_run_and_cleanup'])
+    p.add_argument('--pending',action='store_true')
     p.add_argument('--restoration-map',type=Path)
     a=p.parse_args();root=a.root.resolve()
     if a.action=='plan':
         if not a.config:p.error('plan requires --config')
-        result=plan(root,read(a.config),a.seed)
+        c=read(a.config)
+        if a.repetitions_per_condition is not None:
+            c.update(batch_schema=2,repetitions_per_condition=a.repetitions_per_condition,max_parallel=a.max_parallel if a.max_parallel is not None else 1,
+                     model_http_503_policy=a.model_http_503_policy or 'stop_run_and_cleanup')
+        result=plan(root,c,a.seed)
+    elif a.action=='extend':
+        from copilot_parallel import extend
+        result=extend(root,a.repetitions_per_condition)
+    elif a.action=='set-parallel':
+        from copilot_parallel import set_parallel
+        result=set_parallel(root,a.max_parallel)
     elif a.action=='status':result=status(root)
     elif a.action=='export':
         if not a.validity:p.error('export requires current --validity')
@@ -419,23 +546,62 @@ def main():
                 validate_config(c);check_start(c)
             result={'model_called':False,'status':status(root)}
         elif a.action=='evaluate':
-            if not all((a.slot,a.private_root,a.evaluator_image,a.validity)):p.error('evaluate requires slot/private-root/evaluator-image/validity')
+            if not all((a.slot or a.pending,a.private_root,a.evaluator_image,a.validity)):p.error('evaluate requires slot or pending, private-root/evaluator-image/validity')
             with lock(root):
-                row=next(r for r in index['runs'] if r['planned_run']==a.slot)
-                if not row['run_id']:p.error('slot not started')
-                result=evaluate_run(root,config,row,root/'runs'/row['planned_run']/'attempt',a.private_root,a.evaluator_image,a.validity)
-                row.update(evaluation_id=result['evaluation_id'],status='completed' if result['valid'] else 'failed')
-                atomic(root/'run-index.json',index)
-                if batch_phase(config)=='copilot-validation':export(root,a.validity)
+                config,index=load(root)
+                selected=[r for r in index['runs'] if r['planned_run']==a.slot or (a.pending and r['status']=='awaiting_evaluation')]
+                result=[]
+                for row in selected:
+                    if not row['run_id']:p.error('slot not started')
+                    evaluation=evaluate_run(root,config,row,root/'runs'/row['planned_run']/'attempt',a.private_root,a.evaluator_image,a.validity)
+                    row.update(evaluation_id=evaluation['evaluation_id'],status='completed' if evaluation['valid'] else 'awaiting_review')
+                    atomic(root/'run-index.json',index);result.append(evaluation)
+                    active=root/'runs'/row['planned_run']/'evaluation-jobs/active.json'
+                    if active.exists():active.rename(active.with_name(evaluation['evaluation_id']+'.json'))
+                if batch_phase(config)=='copilot-validation' and config.get('batch_schema')!=2:export(root,a.validity)
         else:
             if config.get('synthetic'):p.error('Synthetic test batches cannot start real inference')
-            if not all((a.locator,a.secret_file,a.execute_real_model)):p.error('run/resume requires locator/secret-file/execute-real-model')
+            if a.action!='recover' and not all((a.locator,a.secret_file,a.execute_real_model)):p.error('run/resume requires locator/secret-file/execute-real-model')
+            if config.get('batch_schema')==2:
+                from copilot_parallel import dispatch
+                from execution_scope import check_start
+                if a.action!='recover':
+                    from copilot_parallel import positive
+                    if a.limit is not None:positive(a.limit,'limit')
+                    candidates=[r for r in index['runs'] if r['status']=='not_started']
+                    if a.limit is not None:candidates=candidates[:a.limit]
+                    for row in candidates:
+                        if row['status']=='not_started':
+                            c=dict(config,**{k:row[k] for k in ('planned_run','condition','execution_order')})
+                            validate_config(c);check_start(c)
+                def command(r,c,s,assignment):
+                    return [sys.executable,str(ROOT/'scripts/copilot_batch_worker.py'),str(assignment.resolve()),str(a.secret_file.resolve())]
+                def collect_run(r,c,s,run):
+                    if not a.locator:raise ValueError('Collection requires monitor locator')
+                    link(run,read(a.locator),ingest=True)
+                    from preservation_gate import archive_root
+                    archive=archive_root(read(Path(c['authorization_file'])))
+                    existing=run/'linked-preservation.json'
+                    if existing.exists():receipt=read(existing)
+                    else:
+                        receipt=ensure_package(archive,'linked-'+s['run_id'],{n:run/n for n in
+                            ('manifest.json','snapshot.json','frozen','telemetry','telemetry-link.json','raw-usage','usage.json')},
+                            metadata={'kind':'copilot-linked-run','run_id':s['run_id']})
+                        atomic(existing,receipt)
+                    verify(archive,receipt['package_id'],receipt['sha256'])
+                    if not (run/'linked-restoration.json').exists():
+                        atomic(run/'linked-restoration.json',restore(archive,receipt,run.parent/'restored-linked',resume=True))
+                if a.action=='recover':
+                    from copilot_recovery import recover
+                    recover(root)
+                result=dispatch(root,command,collect_run,k=a.max_parallel,limit=a.limit,recover_only=a.action=='recover')
+                print(json.dumps(result));return
             evaluator=None
             if a.private_root:
                 if not all((a.evaluator_image,a.validity)):p.error('private-root requires evaluator-image/validity')
                 evaluator=lambda r,c,s,d:evaluate_run(r,c,s,d,a.private_root,a.evaluator_image,a.validity)
             after=(lambda r:export(r,a.validity)) if batch_phase(config)=='copilot-validation' and evaluator else None
-            result=advance(root,real_runner(a.secret_file,a.execute_real_model,read(a.locator)),evaluator,limit=a.limit,after_evaluation=after)
+            result=advance(root,real_runner(a.secret_file,a.execute_real_model,read(a.locator)),evaluator,limit=a.limit if a.limit is not None else 40,after_evaluation=after)
     print(json.dumps(result))
 
 if __name__=='__main__':

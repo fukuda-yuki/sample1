@@ -6,7 +6,7 @@
 
 analysis/aggregate.pyは固定台帳、Runリスト、評価JSONLを読み、runs.csvとtest-results.jsonlを出力する。各Runはrun_id、phase（calibration/pilot/comparison）、condition、experiment_version、score_version、submission_hash、end_reason、usage_complete、total_tokensを持つ。評価行はrun_id、evaluation_id、case_id、status、evidence、score_version、submission_hashを持つ。
 
-- pass: 必須ケース全成功。fail: 実装の要件未充足。blocked: 起動・認証・前提不備で実装の後続へ到達不能。fail/blockedは分母57に残る。
+- pass: 必須ケース全成功。fail: 期待した観測との不一致（実装責任の確定ではない）。blocked: 起動・認証・前提不成立で後続へ到達不能。raw fail/blockedは分母57に残り、妥当性裁定と原因は別に記録する。
 - error: 評価器・評価インフラ障害。1項目でもerrorならその採点の品質値はnull。同じ提出物を新しいevaluation_id（採点実行ID）で再評価し、旧結果も保存する。
 - 欠けた評価ID/必須ケースはblockedとして保存し、自動的に分母を減らさない。ただし評価器の途中クラッシュと分かっている場合はRunのevaluation_errorに理由を設定し品質値をnullにする。
 - usage_complete=falseまたは利用量nullはXをnullにし、図とは別の欠測表へ残す。既知下限を確定総量にしない。
@@ -41,3 +41,18 @@ pilot各1回は小標本で差の確定値ではない。予定数以上にデ�
 
 
 2026-09-06以降、実装Runの取り込みはkind=evaluationと採点有効性台帳を必須検査する。上記analysis-integration.jsonは旧実装の接続検証履歴であり、calibrationをpilotへ取り込む手順は現在拒否される。校正は専用の校正概要または明示的な合成校正として分離する。aggregate直接利用でも有効性証拠が欠ければ品質nullになる。invalid/pendingのraw判定件数を有効品質と解釈せず、CSV・内訳の有効性と理由を参照する。
+
+
+## 測定情報の拡張（2026-09-10候補）
+
+旧JSONLのraw statusと57 ID／58ケースは保持する。measurementがない旧記録の到達段階はunknownであり、passから業務assertion到達を推定しない。新版は操作対象探索、操作、初期化、業務assertionを分け、前提スタックと原因eventへの参照を保存する。stageは実行境界、responsibilityは責任裁定であり、探索失敗だけで評価器不備とも実装不備とも断定しない。
+
+coverage_jsonには機能別のID合格数、raw充足率、有効充足率、直接assertion到達ケース数、前提不成立、評価側未確定、旧版unknownを記録する。機能別の割合を合算して新しい重み付き総合点を作らない。総合点は有効裁定がある場合のみ固定分母57で表示する。
+
+coverage schema2は裁定済みの責任と影響を表示に反映する。実装または指示が原因と確認された対象探索失敗を、評価側未確定へ重ねて数えない。裁定のimpact=prerequisiteは、raw failのままでも前提不成立として区別する。根拠のある先行評価IDと要求への参照を保存し、該当する先行テストがなければID配列は空にする。観測イベントへの参照を持たない前提裁定や、存在しない評価IDへの参照は拒否する。裁定のない旧記録の原因・到達は推定しない。
+
+evaluation_attempted / evaluation_completed / measurement_state（not_attempted、pending、valid、invalid）はusage_completeと独立。未採点の件数を57 blockedへ置き換えず、集計列はnull。X欠測でも有効Y=0は保存する。schema2の採点実行完了は自動validにせず、要件対応と操作・画面・trace・ログの証拠索引を研究者が確認して裁定を追加する。
+
+固定提出物の原本が現在見つからない場合、公開exportのsource_availabilityはmissing、measurement_stateはunavailable、有効品質はnullにする。過去のevaluation_validity裁定とraw件数は保持する。これは現在の証拠の利用可能性であり、過去の有効裁定を無効裁定へ書き換えるものではない。原本hash不一致は別の改変エラーとして拒否する。
+
+再採点では元提出物と旧選択を保全し、新評価UUIDの選択を別batchまたは明示的なselectionへ保存する。評価器を変更した場合は同じ両提出hashを使用する。実装契約の説明を旧提出物へ遡及適用しない。

@@ -154,13 +154,54 @@ def pack(archive, package_id, sources, *, metadata=None, references=()):
     return {'package_id': package_id, 'sha256': digest(final / 'package.json')}
 
 
-def restore(archive, reference, destination):
+def ensure_package(archive, package_id, sources, *, metadata=None, references=()):
+    """Recover a committed package whose receipt write was interrupted, without overwriting."""
+    final=Path(archive)/'packages'/safe_name(package_id)
+    if final.exists():
+        data=verify(archive,package_id)
+        expected={}
+        for name,source in sources.items():
+            safe_name(name);source=Path(source)
+            if source.is_symlink() or source.is_junction():raise ValueError('Source link forbidden')
+            if source.is_dir():expected.update({name+'/'+n:e for n,e in tree(source).items()})
+            else:expected[name]={'sha256':digest(source),'bytes':source.stat().st_size}
+        if (not content_equal(data['files'],expected) or data['metadata']!=(metadata or {})
+                or data['references']!=list(references)):
+            raise ValueError('Committed package differs from interrupted request')
+        return {'package_id':package_id,'sha256':digest(final/'package.json')}
+    if (Path(archive)/'package-reservations'/(package_id+'.json')).exists():
+        package_id+='-retry-'+str(uuid.uuid4())
+    return pack(archive,package_id,sources,metadata=metadata,references=references)
+
+
+def restore(archive, reference, destination, *, resume=False):
     archive, destination = Path(archive).resolve(), Path(destination).absolute()
     if destination.is_relative_to(archive) or archive.is_relative_to(destination):
         raise ValueError('Restore must be independent of archive')
     data = verify(archive, reference['package_id'], reference['sha256'])
     source = archive / 'packages' / reference['package_id'] / 'payload'
-    shutil.copytree(source, destination)
+    claim=destination.parent/('.'+destination.name+'.restore-request.json')
+    binding={'reference':reference,'destination':str(destination)}
+    if claim.exists():
+        original=read(claim)
+        if any(original.get(k)!=v for k,v in binding.items()):raise ValueError('Restoration request binding changed')
+    else:
+        original=dict(binding,status='copying')
+        # Existing legacy copies may only be adopted after full hash verification.
+        if destination.exists() and not content_equal(tree(destination),data['files']):
+            raise ValueError('Unowned partial restoration must be retained')
+        write_new(claim,original)
+    if destination.exists():
+        if not resume:
+            raise ValueError('Existing restoration is incomplete or changed; retain it')
+        if not content_equal(tree(destination),data['files']):
+            if original.get('status')!='copying':raise ValueError('Completed restoration changed')
+            retained=destination.with_name(destination.name+'.interrupted-'+str(uuid.uuid4()))
+            if not destination.resolve().is_relative_to(destination.parent.resolve()) or not retained.resolve().is_relative_to(destination.parent.resolve()):
+                raise ValueError('Restoration recovery path escaped its parent')
+            destination.rename(retained)
+            shutil.copytree(source,destination)
+    else:shutil.copytree(source, destination)
     for name, entry in data['files'].items():
         (destination / name).chmod(0o755 if entry['executable'] else 0o644)
     if not content_equal(tree(destination), data['files']):
@@ -171,6 +212,9 @@ def restore(archive, reference, destination):
     receipt_id = str(uuid.uuid4())
     target = archive / 'receipts' / (receipt_id + '.json')
     write_new(target, receipt)
+    temporary=claim.with_name(claim.name+'.'+str(uuid.uuid4())+'.tmp')
+    write_new(temporary,dict(binding,status='completed',receipt={'path':'receipts/'+receipt_id+'.json','sha256':digest(target)}))
+    temporary.replace(claim)
     return {'path': 'receipts/' + receipt_id + '.json', 'sha256': digest(target)}
 
 

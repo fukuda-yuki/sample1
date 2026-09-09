@@ -34,7 +34,7 @@ def plot(source, destination):
     plt.rcParams['font.family'] = next(f for f in candidates if f in installed)
     plt.rcParams['axes.unicode_minus'] = False
     colors = {'normal': '#3572B0', 'anti': '#D17A29'}
-    markers = {'agent_completed': 'o', 'budget_exhausted': '^', 'environment_failure': 's', 'agent_error': 'X', 'operator_aborted': 'D'}
+    markers = {'agent_completed': 'o', 'budget_exhausted': '^', 'environment_failure': 's', 'agent_error': 'X', 'operator_aborted': 'D','provider_unavailable':'P'}
     valid = [r for r in rows if r['total_tokens'] != '' and r['quality_percent'] != '']
     missing = [r for r in rows if r not in valid]
     fig, ax = plt.subplots(figsize=(12, 7), layout='constrained')
@@ -71,6 +71,13 @@ def plot(source, destination):
     incomplete = sum(r['end_reason'] != 'agent_completed' for r in rows)
     missing_path = destination.with_suffix('.missing-runs.csv')
     fig.supxlabel(f'上限到達 {caps} / 未完了 {incomplete} / 座標欠測 {len(missing)}（{missing_path.name}参照）\n出典: {source.name} | 評価版 {score[:16]} | calibrationは効果比較に使用しない', fontsize=9)
+    if plt.rcParams['font.family']==['DejaVu Sans']:
+        ax.set(xlabel='Total implementation tokens',ylabel='Private E2E requirements passed (%)')
+        ax.set_title(f'Tokens and observed E2E quality\n{phase} | {exp} | Fixed denominator 57 | {len(rows)} Runs',loc='left',pad=18)
+        for text in ax.texts:
+            if '品質または' in text.get_text():text.set_text('Quality or usage is unconfirmed: no point plotted\nSee CSV for all Runs and missing reasons')
+        states=dict(Counter(r.get('measurement_state') or 'unknown' for r in rows))
+        fig.supxlabel(f'Budget cap {caps} / Unfinished {incomplete} / Missing coordinates {len(missing)}\nMeasurement states: {states}\nSource: {source.name} | Evaluator {score[:16] if scores else "not evaluated"} | Calibration is not an effect comparison',fontsize=9)
     destination.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(destination, dpi=150, metadata={'Software': 'sample1 analysis/plot.py'})
     plt.close(fig)
