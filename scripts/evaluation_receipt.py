@@ -7,6 +7,22 @@ from preserve import digest,read
 from telemetry_link import atomic
 
 
+def seeded_login_observations(events):
+    """The logged helper's final logout-visibility assertion confirms authentication.
+
+    Discovery visibility and a completed submit click alone do not establish login.
+    The evaluator snapshot and event sequence retain the assertion's source binding.
+    """
+    observed=[]
+    for e in events:
+        if e.get('outcome')!='completed' or e.get('intent')!='toBeVisible' or e.get('stage') not in ('business_assertion','operation'):
+            continue
+        for account in ('admin','ippan','kacho','bucho'):
+            if 'ログイン '+account in e.get('prerequisites',[]):
+                observed.append({'sequence':e['sequence'],'account':account})
+    return observed
+
+
 def capture(resources,run):
     directory=Path(resources['output']).parent/'management-evidence'
     directory.mkdir(exist_ok=True)
@@ -31,12 +47,14 @@ def capture(resources,run):
             row=json.loads(line);measurement=row.get('evidence',{}).get('measurement') or {}
             events=measurement.get('events',[])
             reset=[e for e in events if e.get('stage')=='initialization']
+            seed=seeded_login_observations(events)
             reset_failure='Public reset HTTP' in (row.get('evidence',{}).get('message') or '')
             cases.append({'evaluation_id':row['evaluation_id'],'case_id':row['case_id'],
                 'reset':'failed' if reset_failure else 'completed' if any(e['outcome']=='completed' for e in reset) else 'not_acquired',
-                'seed':'observed_via_ui_login' if any(e['outcome']=='completed' and 'login' in e.get('intent','').lower() for e in events) else 'not_independently_verified',
+                'seed':'observed_via_ui_login' if seed else 'not_independently_verified',
+                'seed_events':seed,
                 'observation_source':'result/results.jsonl','reset_events':[e['sequence'] for e in reset]})
-    receipt={'schema_version':1,'recorded_at':datetime.now(timezone.utc).isoformat(),
+    receipt={'schema_version':2,'recorded_at':datetime.now(timezone.utc).isoformat(),
         'evaluation_id':resources['evaluation_id'],'run_id':read(run/'manifest.json')['run_id'],
         'submission_hash':digest(run/'snapshot.json'),'resources':resources,'capture':captures,
         'contract_hashes':{name:digest(run/'frozen'/name) for name in ('spec.md','RUN_CONTRACT.md') if (run/'frozen'/name).is_file()},
