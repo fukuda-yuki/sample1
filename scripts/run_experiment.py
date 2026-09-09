@@ -77,7 +77,7 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
     sources.mkdir()
     management_files = MANAGEMENT_FILES
     if config.get('agent') == 'github-copilot-cli':
-        management_files += ('run_copilot.py', 'copilot_scope.py')
+        management_files += ('run_copilot.py', 'copilot_scope.py', 'run_cleanup.py', 'prepare_workspace.py', 'telemetry_link.py', 'copilot_parallel.py', 'copilot_batch_worker.py', 'copilot_recovery.py', 'copilot_batch.py')
     for filename in management_files:
         data = Path(__file__).with_name(filename).read_bytes()
         (sources / filename).write_bytes(data)
@@ -111,7 +111,8 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                 input_mounts += ['--env', key + '=' + value]
         for relative in dist['files']:
             input_mounts += ['--mount', f'type=bind,source={(workspace / relative).resolve()},target=/workspace/{relative},readonly']
-        subprocess.run(['docker', 'create', '--name', name, '--network', network,
+        creation=subprocess.run(['docker', 'create', '--name', name, '--network', network,
+                        '--label', 'sample1.run_id=' + run_id,
                         '--user', f'{os.getuid() if hasattr(os, "getuid") else 1000}:{os.getgid() if hasattr(os, "getgid") else 1000}',
                         '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges',
                         '--read-only', '--tmpfs', '/tmp:mode=1777,exec', '--tmpfs', '/home/agent:mode=1777,exec',
@@ -120,16 +121,51 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                         '--workdir', '/workspace', *input_mounts, image, *config['command']],
                        check=True, capture_output=True, timeout=60)
         container_created = True
+        manifest.setdefault('runtime_resources',{})[name]=(creation.stdout.decode() if isinstance(creation.stdout,bytes) else creation.stdout).strip()
+        write_json(output/'manifest.json',manifest)
         manifest['start_authorization'] = check_start(config, run_id)
         subprocess.run(['docker', 'start', name], check=True, capture_output=True, timeout=30)
         remaining = max(0.001, budget['value'] - (time.monotonic() - started))
         budget_waiting = True
-        result = subprocess.run(['docker', 'wait', name], capture_output=True, text=True, timeout=remaining)
+        if config.get('model_http_503_policy') in ('stop_run','stop_run_and_cleanup'):
+            signal = Path(config['usage_raw_directory']) / 'provider-failure.json'
+            wait_process = subprocess.Popen(['docker','wait',name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            try:
+                deadline = time.monotonic() + remaining
+                while wait_process.poll() is None:
+                    if signal.exists():
+                        failure = json.loads(signal.read_text())
+                        if failure.get('run_id') != run_id or failure.get('experiment_id') != config['experiment_id']:
+                            raise ValueError('Provider failure identity mismatch')
+                        reason = 'provider_unavailable'
+                        manifest['stop_trigger'] = 'model_http_503'
+                        manifest['provider_failure'] = failure
+                        break
+                    if time.monotonic() >= deadline:
+                        raise subprocess.TimeoutExpired(['docker','wait',name], remaining)
+                    time.sleep(0.2)
+                if reason == 'provider_unavailable':
+                    result = subprocess.CompletedProcess(['docker','wait',name], 0, '137', '')
+                else:
+                    stdout,stderr = wait_process.communicate()
+                    result = subprocess.CompletedProcess(['docker','wait',name], wait_process.returncode, stdout, stderr)
+                if signal.exists():
+                    failure=json.loads(signal.read_text())
+                    if failure.get('run_id')!=run_id or failure.get('experiment_id')!=config['experiment_id']:
+                        raise ValueError('Provider failure identity mismatch')
+                    reason='provider_unavailable'
+                    manifest.update(stop_trigger='model_http_503',provider_failure=failure)
+            finally:
+                if wait_process.poll() is None:
+                    wait_process.terminate(); wait_process.communicate(timeout=10)
+        else:
+            result = subprocess.run(['docker', 'wait', name], capture_output=True, text=True, timeout=remaining)
         budget_waiting = False
         if result.returncode:
             raise RuntimeError('docker wait failed')
         exit_code = int(result.stdout.strip())
-        reason = 'agent_completed' if exit_code == 0 else 'agent_error'
+        if reason != 'provider_unavailable':
+            reason = 'agent_completed' if exit_code == 0 else 'agent_error'
     except subprocess.TimeoutExpired as failure:
         reason = 'budget_exhausted' if budget_waiting else 'environment_failure'
         manifest['timeout_stage'] = failure.cmd[1] if isinstance(failure.cmd, list) and len(failure.cmd) > 1 else 'unknown'
@@ -140,13 +176,17 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
         manifest['error'] = str(failure)
     finally:
         if container_created:
+            # The immutable Docker ID cannot be rebound to a namesake container.
+            resource_id = manifest['runtime_resources'][name]
             try:
-                subprocess.run(['docker', 'kill', name], capture_output=True, timeout=30)
-                state = subprocess.run(['docker', 'inspect', '--format', '{{.State.Running}}', name],
+                subprocess.run(['docker', 'kill', resource_id], capture_output=True, timeout=30)
+                state = subprocess.run(['docker', 'inspect', '--format', '{{.State.Running}}', resource_id],
                                        capture_output=True, text=True, timeout=30, check=True)
                 stopped = state.stdout.strip() == 'false'
                 if stopped:
-                    logs = subprocess.run(['docker', 'logs', name], capture_output=True, text=True, timeout=30)
+                    logs = subprocess.run(['docker', 'logs', resource_id], capture_output=True, text=True, timeout=30)
+                    (output / 'agent.stdout.log').write_text(logs.stdout, encoding='utf-8')
+                    (output / 'agent.stderr.log').write_text(logs.stderr, encoding='utf-8')
                     native_usage = []
                     for line in ([] if config.get('agent') == 'github-copilot-cli' else logs.stdout.splitlines()):
                         try:
@@ -157,7 +197,8 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                             pass
                     if config.get('agent') != 'github-copilot-cli':
                         write_json(output / 'native-usage.json', native_usage)
-                    subprocess.run(['docker', 'rm', name], capture_output=True, timeout=30, check=True)
+                    if reason != 'provider_unavailable':
+                        subprocess.run(['docker', 'rm', resource_id], capture_output=True, timeout=30, check=True)
             except (OSError, subprocess.SubprocessError):
                 stopped = False
         else:
@@ -180,10 +221,12 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                 manifest['excluded_runtime_suffixes'] = sorted(EXCLUDED_SUFFIXES)
             except (ValueError, OSError):
                 manifest['submission_fixed'] = False
-                manifest['end_reason'] = 'environment_failure'
+                manifest['freeze_failure'] = True
+                if reason != 'provider_unavailable': manifest['end_reason'] = 'environment_failure'
         else:
             manifest['submission_fixed'] = False
-            manifest['end_reason'] = 'environment_failure'
+            manifest['stop_unconfirmed'] = True
+            if reason != 'provider_unavailable': manifest['end_reason'] = 'environment_failure'
         write_json(output / 'manifest.json', manifest)
     return manifest
 

@@ -10,7 +10,16 @@ FIXED = ('agent', 'provider', 'base_url', 'wire_api', 'model_id', 'agent_version
 
 
 def settings_hash(config):
-    return hashlib.sha256(json.dumps({k: config[k] for k in FIXED}, sort_keys=True).encode()).hexdigest()
+    values={k: config[k] for k in FIXED}
+    if config.get('batch_schema')==2:
+        values.update({k:config.get(k) for k in ('batch_schema','contract_version','model_http_503_policy')})
+    return hashlib.sha256(json.dumps(values, sort_keys=True).encode()).hexdigest()
+
+
+def reservation_path(config):
+    base=Path(config['authorization_file']).resolve().parent/'starts'
+    if config.get('batch_schema')==2:base=base/config['experiment_id']
+    return base/(config['planned_run']+'.json')
 
 
 COMPATIBLE = ('agent', 'provider', 'base_url', 'wire_api', 'model_id', 'agent_version',
@@ -29,7 +38,12 @@ def acceptance_conditions(config):
     if (not config['score_version'] or not config['evaluator_files']
             or any(not config['input_hashes'].get(k) for k in INPUTS)):
         raise ValueError('Acceptance input/evaluator pins missing')
-    return {'schema_version': 1, **{k: config[k] for k in COMPATIBLE}}
+    result = {'schema_version': 1, **{k: config[k] for k in COMPATIBLE}}
+    if config.get('batch_schema') == 2:
+        result.update(schema_version=2, batch_schema=2,
+                      contract_version=config.get('contract_version'),
+                      model_http_503_policy=config.get('model_http_503_policy'))
+    return result
 
 
 def experiment_identity(config):
@@ -76,19 +90,52 @@ def check(config, run_id=None):
         raise ValueError('Exact model availability and free/data terms are unconfirmed')
     from preservation_gate import check_restoration
     from execution_scope import ROOT
-    if config['phase'] == 'copilot-smoke' and 'smoke_readiness' in scope.get('preservation', {}):
+    if config.get('batch_schema')==2 and 'meaningful_readiness' in scope.get('preservation',{}):
+        check_meaningful_readiness(config,scope,ROOT)
+    elif config['phase'] == 'copilot-smoke' and 'smoke_readiness' in scope.get('preservation', {}):
         check_smoke_readiness(config, scope, ROOT)
     else:
         check_restoration(scope, ROOT)
     acceptance = None
     if config['phase'] == 'comparison':
         acceptance = check_acceptance(config, scope['live_acceptance'], path.parent)
-    reservation = path.parent / 'starts' / (slot + '.json')
+    reservation = reservation_path(config)
     if reservation.exists() and (run_id is None or read(reservation)['run_id'] != run_id):
         raise ValueError('Start already consumed; automatic reimplementation forbidden')
     result = {'scope_sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
     if acceptance is not None: result['acceptance'] = acceptance
     return result
+
+
+def check_meaningful_readiness(config,scope,root):
+    """New, explicitly authorized protocol; never reinterpret a legacy restore proof."""
+    from preservation_gate import archive_root
+    from preserve import verify_receipt,digest,safe_name
+    from prepare_workspace import render_contract
+    archive=archive_root(scope)
+    receipt=verify_receipt(archive,scope['preservation']['meaningful_readiness'])
+    package=archive/'packages'/receipt['reference']['package_id']
+    if read(package/'package.json')['metadata'].get('kind')!='meaningful-evaluation-readiness':
+        raise ValueError('Wrong readiness evidence kind')
+    proof=read(package/'payload/proof.json')
+    if (proof.get('schema_version')!=2 or proof.get('settings_sha256')!=settings_hash(config)
+            or proof.get('contract_sha256')!=hashlib.sha256(render_contract(root,config)).hexdigest()
+            or proof.get('evaluator_files')!=config.get('evaluator_files')
+            or proof.get('score_version')!=config.get('score_version')):
+        raise ValueError('Readiness execution/evaluator/contract mismatch')
+    required={'contract','parallel_recovery','gateway_protocols','monitor','calibration','same_submission_rescore','real_restored_analysis','runtime_restoration','independent_review'}
+    if set(proof.get('checks',{}))!=required:raise ValueError('Readiness check inventory incomplete')
+    for check in proof['checks'].values():
+        if check.get('passed') is not True or not check.get('evidence'):raise ValueError('Readiness check unconfirmed')
+        for ref in check['evidence']:
+            safe_name(ref['path'])
+            if digest(package/'payload'/ref['path'])!=ref['sha256']:raise ValueError('Readiness evidence changed')
+    hashes=proof.get('source_hashes',{})
+    if not {'scripts/copilot_scope.py','scripts/copilot_parallel.py','scripts/copilot_recovery.py','scripts/model_gateway.py','scripts/run_copilot.py','scripts/run_experiment.py','scripts/prepare_workspace.py','evaluation/prepare-app-container.py'}.issubset(hashes):
+        raise ValueError('Readiness management dependencies missing')
+    for name,expected in hashes.items():
+        safe_name(name)
+        if digest(root/name)!=expected:raise ValueError('Readiness source dependency changed: '+name)
 
 
 def check_smoke_readiness(config, scope, root):
@@ -120,5 +167,4 @@ def check_smoke_readiness(config, scope, root):
 
 def reserve(config, run_id):
     check(config)
-    write_new(Path(config['authorization_file']).resolve().parent / 'starts' /
-              (config['planned_run'] + '.json'), {'run_id': run_id, 'settings_sha256': settings_hash(config)})
+    write_new(reservation_path(config), {'run_id': run_id, 'settings_sha256': settings_hash(config)})

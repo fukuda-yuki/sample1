@@ -113,5 +113,50 @@ class AcceptanceTests(unittest.TestCase):
         self.path.unlink()
         with self.assertRaises(FileNotFoundError): self.check()
 
+    def test_new_contract_and_503_policy_are_acceptance_dependencies(self):
+        new=dict(self.source,batch_schema=2,contract_version=2,model_http_503_policy='stop_run_and_cleanup')
+        for key,value in [('contract_version',1),('model_http_503_policy','stop_run'),('batch_schema',1)]:
+            changed=dict(new,**{key:value})
+            self.assertNotEqual(scope.acceptance_conditions(new),scope.acceptance_conditions(changed))
+            self.assertNotEqual(scope.settings_hash(new),scope.settings_hash(changed))
+
+    def test_restored_readiness_binds_all_checks_settings_contract_and_sources(self):
+        from preserve import pack,restore,write_new
+        repo=Path(__file__).resolve().parents[1]
+        from prepare_workspace import render_contract
+        import hashlib
+        new=dict(self.source,batch_schema=2,contract_version=2,model_http_503_policy='stop_run_and_cleanup')
+        names=('scripts/copilot_scope.py','scripts/copilot_parallel.py','scripts/copilot_recovery.py',
+               'scripts/model_gateway.py','scripts/run_copilot.py','scripts/run_experiment.py',
+               'scripts/prepare_workspace.py','evaluation/prepare-app-container.py')
+        checks=('contract','parallel_recovery','gateway_protocols','monitor','calibration',
+                'same_submission_rescore','real_restored_analysis','runtime_restoration','independent_review')
+        marker=self.root/'test-only-evidence.txt';marker.write_text('synthetic format fixture; never start models')
+        proof=dict(schema_version=2,settings_sha256=scope.settings_hash(new),
+            contract_sha256=hashlib.sha256(render_contract(repo,new)).hexdigest(),
+            evaluator_files=new['evaluator_files'],score_version=new['score_version'],
+            source_hashes={name:digest(repo/name) for name in names},
+            checks={name:dict(passed=True,evidence=[dict(path='fixture.txt',sha256=digest(marker))]) for name in checks})
+        archive=self.root/'archive'
+        def check(proof,config=new):
+            package='fixture-'+str(len(list((archive/'packages').glob('*'))))
+            path=self.root/(package+'.json');write_new(path,proof)
+            reference=pack(archive,package,{'proof.json':path,'fixture.txt':marker},metadata={'kind':'meaningful-evaluation-readiness'})
+            receipt=restore(archive,reference,self.root/(package+'-restored'))
+            authority={'preservation':{'archive':{'windows':str(archive),'linux':str(archive)},'meaningful_readiness':receipt}}
+            scope.check_meaningful_readiness(config,authority,repo)
+        check(proof)
+        for key in ('contract_sha256','settings_sha256','score_version'):
+            with self.subTest(key=key),self.assertRaises(ValueError):check(dict(proof,**{key:'changed'}))
+        for mutation in ('missing_check','failed_check','missing_evidence','wrong_hash','changed_source','missing_source'):
+            bad=copy.deepcopy(proof)
+            if mutation=='missing_check':del bad['checks']['calibration']
+            elif mutation=='failed_check':bad['checks']['calibration']['passed']=False
+            elif mutation=='missing_evidence':bad['checks']['calibration']['evidence']=[]
+            elif mutation=='wrong_hash':bad['checks']['calibration']['evidence'][0]['sha256']='0'*64
+            elif mutation=='changed_source':bad['source_hashes'][names[0]]='0'*64
+            else:del bad['source_hashes'][names[0]]
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):check(bad)
+
 
 if __name__=='__main__': unittest.main()

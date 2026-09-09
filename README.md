@@ -1,5 +1,7 @@
 # 仕様書内不整合と実装Runの探索実験
 
+[意味のある検証データを取得する新版の手順](docs/meaningful-evaluation.md)：N/K/limit、回収、原因・到達範囲、妥当性審査、同一提出物の再採点と復元再集計。現在の改善・受入は [Issue #26](https://github.com/fukuda-yuki/sample1/issues/26) と [並列実行 #25](https://github.com/fukuda-yuki/sample1/issues/25) を参照する。以下の過去pilotの停止条件は当時の記録として保持する。
+
 [Copilot CLI / Zen BYOKの実装・非モデル検証・操作手順](docs/copilot-byok.md)：
 新しい20+20予定、UUIDによるmonitor対応、独立採点と分析出力の入口。
 旧pilotの停止・原本は維持。実機受入の現在の証拠と残件は[Issue #19](https://github.com/fukuda-yuki/sample1/issues/19)を正本とし、本比較の開始許可と区別します。

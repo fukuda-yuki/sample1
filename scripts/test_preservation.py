@@ -41,6 +41,21 @@ class ArchiveTests(unittest.TestCase):
         self.assertFalse((self.archive / 'packages/interrupted').exists())
         with self.assertRaises(FileExistsError):pack(self.archive, 'interrupted', {'a': self.source / 'a'})
 
+    def test_interrupted_owned_restoration_is_retained_and_recovered(self):
+        ref=pack(self.archive,'copy-recovery',{'files':self.source})
+        target=self.root/'copy'
+        def interrupted(source,destination):
+            destination.mkdir();(destination/'partial').write_text('incomplete')
+            raise OSError('interrupted')
+        with patch('preserve.shutil.copytree',side_effect=interrupted):
+            with self.assertRaises(OSError):restore(self.archive,ref,target)
+        receipt=restore(self.archive,ref,target,resume=True)
+        self.assertEqual((target/'files/a').read_text(),'original')
+        self.assertEqual(len(list(self.root.glob('copy.interrupted-*'))),1)
+        self.assertEqual(verify_receipt(self.archive,receipt)['reference'],ref)
+        (target/'files/a').write_text('changed after completion')
+        with self.assertRaises(ValueError):restore(self.archive,ref,target,resume=True)
+
     def test_paths_links_and_same_storage_rejected(self):
         for name in ('../x', '/x', 'a/../x', 'C:x', 'a\\x', 'a//x'):
             with self.assertRaises(ValueError):safe_name(name)

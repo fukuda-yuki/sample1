@@ -16,9 +16,15 @@ from preserve import digest, read
 
 
 def atomic(path, data):
-    temp = path.with_suffix(path.suffix + '.tmp')
-    temp.write_text(json.dumps(data, indent=2), encoding='utf-8')
-    temp.replace(path)
+    import os, uuid
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp = path.with_name(path.name + '.' + str(uuid.uuid4()) + '.tmp')
+    try:
+        with temp.open('x', encoding='utf-8') as stream:
+            json.dump(data, stream, indent=2);stream.flush();os.fsync(stream.fileno())
+        temp.replace(path)
+    finally:
+        if temp.exists():temp.unlink()
 
 
 def canonical(value):

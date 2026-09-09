@@ -17,8 +17,9 @@ GATEWAY_IMAGE = 'python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565a
 def validate_distribution(distribution, config):
     import hashlib
     from run_experiment import snapshot
+    from prepare_workspace import render_contract
     expected = {'spec.md': (ROOT / config['condition'] / 'spec.md').read_text(encoding='utf-8').encode('utf-8'),
-                'RUN_CONTRACT.md': (ROOT / 'implementation_prompt.md').read_text(encoding='utf-8-sig').encode('utf-8')}
+                'RUN_CONTRACT.md': render_contract(ROOT, config if config.get('contract_version') == 2 else None)}
     hashes = {name: hashlib.sha256(data).hexdigest() for name, data in expected.items()}
     record = json.loads((distribution / 'distribution.json').read_text())
     if (snapshot(distribution / 'workspace', source_only=False) != hashes

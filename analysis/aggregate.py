@@ -2,6 +2,7 @@
 import argparse
 import csv
 import json
+from measurement import summarize
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -66,9 +67,16 @@ def aggregate(runs, results, ledger, *, validation=False):
         quality = None if count['error'] or run.get('evaluation_error') or not effective_valid else 100 * count['pass'] / len(ids)
         row = {k: run[k] for k in ('run_id', 'phase', 'condition', 'experiment_version',
                                   'score_version', 'submission_hash', 'end_reason')}
-        for field in ('evaluation_attempt', 'evaluation_id', 'evaluation_kind', 'ledger_hash', 'manifest_hash', 'usage_hash', 'results_hash', 'validity_record_hash', 'validity_registry_hash'):
+        for field in ('evaluation_attempt', 'evaluation_id', 'evaluation_kind', 'evaluation_outcome', 'ledger_hash', 'manifest_hash', 'usage_hash', 'results_hash', 'validity_record_hash', 'validity_registry_hash'):
             row[field] = run.get(field)
         row.update(evaluation_validity=validity, validity_reason=validity_reason)
+        measurement = summarize([r for r in results if r['run_id'] == run['run_id']],
+            attempted=bool(run.get('evaluation_id') or run.get('evaluation_attempt') or run.get('evaluation_kind') or any(r['run_id']==run['run_id'] for r in results)),
+            validity='unavailable' if run.get('evaluation_error') or count['error'] else validity)
+        row.update(evaluation_attempted=measurement['evaluation_attempted'],
+                   evaluation_completed=measurement['evaluation_completed'],
+                   measurement_state=measurement['measurement_state'],
+                   coverage_json=json.dumps(measurement, sort_keys=True))
         row.update(total_tokens=total if complete else None, usage_complete=complete,
                    observed_tokens=run.get('observed_tokens'), denominator=len(ids),
                    passed=count['pass'], failed=count['fail'], blocked=count['blocked'],
@@ -77,6 +85,8 @@ def aggregate(runs, results, ledger, *, validation=False):
                    evaluation_error=run.get('evaluation_error', ''),
                    missing_reason=('usage incomplete; ' if not complete else '') +
                                   (validity_reason or run.get('evaluation_error') or 'evaluation unavailable' if quality is None else ''))
+        if not measurement['evaluation_attempted']:
+            row.update(passed=None,failed=None,blocked=None,errors=None)
         rows.append(row)
     return rows, details
 

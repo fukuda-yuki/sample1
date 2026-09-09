@@ -18,7 +18,7 @@ def docker(*args):
     return subprocess.check_output(['docker', *args], text=True).strip()
 
 
-def main(run_root, private_root, evaluator_image):
+def main(run_root, private_root, evaluator_image, evaluation_id=None):
     run_root, private_root = run_root.resolve(), private_root.resolve()
     manifest = json.loads((run_root / 'manifest.json').read_text())
     if not manifest.get('submission_fixed') or not manifest.get('processes_stopped'):
@@ -27,7 +27,7 @@ def main(run_root, private_root, evaluator_image):
     for value in (image, evaluator_image):
         if not re.fullmatch(r'(?:[^\s]+@)?sha256:[0-9a-f]{64}', value):
             raise ValueError('Pin both images by digest')
-    evaluation_id = str(uuid.uuid4())
+    evaluation_id = str(uuid.UUID(evaluation_id)) if evaluation_id else str(uuid.uuid4())
     network = 'sample1-eval-' + evaluation_id
     app = 'sample1-app-' + evaluation_id
     researcher = 'sample1-researcher-' + evaluation_id
@@ -41,8 +41,14 @@ def main(run_root, private_root, evaluator_image):
     uid, gid = os.getuid(), os.getgid()
     private_node = private_root / 'tools/node'
     node_version = subprocess.check_output([str(private_node), '--version'], text=True).strip()
+    allocated={}
+    def allocate(kind,*args):
+        identity=docker(*args)
+        allocated[kind]=identity
+        (evaluation_root/'allocations.json').write_text(json.dumps({'evaluation_id':evaluation_id,'run_id':manifest['run_id'],'ids':allocated},indent=2))
+        return identity
     try:
-        docker('network', 'create', '--internal', '--opt',
+        allocate('network','network', 'create', '--internal', '--opt',
                'com.docker.network.bridge.gateway_mode_ipv4=isolated', '--label',
                'sample1.evaluation_id=' + evaluation_id, network)
         info = json.loads(docker('network', 'inspect', network))[0]
@@ -66,8 +72,9 @@ app_status=$?
 if [ "$app_status" -eq 121 ]; then app_status=122; fi
 exit "$app_status"
 '''
-        docker('create', '--name', app, '--network', network, '--ip', app_ip,
+        allocate('app','create', '--name', app, '--network', network, '--ip', app_ip,
                '--label', 'sample1.helper_protocol=2',
+               '--label', 'sample1.evaluation_id=' + evaluation_id,
                '--user', f'{uid}:{gid}', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges',
                '--read-only', '--tmpfs', '/tmp:mode=1777,exec', '--tmpfs', '/home/agent:mode=1777,exec',
                '--env', 'HOME=/home/agent', '--env', 'npm_config_offline=true', '--env', 'npm_config_audit=false',
@@ -77,7 +84,7 @@ exit "$app_status"
                '--mount', f'type=bind,source={maildrop},target=/maildrop',
                image, 'bash', '-c', startup)
         config = dict(kind='evaluation', run_id=manifest['run_id'], evaluation_id=evaluation_id,
-                      submission_root=str(source), snapshot_file=str(snapshot), container_id=app,
+                      submission_root=str(source), snapshot_file=str(snapshot), container_id=allocated['app'],
                       app_url=f'http://{app_ip}:5173', api_url=f'http://{app_ip}:5080',
                       maildrop=str(maildrop), output=str(output))
         if (source / 'ui-map.json').exists():
@@ -86,7 +93,8 @@ exit "$app_status"
         config_path.write_text(json.dumps(config, indent=2))
         socket = Path('/var/run/docker.sock')
         docker_binary = Path(shutil.which('docker')).resolve()
-        docker('create', '--name', researcher, '--network', network, '--user', f'{uid}:{gid}',
+        allocate('researcher','create', '--name', researcher, '--network', network, '--user', f'{uid}:{gid}',
+               '--label', 'sample1.evaluation_id=' + evaluation_id,
                '--group-add', str(socket.stat().st_gid), '--cap-drop', 'ALL',
                '--security-opt', 'no-new-privileges', '--read-only',
                '--tmpfs', '/tmp:mode=1777,exec', '--tmpfs', '/home/pwuser:mode=1777,exec',
@@ -99,17 +107,17 @@ exit "$app_status"
                '--mount', f'type=bind,source={socket},target=/var/run/docker.sock',
                '--mount', f'type=bind,source={docker_binary},target=/usr/local/bin/docker,readonly',
                '--workdir', str(private_root), evaluator_image, str(private_node), str(private_root / 'run.mjs'), str(config_path))
-        resources = dict(evaluation_id=evaluation_id, app_container=app, researcher_container=researcher,
-                         network=network, config=str(config_path), output=str(output),
+        resources = dict(evaluation_id=evaluation_id, app_container=allocated['app'], researcher_container=allocated['researcher'],
+                         network=allocated['network'],resource_names={'app':app,'researcher':researcher,'network':network}, config=str(config_path), output=str(output),
                          evaluator_image=evaluator_image, app_image=image, evaluator_node_version=node_version,
                          evaluator_node_sha256=hashlib.sha256(private_node.read_bytes()).hexdigest(),
                          helper_protocol=2)
         (evaluation_root / 'resources.json').write_text(json.dumps(resources, indent=2))
         print(json.dumps(resources, indent=2))
     except Exception:
-        for name in (researcher, app):
-            subprocess.run(['docker', 'rm', '-f', name], capture_output=True)
-        subprocess.run(['docker', 'network', 'rm', network], capture_output=True)
+        for kind in ('researcher','app'):
+            if kind in allocated:subprocess.run(['docker','rm','-f',allocated[kind]],capture_output=True)
+        if 'network' in allocated:subprocess.run(['docker','network','rm',allocated['network']],capture_output=True)
         raise
 
 
@@ -118,5 +126,6 @@ if __name__ == '__main__':
     p.add_argument('run_root', type=Path)
     p.add_argument('private_root', type=Path)
     p.add_argument('--evaluator-image', required=True)
+    p.add_argument('--evaluation-id')
     a = p.parse_args()
-    main(a.run_root, a.private_root, a.evaluator_image)
+    main(a.run_root, a.private_root, a.evaluator_image,a.evaluation_id)

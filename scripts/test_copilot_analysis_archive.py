@@ -64,6 +64,20 @@ class RelocationTests(unittest.TestCase):
         self.assertEqual(evidence['counts']['evaluated'],2)
         self.assertEqual(evidence['counts']['usage_complete'],1)
 
+    def test_missing_fixed_source_keeps_raw_but_suppresses_effective_score(self):
+        import csv
+        slot=load(self.batch)[1]['runs'][0]
+        run=self.batch/'runs'/slot['planned_run']/'attempt'
+        registry_before=digest(self.validity)
+        (run/'frozen').rename(run/'retained-source')
+        result=export(self.batch,self.validity,output=self.root/'export-missing')
+        with (self.root/'export-missing/runs.csv').open(encoding='utf-8-sig',newline='') as stream:
+            row=next(r for r in csv.DictReader(stream) if r['run_id']==slot['run_id'])
+        self.assertEqual(row['quality_percent'],'');self.assertEqual(row['measurement_state'],'unavailable')
+        self.assertEqual(row['evaluation_validity'],'valid');self.assertEqual(row['source_availability'],'missing')
+        self.assertEqual(row['failed'],'57');self.assertEqual(result['evaluation_unavailable'],1)
+        self.assertEqual(digest(self.validity),registry_before)
+
     def test_registry_adjudication_and_legacy_binding_survive_relocation(self):
         registry=read(self.validity);record=registry['attempts'][0]
         base='evaluations/'+record['evaluation_id']+'/'

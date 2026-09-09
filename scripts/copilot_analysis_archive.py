@@ -8,16 +8,24 @@ from copilot_batch import load, export, ROOT
 from preserve import pack, restore, read, write_new, digest, safe_name
 
 
-def preserve_analysis(root, validity, archive):
+def analysis_sources(root, validity):
     config, index = load(root)
     sources = {'batch/' + name: root / name for name in
                ('experiment.json', 'planned-runs.json', 'run-index.json')}
     sources['validity.json'] = validity
-    sources.update({'inputs/'+name: ROOT/name for name in config['input_hashes']})
+    input_root=root/'inputs' if config.get('batch_schema')==2 else ROOT
+    sources.update({'inputs/'+name: input_root/name for name in config['input_hashes']})
+    for folder in ('scripts','analysis'):
+        for source in (ROOT/folder).glob('*.py'):
+            sources['management/'+folder+'/'+source.name]=source
+    for name in ('dispatches','plan-revisions','parallel-control.json',
+                 'source-experiment.json','source-run-index.json','rescore-plan.json',
+                 'reanalysis-source.json'):
+        if (root/name).exists():sources['batch/'+name]=root/name
     # The complete registry may reference historical adjudications even when the
     # selected Runs are new. Keep its bytes and relative dependency paths intact.
     for record in read(validity)['attempts']:
-        dependencies = [(r['path'], r['sha256']) for r in record.get('adjudications', [])]
+        dependencies = [(r['path'], r['sha256']) for r in record.get('adjudications', [])+record.get('evidence',[])]
         legacy = record.get('legacy_adjudication_binding')
         if legacy:
             dependencies.append((legacy['config_path'], legacy['config_sha256']))
@@ -37,21 +45,48 @@ def preserve_analysis(root, validity, archive):
             continue
         relative = 'batch/runs/' + slot['planned_run'] + '/attempt/'
         run = root / 'runs' / slot['planned_run'] / 'attempt'
+        for name in ('assignment.json','worker-started.json','execution-result.json','evaluation-jobs','recovery-history'):
+            if (run.parent/name).exists():sources['batch/runs/'+slot['planned_run']+'/'+name]=run.parent/name
         for name in ('manifest.json', 'snapshot.json', 'frozen', 'usage.json',
-                     'telemetry', 'telemetry-link.json', 'raw-usage', 'evaluation-ref.json'):
+                     'telemetry', 'telemetry-link.json', 'raw-usage', 'evaluation-ref.json',
+                     'inputs','management-source','agent.stdout.log','agent.stderr.log','cleanup-result.json','evaluation-refs',
+                     'source-evaluation-ref.json','preservation.json','linked-preservation.json','linked-restoration.json',
+                     'evaluation-preservation.json','evaluation-restoration.json','evaluation-restorations'):
             if (run / name).exists():
                 sources[relative + name] = run / name
         if not (run / 'evaluation-ref.json').exists():
             continue
-        ref = read(run / 'evaluation-ref.json')
-        eid = ref['evaluation_id']
-        if eid in locations:
-            raise ValueError('Duplicate selected evaluation')
-        directory = Path(ref['evaluation_directory'])
-        locations[eid] = {'original_directory': str(directory), 'path': 'evaluations/' + eid}
-        for name in ('summary.json', 'results.jsonl', 'evaluator-snapshot/requirements-ledger.json'):
-            if (directory / name).exists():
-                sources['evaluations/' + eid + '/' + name] = directory / name
+        references=[run/'evaluation-ref.json', *sorted((run/'evaluation-refs').glob('*.json'))]
+        for path in references:
+            ref=read(path); eid=ref['evaluation_id']; directory=Path(ref['evaluation_directory'])
+            location={'original_directory':str(directory),'path':'evaluations/'+eid}
+            if eid in locations and locations[eid]!=location:
+                raise ValueError('Conflicting evaluation history')
+            locations[eid]=location
+            sources['evaluations/'+eid]=directory
+            if (directory.parent/'management-evidence').exists():
+                sources['evaluation-preparation/'+eid]=directory.parent/'management-evidence'
+    from preserve import tree
+    flattened={}
+    for name,path in sources.items():
+        files={name+'/'+relative:path/relative for relative in tree(path)} if path.is_dir() else {name:path}
+        for relative,source in files.items():
+            if relative in flattened and digest(flattened[relative])!=digest(source):
+                raise ValueError('Conflicting preserved original: '+relative)
+            flattened[relative]=source
+    return flattened,locations
+
+
+def immutable_inventory(root, validity):
+    """Use the preservation allowlist, never walk mutable working dependencies."""
+    from preserve import tree
+    sources,_=analysis_sources(root,validity)
+    return {name:tree(path) if path.is_dir() else digest(path) for name,path in sources.items()}
+
+
+def preserve_analysis(root, validity, archive):
+    config,_=load(root)
+    sources,locations=analysis_sources(root,validity)
     with tempfile.TemporaryDirectory() as temporary:
         temporary = Path(temporary)
         # Validate before sealing, including missingness and every selected binding.

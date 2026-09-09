@@ -4,7 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 from aggregate import aggregate, write_outputs, ROOT
-from validity import load_registry, resolve
+from validity import load_registry, resolve,apply_case_adjudications
 
 
 def read(path):
@@ -64,7 +64,7 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
         run = dict(base, score_version=summary['evaluator_hash'], submission_hash=summary['submission_hash'],
                    evaluation_attempt=str(evaluation.resolve()), results_hash=digest(evaluation / 'results.jsonl'),
                    evaluation_id=evaluation.parent.name if evaluation.name == 'result' else evaluation.name,
-                   evaluation_kind=summary['kind'])
+                   evaluation_kind=summary['kind'],evaluation_outcome=summary['outcome'])
         if evaluation_error:
             run['evaluation_error'] = summary.get('error') or summary['outcome']
         # Reject silent report truncation, wrong cases and altered summary metrics.
@@ -80,6 +80,7 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
         if summary['quality'] != quality:
             raise ValueError('Summary/result quality mismatch')
         run.update(resolve(validity_records, registry_hash, run['evaluation_id'], summary, evaluation))
+        rows=apply_case_adjudications(rows,validity_records.get(run['evaluation_id']),validity_path)
         runs.append(run)
         results.extend(rows)
     return runs, results
