@@ -21,7 +21,8 @@ def analysis_sources(root, validity):
     sources['management/analysis/requirements.txt']=ROOT/'analysis/requirements.txt'
     for name in ('dispatches','plan-revisions','parallel-control.json',
                  'source-experiment.json','source-run-index.json','rescore-plan.json',
-                 'reanalysis-source.json'):
+                 'reanalysis-source.json','pre-v3-experiment.json',
+                 'pre-v3-run-index.json','rescore-plan-v3.json'):
         if (root/name).exists():sources['batch/'+name]=root/name
     # The complete registry may reference historical adjudications even when the
     # selected Runs are new. Keep its bytes and relative dependency paths intact.
