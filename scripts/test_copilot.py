@@ -14,9 +14,9 @@ from run_copilot import worker_command, worker_environment, validate_config, exe
 
 
 class GatewayTests(unittest.TestCase):
-    def request(self, terminal, status=200, wrong=False):
+    def request(self, terminal, status=200, wrong=False, provider='opencode-zen'):
         with tempfile.TemporaryDirectory() as directory:
-            env = {'MODEL_ID': 'muse-test-contributor-free', 'RUN_ID': 'run', 'PROVIDER': 'opencode-zen',
+            env = {'MODEL_ID': 'muse-test-contributor-free', 'RUN_ID': 'run', 'PROVIDER': provider,
                    'USAGE_DIRECTORY': directory, 'EFFORT': ''}
             response = io.BytesIO(terminal)
             response.status = status
@@ -40,12 +40,32 @@ class GatewayTests(unittest.TestCase):
                     server.server_close()
                     thread.join()
                 if not wrong:
+                    self.assertEqual(connection.return_value.request.call_args.args[1],
+                        '/zen/go/v1/responses' if provider == 'opencode-go' else '/zen/v1/responses')
                     headers = connection.return_value.request.call_args.kwargs['headers']
                     self.assertEqual(headers['x-opencode-session'], env['RUN_ID'])
                     self.assertEqual(headers['User-Agent'], 'sample1-copilot-gateway/1')
             text = ''.join(p.read_text() for p in Path(directory).glob('*.jsonl'))
             self.assertNotIn('never-save-this-key', text)
             return collect(Path(directory)), text
+
+    def test_go_endpoint_and_config_binding(self):
+        self.request(b'', provider='opencode-go')
+        c = {
+            'agent': 'github-copilot-cli', 'provider': 'opencode-go',
+            'base_url': 'https://opencode.ai/zen/go/v1', 'wire_api': 'responses',
+            'agent_version': '1.0.83-5', 'effort': None, 'subagent_policy': 'disabled',
+            'model_id': 'muse-spark-1.3-contributor', 'experiment_id': '00000000-0000-4000-8000-000000000001',
+            'experiment_version': 'copilot-go-test', 'planned_run': 'smoke-001', 'phase': 'copilot-smoke',
+            'budget': {'kind': 'wall_clock_seconds', 'scope': 'container', 'value': 300},
+            'environment': {'image': 'sha256:' + 'a' * 64}}
+        validate_config(c)
+        validate_config(dict(c, model_id='muse-spark-1.2-contributor'))
+        for overrides in ({'base_url': 'https://opencode.ai/zen/v1'},
+                          {'model_id': 'muse-spark-1.3-contributor-free'},
+                          {'model_id': 'gpt-5.6-luna'}, {'provider': 'other'}):
+            with self.assertRaises(ValueError):
+                validate_config(dict(c, **overrides))
 
     def test_usage_and_model_mismatch_and_429_and_broken_stream(self):
         for model, complete in [('muse-test-contributor-free', True), ('other', False)]:

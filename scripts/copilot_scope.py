@@ -76,7 +76,10 @@ def check(config, run_id=None):
         raise ValueError('Exact model availability and free/data terms are unconfirmed')
     from preservation_gate import check_restoration
     from execution_scope import ROOT
-    check_restoration(scope, ROOT)
+    if config['phase'] == 'copilot-smoke' and 'smoke_readiness' in scope.get('preservation', {}):
+        check_smoke_readiness(config, scope, ROOT)
+    else:
+        check_restoration(scope, ROOT)
     acceptance = None
     if config['phase'] == 'comparison':
         acceptance = check_acceptance(config, scope['live_acceptance'], path.parent)
@@ -86,6 +89,33 @@ def check(config, run_id=None):
     result = {'scope_sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
     if acceptance is not None: result['acceptance'] = acceptance
     return result
+
+
+def check_smoke_readiness(config, scope, root):
+    """Bounded, unscored smoke needs restored execution evidence, not E2E calibration."""
+    from preservation_gate import archive_root
+    from preserve import verify_receipt, digest
+    if config['phase'] != 'copilot-smoke':
+        raise ValueError('Short readiness is only valid for smoke')
+    archive = archive_root(scope)
+    receipt = verify_receipt(archive, scope['preservation']['smoke_readiness'])
+    package = archive / 'packages' / receipt['reference']['package_id']
+    if read(package / 'package.json')['metadata'].get('kind') != 'copilot-smoke-readiness':
+        raise ValueError('Wrong smoke readiness package')
+    proof = read(package / 'payload/proof.json')
+    required = {'file_edit', 'tool_execution', 'continuation', 'delegation_tools_absent',
+                'native_response_reconciliation'}
+    if (proof.get('settings_sha256') != settings_hash(config)
+            or proof.get('model_called') is not False
+            or not all(proof.get(k) is True for k in required)):
+        raise ValueError('Incomplete or mismatched smoke readiness')
+    hashes = proof.get('source_hashes', {})
+    if not {'scripts/run_copilot.py', 'scripts/copilot_scope.py', 'scripts/model_gateway.py',
+            'scripts/run_experiment.py', 'scripts/telemetry_link.py'}.issubset(hashes):
+        raise ValueError('Smoke execution source pins missing')
+    for relative, expected in hashes.items():
+        if digest(root / relative) != expected:
+            raise ValueError('Smoke execution source changed: ' + relative)
 
 
 def reserve(config, run_id):

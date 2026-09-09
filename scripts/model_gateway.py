@@ -76,11 +76,11 @@ class Handler(BaseHTTPRequestHandler):
                  'model_id': os.environ['MODEL_ID'], 'source': 'fixed-upstream-gateway',
                  'provider': os.environ.get('PROVIDER', 'openai-chatgpt-codex'), 'mode': 'request', 'usage': None,
                  'includes_children': False, 'status': 'unknown'}
-        if event['provider'] == 'opencode-zen':
+        if event['provider'] in ('opencode-zen', 'opencode-go'):
             event['provider_session_id'] = event['run_id']
         record('started.jsonl', event)
         try:
-            if event['provider'] == 'opencode-zen':
+            if event['provider'] in ('opencode-zen', 'opencode-go'):
                 # Only the gateway mounts this file. No credential in argv/env/logs.
                 key = Path('/secrets/zen-key').read_text().strip()
                 if not key:
@@ -90,7 +90,8 @@ class Handler(BaseHTTPRequestHandler):
                            'User-Agent': 'sample1-copilot-gateway/1',
                            'x-opencode-session': event['provider_session_id']}
                 connection = http.client.HTTPSConnection('opencode.ai', timeout=300)
-                upstream_path = '/zen/v1/responses'
+                upstream_path = ('/zen/go/v1/responses' if event['provider'] == 'opencode-go'
+                                 else '/zen/v1/responses')
             else:
                 auth = json.loads(Path('/secrets/auth.json').read_text())['tokens']
                 headers = {'Authorization': 'Bearer ' + auth['access_token'],

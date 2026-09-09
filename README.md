@@ -2,7 +2,7 @@
 
 [Copilot CLI / Zen BYOKの実装・非モデル検証・操作手順](docs/copilot-byok.md)：
 新しい20+20予定、UUIDによるmonitor対応、独立採点と分析出力の入口。
-旧pilotの停止・原本は維持。実Copilot/Museの受入は未実施で、本番開始許可ではありません。
+旧pilotの停止・原本は維持。実機受入の現在の証拠と残件は[Issue #19](https://github.com/fukuda-yuki/sample1/issues/19)を正本とし、本比較の開始許可と区別します。
 
 [新規pilot-2の停止結果](docs/pilot-2-results.md)：normalは管理環境障害でモデル呼出し前に失敗、anti未開始。失敗Runの原本・停止記録を独立保管・復元済み。追加Runは禁止。
 [2026-09-06 パイロット結果と停止地点](docs/pilot-results.md)：旧2 Runは原本欠落で評価不能、品質nullと過去の使用量照合記録を保持。[原本保全・復元](docs/preservation.md)の合格を条件に、新規pilot-2を各条件1回だけ実施して停止する。追加比較は許可しない。実測と現在状態の正本はGitHub #1・#11。

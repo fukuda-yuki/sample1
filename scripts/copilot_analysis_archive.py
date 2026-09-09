@@ -5,7 +5,7 @@ import shutil
 import tempfile
 import uuid
 from copilot_batch import load, export, ROOT
-from preserve import pack, restore, read, write_new
+from preserve import pack, restore, read, write_new, digest, safe_name
 
 
 def preserve_analysis(root, validity, archive):
@@ -14,9 +14,23 @@ def preserve_analysis(root, validity, archive):
                ('experiment.json', 'planned-runs.json', 'run-index.json')}
     sources['validity.json'] = validity
     sources.update({'inputs/'+name: ROOT/name for name in config['input_hashes']})
-    # These two-slot originals have no adjudications. Do not silently omit them.
-    if any(r.get('adjudications') for r in read(validity)['attempts']):
-        raise ValueError('Archive adjudication dependencies explicitly before relocation')
+    # The complete registry may reference historical adjudications even when the
+    # selected Runs are new. Keep its bytes and relative dependency paths intact.
+    for record in read(validity)['attempts']:
+        dependencies = [(r['path'], r['sha256']) for r in record.get('adjudications', [])]
+        legacy = record.get('legacy_adjudication_binding')
+        if legacy:
+            dependencies.append((legacy['config_path'], legacy['config_sha256']))
+        for name, expected in dependencies:
+            safe_name(name)
+            source = validity.parent / name
+            if not source.resolve().is_relative_to(validity.parent.resolve()):
+                raise ValueError('Validity dependency must stay beside its registry')
+            if digest(source) != expected:
+                raise ValueError('Validity dependency original changed')
+            if name in sources and sources[name] != source:
+                raise ValueError('Conflicting validity dependency path')
+            sources[name] = source
     locations = {}
     for slot in index['runs']:
         if slot['run_id'] is None:

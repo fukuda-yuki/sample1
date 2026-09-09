@@ -19,14 +19,21 @@ SMOKE = 'Create probe.txt containing 42. Run a shell command that reads it and c
 
 
 def validate_config(c):
-    for key, value in {'agent': 'github-copilot-cli', 'provider': 'opencode-zen',
-                       'base_url': 'https://opencode.ai/zen/v1', 'wire_api': 'responses',
+    for key, value in {'agent': 'github-copilot-cli', 'wire_api': 'responses',
                        'agent_version': CLI_VERSION, 'effort': None,
                        'subagent_policy': 'disabled'}.items():
         if c.get(key) != value:
             raise ValueError('Unsupported Copilot setting: ' + key)
-    if not re.fullmatch(r'muse-[a-z0-9.-]+-contributor-free', c.get('model_id') or ''):
-        raise ValueError('Explicit Muse Contributor Free exact model ID required')
+    if c.get('provider') == 'opencode-zen':
+        valid = (c.get('base_url') == 'https://opencode.ai/zen/v1' and
+                 re.fullmatch(r'muse-[a-z0-9.-]+-contributor-free', c.get('model_id') or ''))
+    elif c.get('provider') == 'opencode-go':
+        valid = (c.get('base_url') == 'https://opencode.ai/zen/go/v1' and
+                 c.get('model_id') in ('muse-spark-1.3-contributor', 'muse-spark-1.2-contributor'))
+    else:
+        valid = False
+    if not valid:
+        raise ValueError('Unsupported fixed provider, endpoint or exact model ID')
     uuid.UUID(c['experiment_id'])
     if not c['experiment_version'].startswith('copilot-'):
         raise ValueError('New Copilot experiment version required')
@@ -92,7 +99,7 @@ def execute(distribution, config, output, secret, *, opt_in=False, run_id=None):
         docker('create', '--name', gateway, '--network', 'bridge', '--read-only', '--cap-drop', 'ALL',
                '--security-opt', 'no-new-privileges', '--user', f'{os.getuid()}:{os.getgid()}',
                '--env', 'RUN_ID=' + run_id, '--env', 'MODEL_ID=' + config['model_id'],
-               '--env', 'PROVIDER=opencode-zen', '--env', 'PYTHONDONTWRITEBYTECODE=1',
+               '--env', 'PROVIDER=' + config['provider'], '--env', 'PYTHONDONTWRITEBYTECODE=1',
                '--mount', f'type=bind,source={secret.resolve()},target=/secrets/zen-key,readonly',
                '--mount', f'type=bind,source={Path(__file__).with_name("model_gateway.py").resolve()},target=/gateway.py,readonly',
                '--mount', f'type=bind,source={raw.resolve()},target=/usage',
