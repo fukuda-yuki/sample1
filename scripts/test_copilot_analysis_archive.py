@@ -64,6 +64,26 @@ class RelocationTests(unittest.TestCase):
         self.assertEqual(evidence['counts']['evaluated'],2)
         self.assertEqual(evidence['counts']['usage_complete'],1)
 
+    def test_registry_adjudication_and_legacy_binding_survive_relocation(self):
+        registry=read(self.validity);record=registry['attempts'][0]
+        base='evaluations/'+record['evaluation_id']+'/'
+        adjudication=self.validity.parent/(base+'adjudication.json')
+        config=self.validity.parent/(base+'researcher-config.json')
+        adjudication.parent.mkdir(parents=True)
+        atomic(adjudication,{'evaluation_id':record['evaluation_id'],'outcome':'confirmed'})
+        atomic(config,{'run_id':record['run_id']})
+        record['adjudications']=[{'path':base+'adjudication.json','sha256':digest(adjudication)}]
+        record['legacy_adjudication_binding']={'config_path':base+'researcher-config.json',
+                                               'config_sha256':digest(config)}
+        atomic(self.validity,registry)
+        evidence=check(self.source,self.root/'drill')
+        self.assertTrue(evidence['csv_identical'])
+        self.assertTrue(evidence['sqlite_all_tables_logically_identical'])
+        self.assertTrue(evidence['source_reads_denied'])
+        config.write_text('changed')
+        with self.assertRaisesRegex(ValueError,'dependency original changed'):
+            preserve_analysis(self.batch,self.validity,self.root/'rejected-archive')
+
     def test_wrong_selected_id_submission_and_evaluation_pair_rejected(self):
         slots=load(self.batch)[1]['runs']
         first=self.batch/'runs'/slots[0]['planned_run']/'attempt/evaluation-ref.json'

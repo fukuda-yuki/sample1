@@ -71,6 +71,22 @@ class AcceptanceTests(unittest.TestCase):
             guard.assert_called_once()
         self.assertFalse((self.root/'starts').exists())
 
+    def test_short_readiness_cannot_authorize_validation_or_comparison(self):
+        smoke = dict(self.source, phase='copilot-smoke', planned_run='smoke-001',
+                     budget={'kind':'wall_clock_seconds','scope':'container','value':300})
+        for config, short in ((smoke, True), (self.source, False)):
+            authority = dict(settings_sha256=scope.settings_hash(config),
+                allowed_starts=[config['planned_run']], account_terms_confirmed=True,
+                exact_model_confirmed=True, preservation={'smoke_readiness':{'fixture':True}})
+            atomic(self.root/'scope.json', authority)
+            with patch('copilot_scope.check_smoke_readiness') as fast, \
+                    patch('preservation_gate.check_restoration') as full:
+                scope.check(config)
+                self.assertEqual(fast.call_count, int(short))
+                self.assertEqual(full.call_count, int(not short))
+        with self.assertRaisesRegex(ValueError, 'only valid for smoke'):
+            scope.check_smoke_readiness(self.target, {}, self.root)
+
     def test_missing_evidence_pins_and_flags_rejected(self):
         for key in ('source_config','source_experiment','settings_sha256','kind','synthetic',
                     'file_edit','tool_execution','model_continuation','usage_reconciled',

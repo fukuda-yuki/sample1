@@ -1,5 +1,22 @@
 # Copilot / Zen experiment infrastructure
 
+The bounded Go acceptance path uses `provider=opencode-go`,
+`base_url=https://opencode.ai/zen/go/v1`, and exact model
+`muse-spark-1.3-contributor` or `muse-spark-1.2-contributor`. GPT and other Go
+models are rejected in this bounded path. The gateway reads the Go credential from its
+gateway-only secret mount, retains its honest User-Agent and stable Run session
+header, and never falls back to Zen. Use new start authority and experiment IDs;
+the historical Zen Free settings and failed originals remain unchanged.
+This support does not itself establish live acceptance or authorize comparison.
+
+For the unscored, at-most-300-second `copilot-smoke`, a restored
+`copilot-smoke-readiness` package may replace the full evaluator restoration gate.
+It pins the smoke settings and execution sources and retains the non-model real
+CLI edit/tool/continuation/native-usage evidence. Its verified restore receipt is
+registered as `preservation.smoke_readiness`. This does not authorize validation
+or comparison starts; those retain the full restoration/acceptance checks.
+Unchanged evaluator calibration can run independently of this short smoke.
+
 This path measures GitHub Copilot CLI, separately from historical Codex pilots.
 The public specs, common instructions and 57 ID / 58 case definition are unchanged.
 No command below purchases credits or changes account settings. Real inference is opt-in.
@@ -273,9 +290,10 @@ actual accepted observations; the format tests do not register real acceptance.
 
 For offline analysis, explicitly preserve the fixed batch/index, selected Run and
 evaluation originals, input files and validity snapshot. This is a private analysis
-package, not a full runtime/image backup or a shareable export. The small packaging
-entry rejects validity records with adjudication dependencies rather than silently
-omitting those documents; the existing synthetic validation has no such dependencies.
+package, not a full runtime/image backup or a shareable export. The packager retains
+the complete validity registry and its hash-pinned relative adjudication and legacy
+binding files without rewriting their paths. Absolute or out-of-tree dependencies
+are rejected rather than silently omitted. Restoration checks cover these files too.
 
 ```sh
 python scripts/copilot_analysis_archive.py pack /research/batch /research/validity.json /archive /research/new-reference.json
@@ -314,6 +332,7 @@ The actual CLI synthetic test established edit/tool/continuation and the native
 span+metric JSONL layout. The actual dependency probe established cached .NET
 restore/SQLite query, npm ci and Vite/React startup in the prepared Copilot image.
 Actual monitor fixture ingestion/read-back and projection catch-up were checked
-on a separate DB. Real Zen/Muse inference, account/free terms, long-run behavior,
-and full real-implementation-to-E2E acceptance were not performed. No additional
-pilot or forty real comparison Runs were started.
+on a separate DB. Those non-model checks do not establish live inference,
+account availability, long-run behavior, or implementation-to-E2E acceptance.
+Current live evidence and remaining acceptance work are tracked in Issue #19;
+forty real comparison Runs still require separate authorization.
