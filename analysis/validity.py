@@ -82,6 +82,14 @@ def apply_case_adjudications(rows,record,registry):
             event=decision.get('root_event')
             if event is not None and event not in {e['sequence'] for e in measurement.get('events',[])}:
                 raise ValueError('Adjudication refers to an unobserved event')
+            impact=decision.get('impact')
+            if impact is not None and impact not in ('direct','prerequisite','unconfirmed'):
+                raise ValueError('Unknown adjudicated impact')
+            if impact=='prerequisite' and event is None:
+                raise ValueError('Prerequisite impact needs an observed root event')
+            prior=decision.get('prerequisite_evaluation_ids',[])
+            if not isinstance(prior,list) or any(not isinstance(i,str) for i in prior) or len(prior)!=len(set(prior)) or any(i==key[0] or i not in {k[0] for k in indexed} for i in prior):
+                raise ValueError('Unknown, duplicate or self-referencing prerequisite ID')
             seen.add(key)
             row.setdefault('evidence',{})['adjudication']=dict(decision,adjudication_sha256=reference['sha256'])
     return rows
