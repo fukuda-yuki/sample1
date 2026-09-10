@@ -1,0 +1,67 @@
+{
+  "experiment_id": "dcacece4-120a-4258-bbd8-c09940dbb67c",
+  "synthetic": false,
+  "input_hashes": {
+    "normal/spec.md": "60591f585f9a0bc57085819acc4462f0bd596c360fac79cff249fee8d510b1a0",
+    "anti/spec.md": "4efee9a74d163f6fabad8c5392e395717869e074b34d81cb46489124f714c551",
+    "implementation_prompt.md": "27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2",
+    "evaluation/requirements-ledger.json": "5d6f0d13d547983b4e30a070e813b36c2ce5588e9b2cf29f3f3df47dd15bbf13",
+    "evaluation/case-manifest.json": "4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461"
+  },
+  "planned": 20,
+  "phase": "data-acquisition",
+  "started": 1,
+  "not_started": 19,
+  "evaluated": 0,
+  "evaluation_attempted": 1,
+  "evaluation_completed": 1,
+  "evaluation_valid": 0,
+  "evaluation_invalid": 1,
+  "evaluation_pending": 0,
+  "evaluation_unavailable": 0,
+  "usage_complete": 0,
+  "plotted": 0,
+  "code_hashes": {
+    "scripts/copilot_batch.py": "e9c13cbf7b22ce642d8bf2fe9d5b87d8b95fcdef4529ebed7740c3a712b671b0",
+    "scripts/telemetry_link.py": "2db3d52de5c63b01ecba0c26c6b93e0adfd2e5d8372dd191ff9bbab14d43476d",
+    "analysis/collect_runs.py": "de52f7e5500f66e113f19a8edfc2308ce229d03c6c22ee1475a18fc6c2bd22c9",
+    "analysis/aggregate.py": "74729573a8213fe95fd3cd63cf16f51b5a44e12eac72f77a608676c9e089e95d",
+    "analysis/plot.py": "65674114efc8165da021d2e0ed9e28e18d6840b9c8bd901ad50b2b6c3d9c0d2a"
+  },
+  "telemetry_refs": [
+    {
+      "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+      "native_sha256": "5270240706c098652e32d7067daf11193390b2a1da015456983d1df45e9b7179",
+      "otlp_sha256": "2b309efdbee034e35c2beca6a5b0c7a4f53fed835a8935491a8c45ad62fbe71c",
+      "session_ids": [
+        "256a2bf5-a8db-4a43-81bc-17bc38eda0d3"
+      ],
+      "trace_ids": [
+        "905541071251c7c1c619dff94252d27d"
+      ],
+      "submission_hash": "f21b262efb7e3e444d3bb9cc2176ccdc45cb4b501d6ebe3e9076cda047cbcd6a",
+      "monitor_instance": "acquisition10-dcacece4-120a-4258-bbd8-c09940dbb67c",
+      "monitor_build_hashes": [
+        "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+        "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+        "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+      ],
+      "monitor_schema": [
+        [
+          "monitor",
+          12
+        ],
+        [
+          "skill_projection",
+          1
+        ]
+      ],
+      "ingestion_records": [
+        {
+          "raw_record_id": 2,
+          "payload_sha256": "2b309efdbee034e35c2beca6a5b0c7a4f53fed835a8935491a8c45ad62fbe71c"
+        }
+      ]
+    }
+  ]
+}

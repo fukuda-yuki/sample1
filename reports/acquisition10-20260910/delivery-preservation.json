@@ -1,0 +1,11 @@
+{
+  "reference": {
+    "package_id": "acquisition-delivery-e4d9c49a-96b7-4dbc-853e-0804631bc034",
+    "sha256": "55ab16dabe6e7b3592899b7540fd9163083a731bba6fd5dac9e04c4a56ffce0f"
+  },
+  "restoration": {
+    "path": "receipts/9678abb3-3350-41a7-b223-01e62c9141b4.json",
+    "sha256": "43cc1e08ca928b83f0580fedfb64d81ef39fa1902ccf68c7fcfd5fb32524c1b7"
+  },
+  "scope": "Report and helpers except this self-referencing receipt"
+}
