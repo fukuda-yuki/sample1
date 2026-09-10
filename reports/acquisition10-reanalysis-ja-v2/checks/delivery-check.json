@@ -1,0 +1,8 @@
+{
+  "report_sha256": "780b8c5a93d7c84f19d33ed0a7a386cc4230d8f3f73b11c3137fb377f3739e41",
+  "final_receipts_match_report": true,
+  "generated_outputs_still_match_verified_hashes": 32,
+  "local_markdown_file_references_checked": 75,
+  "credential_pattern_matches": 0,
+  "scope": "Delivery consistency, supplemental to verification.json and the independent review."
+}

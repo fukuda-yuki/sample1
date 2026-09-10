@@ -1,0 +1,42 @@
+{
+  "analysis_id": "a917e4ae-19d0-4c31-bad6-9abb84ee8e88",
+  "authorization": "User approved and requested implementation of the v2 report plan in this task.",
+  "unit": "one implementation Run",
+  "population": "All 20 acquired Runs, normal 10 and anti 10.",
+  "token_metric": {
+    "field": "recorded_total_tokens",
+    "label": "記録済み総トークン",
+    "source": "runs.row_json.observed_tokens",
+    "scope": "Sum of recorded usage across all 20 Runs. Missing usage is not imputed and is not claimed to be measured.",
+    "source_fields_unchanged": [
+      "total_tokens",
+      "observed_tokens",
+      "usage_complete"
+    ]
+  },
+  "evaluation_metric": {
+    "label": "保存済みv6の合格率",
+    "formula": "100 * passed_IDs / 57",
+    "id_rule": "All required cases must pass; T-006-05 has two cases but earns one point.",
+    "validity": "Keep invalid/pending adjudications; no new quality adjudication."
+  },
+  "pairing": "Original schedule blocks; not a shared model random seed.",
+  "post_hoc": [
+    "dependency grouping",
+    "tokens per passed ID",
+    "sensitivity analyses",
+    "correlations",
+    "response-count decomposition",
+    "Pareto description",
+    "bootstrap"
+  ],
+  "bootstrap": {
+    "replicates": 20000,
+    "seed": 20260910,
+    "unit": "original pair",
+    "method": "percentile 95%"
+  },
+  "new_implementation_runs": 0,
+  "new_evaluations": 0,
+  "publication": false
+}
