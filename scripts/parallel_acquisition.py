@@ -128,8 +128,8 @@ def verify_ready(root, config, index):
     if scope.get('authorized_scope') != SCOPE or scope.get('generation_policy') != POLICY:
         raise ValueError('Parallel start authority missing')
     receipt = scope['preservation']['generation_readiness']
-    verify_receipt(archive_root(scope), receipt)
-    package = archive_root(scope)/'packages'/receipt['reference']['package_id']
+    restored = verify_receipt(archive_root(scope), receipt)
+    package = archive_root(scope)/'packages'/restored['reference']['package_id']
     proof = read(root.parent/'generation-proof.json')
     if digest(root.parent/'generation-proof.json') != digest(package/'payload/proof.json'):
         raise ValueError('Restored proof differs from the current proof')

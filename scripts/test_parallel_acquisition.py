@@ -128,6 +128,7 @@ class Pipeline(unittest.TestCase):
         atomic(directory/'execution-config.json',selected)
         atomic(directory/'assignment.json',dict(row,execution_config_sha256=digest(directory/'execution-config.json')))
         proof=dict(policy=POLICY,experiment_id=c['experiment_id'],plan_sha256=i['plan_sha256'],input_hashes=c['input_hashes'],
+            checks_passed=True,model_called=False,
             source_hashes={'scripts/parallel_acquisition.py':digest(ROOT/'scripts/parallel_acquisition.py')},
             models={MODELS[0]:dict(settings_sha256=settings_hash(selected),contract_sha256=hashlib.sha256(render_contract(ROOT,selected)).hexdigest())})
         atomic(batch.parent/'generation-proof.json',proof)
@@ -137,6 +138,14 @@ class Pipeline(unittest.TestCase):
         controller=dict(status='running',owner=process_identity(),dispatch_id='gate-test',
             generation_proof_sha256=digest(batch.parent/'generation-proof.json'),generation_readiness=scope['preservation']['generation_readiness'])
         atomic(batch/'controller.json',controller)
+        # restore() returns a receipt locator; verify_receipt() returns its payload.
+        from parallel_acquisition import verify_ready
+        archive=batch.parent/'archive';payload=archive/'packages/proof/payload';payload.mkdir(parents=True)
+        (payload/'proof.json').write_bytes((batch.parent/'generation-proof.json').read_bytes())
+        with patch('preserve.verify_receipt',return_value={'reference':{'package_id':'proof'}}), \
+                patch('parallel_acquisition.verify_receipt',return_value={'reference':{'package_id':'proof'}}), \
+                patch('preservation_gate.archive_root',return_value=archive):
+            self.assertEqual(verify_ready(batch,c,i),scope['preservation']['generation_readiness'])
         self.assertEqual(check_generation(selected,scope)['dispatch_id'],'gate-test')
         with self.assertRaises(ValueError):check_generation(dict(selected,model_id=MODELS[1]),scope)
         with self.assertRaises(ValueError):check_generation(selected,dict(scope,allowed_starts=[]))
