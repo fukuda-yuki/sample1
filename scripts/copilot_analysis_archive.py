@@ -47,7 +47,7 @@ def analysis_sources(root, validity):
             continue
         relative = 'batch/runs/' + slot['planned_run'] + '/attempt/'
         run = root / 'runs' / slot['planned_run'] / 'attempt'
-        for name in ('assignment.json','worker-started.json','execution-result.json','evaluation-jobs','recovery-history'):
+        for name in ('assignment.json','worker-started.json','execution-result.json','execution-config.json','acquisition-completion.json','evaluation-jobs','recovery-history'):
             if (run.parent/name).exists():sources['batch/runs/'+slot['planned_run']+'/'+name]=run.parent/name
         for name in ('manifest.json', 'snapshot.json', 'frozen', 'usage.json',
                      'telemetry', 'telemetry-link.json', 'raw-usage', 'evaluation-ref.json',

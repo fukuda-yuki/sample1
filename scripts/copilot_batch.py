@@ -64,7 +64,7 @@ def lock(root, name='batch.lock', *, recover_stale=False):
 
 def batch_phase(config):
     phase = config.get('phase', 'comparison')
-    if phase not in ('comparison', 'copilot-validation'):
+    if phase not in ('comparison', 'copilot-validation', 'data-acquisition'):
         raise ValueError('Batch phase must be comparison or copilot-validation')
     return phase
 
@@ -422,8 +422,11 @@ def export(root,validity,*,output=None,restoration_map=None):
                  'end_reason':None,'total_tokens':None,'observed_tokens':None,'usage_complete':False,
                  'denominator':57,'passed':None,'failed':None,'blocked':None,'errors':None,'quality_percent':None,
                  'missing_reason':slot['status'],'evaluation_attempted':False,'evaluation_completed':False,'measurement_state':'not_attempted'})
-        row=dict(row,planned_run=slot['planned_run'],state=slot['status'],model_id=config.get('model_id'),
+        actual_model = read(root/'runs'/slot['planned_run']/'attempt/manifest.json').get('model_id') if slot['run_id'] and (root/'runs'/slot['planned_run']/'attempt/manifest.json').exists() else config.get('model_id')
+        row=dict(row,planned_run=slot['planned_run'],state=slot['status'],model_id=actual_model,
                  agent_version=config.get('agent_version'))
+        if batch_phase(config)=='data-acquisition' and not slot['run_id']:
+            row['experiment_version']=config['experiment_version']+'-'+actual_model
         row['source_availability']=source_states.get(slot['run_id'],'not_acquired')
         row['missing_originals_json']=json.dumps(missing_originals.get(slot['run_id'],[]))
         if missing_originals.get(slot['run_id']):
@@ -500,7 +503,16 @@ def export(root,validity,*,output=None,restoration_map=None):
     with (output/'plot-input.csv').open('w',newline='',encoding='utf-8-sig') as f:
         writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader();writer.writerows(plot_rows)
     from plot import plot
-    plot(output/'plot-input.csv',output/'tokens-quality.png')
+    if batch_phase(config)=='data-acquisition':
+        for model in sorted({r['model_id'] for r in plot_rows}):
+            selected=[r for r in plot_rows if r['model_id']==model]
+            source=output/('plot-input-'+model+'.csv')
+            with source.open('w',newline='',encoding='utf-8-sig') as f:
+                writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader();writer.writerows(selected)
+            name='tokens-quality.png' if model==config['model_id'] else 'tokens-quality-'+model+'.png'
+            plot(source,output/name)
+    else:
+        plot(output/'plot-input.csv',output/'tokens-quality.png')
     return provenance
 
 

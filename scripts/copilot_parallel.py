@@ -97,6 +97,7 @@ def extend(root,n):
     positive(n,'N')
     with lock(root):
         c,index=load(root)
+        if c.get('phase') == 'data-acquisition':raise ValueError('Fixed acquisition cannot be extended')
         if c.get('phase')=='copilot-validation':raise ValueError('Validation cannot be extended')
         if any(r['status'] not in ('not_started','completed','failed','missing') for r in index['runs']):
             raise ValueError('Recover all started resources before extending')
@@ -117,6 +118,7 @@ def set_parallel(root,k):
     positive(k,'K')
     with lock(root,name='parallel-control.lock'):
         c,index=load(root);dispatch=read(root/'dispatches'/f"{index['dispatch_id']}.json")
+        if c.get('phase') == 'data-acquisition' and k != 1:raise ValueError('Acquisition is strictly serial')
         if dispatch['status']!='running' or not alive(dispatch['owner']):raise ValueError('Dispatch is not running')
         path=root/'parallel-control.json';old=read(path) if path.exists() else {}
         request=dict(schema_version=1,experiment_id=c['experiment_id'],dispatch_id=index['dispatch_id'],
@@ -129,6 +131,7 @@ def control(root,c,dispatch):
     if not path.exists():return
     try:
         r=read(path);positive(r['max_parallel'],'K')
+        if c.get('phase') == 'data-acquisition' and r['max_parallel'] != 1:raise ValueError('Acquisition is strictly serial')
         if r['experiment_id']!=c['experiment_id'] or r['dispatch_id']!=dispatch['dispatch_id'] or type(r['revision']) is not int:
             raise ValueError('Foreign/stale control request')
         if r['revision']<=dispatch.get('applied_revision',0):return
@@ -173,6 +176,10 @@ def dispatch(root,command_factory,collector=None,*,k=None,limit=None,recover_onl
     if limit is not None:positive(limit,'limit')
     with lock(root):
         c,index=load(root)
+        if c.get('phase') == 'data-acquisition' and not recover_only:
+            if k != 1 or limit != 1:raise ValueError('Acquisition requires K=1 and limit=1')
+            from serial_acquisition import next_slot
+            next_slot(root, c, index)
         # Recover completed workers only. Uncertain starts are never reused.
         for row in index['runs']:
             if row['run_id'] and row['status'] in ('running','reserved','recovery_required'):

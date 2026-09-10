@@ -42,7 +42,7 @@ def validate_config(c):
         raise ValueError('New Copilot experiment version required')
     if not re.fullmatch(r'[a-zA-Z0-9-]+', c['planned_run']):
         raise ValueError('Invalid planned slot')
-    if c.get('phase') not in ('comparison', 'copilot-smoke', 'copilot-validation'):
+    if c.get('phase') not in ('comparison', 'copilot-smoke', 'copilot-validation', 'data-acquisition'):
         raise ValueError('Explicit comparison, copilot-smoke or copilot-validation phase required')
     b = c['budget']
     if b['kind'] != 'wall_clock_seconds' or b['scope'] != 'container' or type(b['value']) is not int or b['value'] <= 0:

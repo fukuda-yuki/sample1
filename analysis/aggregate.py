@@ -10,7 +10,7 @@ STATUSES = {'pass', 'fail', 'blocked', 'error'}
 
 
 def aggregate(runs, results, ledger, *, validation=False):
-    phases = ('copilot-validation',) if validation else ('calibration', 'pilot', 'comparison')
+    phases = ('copilot-validation',) if validation else ('calibration', 'pilot', 'comparison', 'data-acquisition')
     ids = {x['evaluation_id']: x for x in ledger['items']}
     if len(ids) != ledger['fixed_denominator'] or len(ids) != len(ledger['items']):
         raise ValueError('Ledger denominator mismatch')

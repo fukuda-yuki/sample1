@@ -81,6 +81,9 @@ def check(config, run_id=None):
     validate_config(config)
     path = Path(config['authorization_file']).resolve()
     scope = read(path)
+    if config.get('phase') == 'data-acquisition':
+        from serial_acquisition import check_generation
+        return check_generation(config, scope, run_id)
     if scope.get('settings_sha256') != settings_hash(config):
         raise ValueError('Copilot authorization settings mismatch')
     slot = config['planned_run']
