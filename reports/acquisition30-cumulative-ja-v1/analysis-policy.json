@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "policy_date": "2026-09-11",
+  "authorization": "User approved implementation of additional normal/anti 20 starts, rolling K=5, frozen v6, cumulative 60-run report.",
+  "population": {"prior_batch": "dcacece4-120a-4258-bbd8-c09940dbb67c", "prior_runs": 20, "additional_planned_starts": 40, "target_total": 60},
+  "unit": "implementation Run; prior schedule pairs are blocks, not shared model random seeds",
+  "token_metric": {"name": "recorded_total_tokens", "label": "記録済み総トークン", "source": "observed_tokens", "impute_missing": false, "preserve_original_totals_and_completeness": true},
+  "evaluation_metric": {"label": "保存済みv6の合格率", "formula": "100 * passed_IDs / 57", "required_cases": 58, "all_cases_required_per_id": true, "preserve_invalid_pending": true},
+  "primary_model_comparison": "muse-spark-1.2-contributor within cumulative population; alternatives reported separately",
+  "required_strata": ["prior_serial_20", "new_parallel_40", "cumulative_60", "actual_model"],
+  "prior_findings_to_recheck": ["Recorded conflict and adopted threshold, including counterexamples and unknowns", "Location of the condition gap in direct, downstream and other IDs", "Recorded tokens relative to achieved evaluation IDs"],
+  "fixed_dependency_groups": {
+    "direct_threshold": ["T-006-01", "T-006-03", "T-006-05"],
+    "downstream_threshold": ["T-010-01", "T-011-01", "T-011-02", "T-012-01", "T-012-02", "T-013-01", "T-013-02", "T-014-01", "T-014-02", "T-015-01"],
+    "other": "remaining 44 IDs"
+  },
+  "bootstrap": {"replicates": 20000, "seed": 20260911, "unit": "schedule pair resampled within acquisition batch", "method": "percentile 95%", "incomplete_pairs": "retain individual runs descriptively; exclude incomplete pairs only from paired estimates with counts disclosed"},
+  "analyses": ["distributions and paired differences", "feature results and assertion reachability", "recorded decisions and static threshold", "response count and token decomposition", "termination reasons", "outliers and leave-one-pair-out sensitivity", "execution order and batch sensitivity", "association of tokens and observed pass rate"],
+  "interpretation_limits": ["Raw v6 output is distinct from effective product quality", "No causal effect of parallelism from the sequential batches", "Dependency-gap share is neither causal contribution nor recovered points", "No scoring of personality, conflict reporting or voluntary tests", "One application and AP-001; exploratory interpretation"],
+  "final_review": "Independent agent without drafting history; critical, logical and alternative-explanation review",
+  "language": "Japanese"
+}

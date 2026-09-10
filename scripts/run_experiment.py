@@ -80,6 +80,8 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
         management_files += ('run_copilot.py', 'copilot_scope.py', 'run_cleanup.py', 'prepare_workspace.py', 'telemetry_link.py', 'copilot_parallel.py', 'copilot_batch_worker.py', 'copilot_recovery.py', 'copilot_batch.py')
     if config.get('phase') == 'data-acquisition':
         management_files += ('serial_acquisition.py',)
+        if config.get('acquisition_policy') == 'parallel-preserve-first-v1':
+            management_files += ('parallel_acquisition.py',)
     for filename in management_files:
         data = Path(__file__).with_name(filename).read_bytes()
         (sources / filename).write_bytes(data)

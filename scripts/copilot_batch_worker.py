@@ -18,9 +18,15 @@ def main(assignment_file,secret):
     atomic(directory/'worker-started.json',dict(run_id=a['run_id'],owner=process_identity()))
     c=dict(config,**{k:row[k] for k in ('planned_run','condition','execution_order')})
     if config.get('phase') == 'data-acquisition':
-        from serial_acquisition import slot_config
-        c = slot_config(root, config, row)
-        atomic(directory/'execution-config.json', c)
+        if config.get('acquisition_policy') == 'parallel-preserve-first-v1':
+            from parallel_acquisition import assigned_config
+            c = assigned_config(root, config, row)
+            if read(directory/'execution-config.json') != c:
+                raise ValueError('Pinned execution settings changed')
+        else:
+            from serial_acquisition import slot_config
+            c = slot_config(root, config, row)
+            atomic(directory/'execution-config.json', c)
     from execution_scope import check_start
     from run_copilot import validate_config
     validate_config(c);check_start(c)

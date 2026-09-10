@@ -82,6 +82,9 @@ def check(config, run_id=None):
     path = Path(config['authorization_file']).resolve()
     scope = read(path)
     if config.get('phase') == 'data-acquisition':
+        if config.get('acquisition_policy') == 'parallel-preserve-first-v1':
+            from parallel_acquisition import check_generation
+            return check_generation(config, scope, run_id)
         from serial_acquisition import check_generation
         return check_generation(config, scope, run_id)
     if scope.get('settings_sha256') != settings_hash(config):
