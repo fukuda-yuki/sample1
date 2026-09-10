@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "analysis_id": "51f9cd42-e031-447d-82e5-5318fcf4a76e",
+  "source_data_sha256": "c935fc13f1e9cd538a2073886ede0468967ad646f97aed0623dd890f62e5de99",
+  "figure_count": 8,
+  "png_visual_reviews": 8,
+  "svg_xml_and_font_path_checks": 8,
+  "new_observations": 0,
+  "axes_titles_legends_japanese": true,
+  "raw_scores_not_relabelled_as_valid_quality": true,
+  "iterations": [
+    "初回8図を目視確認",
+    "図05の長い群名の左切れを余白で修正し再確認",
+    "図08の縦軸説明の重なりを除去し再確認",
+    "図07の注記を日本語へ統一し再確認"
+  ],
+  "figures": [
+    {
+      "id": "01-distributions",
+      "files": [
+        {
+          "path": "figures/01-distributions.png",
+          "sha256": "58d90757be2ada97a073237a15d9d532eb090bcf6e631d4be5f5f6b27544c0b5",
+          "pixels": [
+            2400,
+            1280
+          ],
+          "visual_inspection": "view_imageで実画像を確認。日本語の欠落、図外への切れ、判読を妨げる重なりなし。",
+          "identical_to_visually_reviewed_file": true
+        },
+        {
+          "path": "figures/01-distributions.svg",
+          "sha256": "21d19956c19ec91e28888d7413de3309e4b8d30507cf38d353249d8374baec2f",
+          "xml_valid": true,
+          "text_as_paths": true,
+          "visual_inspection": "同じMatplotlib図から出力。SVG自体の別描画は未実施。",
+          "identical_to_visually_reviewed_file": true
+        }
+      ]
+    },
+    {
+      "id": "02-pair-differences",
+      "files": [
+        {
+          "path": "figures/02-pair-differences.png",
+          "sha256": "f237bef5c08ef1018ac9fef128380282f1f8cf32c15ddc9fb7ea5e868af7d40f",
+          "pixels": [
+            2400,
+            1280
+          ],
+          "visual_inspection": "view_imageで実画像を確認。日本語の欠落、図外への切れ、判読を妨げる重なりなし。",
+          "identical_to_visually_reviewed_file": true
+        },
+        {
+          "path": "figures/02-pair-differences.svg",
+          "sha256": "337f6ff762e3e1acf74ba5d2f836bb44b8c6435c7fb29d0bb0cca4ef78c3db0c",
+          "xml_valid": true,
+          "text_as_paths": true,
+          "visual_inspection": "同じMatplotlib図から出力。SVG自体の別描画は未実施。",
+          "identical_to_visually_reviewed_file": true
+        }
+      ]
+    },
+    {
+      "id": "03-token-score",
+      "files": [
+        {
+          "path": "figures/03-token-score.png",
+          "sha256": "695ade98b4602b100d8d7b73e5985b432397a0a7a1eaacc1b37b786ef370c675",
+          "pixels": [
+            2720,
+            1440
+          ],
+          "visual_inspection": "view_imageで実画像を確認。日本語の欠落、図外への切れ、判読を妨げる重なりなし。",
+          "identical_to_visually_reviewed_file": true
+        },
+        {
+          "path": "figures/03-token-score.svg",
+          "sha256": "e119759d9ed93936ff2424f47dab5a101a1db57fd6c5b0d3355dbf9025b80be2",
+          "xml_valid": true,
+          "text_as_paths": true,
+          "visual_inspection": "同じMatplotlib図から出力。SVG自体の別描画は未実施。",
+          "identical_to_visually_reviewed_file": true
+        }
+      ]
+    },
+    {
+      "id": "04-feature-heatmap",
+      "files": [
+        {
+          "path": "figures/04-feature-heatmap.png",
+          "sha256": "fb76ba73d771fc2b82d8cfc4382038ec4e958baec495c1b6d2e929951504276c",
+          "pixels": [
+            3360,
+            2080
+          ],
+          "visual_inspection": "view_imageで実画像を確認。日本語の欠落、図外への切れ、判読を妨げる重なりなし。",
+          "identical_to_visually_reviewed_file": true
+        },
+        {
+          "path": "figures/04-feature-heatmap.svg",
+          "sha256": "dd3bb919de3d5715a87047fda09044ee70514eb42672b7e2326e5ace96ad9986",
+          "xml_valid": true,
+          "text_as_paths": true,
+          "visual_inspection": "同じMatplotlib図から出力。SVG自体の別描画は未実施。",
+          "identical_to_visually_reviewed_file": true
+        }
+      ]
+    },
+    {
+      "id": "05-gap-decomposition",
+      "files": [
+        {
+          "path": "figures/05-gap-decomposition.png",
+          "sha256": "c77db166bf6987413bec922e21d6a07d29571978436a8147cf7ae921cd7376d4",
+          "pixels": [
+            2560,
+            1280
+          ],
+          "visual_inspection": "view_imageで実画像を確認。日本語の欠落、図外への切れ、判読を妨げる重なりなし。",
+          "identical_to_visually_reviewed_file": true
+        },
+        {
+          "path": "figures/05-gap-decomposition.svg",
+          "sha256": "b6f98399cded5ab21456ee518b46e571f8020379a862e5fad564b6799c0d2f03",
+          "xml_valid": true,
+          "text_as_paths": true,
+          "visual_inspection": "同じMatplotlib図から出力。SVG自体の別描画は未実施。",
+          "identical_to_visually_reviewed_file": true
+        }
+      ]
+    },
+    {
+      "id": "06-dependency-path",
+      "files": [
+        {
+          "path": "figures/06-dependency-path.png",
+          "sha256": "a0776a2cd5d6066290f2f32dd90006ff778618501b4cf975f7e10e0f10182c37",
+          "pixels": [
+            2720,
+            1600
+          ],
+          "visual_inspection": "view_imageで実画像を確認。日本語の欠落、図外への切れ、判読を妨げる重なりなし。",
+          "identical_to_visually_reviewed_file": true
+        },
+        {
+          "path": "figures/06-dependency-path.svg",
+          "sha256": "95ff301dc8b02c0d32843b9639c487b8362f88d455b35d3d67cc10fadaaa7e0d",
+          "xml_valid": true,
+          "text_as_paths": true,
+          "visual_inspection": "同じMatplotlib図から出力。SVG自体の別描画は未実施。",
+          "identical_to_visually_reviewed_file": true
+        }
+      ]
+    },
+    {
+      "id": "07-process",
+      "files": [
+        {
+          "path": "figures/07-process.png",
+          "sha256": "fbb6ce8441570f208728d42fd57dd6ececf35d33a077ffa22e56b4c2c9b5333b",
+          "pixels": [
+            2880,
+            1440
+          ],
+          "visual_inspection": "view_imageで実画像を確認。日本語の欠落、図外への切れ、判読を妨げる重なりなし。",
+          "identical_to_visually_reviewed_file": true
+        },
+        {
+          "path": "figures/07-process.svg",
+          "sha256": "527b408e118aca1d80ada28abbefa285da0a0059929e6b230f62fa23f8ce7eab",
+          "xml_valid": true,
+          "text_as_paths": true,
+          "visual_inspection": "同じMatplotlib図から出力。SVG自体の別描画は未実施。",
+          "identical_to_visually_reviewed_file": true
+        }
+      ]
+    },
+    {
+      "id": "08-sensitivity",
+      "files": [
+        {
+          "path": "figures/08-sensitivity.png",
+          "sha256": "293fda4f0c92a87c5f46d59f0aee0f02f47fc240d35d56e67fbb8996acff076b",
+          "pixels": [
+            2720,
+            1600
+          ],
+          "visual_inspection": "view_imageで実画像を確認。日本語の欠落、図外への切れ、判読を妨げる重なりなし。",
+          "identical_to_visually_reviewed_file": true
+        },
+        {
+          "path": "figures/08-sensitivity.svg",
+          "sha256": "ae8cd034e4570af76f37d4a551f0b56d266c32689df158866c859587ffe7b078",
+          "xml_valid": true,
+          "text_as_paths": true,
+          "visual_inspection": "同じMatplotlib図から出力。SVG自体の別描画は未実施。",
+          "identical_to_visually_reviewed_file": true
+        }
+      ]
+    }
+  ],
+  "final_rerender": {
+    "files_checked": 16,
+    "byte_identical_to_prior_visual_review": 16,
+    "reason": "最終分析データへの参照hashとパネル別配色説明を更新。既存図の入力値・描画は変更なし。",
+    "script_sha256": "8080b1041c55f888aa81950416756f35d18a2960e571b5d0cd40fd9c3a7ef6d0"
+  },
+  "panel_specific_palette_meaning_verified": true
+}

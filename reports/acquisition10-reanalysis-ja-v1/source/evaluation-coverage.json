@@ -1,0 +1,39 @@
+[
+  {
+    "condition": "normal",
+    "evaluated_runs": 10,
+    "required_cases": 580,
+    "business_assertion_reached": 486,
+    "prerequisite_blocked": 50,
+    "raw_causes": {
+      "none": 412,
+      "requirement_unmet": 72,
+      "target_discovery": 65,
+      "unconfirmed": 31
+    },
+    "adjudicated_responsibilities": {
+      "none": 412,
+      "unconfirmed": 167,
+      "implementation": 1
+    }
+  },
+  {
+    "condition": "anti",
+    "evaluated_runs": 10,
+    "required_cases": 580,
+    "business_assertion_reached": 352,
+    "prerequisite_blocked": 127,
+    "raw_causes": {
+      "none": 265,
+      "requirement_unmet": 139,
+      "target_discovery": 115,
+      "unconfirmed": 61
+    },
+    "adjudicated_responsibilities": {
+      "evaluator": 2,
+      "instruction_ambiguity": 3,
+      "none": 265,
+      "unconfirmed": 310
+    }
+  }
+]

@@ -1,0 +1,2507 @@
+{
+  "schema_version": 1,
+  "source_database": {
+    "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/analysis.sqlite",
+    "sha256": "c5816c01c64f735e2cfb919df1d4fe8f1ce551d432c4201feff74fe9fe807d33"
+  },
+  "runs": [
+    {
+      "planned_run": "anti-001",
+      "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+      "condition": "anti",
+      "evaluation_uuid": "55cb359f-b3d4-4718-9ff0-7d22e8a8d291",
+      "submission_hash": "f21b262efb7e3e444d3bb9cc2176ccdc45cb4b501d6ebe3e9076cda047cbcd6a",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-001/attempt/snapshot.json",
+        "sha256": "f21b262efb7e3e444d3bb9cc2176ccdc45cb4b501d6ebe3e9076cda047cbcd6a"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-001/attempt/evaluation-ref.json",
+        "sha256": "af8ac18588918cb71319e6612522b0bb435689d71362557e6e45c9e7d47f10b9"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認金額閾値の矛盾\n- **箇所**: 仕様書冒頭「承認ルール（全機能共通）」では 100万円(1,000,000円)で課長/部長を分岐、F-006では 500,000円で分岐。\n- **採用した解釈**: F-006の 499,999円以下→課長、500,000円以上→部長を実装の正とする。\n- **理由**: F-006は提出処理の詳細ステップとして承認者決定ロジックを明記しており、より具体的でテスト対象になりやすい。冒頭の表は概要的な記述と判断。両方を同時に満たすことは不可能なため、詳細側を優先し、評価ではF-006準拠が期待されると推定。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-001/attempt/frozen/DECISIONS.md",
+          "sha256": "d35685e7d29ff0c6b74f5334b3e60558b9a3511613e394beacd19a9340b6634c",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-001/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "19f169c2af6e0930b80afedd744377c67ba0722ff3f3fbca5164f58970aba01d",
+              "line_start": 309,
+              "line_end": 309
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string requiredRole = amount <= 499999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-001/attempt/agent.stdout.log",
+          "sha256": "bcb484064672e456c6e38076d99ea4016fc0f8f7d2a7892de65e082ae1a03022",
+          "line_start": 2741,
+          "line_end": 2741,
+          "event_id": "42bc8350-82cb-40af-b654-8f78395ae6ac",
+          "timestamp": "2026-09-10T00:03:49.690Z",
+          "event_type": "assistant.message",
+          "message_id": "f793a572-e86d-4032-8ee4-aa29d2d7e60d",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a088a07fe57a338af030e05c4d31ba",
+          "excerpt": "## 1. 承認金額閾値の矛盾\n- **箇所**: 仕様書冒頭「承認ルール（全機能共通）」では 100万円(1,000,000円)で課長/部長を分岐、F-006では 500,000円で分岐。\n- **採用した解釈**: F-006の 499,999円以下→課長、500,000円以上→部長を実装の正とする。\n- **理由**: F-006は提出処理の詳細ステップとして承認者決定ロジックを明記しており、より具体的でテスト対象になりやすい。冒頭の表は概要的な記述と判断。両方を同時に満たすことは不可能なため、詳細側を優先し、評価ではF-006準拠が期待されると推定。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-001/attempt/agent.stdout.log",
+          "sha256": "bcb484064672e456c6e38076d99ea4016fc0f8f7d2a7892de65e082ae1a03022",
+          "line_start": 3016,
+          "line_end": 3016,
+          "event_id": "aca58eab-f098-419d-bf53-0638b7a0b71d",
+          "timestamp": "2026-09-10T00:04:49.979Z",
+          "event_type": "assistant.message",
+          "message_id": "00b7d6d3-023f-4e59-bce3-80c40e80d146",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 9,
+              "text": "**検証**: curlで登録/ログイン/下書き/提出(500k閾値)/承認/差し戻し/取消/検索/CSV/ユーザー管理/設定/テストメール/パスワード変更/ロックを確認。Viteビルド成功。詳細は `DECISIONS.md` と `IMPLEMENTATION_RESULT.md` を参照。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/55cb359f-b3d4-4718-9ff0-7d22e8a8d291/result/results.jsonl",
+          "sha256": "577f5ec898b0d78c33cf35380fdf3b6e3345a5ae6e66fef6c75760a640f80576"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "invalid",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-002",
+      "run_id": "11440dd4-c70f-466e-b37a-96376727430e",
+      "condition": "anti",
+      "evaluation_uuid": "5a74c522-9727-460f-b330-b0b9674ddcab",
+      "submission_hash": "0738b0e902b4be6232bbb1e299234079ba2ddd78359300a1dceb06095a3f90b7",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-002/attempt/snapshot.json",
+        "sha256": "0738b0e902b4be6232bbb1e299234079ba2ddd78359300a1dceb06095a3f90b7"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-002/attempt/evaluation-ref.json",
+        "sha256": "7772dfd1231416d2b365bf71da4f05936329c074f6d177c77e71d1d2a1af7070"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認者決定ルールの矛盾\n- 箇所: 冒頭の「承認ルール」表では 100万円未満→課長、100万円以上→部長 とあるが、F-006 では 499,999円以下→課長、500,000円以上→部長 と閾値が異なる。\n- 採用: F-006 の具体的な処理記述 (500,000円閾値) を優先。\n- 理由: F-006 は実装時の数値分岐を明示しており、採番・メール通知と一体の機能説明であるため、より詳細な仕様として扱う。冒頭表は概要とみなす。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-002/attempt/frozen/DECISIONS.md",
+          "sha256": "c135aa205bf384582a2e1d829f38ef3cf1034d821d0c17fbfac302e60b001d57",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-002/attempt/frozen/backend/Services/AuthHelper.cs",
+              "sha256": "5761b2da55b870f46c877e0f3ec775c5354f452021897725aa5b65cc08215eef",
+              "line_start": 28,
+              "line_end": 28
+            },
+            "source_relative_path": "backend/Services/AuthHelper.cs",
+            "line": "if (amount <= 499999) return \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-002/attempt/agent.stdout.log",
+          "sha256": "0eb3ff1508579c925f00f61e07ce224af57520a57fe7f778a0bcc88193d24551",
+          "line_start": 3095,
+          "line_end": 3095,
+          "event_id": "41924c07-552c-4c6a-bbc9-5d19887ca5f1",
+          "timestamp": "2026-09-10T02:19:00.074Z",
+          "event_type": "assistant.message",
+          "message_id": "6b1e85fb-5f46-4be9-9493-7ca5d3ea565d",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a0891c5a5c78b19c537ad7b5d814b3",
+          "excerpt": "## 1. 承認者決定ルールの矛盾\n- 箇所: 冒頭の「承認ルール」表では 100万円未満→課長、100万円以上→部長 とあるが、F-006 では 499,999円以下→課長、500,000円以上→部長 と閾値が異なる。\n- 採用: F-006 の具体的な処理記述 (500,000円閾値) を優先。\n- 理由: F-006 は実装時の数値分岐を明示しており、採番・メール通知と一体の機能説明であるため、より詳細な仕様として扱う。冒頭表は概要とみなす。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/5a74c522-9727-460f-b330-b0b9674ddcab/result/results.jsonl",
+          "sha256": "16e02e1bbee49c6f3be96923e0c52837ec924027fecf9a46c3928c199f424c8d"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-003",
+      "run_id": "9a8c5ff6-e5df-4b20-8646-cf11e16ed257",
+      "condition": "anti",
+      "evaluation_uuid": "7e20cd9d-2f88-415a-934f-14ecf781a9d1",
+      "submission_hash": "87f736835260b0da2198fd1f5e119854fb4c43be7c74974009ee3ad5f17c8132",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-003/attempt/snapshot.json",
+        "sha256": "87f736835260b0da2198fd1f5e119854fb4c43be7c74974009ee3ad5f17c8132"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-003/attempt/evaluation-ref.json",
+        "sha256": "de78c03638a3f302d3c497ec4c1918c7e81e3f3515ed42177767873cf1269b2e"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認金額閾値の矛盾\n- 箇所: 冒頭「承認ルール」では100万円(1,000,000円)を境に課長／部長、F-006「申請の提出」では499,999円以下→課長、500,000円以上→部長。\n- 採用した解釈: F-006の 500,000円 閾値を実装上の正とする。理由: F-006は具体的な処理内容(採番・承認者決定)の段階で明示されており、実装テストがこの値を基準に評価されると想定したため。\n- 代替: 100万円閾値は仕様冒頭の概要的記述とみなし、並存させない。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-003/attempt/frozen/DECISIONS.md",
+          "sha256": "07df80182e97a7263ac5c53de7f3d55e2315b04899c61f6b39746f240b97983d",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-003/attempt/frozen/backend/Program.cs",
+              "sha256": "1ccf7e5a1a25f625ecc790e3784588f47a4470225b18db48052802f52e0bf1ce",
+              "line_start": 561,
+              "line_end": 561
+            },
+            "source_relative_path": "backend/Program.cs",
+            "line": "string requiredRole = appObj.Amount <= 499999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-003/attempt/agent.stdout.log",
+          "sha256": "cd1566536c18d37fe6dac51d97d402deca357eddca0acd511aa3aced59725671",
+          "line_start": 2886,
+          "line_end": 2886,
+          "event_id": "a0ea1b0e-4e70-428e-a7b7-ae06828d195e",
+          "timestamp": "2026-09-10T02:35:04.715Z",
+          "event_type": "assistant.message",
+          "message_id": "7e3b8a7a-af5f-4595-b584-5d52014b2221",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a0892b0d207c31b0afa9e5f88d081f",
+          "excerpt": "## 1. 承認金額閾値の矛盾\n- 箇所: 冒頭「承認ルール」では100万円(1,000,000円)を境に課長／部長、F-006「申請の提出」では499,999円以下→課長、500,000円以上→部長。\n- 採用した解釈: F-006の 500,000円 閾値を実装上の正とする。理由: F-006は具体的な処理内容(採番・承認者決定)の段階で明示されており、実装テストがこの値を基準に評価されると想定したため。\n- 代替: 100万円閾値は仕様冒頭の概要的記述とみなし、並存させない。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-003/attempt/agent.stdout.log",
+          "sha256": "cd1566536c18d37fe6dac51d97d402deca357eddca0acd511aa3aced59725671",
+          "line_start": 3689,
+          "line_end": 3689,
+          "event_id": "5c4e3583-dfe6-460a-94f5-ab6541b2d1e6",
+          "timestamp": "2026-09-10T02:37:27.841Z",
+          "event_type": "assistant.message",
+          "message_id": "689e6508-ae54-4984-ad90-d41cfe7c348d",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 1,
+              "text": "実装完了。バックエンド(5080)とフロント(5173)が起動し、認証・申請・承認・マスタ・設定・通知・CSV・ダッシュボードを日本語UIで提供。`DECISIONS.md`に閾値矛盾等を記録。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": false,
+          "corroboration_scope": "関連作業・矛盾への言及のみ。採用数値の明言として数えない。",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/7e20cd9d-2f88-415a-934f-14ecf781a9d1/result/results.jsonl",
+          "sha256": "f9b2516b2ae82e43de78b01fb8b3ed136889211505f5f84f1bb8138dc1299527"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-004",
+      "run_id": "47b5dc69-6cad-48e4-9959-339ef37bccd4",
+      "condition": "anti",
+      "evaluation_uuid": "b51d0072-9a86-4e06-95a7-7bc1562d771c",
+      "submission_hash": "f0d2598cc2dcac3622ddb92cd91cf44cd607af8201da622a13542554b66b62d9",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-004/attempt/snapshot.json",
+        "sha256": "f0d2598cc2dcac3622ddb92cd91cf44cd607af8201da622a13542554b66b62d9"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-004/attempt/evaluation-ref.json",
+        "sha256": "dbe81351e707ac42a390848d949e96e4cabf66248d210c26b5ebb923a46407ce"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認者決定ルールの矛盾\n- 箇所: 非機能要件の承認ルール表では「100万円未満→課長、100万円以上→部長」、F-006 では「499,999円以下→課長、500,000円以上→部長」\n- 採用: F-006 の 500,000円閾値を採用\n- 理由: F-006 は申請提出時の処理内容として具体的に定義されており、実装上の基準として優先すべきと判断。F-006 の文言は「申請金額に基づいて承認者を決定する」直下で詳細化されているため。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-004/attempt/frozen/DECISIONS.md",
+          "sha256": "bcbae38d49705db1414d2d7b9d816b06ae14a9b04353b3bdaf7d4109e830ed41",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-004/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "03ed674a0bce84fee9ddca942234af9f8a3ef3c22ab8e51ad6dd6329149574e8",
+              "line_start": 49,
+              "line_end": 49
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string targetRole = amount <= 499999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-004/attempt/agent.stdout.log",
+          "sha256": "989f9a05322d3e385ee3c4cc427c89173eff53833d3351d413f3acbc9e8b0628",
+          "line_start": 2567,
+          "line_end": 2567,
+          "event_id": "5310c43b-dc1f-4c84-93f4-1c65e6ac0024",
+          "timestamp": "2026-09-10T03:12:45.232Z",
+          "event_type": "assistant.message",
+          "message_id": "549c827f-4265-424e-af69-bf2ddd8fa5fd",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a0894d8e347ca29c738cef890b66d8",
+          "excerpt": "## 1. 承認者決定ルールの矛盾\n- 箇所: 非機能要件の承認ルール表では「100万円未満→課長、100万円以上→部長」、F-006 では「499,999円以下→課長、500,000円以上→部長」\n- 採用: F-006 の 500,000円閾値を採用\n- 理由: F-006 は申請提出時の処理内容として具体的に定義されており、実装上の基準として優先すべきと判断。F-006 の文言は「申請金額に基づいて承認者を決定する」直下で詳細化されているため。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-004/attempt/agent.stdout.log",
+          "sha256": "989f9a05322d3e385ee3c4cc427c89173eff53833d3351d413f3acbc9e8b0628",
+          "line_start": 2764,
+          "line_end": 2764,
+          "event_id": "4bde28a3-bb57-4b97-958b-c1b19c4cb557",
+          "timestamp": "2026-09-10T03:13:21.529Z",
+          "event_type": "assistant.message",
+          "message_id": "61229450-7d63-4c38-9a0b-b42392f0eb45",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 1,
+              "text": "実装完了。バックエンド(Cookie認証, SQLite, 20機能, maildrop JSON, 500k閾値で承認者決定, REQ採番)を 5080 で、フロントエンド(React+Vite, proxy /api, 日本語UI)を 5173 で起動確認。`POST /api/dev/reset` で4アカウントをシード、ビルド検証済み。詳細は README/DECISIONS/IMPLEMENTATION_RESULT.md を参照。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/b51d0072-9a86-4e06-95a7-7bc1562d771c/result/results.jsonl",
+          "sha256": "c43d932fe42d51d556a112c6c3683a4e3b83d5c2817f4484d1d12e43fc742177"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "blocked"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-005",
+      "run_id": "600f4ba8-acdf-42ae-99e7-c86b95372d7e",
+      "condition": "anti",
+      "evaluation_uuid": "e3e6f2e9-b0b8-4f4b-ac43-376a06f2773c",
+      "submission_hash": "d4e26ddee8486f2dbb325043160d9d7b89cbd737bff1c302604d9c83d49dfe52",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-005/attempt/snapshot.json",
+        "sha256": "d4e26ddee8486f2dbb325043160d9d7b89cbd737bff1c302604d9c83d49dfe52"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-005/attempt/evaluation-ref.json",
+        "sha256": "8533e4f14652af3939eb8548c63b597e6611ae3ea72c5dabd50f414b7f8a0442"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認金額閾値の矛盾\n- 箇所: 冒頭「承認ルール」では 100万円未満=課長/100万円以上=部長、F-006では 499,999円以下=課長/500,000円以上=部長\n- 採用: F-006の 500,000円閾値を採用\n- 理由: F-006は提出時の承認者決定処理の詳細仕様であり、実装上具体的な分岐として記述されているため。共通ルールは概要であり、詳細が優先される。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-005/attempt/frozen/DECISIONS.md",
+          "sha256": "e5d2f060cbc867d43513b6e94260acf8dbdd13e8d28447121338b88cbd4a88fa",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "98b5e5a77450ae808fa28c22cfd27678a6bd20cb1120fd60c086b78bd19d7899",
+              "line_start": 221,
+              "line_end": 221
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string targetRole = app.Amount <= 499999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-005/attempt/agent.stdout.log",
+          "sha256": "095ec9989f2cc5d4ad7306f4c87dc0231b0e39f246adadbd20f78dfb4a8b7d46",
+          "line_start": 2270,
+          "line_end": 2270,
+          "event_id": "1f0455a1-cd56-430c-94e9-ad75cf617388",
+          "timestamp": "2026-09-10T04:12:17.235Z",
+          "event_type": "assistant.message",
+          "message_id": "1525be9f-69a1-4732-800f-8a2f0aae556d",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a089841ae27801ac36b5508c815b74",
+          "excerpt": "## 1. 承認金額閾値の矛盾\n- 箇所: 冒頭「承認ルール」では 100万円未満=課長/100万円以上=部長、F-006では 499,999円以下=課長/500,000円以上=部長\n- 採用: F-006の 500,000円閾値を採用\n- 理由: F-006は提出時の承認者決定処理の詳細仕様であり、実装上具体的な分岐として記述されているため。共通ルールは概要であり、詳細が優先される。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-005/attempt/agent.stdout.log",
+          "sha256": "095ec9989f2cc5d4ad7306f4c87dc0231b0e39f246adadbd20f78dfb4a8b7d46",
+          "line_start": 2840,
+          "line_end": 2840,
+          "event_id": "9d5bd936-aead-42e7-a475-37cc4aa07256",
+          "timestamp": "2026-09-10T04:14:06.183Z",
+          "event_type": "assistant.message",
+          "message_id": "c34143ce-749a-462f-b063-139a12d4804f",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 1,
+              "text": "実装完了。バックエンドは Cookie 認証・SQLite・採番・承認フロー・メール JSON 出力・CSV などを実装し `0.0.0.0:5080` で起動、フロントは Vite+React+TS で全画面（ログイン/登録/ダッシュボード/申請CRUD/検索/承認/取消/ユーザー管理/設定/パスワード）を `0.0.0.0:5173` で proxy 連携。仕様矛盾（500,000円閾値）を DECISIONS.md に記録。`POST /api/dev/reset` で4ユーザー初期化、`/backend/maildrop` に通知出力。起動は `backend: dotnet run` / `frontend: npm ci && npm run dev -- --host 0.0.0.0`。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/e3e6f2e9-b0b8-4f4b-ac43-376a06f2773c/result/results.jsonl",
+          "sha256": "c70d65ab22423d032c7675865a5ac58ce4a82506c081ec92b5beb2541653e64b"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "blocked"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-006",
+      "run_id": "6af34679-56f4-46d3-96f9-270931c32699",
+      "condition": "anti",
+      "evaluation_uuid": "db310dfc-e839-4833-8d46-3fa20f6e1b88",
+      "submission_hash": "d97e411d85df844b265ec4bc6affe4d80a4a0dc7328af8ed706fa841242e64ce",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-006/attempt/snapshot.json",
+        "sha256": "d97e411d85df844b265ec4bc6affe4d80a4a0dc7328af8ed706fa841242e64ce"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-006/attempt/evaluation-ref.json",
+        "sha256": "0437976a2272a16b5a91f9a1290f1f98bb3ae4a5524c0fde4c71ce0bb5c8dca2"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認金額閾値の矛盾\n- 箇所: 冒頭「承認ルール」では100万円（1,000,000円）境、F-006では500,000円境\n- 採用: F-006 の 500,000円閾値（499,999以下→課長、500,000以上→部長）\n- 理由: F-006は申請提出時の処理として具体的かつ実装に直結するため。全体共通ルールより個別機能の詳細を優先。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-006/attempt/frozen/DECISIONS.md",
+          "sha256": "0b6cbe66249cd0d7b19a8534b12ea5b65950c9d1667ed6127a39628d8a50bc8c",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-006/attempt/frozen/backend/Program.cs",
+              "sha256": "3aee606a5c3a251404869fc6ef4e3414ccaa5b71dd622fbab1fe0fd13931c53e",
+              "line_start": 421,
+              "line_end": 421
+            },
+            "source_relative_path": "backend/Program.cs",
+            "line": "string targetRole = amount <= 499999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-006/attempt/agent.stdout.log",
+          "sha256": "d9bea5acb4c9ff2b5597f4cf0f7cb35f506dfb5b979850d37a2c7225b7552371",
+          "line_start": 3021,
+          "line_end": 3021,
+          "event_id": "93d659a5-1f21-48d0-8069-f6522d4b531d",
+          "timestamp": "2026-09-10T05:03:16.133Z",
+          "event_type": "assistant.message",
+          "message_id": "98b0df2e-7464-4000-9e11-4e37cfea1f29",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 8,
+              "text": "**実装範囲**: F-001〜F-020 全機能、Cookie認証、BCrypt、SQLite、maildrop JSON、JST日時、承認閾値500k、検索/CSV/ダッシュボード等を実装。詳細は `IMPLEMENTATION_RESULT.md` と `DECISIONS.md` を参照。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/db310dfc-e839-4833-8d46-3fa20f6e1b88/result/results.jsonl",
+          "sha256": "c198f6936a836ef8620b6112e86a65d01bab5dddb8fe3d26cd85d26a817b4424"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-007",
+      "run_id": "76cac053-f623-45d1-96ff-c77edf4a0bee",
+      "condition": "anti",
+      "evaluation_uuid": "ca426959-1d8c-43b3-b9c8-c083495f7393",
+      "submission_hash": "f1e74918bbc269ab50410c67a0cc6b6b72b7d55bc0a213cab90a8e28454d8a94",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-007/attempt/snapshot.json",
+        "sha256": "f1e74918bbc269ab50410c67a0cc6b6b72b7d55bc0a213cab90a8e28454d8a94"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-007/attempt/evaluation-ref.json",
+        "sha256": "b88d121a7aae0e6cc48d0d49af0762eeb38164e68271e18f83b82c656a65a70c"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認者決定閾値の矛盾\n- 共通承認ルール: 100万円未満→課長、100万円以上→部長\n- F-006: 499,999円以下→課長、500,000円以上→部長\n- 採用: F-006 の 500,000円閾値を実装。理由: F-006 は提出処理の具体的ロジックとして金額分岐を明記しており、テスト対象の挙動としてより詳細な定義を優先。DECISIONS に記録し両仕様の差異を明示。\n- フォールバック: 課長が存在しない場合は部長を承認者に選出。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-007/attempt/frozen/DECISIONS.md",
+          "sha256": "bdb22e06269074991b4b5aafd68924e214c3dbf0311e269849a3d33a80f49458",
+          "line_start": 3,
+          "line_end": 8
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-007/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "f5e56507304a49ad9d9a2fbbea69e828404b621900cee7b73f9ac13267ea43ff",
+              "line_start": 511,
+              "line_end": 511
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string targetRole = amount < 500000 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-007/attempt/agent.stdout.log",
+          "sha256": "49ced51aa5af08aab6f4ec7c3af8f04ed31a8e656542ea80bcd398ad7be0a5a9",
+          "line_start": 2488,
+          "line_end": 2488,
+          "event_id": "e55524e2-38e8-491a-b609-1ac33611a4fc",
+          "timestamp": "2026-09-10T05:50:13.832Z",
+          "event_type": "assistant.message",
+          "message_id": "6e2de1bb-e18c-43b0-b57d-63f3c148025b",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 1,
+              "text": "実装完了。バックエンド(Cookie認証/BCrypt/SQLite/EF/CsvHelper)とフロント(React/Vite/Router)で全20機能を実装。`POST /api/dev/reset`で4ユーザー初期化、`/api`プロキシ、メールは`maildrop`にJSON出力、日付はAsia/Tokyo動的生成（REQ-YYYYMMDD-XXXX）。承認閾値はF-006の50万円を採用し`DECISIONS.md`に記録。`dotnet build`/`npm run build`及びAPIフロー(登録/ログイン/下書き/提出/承認/差戻し/取消/CSV/ダッシュボード等)を検証し両サーバーが`5080`/`5173`で起動確認済み。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/ca426959-1d8c-43b3-b9c8-c083495f7393/result/results.jsonl",
+          "sha256": "c28659583660ec4caf4f9075a167aada57a10da8b9c3b4375b31127b33cfc422"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-008",
+      "run_id": "69c2fcf8-cab9-49f0-ae99-d1aef80a64ab",
+      "condition": "anti",
+      "evaluation_uuid": "b49f8844-5ba3-4166-a62a-62434e0083f7",
+      "submission_hash": "709a3dc39689b1f0b71336fed4f99ddab7e6bf5efa6fcdf6fe3e0671b510d726",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-008/attempt/snapshot.json",
+        "sha256": "709a3dc39689b1f0b71336fed4f99ddab7e6bf5efa6fcdf6fe3e0671b510d726"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-008/attempt/evaluation-ref.json",
+        "sha256": "3549217c81e220717ceac6f360aadbb640dfe57a84c0a6b6b1696668d7a6ab3b"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認金額閾値の矛盾\n- spec.md 冒頭の承認ルールでは「100万円未満=課長、100万円以上=部長」、F-006では「499,999円以下=課長、500,000円以上=部長」と異なる。\n- 解釈: F-006は提出機能の具体的処理内容として金額判定を明示しているため、実装は F-006 の 500,000円閾値を採用する。理由は提出時の承認者決定ロジックが直接適用されるため。\n- 影響: 500,000円未満は課長、500,000円以上は部長が承認者となる。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-008/attempt/frozen/DECISIONS.md",
+          "sha256": "892472da93550d6036eeaa35f9739b0eebe760d01230d039ea4468b3677a3b2b",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-008/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "7f4d405293f31cbe2893a6d2758cfed595893449a934fb15eed77cb9cc73beab",
+              "line_start": 38,
+              "line_end": 38
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string role = amount <= 499999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-008/attempt/agent.stdout.log",
+          "sha256": "2582fd86654646ae73415d42a96674a5599197924be9a44ad892449e3377ac09",
+          "line_start": 2369,
+          "line_end": 2369,
+          "event_id": "577662c9-c045-41d8-b6d8-6ade3b0a186e",
+          "timestamp": "2026-09-10T06:14:17.318Z",
+          "event_type": "assistant.message",
+          "message_id": "2276097f-10d6-474d-88a2-870ccbb36dad",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 3,
+              "text": "- **Backend**: `.NET 8` WebAPI, EF Core SQLite (`backend/app.db`), Cookie認証, `POST /api/dev/reset`（Developmentのみ）で4アカウント/設定初期化、採番 `REQ-YYYYMMDD-XXXX`（JST）、承認者 500k閾値、メールは `backend/maildrop/*.json` に日本語で出力、CSVエクスポート等 F-001〜020 をカバー。`dotnet restore && dotnet run --urls http://0.0.0.0:5080`"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/b49f8844-5ba3-4166-a62a-62434e0083f7/result/results.jsonl",
+          "sha256": "297d1566b9c6a40d9ee2310257f05bd09472bde799f64f5f2ef72dcdaa3a249d"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-009",
+      "run_id": "dc4b4eaa-b0e8-4bf9-abbd-f777a2008ee6",
+      "condition": "anti",
+      "evaluation_uuid": "0d517b73-c4e5-46f0-899b-e72979026898",
+      "submission_hash": "785dbb4a650bfe1008a8ce40a65fb85c8540e4c2f478fdb431743333604754a5",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/snapshot.json",
+        "sha256": "785dbb4a650bfe1008a8ce40a65fb85c8540e4c2f478fdb431743333604754a5"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/evaluation-ref.json",
+        "sha256": "cfa8c29d745c8953d339f7ccf2afad25cc2e59279a8c560c9a752206b0d56d77"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認金額閾値の矛盾\n- 仕様書冒頭の承認ルールでは「100万円未満→課長、100万円以上→部長」と記載\n- 一方 F-006 では「499,999円以下→課長、500,000円以上→部長」と記載\n- **採用**: F-006 の 500,000円閾値を採用\n- **理由**: F-006 は申請提出時の処理内容として具体的に金額判定を記述しており、テストケースとの整合を優先。DECISIONS に記録し、承認ルール全体としては 50万円閾値で統一。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/frozen/DECISIONS.md",
+          "sha256": "53c4acd340702e045e3115cc82366569a6cd3288cbcb324854db0eaea31cc1eb",
+          "line_start": 3,
+          "line_end": 8
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "34c01601111995a2277428ce81389d60a8698cec94bae516bde9108d9607a541",
+              "line_start": 315,
+              "line_end": 315
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string approverRole = app.Amount >= 500000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "34c01601111995a2277428ce81389d60a8698cec94bae516bde9108d9607a541",
+              "line_start": 370,
+              "line_end": 370
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string neededRole = app.Amount >= 500000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "34c01601111995a2277428ce81389d60a8698cec94bae516bde9108d9607a541",
+              "line_start": 407,
+              "line_end": 407
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string neededRole = app.Amount >= 500000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/agent.stdout.log",
+          "sha256": "b1bacf2792a0dec3e5b474e825c8f3ea724bd5c380e5e7e4862713d377e45f52",
+          "line_start": 3425,
+          "line_end": 3425,
+          "event_id": "e9141309-6e2b-4e79-ab64-af18ce919839",
+          "timestamp": "2026-09-10T07:07:57.112Z",
+          "event_type": "assistant.message",
+          "message_id": "a60f5e6a-c15d-4c14-ad54-cb0e55aabae9",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 1,
+              "text": "実装完了。バックエンド(Cookie認証/EF Core/メールJSON/CSV/承認500k閾値)とフロント(React/Vite/日本語UI/全画面)を構築。`backend`は`dotnet restore --ignore-failed-sources`後`dotnet run`で0.0.0.0:5080、`frontend`は`npm install --prefer-offline`後`npm run dev -- --host 0.0.0.0`で5173起動。`/api/dev/reset`で4アカウント初期化、`/api/health`疎通確認済み。ビルド検証済み。詳細はREADME/DECISIONS/IMPLEMENTATION_RESULT参照。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/results.jsonl",
+          "sha256": "74fff750c1478b32c527862b880a91de25399e5e34a5600e24e6e361d2e311e6"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "anti-010",
+      "run_id": "7e5974e1-e419-4e9d-96f3-332c91617c78",
+      "condition": "anti",
+      "evaluation_uuid": "60ea41fe-16e4-4586-a4ec-76f8279947e8",
+      "submission_hash": "2c4e6f80c92d843ffe0e878a3f5ac4d895d7a7d5e5f2ac9e96d291998027c2a4",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-010/attempt/snapshot.json",
+        "sha256": "2c4e6f80c92d843ffe0e878a3f5ac4d895d7a7d5e5f2ac9e96d291998027c2a4"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-010/attempt/evaluation-ref.json",
+        "sha256": "5882be704c627015679b49655d0a02c29ad99b9b30c7b0e337ba6654346272bf"
+      },
+      "recorded_intent": {
+        "threshold_yen": 500000,
+        "text": "## 1. 承認者の金額閾値の矛盾\n- 箇所: 仕様書冒頭「承認ルール」では100万円未満が課長、100万円以上が部長。F-006「申請の提出」では499,999円以下が課長、500,000円以上が部長。\n- 採用した解釈: F-006の499,999/500,000境界を採用。\n- 理由: F-006は提出時の具体的なシステム処理として承認者決定ロジックを記述しており、実装に直結するため。冒頭の表は概略説明と判断し、詳細機能仕様であるF-006を優先した。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-010/attempt/frozen/DECISIONS.md",
+          "sha256": "75aa3e25f0fb7e2e98854b32e4cd85537e8bbc50db93b7a9fc1d4c0fd3587b9c",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": true,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 500000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-010/attempt/frozen/backend/Program.cs",
+              "sha256": "060ef38953e83474adbe5db3ae2d3d471277d5fb20a44ad29f35d4595b70b2ba",
+              "line_start": 70,
+              "line_end": 70
+            },
+            "source_relative_path": "backend/Program.cs",
+            "line": "string role = amount <= 499999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-010/attempt/agent.stdout.log",
+          "sha256": "1b29f07b9bc06f5566e139d1438eac68c07d717899cd9aa90210392e4f5abccc",
+          "line_start": 1946,
+          "line_end": 1946,
+          "event_id": "82892186-575a-4919-9bcf-218e92c4ae51",
+          "timestamp": "2026-09-10T08:06:30.149Z",
+          "event_type": "assistant.message",
+          "message_id": "d920daae-1e41-4a33-ae06-4433c0a268f9",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a08a5a74967dd29a99c84364c9b26a",
+          "excerpt": "## 1. 承認者の金額閾値の矛盾\n- 箇所: 仕様書冒頭「承認ルール」では100万円未満が課長、100万円以上が部長。F-006「申請の提出」では499,999円以下が課長、500,000円以上が部長。\n- 採用した解釈: F-006の499,999/500,000境界を採用。\n- 理由: F-006は提出時の具体的なシステム処理として承認者決定ロジックを記述しており、実装に直結するため。冒頭の表は概略説明と判断し、詳細機能仕様であるF-006を優先した。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/60ea41fe-16e4-4586-a4ec-76f8279947e8/result/results.jsonl",
+          "sha256": "c466b916c2b8be2fa06e45bdb8303dc8097756a61273e64ae10ec707799d90a4"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "fail"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-001",
+      "run_id": "daedcc21-8243-4234-8df7-945db1b684c0",
+      "condition": "normal",
+      "evaluation_uuid": "04d5df29-90d6-4c89-8a4e-f7c4946b2b96",
+      "submission_hash": "6cfe9293f5ebb775cf4a0c3af4f5191fadd02ccc7dd88741b8aba3a30dda4f63",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/snapshot.json",
+        "sha256": "6cfe9293f5ebb775cf4a0c3af4f5191fadd02ccc7dd88741b8aba3a30dda4f63"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/evaluation-ref.json",
+        "sha256": "07d52a9b68b2a8b2caf706d9c9ce378c828bc738cc7dbe76bbfd57bb00721b2e"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 1. 申請金額と承認者決定の閾値\n- 仕様: 999,999円以下は課長、1,000,000円以上は部長。境界値の扱いは spec F-006 および承認ルール表に従い、F-006 の記述を採用。999,999と1,000,000の間に隙間はないため、実装は `amount <= 999999 ? 課長 : 部長` とした。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/frozen/DECISIONS.md",
+          "sha256": "73acd209a376885446564a76bdfc85adae70c8329ccfbc2a18c8e4141fe10964",
+          "line_start": 3,
+          "line_end": 5
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/frozen/backend/Program.cs",
+              "sha256": "182e9862e1b757f6e2aa22a42286a0c502f09a0dac757379e03705a57ea85dcb",
+              "line_start": 523,
+              "line_end": 523
+            },
+            "source_relative_path": "backend/Program.cs",
+            "line": "string neededRole = amount <= 999999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/frozen/backend/Program.cs",
+              "sha256": "182e9862e1b757f6e2aa22a42286a0c502f09a0dac757379e03705a57ea85dcb",
+              "line_start": 623,
+              "line_end": 623
+            },
+            "source_relative_path": "backend/Program.cs",
+            "line": "string neededRole = finalAmount <= 999999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/frozen/backend/Program.cs",
+              "sha256": "182e9862e1b757f6e2aa22a42286a0c502f09a0dac757379e03705a57ea85dcb",
+              "line_start": 675,
+              "line_end": 675
+            },
+            "source_relative_path": "backend/Program.cs",
+            "line": "string neededRole = existing.Amount <= 999999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/agent.stdout.log",
+          "sha256": "585a96182222e9d282c53b7334554967c9316f540ec478adea49004d12ef0e78",
+          "line_start": 2369,
+          "line_end": 2369,
+          "event_id": "f58dee86-cb93-4d60-a30a-99465c7c2a97",
+          "timestamp": "2026-09-10T01:47:30.901Z",
+          "event_type": "assistant.message",
+          "message_id": "fcd0a468-dd3d-4102-b0c9-32761e94dc11",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a088ff6c0a7f32b5f3302ac45e4850",
+          "excerpt": "## 1. 申請金額と承認者決定の閾値\n- 仕様: 999,999円以下は課長、1,000,000円以上は部長。境界値の扱いは spec F-006 および承認ルール表に従い、F-006 の記述を採用。999,999と1,000,000の間に隙間はないため、実装は `amount <= 999999 ? 課長 : 部長` とした。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/04d5df29-90d6-4c89-8a4e-f7c4946b2b96/result/results.jsonl",
+          "sha256": "c89d4e36fe6ca08a4226184e4aed88094003af94600025d6b8634a4bb8c07a14"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-002",
+      "run_id": "6a301665-ffc6-40e3-918a-d7fad37e8d29",
+      "condition": "normal",
+      "evaluation_uuid": "34f2bf8a-14bb-4ccf-a834-fd95f57120a6",
+      "submission_hash": "2a864e4618996c56344eee0d4b76a8bf1e11b5bf080029b49dc4dd3eb225a238",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-002/attempt/snapshot.json",
+        "sha256": "2a864e4618996c56344eee0d4b76a8bf1e11b5bf080029b49dc4dd3eb225a238"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-002/attempt/evaluation-ref.json",
+        "sha256": "7e8556f5b8c140ad806304840f60cd24da9085da6286e91955226702446a5f06"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 3. 承認者決定ロジック (F-006, 承認ルール)\n- 100万円未満→課長、100万円以上→部長。境界 1,000,000 は仕様通り「以上は部長」。対象役職ユーザーが複数いる場合は最初に見つかった有効ユーザーを採用。存在しなければ `対象の役職を持つユーザーが存在しません。管理者にお問い合わせください` を返す。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-002/attempt/frozen/DECISIONS.md",
+          "sha256": "b503b287b99bee11af182fa38e9d1d564ad7b73f6369a5e1d4fbfe4a511c3fa9",
+          "line_start": 10,
+          "line_end": 12
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-002/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "e207c05f9a9b7747175513eb0c36f36345c5492ed8d76a448ed329b6a1f1b019",
+              "line_start": 37,
+              "line_end": 37
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string role = amount < 1000000 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-002/attempt/agent.stdout.log",
+          "sha256": "3ac60124792eabc7bbd62e6cd0705dee2b45c4ca2dc64ccc23323abc43f93fe1",
+          "line_start": 2250,
+          "line_end": 2250,
+          "event_id": "308cc729-853b-411e-8f89-78f0b75f765e",
+          "timestamp": "2026-09-10T02:02:06.651Z",
+          "event_type": "assistant.message",
+          "message_id": "7b427206-6771-403a-be11-df85db09dbf4",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a0890cdaba7970b0a83b2437112a0f",
+          "excerpt": "## 3. 承認者決定ロジック (F-006, 承認ルール)\n- 100万円未満→課長、100万円以上→部長。境界 1,000,000 は仕様通り「以上は部長」。対象役職ユーザーが複数いる場合は最初に見つかった有効ユーザーを採用。存在しなければ `対象の役職を持つユーザーが存在しません。管理者にお問い合わせください` を返す。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/34f2bf8a-14bb-4ccf-a834-fd95f57120a6/result/results.jsonl",
+          "sha256": "9f84fc07939bb8a6f8e546530e77941c983ca2393b2216e3423e722a5353568d"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-003",
+      "run_id": "cf27fbcf-5851-4bb9-8d56-b0fb385878e7",
+      "condition": "normal",
+      "evaluation_uuid": "79c28b3a-4baa-4a81-a83c-a8f42da4b717",
+      "submission_hash": "dd718aa97992f40afe4eb0d419019b40d290e736c32adfd4edabbe01db9e9acf",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/snapshot.json",
+        "sha256": "dd718aa97992f40afe4eb0d419019b40d290e736c32adfd4edabbe01db9e9acf"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/evaluation-ref.json",
+        "sha256": "22177f7895e71685b4c6b93977e260c1cf7417340de56f43f6d4acc9144e16dc"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 1. 申請金額と承認者の閾値\n- 仕様 F-006 では「999,999円以下→課長、1,000,000円以上→部長」と記載。承認ルール表では「100万円未満〜999,999円、100万円以上〜」と同等。\n- 採用解釈: 999,999 以下は課長、1,000,000 以上は部長。境界値は仕様例に合わせる。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/frozen/DECISIONS.md",
+          "sha256": "c75f6965e21efe8c4e4d56a49027e7df6ea44d0d90c08ae8025b2605d2d1b441",
+          "line_start": 3,
+          "line_end": 6
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/frozen/backend/Program.cs",
+              "sha256": "89f0d915a59e49a0935a56ea33433a3b57be3493713a7b6c2b32385fbac0afe2",
+              "line_start": 781,
+              "line_end": 781
+            },
+            "source_relative_path": "backend/Program.cs",
+            "line": "string requiredRole = amount <= 999999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/frozen/backend/Program.cs",
+              "sha256": "89f0d915a59e49a0935a56ea33433a3b57be3493713a7b6c2b32385fbac0afe2",
+              "line_start": 917,
+              "line_end": 917
+            },
+            "source_relative_path": "backend/Program.cs",
+            "line": "string requiredRole = appItem.Amount <= 999999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/agent.stdout.log",
+          "sha256": "64f94632133ff39866ff02c286505bbfc4a634ed41b94bc81965a58f9968b206",
+          "line_start": 2435,
+          "line_end": 2435,
+          "event_id": "ee446cbf-4f4b-40bb-a5c7-10f18406d8d8",
+          "timestamp": "2026-09-10T02:52:42.335Z",
+          "event_type": "assistant.message",
+          "message_id": "4a3e2249-398f-41a8-ae04-427ca9f0874b",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a0893b37bc7512ae74de0c004966d6",
+          "excerpt": "## 1. 申請金額と承認者の閾値\n- 仕様 F-006 では「999,999円以下→課長、1,000,000円以上→部長」と記載。承認ルール表では「100万円未満〜999,999円、100万円以上〜」と同等。\n- 採用解釈: 999,999 以下は課長、1,000,000 以上は部長。境界値は仕様例に合わせる。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/79c28b3a-4baa-4a81-a83c-a8f42da4b717/result/results.jsonl",
+          "sha256": "576ed39d841cd4b0e5a9bb16e4816efb42785dc2a730401e4c997a726b7ca2b6"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-004",
+      "run_id": "833a4f06-b9c0-4a95-a03e-65dea5922e72",
+      "condition": "normal",
+      "evaluation_uuid": "7d42fdd0-7a68-4b11-bfe3-a1f1a5fb3b46",
+      "submission_hash": "8856d45fdda3dc43ccc923b1bbb8a2b7f6654c0c4b9ca08dcacda95425633fac",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-004/attempt/snapshot.json",
+        "sha256": "8856d45fdda3dc43ccc923b1bbb8a2b7f6654c0c4b9ca08dcacda95425633fac"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-004/attempt/evaluation-ref.json",
+        "sha256": "a4ee126b3db542cdc8774af596bc033fa719f0bd78537728c90f2e0ea9824f89"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 1. 申請金額の境界\n仕様書で「100万円未満（〜999,999円）→課長」「100万円以上 →部長」とあり、F-006では「999,999円以下→課長」「1,000,000円以上→部長」と整合。境界値は 1,000,000 円を部長とする実装とした。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-004/attempt/frozen/DECISIONS.md",
+          "sha256": "1915604e28dad97311fd7b1eff85d449b0a969d1d0dd90def0a4eb65767a69b3",
+          "line_start": 3,
+          "line_end": 5
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-004/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "d30b14948ce53ced7961b8b74b0de9e493e3e5f33c1cc1e7d09f230cf69c4844",
+              "line_start": 236,
+              "line_end": 236
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string requiredRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [],
+      "saved_assistant_message_selection_status": "no_matching_visible_text_or_direct_document_write_in_selected_log",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/7d42fdd0-7a68-4b11-bfe3-a1f1a5fb3b46/result/results.jsonl",
+          "sha256": "7f7c70bc09f1bcc2d9ee004a376aaa8b409c9a8237432abf8655f1fd257b405c"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-005",
+      "run_id": "4fec6537-4704-46a5-a732-8ea312b2551c",
+      "condition": "normal",
+      "evaluation_uuid": "bed22a25-b5e5-4124-be25-eaf44f2023d0",
+      "submission_hash": "8ab09258b63c9886ad4add70c5518e0c60b4a8290aa01acd7afe4fc2717330a9",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/snapshot.json",
+        "sha256": "8ab09258b63c9886ad4add70c5518e0c60b4a8290aa01acd7afe4fc2717330a9"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/evaluation-ref.json",
+        "sha256": "30425f97b616b8a73dd059bc72def39a072b61eefabd0b74fb4c5bc4143fd52e"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 2. 承認者決定ロジック\n- spec F-006: 999,999円以下→課長、1,000,000円以上→部長。承認ルール表と同一。金額ちょうど100万円の場合、部長が正。実装は `amount >= 1_000_000 ? 部長 : 課長`。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/DECISIONS.md",
+          "sha256": "583657b36f083535b788aceedb56f2b420b762cff82785d2b378d866dba96cdf",
+          "line_start": 6,
+          "line_end": 8
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+              "line_start": 57,
+              "line_end": 57
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "var needed=app.Amount.HasValue && app.Amount.Value>=1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+              "line_start": 141,
+              "line_end": 141
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string neededRole=amount.Value>=1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+              "line_start": 161,
+              "line_end": 161
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "else { var needed=app.Amount.HasValue && app.Amount.Value>=1000000 ? \"部長\":\"課長\"; if(needed==user.Role) isApprover=true; }",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+              "line_start": 176,
+              "line_end": 176
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "bool isApprover=false; if(app.ApproverId==user.Id) isApprover=true; else { var needed=app.Amount.HasValue && app.Amount.Value>=1000000 ? \"部長\":\"課長\"; if(needed==user.Role) isApprover=true; }",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+              "line_start": 202,
+              "line_end": 202
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "else { var needed=app.Amount.HasValue && app.Amount.Value>=1000000 ? \"部長\":\"課長\"; var approver=await _db.Users.FirstOrDefaultAsync(u=> u.Role==needed); if(approver!=null){ var subject=\"【取り消し】\"+app.Title; var body=\"申請番号: \"+app.RequestNumber+\"\\nタイトル: \"+app.Title+\"\\nステータス: \"+app.Status+\"\\n申請詳細URL: http://localhost:5173/applications/\"+app.Id; await _email.SendAsync(approver.Email, subject, body);} }",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/agent.stdout.log",
+          "sha256": "acc0277f7b62dceeb93a20ddc85afd709f3c74dec44b283c1af374aca85641b6",
+          "line_start": 3303,
+          "line_end": 3303,
+          "event_id": "f0205021-c10f-4349-a478-62fcd0939be7",
+          "timestamp": "2026-09-10T03:53:15.375Z",
+          "event_type": "assistant.message",
+          "message_id": "a223bdd3-248d-4200-a3dd-c979dc52c325",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 8,
+              "text": "**検証:** API手動テストで下書き→提出→承認/差し戻し→再提出、金額閾値による承認者分岐、CSV(権限/10k制限)、ロック閾値を検証。Viteビルド・dotnetビルド成功、proxy経由も確認済み。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": false,
+          "corroboration_scope": "関連作業・矛盾への言及のみ。採用数値の明言として数えない。",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/bed22a25-b5e5-4124-be25-eaf44f2023d0/result/results.jsonl",
+          "sha256": "83c5c51178db9783f218a07f3f375bfb4dd5a0a23129bd0908f21cb519a1f8f9"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-006",
+      "run_id": "bf51ba90-dc2c-4f70-85da-a9de5642d0a4",
+      "condition": "normal",
+      "evaluation_uuid": "41898b27-30df-4236-9760-baec6f699927",
+      "submission_hash": "a2f91fbf3bb6d05c17bd3fc518162bdcf1ee52e1e0dae91b76e75aa761ee6ebb",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/snapshot.json",
+        "sha256": "a2f91fbf3bb6d05c17bd3fc518162bdcf1ee52e1e0dae91b76e75aa761ee6ebb"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/evaluation-ref.json",
+        "sha256": "6c744b2c21e99311b4db529cb5e9df7db7e98a1dd06079385fe585428a33e225"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 2. 承認者の決定\n- 金額が999,999円以下は課長、1,000,000円以上は部長。ちょうど1,000,000円は部長とした（仕様の「100万円以上は部長」に準拠）。\n- 承認者が複数いる場合は最初に見つかった有効ユーザーを採用。存在しない場合は「対象の役職を持つユーザーが存在しません」エラーを返す。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/frozen/DECISIONS.md",
+          "sha256": "64bc86b1537ad32c122b342fa15cd452ea096802ec272391400524f76cf9e811",
+          "line_start": 7,
+          "line_end": 10
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "79b0530712e5de5ca289052e2ddb271fae0dd928b5b9b20df758de700460af91",
+              "line_start": 236,
+              "line_end": 236
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string requiredRole = amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "79b0530712e5de5ca289052e2ddb271fae0dd928b5b9b20df758de700460af91",
+              "line_start": 248,
+              "line_end": 248
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "approverRole = amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "79b0530712e5de5ca289052e2ddb271fae0dd928b5b9b20df758de700460af91",
+              "line_start": 338,
+              "line_end": 338
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string requiredRole = amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/agent.stdout.log",
+          "sha256": "b88f698f294ee3c523199c39fa29e4540265bd7e5b8f18d1e0e97938bcd6ddfc",
+          "line_start": 3059,
+          "line_end": 3059,
+          "event_id": "ad0cda0b-3df6-43c1-8d86-0f5a738b2e09",
+          "timestamp": "2026-09-10T04:37:59.743Z",
+          "event_type": "assistant.message",
+          "message_id": "b191e2a2-676b-469d-8861-199b5a5df686",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a0899b95a07be1ba9aac55210d7844",
+          "excerpt": "## 2. 承認者の決定\n- 金額が999,999円以下は課長、1,000,000円以上は部長。ちょうど1,000,000円は部長とした（仕様の「100万円以上は部長」に準拠）。\n- 承認者が複数いる場合は最初に見つかった有効ユーザーを採用。存在しない場合は「対象の役職を持つユーザーが存在しません」エラーを返す。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/agent.stdout.log",
+          "sha256": "b88f698f294ee3c523199c39fa29e4540265bd7e5b8f18d1e0e97938bcd6ddfc",
+          "line_start": 3537,
+          "line_end": 3537,
+          "event_id": "69a80f7c-8e1a-4f24-b850-8612c7414999",
+          "timestamp": "2026-09-10T04:39:39.946Z",
+          "event_type": "assistant.message",
+          "message_id": "914feeb9-a875-475e-ae1c-6e68303f3046",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 3,
+              "text": "**バックエンド**: ASP.NET Core 8 + SQLite + Cookie認証。登録/ログイン/ロックアウト(閾値可変)/セッション/パスワード変更、申請CRUD（下書き/提出・承認者自動決定・REQ採番・添付検証・遷移制御）、検索/ページネーション、CSV(BOM)、ダッシュボード、ユーザー管理、設定/SMTPテスト、`/api/dev/reset`、maildrop JSON出力、JST日時対応。"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": false,
+          "corroboration_scope": "関連作業・矛盾への言及のみ。採用数値の明言として数えない。",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/41898b27-30df-4236-9760-baec6f699927/result/results.jsonl",
+          "sha256": "d2ddabde837f7df1f1b4cddd2af9a319f13745f2442b6be63825ead2d0528295"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-007",
+      "run_id": "09dbcec8-c9c3-49ec-921c-766894607e07",
+      "condition": "normal",
+      "evaluation_uuid": "ed0e4c75-c806-491e-b474-710e2a602912",
+      "submission_hash": "fe1f8f87e8ee60a5221ee0de9b8da45cdf2e724707aadc9c526f3cf0915c5087",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-007/attempt/snapshot.json",
+        "sha256": "fe1f8f87e8ee60a5221ee0de9b8da45cdf2e724707aadc9c526f3cf0915c5087"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-007/attempt/evaluation-ref.json",
+        "sha256": "1ed926c1c5e5fdec69883421c5ff5f695d7afc829fbcf145c080293bf0e1c6d3"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 2. 承認者の決定\n- 申請金額 1,000,000円以上は部長、999,999円以下は課長。仕様の閾値通りに実装。\n- 該当役職の有効ユーザーが複数いる場合は最初に見つかった1名を承認者とする。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-007/attempt/frozen/DECISIONS.md",
+          "sha256": "6533422a38dfdd88c85cf1bd03b044d41c38622d20baaa5b17780e796bd704f0",
+          "line_start": 7,
+          "line_end": 10
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-007/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "3755b4570a635d9ad1c7a971b837c772dcf22de32b70b31ef28bba26aaea69c7",
+              "line_start": 195,
+              "line_end": 195
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string approverRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-007/attempt/agent.stdout.log",
+          "sha256": "6edb765103fc3a19f822930fbf5671de6527681e969157a84c1dc35e9ecf9e42",
+          "line_start": 3071,
+          "line_end": 3071,
+          "event_id": "a05caa88-738f-416b-ae5f-ce0167bf7cc0",
+          "timestamp": "2026-09-10T05:26:22.310Z",
+          "event_type": "assistant.message",
+          "message_id": "ec6610b4-cea2-4929-a536-1dda477af846",
+          "kind": "assistant_visible_text",
+          "field": "data.content",
+          "excerpts": [
+            {
+              "content_line": 9,
+              "text": "- 認証・登録・ロック(5回/可変閾値)、Cookie認証、申請作成→下書き→提出(REQ-YYYYMMDD-XXXX, 金額で課長/部長判定)→一覧/検索(キーワード/ステータス/種別/日付/金額, ページネーション, URL反映)→詳細→承認/差し戻し/取消→履歴→メール(JSON to/subject/body/sentAt, JST表示)→CSV(BOM, 10k制限, 課長/部長/管理者のみ)→ダッシュボード→ユーザー管理→パスワード変更→システム設定＋テスト送信"
+            }
+          ],
+          "supports_explicit_recorded_threshold_value": false,
+          "corroboration_scope": "関連作業・矛盾への言及のみ。採用数値の明言として数えない。",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/ed0e4c75-c806-491e-b474-710e2a602912/result/results.jsonl",
+          "sha256": "07060ce05e35f293c9f78695865339a5732c71ce880d199c1372a7e6fd056650"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-008",
+      "run_id": "cc1ad56e-0db0-4187-8d1d-9e89552abe92",
+      "condition": "normal",
+      "evaluation_uuid": "3e8a42fa-6424-4ab4-89e1-582efd444fb2",
+      "submission_hash": "2b42ff14937250bf9eceb359fa9e69a3dec925062a480858fd04ec094540df2d",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/snapshot.json",
+        "sha256": "2b42ff14937250bf9eceb359fa9e69a3dec925062a480858fd04ec094540df2d"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/evaluation-ref.json",
+        "sha256": "832ccf1f5c95e712412b37cb09514905c54d1a7b7e425d20dec1f3347334c5ea"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 4. 承認者決定\n- 999,999円以下→課長、1,000,000円以上→部長。有効な該当役職ユーザーが複数いる場合は先頭1件を選択。存在しなければエラー「対象の役職を持つユーザーが存在しません...」",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/frozen/DECISIONS.md",
+          "sha256": "97140871b11af58dc5768a4b618aefc5370aeaaeeb11cf4424167c24451ab371",
+          "line_start": 13,
+          "line_end": 15
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "3026137ae97027cf4723a53e8e709576df8228b491a081396fcb48edd2a7bdaa",
+              "line_start": 188,
+              "line_end": 188
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string approverRole = req.Amount <= 999999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "3026137ae97027cf4723a53e8e709576df8228b491a081396fcb48edd2a7bdaa",
+              "line_start": 281,
+              "line_end": 281
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string approverRole = amount <= 999999 ? \"課長\" : \"部長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/agent.stdout.log",
+          "sha256": "4125b56f11aceee8beaa8c62106ace0090ce8760a5e49a4545688af08e50d4e7",
+          "line_start": 2349,
+          "line_end": 2349,
+          "event_id": "505f26b7-d5fb-4d96-8244-a39ee9acf7bb",
+          "timestamp": "2026-09-10T06:38:59.231Z",
+          "event_type": "assistant.message",
+          "message_id": "289f0b7a-88eb-4734-bdac-b9bad2209a28",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a08a0a606473428156da7b55aee070",
+          "excerpt": "## 4. 承認者決定\n- 999,999円以下→課長、1,000,000円以上→部長。有効な該当役職ユーザーが複数いる場合は先頭1件を選択。存在しなければエラー「対象の役職を持つユーザーが存在しません...」",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/3e8a42fa-6424-4ab4-89e1-582efd444fb2/result/results.jsonl",
+          "sha256": "3ff28c4b305f54fe18e8c978b2b3e9cfe77eeaaf3f985b57b73662ed6a4731e2"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-009",
+      "run_id": "b8bb85c7-e468-42ff-ad70-e10746737b87",
+      "condition": "normal",
+      "evaluation_uuid": "068beb0a-7e3b-48f5-b1f8-9473dfc5e2d2",
+      "submission_hash": "78dd337d6a66f08bf80b5a933460692b89d1f0739f64300ac39416663fed8018",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-009/attempt/snapshot.json",
+        "sha256": "78dd337d6a66f08bf80b5a933460692b89d1f0739f64300ac39416663fed8018"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-009/attempt/evaluation-ref.json",
+        "sha256": "a74b321098b636c93b7278c1a140df6f7eff01691cdb94379e3097f91b015ded"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 1. 申請金額と承認者の閾値\n- 仕様の承認ルールと F-006 の記述を採用: 999,999円以下→課長、1,000,000円以上→部長。境界値999,999/1,000,000で判定。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-009/attempt/frozen/DECISIONS.md",
+          "sha256": "672ccd5a898d1dcce6ab156d172a8ff142deb59b7f228d4cd4330f89c59cba24",
+          "line_start": 3,
+          "line_end": 5
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "315703f9eb4470a92e80a49110c045d0c9799533dea061b5869a2a4982535335",
+              "line_start": 486,
+              "line_end": 486
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string requiredRole = amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [],
+      "saved_assistant_message_selection_status": "no_matching_visible_text_or_direct_document_write_in_selected_log",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/068beb0a-7e3b-48f5-b1f8-9473dfc5e2d2/result/results.jsonl",
+          "sha256": "3c0df3a333dba01d443209e23444296cb4a4eded9b4e15f26d95abfedc5ab117"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    },
+    {
+      "planned_run": "normal-010",
+      "run_id": "ba9b31f3-7a29-4fad-ac2d-bba3bac61a0f",
+      "condition": "normal",
+      "evaluation_uuid": "91823a4d-a62e-4ada-a118-ff735a53ecdd",
+      "submission_hash": "9c27863ec5d780e2656735e3898d11b56188558078bb925fd699a213dd9b8626",
+      "snapshot": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/snapshot.json",
+        "sha256": "9c27863ec5d780e2656735e3898d11b56188558078bb925fd699a213dd9b8626"
+      },
+      "selected_evaluation_ref": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/evaluation-ref.json",
+        "sha256": "373e8827a57c9efb920132297678fc59a4df0208f70896fa6dab643cc4c363db"
+      },
+      "recorded_intent": {
+        "threshold_yen": 1000000,
+        "text": "## 1. 承認者決定\n- **箇所**: F-006 承認者決定、エラーメッセージ「対象の役職を持つユーザーが存在しません」\n- **採用した解釈**: 申請金額に応じて必要な役職（100万未満=課長、100万以上=部長）を持つ有効ユーザーのうち、DB上で最初に見つかった1名を承認者とする。複数いる場合は任意の1名で要件を満たす。\n- **理由**: 仕様は「役職」で判定するとのみ記載し、複数人いる場合の選択ロジックが未定義のため、最もシンプルでテスト可能な方式を採用。",
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/frozen/DECISIONS.md",
+          "sha256": "4bd4340e76b2151efb041a8199794d9f709281bef6abdd1b61605187fd5a94f2",
+          "line_start": 3,
+          "line_end": 7
+        },
+        "explicit_ap001_conflict_recorded": false,
+        "claim_scope": "提出された判断記録の記載。モデルの内心や認知過程を直接証明しない。"
+      },
+      "static_implementation": {
+        "threshold_yen": 1000000,
+        "branches": [
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "8320fb18702c61c6c1e012a75b62d7dd4974a4becb9b3bbf77a188c897ee65c6",
+              "line_start": 175,
+              "line_end": 175
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string requiredRole = req.Amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "8320fb18702c61c6c1e012a75b62d7dd4974a4becb9b3bbf77a188c897ee65c6",
+              "line_start": 256,
+              "line_end": 256
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string requiredRole = req.Amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          },
+          {
+            "citation": {
+              "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+              "sha256": "8320fb18702c61c6c1e012a75b62d7dd4974a4becb9b3bbf77a188c897ee65c6",
+              "line_start": 312,
+              "line_end": 312
+            },
+            "source_relative_path": "backend/Controllers/ApplicationsController.cs",
+            "line": "string requiredRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";",
+            "interpretation": "固定された実装ソース中の分岐。今回の実行結果ではない。"
+          }
+        ],
+        "all_read_source_files_verified_against_snapshot": true
+      },
+      "saved_assistant_messages": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/agent.stdout.log",
+          "sha256": "12862243a7825993eaa0050453d0cc4ac9f2ad76afa0a07f6b7639bfd25d77b9",
+          "line_start": 3167,
+          "line_end": 3167,
+          "event_id": "39f511d2-a10c-4c2c-b910-667c2195182b",
+          "timestamp": "2026-09-10T08:40:10.955Z",
+          "event_type": "assistant.message",
+          "message_id": "076701b5-6e75-44f0-9e89-b8c0898f18c1",
+          "kind": "assistant_document_write_request",
+          "field": "data.toolRequests[0].arguments",
+          "tool_name": "create",
+          "tool_call_id": "call_01a08a79458a7fd193e6ab715e178caa",
+          "excerpt": "## 1. 承認者決定\n- **箇所**: F-006 承認者決定、エラーメッセージ「対象の役職を持つユーザーが存在しません」\n- **採用した解釈**: 申請金額に応じて必要な役職（100万未満=課長、100万以上=部長）を持つ有効ユーザーのうち、DB上で最初に見つかった1名を承認者とする。複数いる場合は任意の1名で要件を満たす。\n- **理由**: 仕様は「役職」で判定するとのみ記載し、複数人いる場合の選択ロジックが未定義のため、最もシンプルでテスト可能な方式を採用。",
+          "interpretation": "保存済み文書作成要求。独立の発言や内心の証明としては数えない。",
+          "supports_explicit_recorded_threshold_value": true,
+          "corroboration_scope": "採用閾値の数値を含む自己記録",
+          "verification_limit": "保存されたモデル出力。自己申告されたテストの成功を今回独立検証したものではない。"
+        }
+      ],
+      "saved_assistant_message_selection_status": "matched",
+      "assistant_message_selection": "assistant.messageの可視contentとDECISIONS.md作成要求のみ。reasoningフィールドは選択・公開しない。",
+      "saved_outcomes": {
+        "citation": {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/91823a4d-a62e-4ada-a118-ff735a53ecdd/result/results.jsonl",
+          "sha256": "fa8c9789e1cb7e9a1e4486a284fe0878ca1b68aa54f8ecbc063b856f341cee2a"
+        },
+        "threshold_cases": [
+          {
+            "evaluation_id": "T-006-01",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-02",
+            "case_id": "main",
+            "status": "fail"
+          },
+          {
+            "evaluation_id": "T-006-03",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-04",
+            "case_id": "main",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "lower",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-05",
+            "case_id": "upper",
+            "status": "pass"
+          },
+          {
+            "evaluation_id": "T-006-06",
+            "case_id": "main",
+            "status": "pass"
+          }
+        ],
+        "raw_only": true,
+        "validity": "pending",
+        "rescored": false
+      }
+    }
+  ],
+  "counts": {
+    "runs": 20,
+    "anti_recorded_conflict_and_500000_branch": 10,
+    "normal_1000000_branch": 10
+  },
+  "new_observations": 0,
+  "rescoring": false
+}

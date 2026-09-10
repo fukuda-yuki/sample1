@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "fixed_denominator": 57,
+  "cases": [
+    {
+      "evaluation_id": "T-001-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-001-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-001-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-001-04",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-002-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-002-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-002-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-002-04",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-003-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-003-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-004-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-004-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-004-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-005-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-005-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-006-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-006-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-006-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-006-04",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-006-05",
+      "case_id": "lower"
+    },
+    {
+      "evaluation_id": "T-006-05",
+      "case_id": "upper"
+    },
+    {
+      "evaluation_id": "T-006-06",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-007-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-007-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-007-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-008-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-008-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-008-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-008-04",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-009-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-009-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-010-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-010-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-010-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-011-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-011-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-012-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-012-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-013-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-013-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-014-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-014-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-015-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-016-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-016-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-016-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-017-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-017-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-018-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-018-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-018-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-019-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-019-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-019-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-020-01",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-020-02",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-020-03",
+      "case_id": "main"
+    },
+    {
+      "evaluation_id": "T-020-04",
+      "case_id": "main"
+    }
+  ]
+}

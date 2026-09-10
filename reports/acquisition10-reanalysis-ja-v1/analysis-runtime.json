@@ -1,0 +1,6 @@
+{
+  "python": "3.12.3",
+  "sqlite": "3.45.1",
+  "numpy": "2.5.3",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+}

@@ -1,0 +1,36 @@
+{
+  "counts": {
+    "runs": 20,
+    "case_results": 1160,
+    "evaluations": 20,
+    "report_runs": 20,
+    "report_id_results": 1140,
+    "report_dimensions": 57
+  },
+  "original_tables_identical": true,
+  "total_tokens": 134321987,
+  "all_run_scores_reconstructed": true,
+  "sqlite_integrity": "ok",
+  "query_ids": [
+    "runs",
+    "pairs",
+    "groups",
+    "features",
+    "feature_runs",
+    "categories",
+    "ids",
+    "raw_case_status",
+    "coverage",
+    "classifications",
+    "process",
+    "http_groups",
+    "threshold_fingerprint",
+    "pareto",
+    "interpretations",
+    "trace_examples"
+  ],
+  "bootstrap_seed": 20260910,
+  "bootstrap_replicates": 20000,
+  "no_new_observations": true,
+  "no_new_evaluations": true
+}

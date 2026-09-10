@@ -1,0 +1,109 @@
+{
+  "analysis_id": "51f9cd42-e031-447d-82e5-5318fcf4a76e",
+  "created_at": "2026-09-10T12:32:35.418373+00:00",
+  "experiment_id": "dcacece4-120a-4258-bbd8-c09940dbb67c",
+  "inputs": [
+    {
+      "copy": "source/analysis.sqlite",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/analysis.sqlite",
+      "sha256": "c5816c01c64f735e2cfb919df1d4fe8f1ce551d432c4201feff74fe9fe807d33"
+    },
+    {
+      "copy": "source/retention.json",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/retention.json",
+      "sha256": "a0dfc704f74cde63a166f44bf3a1f795107e4984628aa2c7ceb8e39009b22eb6"
+    },
+    {
+      "copy": "source/planned-runs.json",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/planned-runs.json",
+      "sha256": "6d1f570515082254c993d941cb46500ffff27c4c935f56c566906b4cf67f2df8"
+    },
+    {
+      "copy": "source/measurement-profile.json",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/measurement-profile.json",
+      "sha256": "7d46c1a540b9492156d94f71e63e597cdae788da3d2184f5c89df919e2fccb8a"
+    },
+    {
+      "copy": "source/evaluation-coverage.json",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/evaluation-coverage.json",
+      "sha256": "3b5e25eb08d89b75d5f0c8952ae590bc7d0f844b38735ccd39825349d31a22e0"
+    },
+    {
+      "copy": "source/verification.json",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/verification.json",
+      "sha256": "675c45d431f660b480c576108bb66862a6c5687fe6ce07be45d241be62f5ce54"
+    },
+    {
+      "copy": "source/source-notes.md",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/source-notes.md",
+      "sha256": "b75511027fb98d4ce4ce11c7620d0023a148441b1db41e6bd7679b38b35961b3"
+    },
+    {
+      "copy": "source/summary.json",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/summary.json",
+      "sha256": "28a9dbe425559f24a3688fe084551e12bda27c5452fe917fe2c9a21caefd7e32"
+    },
+    {
+      "copy": "source/requirements-ledger.json",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/evaluation/requirements-ledger.json",
+      "sha256": "5d6f0d13d547983b4e30a070e813b36c2ce5588e9b2cf29f3f3df47dd15bbf13"
+    },
+    {
+      "copy": "source/case-manifest.json",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/evaluation/case-manifest.json",
+      "sha256": "4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461"
+    },
+    {
+      "copy": "source/normal-spec.md",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/normal/spec.md",
+      "sha256": "60591f585f9a0bc57085819acc4462f0bd596c360fac79cff249fee8d510b1a0"
+    },
+    {
+      "copy": "source/anti-spec.md",
+      "original": "/mnt/c/Users/mwam0/Documents/ls/sample1/anti/spec.md",
+      "sha256": "4efee9a74d163f6fabad8c5392e395717869e074b34d81cb46489124f714c551"
+    }
+  ],
+  "old_report_directory": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910",
+  "old_report_inventory": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "analysis-checks.ipynb": "efdd21156267e69bf2f84aad93fe1fe17b5dcb3644426fe044657d67824472e6",
+    "analysis-reference.json": "b83600a493ab71e033be7356720fca8def494943ecebfe2f8952c4c96f7fd066",
+    "analysis-runtime.json": "ed873778ab3d2e8732bbfdd4ae9f1190bfbe4c8f9226e3ba898ee1cc0438eaa5",
+    "analysis.sqlite": "c5816c01c64f735e2cfb919df1d4fe8f1ce551d432c4201feff74fe9fe807d33",
+    "ap001-raw-diagnostics.json": "f985f1faffe6add9773250aae967ca97da715f10cc700ab23ed7f5c20cb628e6",
+    "build-delivery.py": "862fd2b11d2c04de5831f60c72388a5888678da8697ac50a24c1e500e8f32fe4",
+    "delivery-preservation.json": "1f0151196cbdf480870df1a4ae7d00c8a2889948a7b5388f869f7e7c6946c619",
+    "evaluation-coverage.json": "3b5e25eb08d89b75d5f0c8952ae590bc7d0f844b38735ccd39825349d31a22e0",
+    "evaluation-preparation.json": "f771f5851c3feeb9b13e0ca62b9bb6dbdabb38a24750bc7820e40a63600bece1",
+    "export-complete.json": "2e518893b2c4959a59a50971780ecef36b834ae6bc8d8912753a06da3abe38fa",
+    "measurement-profile.json": "7d46c1a540b9492156d94f71e63e597cdae788da3d2184f5c89df919e2fccb8a",
+    "missing-runs.csv": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+    "notebook-verification.json": "1510bfa97f5a2fd51dd049a824ae5d4ca18f0c1f0e977c21badf64723db75565",
+    "paired-runs.json": "41b2abca91185c60cd68e24e381049c96e9d5d8e57948eee51043f3311b304ec",
+    "planned-runs.json": "6d1f570515082254c993d941cb46500ffff27c4c935f56c566906b4cf67f2df8",
+    "plot-input-muse-spark-1.2-contributor.csv": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+    "plot-input.csv": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+    "provenance.json": "c55f3523ccfe7324d0e0a6c8ee5c272dbc49ed8e5ea98aa37f2c41a7c6cb4c09",
+    "public-validation.json": "b3ad90bf30ca0511f48f6edcb62524ec63ede2c53bdf65371b51ef0b6270d341",
+    "render_delivery_plots.py": "b3304080070cdd3e293c50e4c3ec9908a60a8f65a27265d03d186a2f422ffcea",
+    "report.md": "e66fb749fb2118e63a9f94229b032bf8fa3f49a92aa2614066594dea144b8b23",
+    "reproduce.md": "c6c0ac4e4023ddb2510b4377d1451be3e37372a2eab8752df4eafa50d899faa4",
+    "retention.json": "a0dfc704f74cde63a166f44bf3a1f795107e4984628aa2c7ceb8e39009b22eb6",
+    "runs.csv": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+    "runs.json": "09300ae26bb5b450d1dfa4a7abd35038c5694cf85fa4ea7fc003db47637f5ba5",
+    "runtime-reference.json": "be6d93b1f2f084e99347028f09fb6f29c9c32bbbcd9e545705b3efafc6bc41fa",
+    "secret-scan.json": "5bca330161f4499bc72d17bc42d9106c3d4ae3807ea1889d27df01efb5d273b9",
+    "source-notes.md": "b75511027fb98d4ce4ce11c7620d0023a148441b1db41e6bd7679b38b35961b3",
+    "strict-isolation.json": "24163164ac2d7a8e566f40b8c56f5a55124079f6b1d2f9a3700a1d8f8df17c87",
+    "strict_restored_export.py": "df3a9de874e2b66fc4723fa3ebfb9da21bc9dbc9fab5a24602504a29d1a937fe",
+    "summary.json": "28a9dbe425559f24a3688fe084551e12bda27c5452fe917fe2c9a21caefd7e32",
+    "test-results.jsonl": "e94911beb1d689db70dfe8fc8d0d1a4df30db9cfe92fd8e0af31b0c3edec78bc",
+    "token-distribution.png": "c176fa6c055f1e3d42350d53a01d276edad0611e6503d1218fb780bb93d3b16c",
+    "tokens-quality.missing-runs.csv": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+    "tokens-quality.png": "65aa552b91025084cd1d60bba0d6d42952c23862e586439166118dacc8c71403",
+    "tokens-raw-v6.png": "ff594eaac1a74914bd88e356f045715d8feb3462e8c85f1f3d7b40ed73fc711f",
+    "verification.json": "675c45d431f660b480c576108bb66862a6c5687fe6ce07be45d241be62f5ce54",
+    "visual-review.json": "cad4a6dea25b328db1a817c3334d4a039dcdf70414692d0017e7b9daad2b0dac"
+  }
+}

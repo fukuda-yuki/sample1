@@ -1,0 +1,4 @@
+﻿dependency_group,normal_passed,anti_passed,gap,ids
+direct_threshold,30,0,30,3
+downstream_threshold,61,1,60,10
+other,311,257,54,44

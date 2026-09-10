@@ -1,0 +1,7 @@
+﻿condition,status,cases
+anti,blocked,127
+anti,fail,188
+anti,pass,265
+normal,blocked,52
+normal,fail,116
+normal,pass,412
