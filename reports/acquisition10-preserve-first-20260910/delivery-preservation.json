@@ -1,0 +1,12 @@
+{
+  "reference": {
+    "package_id": "acquisition10-delivery-2ff651ca-9fe5-405f-9117-72585246448d",
+    "sha256": "afefcc936f4bfe4aafcdf0fc339076220b887e1149165a7f545a6661b890fd21"
+  },
+  "restoration": {
+    "path": "receipts/7908041f-6db3-4460-87ff-797a704eb8d8.json",
+    "sha256": "5cef1b0edfa86cebcc6bb84cfacdafac063a4c3255092016f413affde1490f5d"
+  },
+  "restored_report_identical": true,
+  "note": "This receipt was written after sealing; the report payload excludes only delivery-preservation.json itself."
+}

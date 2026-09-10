@@ -1,0 +1,13 @@
+{
+  "reviewed_count": 3,
+  "labels_readable": true,
+  "inspected_pngs": {
+    "tokens-quality.png": "65aa552b91025084cd1d60bba0d6d42952c23862e586439166118dacc8c71403",
+    "tokens-raw-v6.png": "ff594eaac1a74914bd88e356f045715d8feb3462e8c85f1f3d7b40ed73fc711f",
+    "token-distribution.png": "c176fa6c055f1e3d42350d53a01d276edad0611e6503d1218fb780bb93d3b16c"
+  },
+  "method": "Visual inspection of all three rendered figures after label and empty-state correction.",
+  "labels_do_not_overlap": true,
+  "all_acquired_runs_remain_in_data": true,
+  "missing_quality_not_zero": true
+}

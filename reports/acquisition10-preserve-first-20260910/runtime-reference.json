@@ -1,0 +1,48 @@
+{
+  "common": {
+    "package_id": "copilot-go-muse12-common-744ac63b-aa23-41ce-8373-770a6d63a219",
+    "sha256": "eae1af12108e512caee0d8ac3593a37e878adfa444257c4ef4e6d02920d462d3"
+  },
+  "images": [
+    {
+      "image": "sha256:d70dc026cbd41542004ed010b6f40650be8dd7f7531fd59fd6a3d05ef3e407cb",
+      "file": "0.tar",
+      "sha256": "8156d1018b123201b500654bd6620f32accdba034cf05aad7f50300bd2ea1f98"
+    },
+    {
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "file": "1.tar",
+      "sha256": "e71c65912317a8add977501afbc6c47e98fed4abd062385c4d72a30a457e7631"
+    },
+    {
+      "image": "mcr.microsoft.com/playwright@sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
+      "file": "2.tar",
+      "sha256": "7309e52d5d05e8f48a38850cb535f305926266b8b3e59b22b8c4ce427b1f2e4a"
+    }
+  ],
+  "receipts": [
+    {
+      "path": "receipts/8b46e5f6-a67b-49c8-89a6-878685413651.json",
+      "sha256": "4fac70e3293146f788f952c61bda0fad8ec45fa05d89399e4d0e172cddfceb48"
+    },
+    {
+      "path": "receipts/42a77577-ff9f-4e42-8267-afcf99b1c123.json",
+      "sha256": "8aff53fc1ea32334340c7d46b0e0111795e7dcec5503b2eb766d670c85dbaf4e"
+    },
+    {
+      "path": "receipts/cf40fa22-959d-4121-acd1-8dd19d84685e.json",
+      "sha256": "8507580fa05d28a558b912c8da1945f59385414c3f8ff908bf6d2671161d4054"
+    },
+    {
+      "path": "receipts/8dc08fbe-1c2e-40d2-987f-3e7f19586459.json",
+      "sha256": "9c9849784561dc5b184be330e6ff8113116527ec7ea2015483020865b98f3398"
+    },
+    {
+      "path": "receipts/03641b87-0040-4a02-bc5e-db09061c864e.json",
+      "sha256": "f8c93270ef103909c1b48adc8d3377440db6404ddba623f6a33e36f0a6e6fe51"
+    }
+  ],
+  "current_runtime_verified": true,
+  "model_called": false,
+  "scope": "Runtime assets only; old start/score authority is not reused"
+}

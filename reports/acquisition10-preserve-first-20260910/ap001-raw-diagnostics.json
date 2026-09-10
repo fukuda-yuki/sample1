@@ -1,0 +1,188 @@
+{
+  "ledger_sha256": "5d6f0d13d547983b4e30a070e813b36c2ce5588e9b2cf29f3f3df47dd15bbf13",
+  "scope": "Predefined AP-001-related cases; diagnostic raw status counts, not an additional quality score.",
+  "rows": [
+    {
+      "evaluation_id": "T-006-01",
+      "condition": "normal",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 10,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-01",
+      "condition": "anti",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 0,
+        "fail": 8,
+        "blocked": 2,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-02",
+      "condition": "normal",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 9,
+        "fail": 1,
+        "blocked": 0,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-02",
+      "condition": "anti",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 7,
+        "fail": 1,
+        "blocked": 2,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-03",
+      "condition": "normal",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 10,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-03",
+      "condition": "anti",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 0,
+        "fail": 8,
+        "blocked": 2,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-04",
+      "condition": "normal",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 10,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-04",
+      "condition": "anti",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 7,
+        "fail": 1,
+        "blocked": 2,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-05",
+      "condition": "normal",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 20,
+      "counts": {
+        "pass": 20,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-05",
+      "condition": "anti",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 20,
+      "counts": {
+        "pass": 7,
+        "fail": 9,
+        "blocked": 4,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-06",
+      "condition": "normal",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 10,
+        "fail": 0,
+        "blocked": 0,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-006-06",
+      "condition": "anti",
+      "ap001_relation": "直接：normalの100万円基準で評価",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 8,
+        "fail": 1,
+        "blocked": 1,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-010-01",
+      "condition": "normal",
+      "ap001_relation": "前提経路に影響しうる。500000円の課長ルートをnormal基準で準備",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 4,
+        "fail": 6,
+        "blocked": 0,
+        "error": 0
+      }
+    },
+    {
+      "evaluation_id": "T-010-01",
+      "condition": "anti",
+      "ap001_relation": "前提経路に影響しうる。500000円の課長ルートをnormal基準で準備",
+      "evaluated_runs": 10,
+      "raw_cases": 10,
+      "counts": {
+        "pass": 0,
+        "fail": 8,
+        "blocked": 2,
+        "error": 0
+      }
+    }
+  ]
+}

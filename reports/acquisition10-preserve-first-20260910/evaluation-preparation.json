@@ -1,0 +1,421 @@
+[
+  {
+    "planned_run": "anti-001",
+    "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+    "evaluation_id": "55cb359f-b3d4-4718-9ff0-7d22e8a8d291",
+    "receipt_sha256": "5e9bc2cff571965734a432299a29f0c20825ab9490ec7806155c31d9aa7c914e",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-001",
+    "run_id": "daedcc21-8243-4234-8df7-945db1b684c0",
+    "evaluation_id": "04d5df29-90d6-4c89-8a4e-f7c4946b2b96",
+    "receipt_sha256": "562ec63987d701cac71bd60e784103931cda833d207ca9f3c3ec28b3b9279b88",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 57,
+      "not_independently_verified": 1
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-002",
+    "run_id": "6a301665-ffc6-40e3-918a-d7fad37e8d29",
+    "evaluation_id": "34f2bf8a-14bb-4ccf-a834-fd95f57120a6",
+    "receipt_sha256": "1940f43ada67ed3a3adaf9a5271112668a547b7207bd224cbc705536e533cbb0",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-002",
+    "run_id": "11440dd4-c70f-466e-b37a-96376727430e",
+    "evaluation_id": "5a74c522-9727-460f-b330-b0b9674ddcab",
+    "receipt_sha256": "ca569906bb47cca06097cf8dbdd00869a7194fbff8f25968941cada9e7d067c6",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 57,
+      "not_independently_verified": 1
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-003",
+    "run_id": "9a8c5ff6-e5df-4b20-8646-cf11e16ed257",
+    "evaluation_id": "7e20cd9d-2f88-415a-934f-14ecf781a9d1",
+    "receipt_sha256": "98792ee8f21ee1ecb7c185d7fa109bc6ad20ae179ee69a2dad975ba92e8a728a",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-003",
+    "run_id": "cf27fbcf-5851-4bb9-8d56-b0fb385878e7",
+    "evaluation_id": "79c28b3a-4baa-4a81-a83c-a8f42da4b717",
+    "receipt_sha256": "7a27805ef4f11521210f17ec254ee46632d7657a073133eb7c5b8fabbe570b3b",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-004",
+    "run_id": "47b5dc69-6cad-48e4-9959-339ef37bccd4",
+    "evaluation_id": "b51d0072-9a86-4e06-95a7-7bc1562d771c",
+    "receipt_sha256": "69f273b2d488a8012f2c4f793ab6e26c771584f4f59d16f9034a599b298d3974",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "not_independently_verified": 58
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-004",
+    "run_id": "833a4f06-b9c0-4a95-a03e-65dea5922e72",
+    "evaluation_id": "7d42fdd0-7a68-4b11-bfe3-a1f1a5fb3b46",
+    "receipt_sha256": "d3648fb764edaa6efab820bbf195716cfefb997d5cdc224e9583d3e458309ae7",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-005",
+    "run_id": "4fec6537-4704-46a5-a732-8ea312b2551c",
+    "evaluation_id": "bed22a25-b5e5-4124-be25-eaf44f2023d0",
+    "receipt_sha256": "83ea70cec3f315ee7d9e52a0fe58e1183a435ad96994cfbc890b232675e5002d",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-005",
+    "run_id": "600f4ba8-acdf-42ae-99e7-c86b95372d7e",
+    "evaluation_id": "e3e6f2e9-b0b8-4f4b-ac43-376a06f2773c",
+    "receipt_sha256": "d756125a776ea8faa94cbd654584fa545016d8e83471ba204989db452aecf772",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-006",
+    "run_id": "bf51ba90-dc2c-4f70-85da-a9de5642d0a4",
+    "evaluation_id": "41898b27-30df-4236-9760-baec6f699927",
+    "receipt_sha256": "c055f53f18f914a357dbbaa8a2aaa07fa3f90749c67be9715c7c39a4d635de4d",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-006",
+    "run_id": "6af34679-56f4-46d3-96f9-270931c32699",
+    "evaluation_id": "db310dfc-e839-4833-8d46-3fa20f6e1b88",
+    "receipt_sha256": "290a0c48de85187582351ef21063b79d52870da0644c64e928e68dd9eb629835",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-007",
+    "run_id": "09dbcec8-c9c3-49ec-921c-766894607e07",
+    "evaluation_id": "ed0e4c75-c806-491e-b474-710e2a602912",
+    "receipt_sha256": "aee63404c4a2d5a0d1bbce2a13517ab8340fe3dc767e8ff213acb7f27ac08bfc",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-007",
+    "run_id": "76cac053-f623-45d1-96ff-c77edf4a0bee",
+    "evaluation_id": "ca426959-1d8c-43b3-b9c8-c083495f7393",
+    "receipt_sha256": "6003fb8b70de8a97694e1da8328acc7f32fa7feec97759a680401d2e8b898047",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-008",
+    "run_id": "69c2fcf8-cab9-49f0-ae99-d1aef80a64ab",
+    "evaluation_id": "b49f8844-5ba3-4166-a62a-62434e0083f7",
+    "receipt_sha256": "4a3ff390e847c59b2c0e714e0fd16f7f0736505e55db02fbfcb94acc7f7d16da",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-008",
+    "run_id": "cc1ad56e-0db0-4187-8d1d-9e89552abe92",
+    "evaluation_id": "3e8a42fa-6424-4ab4-89e1-582efd444fb2",
+    "receipt_sha256": "ea62740c665c5cfb841b17316517c6e220f1c6fc32b4ac7ca06794019012a6a8",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-009",
+    "run_id": "dc4b4eaa-b0e8-4bf9-abbd-f777a2008ee6",
+    "evaluation_id": "0d517b73-c4e5-46f0-899b-e72979026898",
+    "receipt_sha256": "1b8a8837403fa11fccb7c7d8d6339f2cf262474457d7618ee46d9d3d751ceec1",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-009",
+    "run_id": "b8bb85c7-e468-42ff-ad70-e10746737b87",
+    "evaluation_id": "068beb0a-7e3b-48f5-b1f8-9473dfc5e2d2",
+    "receipt_sha256": "8b496f18e8de57b800cb33f4f0b3b027711c8c99c91405afbade76c1635c16e5",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 57,
+      "not_independently_verified": 1
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "anti-010",
+    "run_id": "7e5974e1-e419-4e9d-96f3-332c91617c78",
+    "evaluation_id": "60ea41fe-16e4-4586-a4ec-76f8279947e8",
+    "receipt_sha256": "0e16d4d161f3461a8e18fe80b7c6d0c317305b3e1afa668b9e259dc7bce5042e",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  },
+  {
+    "planned_run": "normal-010",
+    "run_id": "ba9b31f3-7a29-4fad-ac2d-bba3bac61a0f",
+    "evaluation_id": "91823a4d-a62e-4ada-a118-ff735a53ecdd",
+    "receipt_sha256": "8d669b7cf4af588cd46cde491c26cd8c864515c8bc69b84faac0aca798dae710",
+    "capture_states": {
+      "app_inspect": "acquired",
+      "app_logs": "acquired",
+      "researcher_inspect": "acquired",
+      "researcher_logs": "acquired"
+    },
+    "cases": 58,
+    "reset_states": {
+      "completed": 58
+    },
+    "seed_states": {
+      "observed_via_ui_login": 54,
+      "not_independently_verified": 4
+    },
+    "scope": "Recorded reset events and per-case UI-login observations; these records alone do not establish valid scoring."
+  }
+]

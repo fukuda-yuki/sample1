@@ -1,0 +1,26 @@
+[
+  {
+    "condition": "normal",
+    "n": 10,
+    "total_missing": 5,
+    "native_unverified": 5,
+    "trace_incomplete": 1,
+    "http": {
+      "200": 1270,
+      "400": 25
+    },
+    "runs_with_http_400": 5
+  },
+  {
+    "condition": "anti",
+    "n": 10,
+    "total_missing": 1,
+    "native_unverified": 1,
+    "trace_incomplete": 4,
+    "http": {
+      "200": 1154,
+      "400": 4
+    },
+    "runs_with_http_400": 1
+  }
+]
