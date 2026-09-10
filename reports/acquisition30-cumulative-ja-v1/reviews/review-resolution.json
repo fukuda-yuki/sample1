@@ -1,0 +1,45 @@
+{
+  "independent_context": true,
+  "drafting_history_shared": false,
+  "reviewer_task": "/root/independent_report_review",
+  "model_relation": "Same model family, separate context; no claim of statistical independence or human peer review.",
+  "major_findings_resolved": true,
+  "reviewer_recheck_complete": true,
+  "unresolved_critical": 0,
+  "unresolved_major": 0,
+  "unresolved_minor": 0,
+  "scientific_report_sha256": "6ef402020b6587c27742ec1b1fc6091eafe02492134690b0d8368b58ff7b97ce",
+  "scientific_report_boundary": "Bytes before the ## 6. heading",
+  "findings": [
+    {
+      "id": "IR-01",
+      "status": "resolved_or_addressed_and_independently_rechecked"
+    },
+    {
+      "id": "IR-02",
+      "status": "resolved_or_addressed_and_independently_rechecked"
+    },
+    {
+      "id": "IR-03",
+      "status": "resolved_or_addressed_and_independently_rechecked"
+    },
+    {
+      "id": "IR-04",
+      "status": "resolved_or_addressed_and_independently_rechecked"
+    },
+    {
+      "id": "IR-05",
+      "status": "resolved_or_addressed_and_independently_rechecked"
+    }
+  ],
+  "administrative_followup": "Section 6 will be updated only with actual acceptance outcomes and evidence links; scientific text is fixed.",
+  "replay_after_citation_correction": "See the separately recorded completed replay receipt in checks; this review record does not certify replay completion.",
+  "new_app_executions": 0,
+  "new_evaluations": 0,
+  "review_file": "reviews/independent-review.md",
+  "review_file_sha256": "22b5c582baa4baa3796a79a9a942b65eab12470ffbda37c426ba01137d100e48",
+  "response_file": "reviews/review-response.md",
+  "response_file_sha256": "0266cb3acdbf31d18b63e28ddc37d187f48fd2d25cb430582d5b8995ca4ec041",
+  "recheck_file": "reviews/independent-recheck.md",
+  "recheck_file_sha256": "4da6bec170c34415caa98574c7f371dbdd3cedc5a43e323a517fecafcc330576"
+}

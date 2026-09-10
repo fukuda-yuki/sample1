@@ -1,0 +1,9 @@
+﻿stratum,condition,reason,n,token_mean,passed_mean
+previous,normal,agent_completed,10,7128730.4,40.2
+previous,anti,agent_completed,9,6207333.888888889,25.11111111111111
+previous,anti,agent_error,1,7168678,32
+additional,normal,agent_completed,20,10466862.05,37.5
+additional,anti,agent_completed,20,6918743.9,26.842105263157894
+cumulative,normal,agent_completed,30,9354151.5,38.464285714285715
+cumulative,anti,agent_completed,29,6697961.482758621,26.285714285714285
+cumulative,anti,agent_error,1,7168678,32

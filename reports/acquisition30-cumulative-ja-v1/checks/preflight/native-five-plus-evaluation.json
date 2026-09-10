@@ -1,0 +1,418 @@
+{
+  "model_called": false,
+  "real_credentials_used": false,
+  "real_cli_runs": 5,
+  "evaluation_surrogates": 1,
+  "v6_assertions_executed": false,
+  "five_plus_one_overlap": true,
+  "isolated_run_ids": true,
+  "outcomes": [
+    {
+      "kind": "real-cli-fake-provider",
+      "model_called": false,
+      "run_id": "933092dd-1c0f-4f77-89de-6cbb93968f01",
+      "end_reason": "agent_completed",
+      "file_edit": true,
+      "tool_execution": true,
+      "continuation": true,
+      "delegation_tools_absent": true,
+      "native_response_reconciliation": true,
+      "gateway_total_tokens": 36,
+      "completion_boundary_test": true,
+      "trace_structure_complete": true,
+      "elapsed_seconds": 7.262861048,
+      "actual_exit_code": 137
+    },
+    {
+      "kind": "real-cli-fake-provider",
+      "model_called": false,
+      "run_id": "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+      "end_reason": "agent_completed",
+      "file_edit": true,
+      "tool_execution": true,
+      "continuation": true,
+      "delegation_tools_absent": true,
+      "native_response_reconciliation": true,
+      "gateway_total_tokens": 36,
+      "completion_boundary_test": true,
+      "trace_structure_complete": true,
+      "elapsed_seconds": 7.160285396,
+      "actual_exit_code": 137
+    },
+    {
+      "kind": "real-cli-fake-provider",
+      "model_called": false,
+      "run_id": "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+      "end_reason": "agent_completed",
+      "file_edit": true,
+      "tool_execution": true,
+      "continuation": true,
+      "delegation_tools_absent": true,
+      "native_response_reconciliation": true,
+      "gateway_total_tokens": 36,
+      "completion_boundary_test": true,
+      "trace_structure_complete": true,
+      "elapsed_seconds": 7.218782169,
+      "actual_exit_code": 137
+    },
+    {
+      "kind": "real-cli-fake-provider",
+      "model_called": false,
+      "run_id": "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+      "end_reason": "agent_completed",
+      "file_edit": true,
+      "tool_execution": true,
+      "continuation": true,
+      "delegation_tools_absent": true,
+      "native_response_reconciliation": true,
+      "gateway_total_tokens": 36,
+      "completion_boundary_test": true,
+      "trace_structure_complete": true,
+      "elapsed_seconds": 6.832316540999999,
+      "actual_exit_code": 137
+    },
+    {
+      "kind": "real-cli-fake-provider",
+      "model_called": false,
+      "run_id": "158d1a91-e062-4497-8c69-25fa184b6f1e",
+      "end_reason": "agent_completed",
+      "file_edit": true,
+      "tool_execution": true,
+      "continuation": true,
+      "delegation_tools_absent": true,
+      "native_response_reconciliation": true,
+      "gateway_total_tokens": 36,
+      "completion_boundary_test": true,
+      "trace_structure_complete": true,
+      "elapsed_seconds": 7.367187943999999,
+      "actual_exit_code": 137
+    }
+  ],
+  "samples": [
+    {
+      "at": 1789055850.61147,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055850.8833,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055851.1617584,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055851.478749,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055851.7858703,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055852.0794847,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055852.3557577,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055852.656655,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055852.9398372,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055853.2389748,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055853.5305593,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055853.8189538,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055854.1076353,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055854.3973935,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055854.694682,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055854.9853888,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055855.2562678,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055855.54127,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055855.8375452,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055856.11815,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055856.4005938,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055856.6905417,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055856.97592,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055857.2726767,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055857.538729,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055857.8026483,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055858.061655,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055858.3350494,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055858.6013165,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "3cc44791-c7d5-4d35-b74d-9d1e464575f7",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055858.8830655,
+      "workers": [
+        "933092dd-1c0f-4f77-89de-6cbb93968f01",
+        "ce552d82-4738-48c5-b2d2-84c9b4144c9b",
+        "37a3901b-24f6-4250-b1ae-f7c10838c6e1",
+        "158d1a91-e062-4497-8c69-25fa184b6f1e"
+      ],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055859.1730297,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055859.4578714,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055859.737455,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055860.0053806,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055860.269242,
+      "workers": [],
+      "evaluation_running": true
+    },
+    {
+      "at": 1789055860.5310304,
+      "workers": [],
+      "evaluation_running": true
+    }
+  ],
+  "surrogate_db_verified": true,
+  "source_sha256": "d21ce59516ed8188f121fab1d0c386962aedd6fb0db179fb8bb0031cc4d697cd"
+}

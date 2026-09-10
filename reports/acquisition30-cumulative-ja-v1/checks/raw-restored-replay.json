@@ -1,0 +1,1421 @@
+{
+  "kind": "additional-originals-restored-export",
+  "reference": {
+    "package_id": "analysis-2723352f-eb99-4288-92d9-60bb4e9a2f1e",
+    "sha256": "980f369d1669d7a81172162c0066718edf01f0cf7db7a7c72bddb3ed229c2c3c"
+  },
+  "restoration_map_sha256": "20fcd228ddcd979d2f1976994e83d6f8211b891dde3deb2132dc545472e0d305",
+  "runtime_reference": {
+    "package_id": "report-runtime-2f1cd461-69ca-43a0-9a60-ff4f641a842a",
+    "sha256": "7fce9305c1ca304f34019cd3a8a63325b7fbe5d48e41985240d5d6e316756bca"
+  },
+  "image": "mcr.microsoft.com/playwright@sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
+  "identical_files": [
+    "runs.csv",
+    "missing-runs.csv",
+    "test-results.jsonl",
+    "provenance.json"
+  ],
+  "sqlite_logically_identical": true,
+  "docker": {
+    "original_evaluation_paths_absent": 40,
+    "network": "none",
+    "original_workspace_mounted": false,
+    "counts": {
+      "experiment_id": "b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+      "synthetic": false,
+      "input_hashes": {
+        "normal/spec.md": "60591f585f9a0bc57085819acc4462f0bd596c360fac79cff249fee8d510b1a0",
+        "anti/spec.md": "4efee9a74d163f6fabad8c5392e395717869e074b34d81cb46489124f714c551",
+        "implementation_prompt.md": "27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2",
+        "evaluation/requirements-ledger.json": "5d6f0d13d547983b4e30a070e813b36c2ce5588e9b2cf29f3f3df47dd15bbf13",
+        "evaluation/case-manifest.json": "4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461"
+      },
+      "planned": 40,
+      "phase": "data-acquisition",
+      "started": 40,
+      "not_started": 0,
+      "evaluated": 0,
+      "evaluation_attempted": 40,
+      "evaluation_completed": 40,
+      "evaluation_valid": 0,
+      "evaluation_invalid": 0,
+      "evaluation_pending": 40,
+      "evaluation_unavailable": 0,
+      "usage_complete": 28,
+      "plotted": 0,
+      "code_hashes": {
+        "scripts/copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "scripts/telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "analysis/collect_runs.py": "de52f7e5500f66e113f19a8edfc2308ce229d03c6c22ee1475a18fc6c2bd22c9",
+        "analysis/aggregate.py": "74729573a8213fe95fd3cd63cf16f51b5a44e12eac72f77a608676c9e089e95d",
+        "analysis/plot.py": "65674114efc8165da021d2e0ed9e28e18d6840b9c8bd901ad50b2b6c3d9c0d2a"
+      },
+      "telemetry_refs": [
+        {
+          "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+          "native_sha256": "eedfe34566b446b3624b728b6b2bd8d5297958d8f15383841941a88b3d0d2dd6",
+          "otlp_sha256": "602fc749ca9364e47f124f857aad09786795af2619a943d4b96305caeb3681e3",
+          "session_ids": [
+            "cf61291c-7b69-4c30-880e-0d7c8a036a2f"
+          ],
+          "trace_ids": [
+            "43ec22ff1404cd1ba52c2b41c0cda9da"
+          ],
+          "submission_hash": "9d2c469d5e6c52c56b1856015050aea6d292c213e4e4cebc14ec946c12ec69f4",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 14,
+              "payload_sha256": "602fc749ca9364e47f124f857aad09786795af2619a943d4b96305caeb3681e3"
+            }
+          ]
+        },
+        {
+          "run_id": "25a01c2b-cf66-4053-848c-9af10ef2ef81",
+          "native_sha256": "e3fd90252f00dabadcda9b729fa78eaeca6f35ea7691fc304073897b9a4924fd",
+          "otlp_sha256": "cf697ccbac780670638bea94a85293f2c41dd57433abc8c4ca70c548840d247b",
+          "session_ids": [
+            "25a01c2b-cf66-4053-848c-9af10ef2ef81"
+          ],
+          "trace_ids": [
+            "1dc3992c2691f3ddfb0ec1070c35f434"
+          ],
+          "submission_hash": "fab9ae917395a995174261e4d1b0d125ebf19225e993acf0f4605a8ff69a1808",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 5,
+              "payload_sha256": "cf697ccbac780670638bea94a85293f2c41dd57433abc8c4ca70c548840d247b"
+            }
+          ]
+        },
+        {
+          "run_id": "ca85fc9b-7678-41f4-88bb-257f702ea65b",
+          "native_sha256": "504c93137022ca2ae4b6523d5bbd4ce77fd6d1d9edc6788682cf71c8a1e018b9",
+          "otlp_sha256": "85788a91e5730c0317881d73458c2bda7e71153ab1754c6cc9eb6a13aa00edf0",
+          "session_ids": [
+            "ca85fc9b-7678-41f4-88bb-257f702ea65b"
+          ],
+          "trace_ids": [
+            "f801c5fce9705f0f9d90e1aa3a80d288"
+          ],
+          "submission_hash": "9f92b74397fb78fe391c28d574500c14f431f121cac11ecb02ab47954983c0b0",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 4,
+              "payload_sha256": "85788a91e5730c0317881d73458c2bda7e71153ab1754c6cc9eb6a13aa00edf0"
+            }
+          ]
+        },
+        {
+          "run_id": "f7474040-55b4-40da-b89d-a9a016139246",
+          "native_sha256": "bd7deeceee3c74065460b4de23b3bf86b50576b0746b65a7b3976f0f6e4c8495",
+          "otlp_sha256": "9100c20ceef8a23760254909612a5ae2b7a7952b7fb42d4587096efe0d681f2d",
+          "session_ids": [
+            "f7474040-55b4-40da-b89d-a9a016139246"
+          ],
+          "trace_ids": [
+            "18a4d561f6b31788d73c3e02ac227ee3"
+          ],
+          "submission_hash": "d7fefb14e628c361cfad124cc88d3579e4d94d68037bfef116eb5be8f52a610b",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 3,
+              "payload_sha256": "9100c20ceef8a23760254909612a5ae2b7a7952b7fb42d4587096efe0d681f2d"
+            }
+          ]
+        },
+        {
+          "run_id": "451385f8-693c-4881-927a-2fd87ad343e5",
+          "native_sha256": "7849c942cf5832b173c2c121318a99a291bc416572cf08fcbe7d54157fcddaef",
+          "otlp_sha256": "466e5b096477f01601bd1e650872193cd379e00d36094adf13b19f374ce3a4e3",
+          "session_ids": [
+            "451385f8-693c-4881-927a-2fd87ad343e5"
+          ],
+          "trace_ids": [
+            "bda26b5104338f505c00ebbd6ca63460"
+          ],
+          "submission_hash": "69f8db1639de8fefc3d08d222edbdc0f40a5de815cf541ad547347d9b2685e90",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 2,
+              "payload_sha256": "466e5b096477f01601bd1e650872193cd379e00d36094adf13b19f374ce3a4e3"
+            }
+          ]
+        },
+        {
+          "run_id": "41824f90-f8f8-45bc-b801-1762e265cd0f",
+          "native_sha256": "650656a8ba6594fcdd27e6d6d33c93d30dbc90cf3f92e5b5ead6a50c918f0918",
+          "otlp_sha256": "c0e8ddd54e0d976095891f1e15fd8460f5dca04f05b5e4ab3b79e81c7aaf10e6",
+          "session_ids": [
+            "41824f90-f8f8-45bc-b801-1762e265cd0f"
+          ],
+          "trace_ids": [
+            "e1be9c9ab5bd349470a963cd1bf04a9e"
+          ],
+          "submission_hash": "ad529701ba27a10b7c72cfd4c7b34444c452c1aa3505bf85ea8e66c163093c25",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 10,
+              "payload_sha256": "c0e8ddd54e0d976095891f1e15fd8460f5dca04f05b5e4ab3b79e81c7aaf10e6"
+            }
+          ]
+        },
+        {
+          "run_id": "ccac6a7d-177d-46df-b4d1-a3a441da6f3a",
+          "native_sha256": "938cb1c9f74f8e0481a472e5620b39a3659db0093694ee49b148de85666e373b",
+          "otlp_sha256": "42c62657813eed36bf7e71c8bdf6121733cdf855a26b00b7fdfcc943392e64aa",
+          "session_ids": [
+            "ccac6a7d-177d-46df-b4d1-a3a441da6f3a"
+          ],
+          "trace_ids": [
+            "9ef9d4f91fb22d51124df188c5454797"
+          ],
+          "submission_hash": "4222dd294eef727acf78528adf8b8ea1fc2eb4d2f79c151401482d4308d83f3f",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 6,
+              "payload_sha256": "42c62657813eed36bf7e71c8bdf6121733cdf855a26b00b7fdfcc943392e64aa"
+            }
+          ]
+        },
+        {
+          "run_id": "9b477a67-1f93-4d09-b58a-d7969894d590",
+          "native_sha256": "348a03d33c99768c9389c5c8d50735524370a7c68a4ef299da453795720b491b",
+          "otlp_sha256": "3692c8902ffc60be6dd68b0628a12a14320e58ce0e22bca5fee49ac6a6fbdd51",
+          "session_ids": [
+            "9b477a67-1f93-4d09-b58a-d7969894d590"
+          ],
+          "trace_ids": [
+            "dfe0da11225cfa2372103cbe34360b1c"
+          ],
+          "submission_hash": "170a932dfe7e6b4d70fba40486ae3aad43f5257807a6a4bdbce148f6a491448e",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 8,
+              "payload_sha256": "3692c8902ffc60be6dd68b0628a12a14320e58ce0e22bca5fee49ac6a6fbdd51"
+            }
+          ]
+        },
+        {
+          "run_id": "9305af1b-22f7-490c-9f39-d6e7f82619fb",
+          "native_sha256": "b23b5c459fe94bfd4a535541b88e638c75e6a9dff3be32cde578df01fac821b5",
+          "otlp_sha256": "0fecf644fdec974b8332f0d83636c9ab38f39c8d98f89edb6d583290177dd23f",
+          "session_ids": [
+            "9305af1b-22f7-490c-9f39-d6e7f82619fb"
+          ],
+          "trace_ids": [
+            "ce788c3be45bfe849ce87abd9ed5da67"
+          ],
+          "submission_hash": "31a5aab2b9f6523c0817d5997a8c2aee37b0957430248e69ffd6e5046cc702ef",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 7,
+              "payload_sha256": "0fecf644fdec974b8332f0d83636c9ab38f39c8d98f89edb6d583290177dd23f"
+            }
+          ]
+        },
+        {
+          "run_id": "5864c2dd-59e9-4a85-b07d-28c093aaa16a",
+          "native_sha256": "7d6c164939c794c2b5a153e70d702aac25a84c9278ac63fe09a8a2f232969a11",
+          "otlp_sha256": "044c5e7bc72dd8dbde26d2cec6d374843ab985ae8bc0a2b3d9205f57ef0f28c8",
+          "session_ids": [
+            "5864c2dd-59e9-4a85-b07d-28c093aaa16a"
+          ],
+          "trace_ids": [
+            "b230e24a129025ae7bb47f1c427fbbcc"
+          ],
+          "submission_hash": "6aa8583465fa541a2cb03a636f7317135841aef9227f53607ff072ee7ce629d3",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 9,
+              "payload_sha256": "044c5e7bc72dd8dbde26d2cec6d374843ab985ae8bc0a2b3d9205f57ef0f28c8"
+            }
+          ]
+        },
+        {
+          "run_id": "7cce7b2d-1ee9-410e-a216-da48d74b3f23",
+          "native_sha256": "454bed5c566dfb643d7de2106ed6608ad0f62f49881c7272e37dcf51901d68e1",
+          "otlp_sha256": "37fa4756759d6c4357cfa0d2923dfae28d4e4e2a9afc1c8d4f155c2395793701",
+          "session_ids": [
+            "7cce7b2d-1ee9-410e-a216-da48d74b3f23"
+          ],
+          "trace_ids": [
+            "aeb31cff1d1340e226928efa0b11a9b6"
+          ],
+          "submission_hash": "68d2d139ab91936c33e9fdcbc737da5c7d48111b54088fea9c921ef9c4e45642",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 11,
+              "payload_sha256": "37fa4756759d6c4357cfa0d2923dfae28d4e4e2a9afc1c8d4f155c2395793701"
+            }
+          ]
+        },
+        {
+          "run_id": "8685c69d-7825-4148-9052-9543c7ede4fc",
+          "native_sha256": "487bd857a953487c43dd3d13391dd31e858f7b8081d467fcca7dd20cb3a1500e",
+          "otlp_sha256": "9746f7718e1093c828439eea6ddc5f7389f714b6535605d9cea74ae4ffbf8b22",
+          "session_ids": [
+            "8685c69d-7825-4148-9052-9543c7ede4fc"
+          ],
+          "trace_ids": [
+            "c7e462c1b12c22e52af33e7d6c76c033"
+          ],
+          "submission_hash": "e2db04257ac023117baba046d88299f3aa394bd4d937cfc8e679153f8e9fd7ef",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 17,
+              "payload_sha256": "9746f7718e1093c828439eea6ddc5f7389f714b6535605d9cea74ae4ffbf8b22"
+            }
+          ]
+        },
+        {
+          "run_id": "cbbb10c7-8f02-4692-8214-a371b9bcc307",
+          "native_sha256": "6b7721f6a551613e134c0cdd8ba68c8b828d29f193d0bcc1d65956e4d9544e2a",
+          "otlp_sha256": "02505c5b04f735e2cc0e36261e4940a2c0d77c583996a2016e19d2c5231755a5",
+          "session_ids": [
+            "cbbb10c7-8f02-4692-8214-a371b9bcc307"
+          ],
+          "trace_ids": [
+            "fb6d5c6396cc3e6aba57f390a8c95c4f"
+          ],
+          "submission_hash": "6bf226848a2f21998f6d423d8a8a288a5bc4df15b6387a4066e14247f0851541",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 12,
+              "payload_sha256": "02505c5b04f735e2cc0e36261e4940a2c0d77c583996a2016e19d2c5231755a5"
+            }
+          ]
+        },
+        {
+          "run_id": "cb52fec6-4294-41ad-8a10-e507d4995f0d",
+          "native_sha256": "93188cfd7ace37e8c61b5bf355088f2f0a3e010807a2359cada313866b9d3b1a",
+          "otlp_sha256": "46c7d0f6d25753ced94b30ea79bcbfe3e1dee5f329cefe6946e1641c80e71424",
+          "session_ids": [
+            "cb52fec6-4294-41ad-8a10-e507d4995f0d"
+          ],
+          "trace_ids": [
+            "45e45276773e4d0b8a29b090a00e6019"
+          ],
+          "submission_hash": "8794c208d64e5f3fd2b06d3374bdfad341b44ad9b65ce4f38bf7c5486a557393",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 13,
+              "payload_sha256": "46c7d0f6d25753ced94b30ea79bcbfe3e1dee5f329cefe6946e1641c80e71424"
+            }
+          ]
+        },
+        {
+          "run_id": "cd059f6d-258d-45e1-a395-eecbda0ac97a",
+          "native_sha256": "b5b452c1db7c9b9856e9299b133f3ca0537ce1dbacb9f3dfa1de8a26b259db4d",
+          "otlp_sha256": "a063ff7919b3a0207ba02fbb81b8166cda02c4309a21d42b156d5b00a6fffca1",
+          "session_ids": [
+            "cd059f6d-258d-45e1-a395-eecbda0ac97a"
+          ],
+          "trace_ids": [
+            "70be2aad02b0128283724c2fc5811a8a"
+          ],
+          "submission_hash": "262410dc28b78fc6243fa41571aff8073cf3638dc6b6d184e44a5f7365170f46",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 15,
+              "payload_sha256": "a063ff7919b3a0207ba02fbb81b8166cda02c4309a21d42b156d5b00a6fffca1"
+            }
+          ]
+        },
+        {
+          "run_id": "c276743a-2030-42c6-a0b7-e8c787f6f37b",
+          "native_sha256": "e34fe6ab244b37e90c96275433f75fba9ac0229164778abfc5a46b9e1fa3ac18",
+          "otlp_sha256": "168cb8f14cf01047c193ba688675b1a820313ca39ffb62c029f14bb6af6b8dab",
+          "session_ids": [
+            "c276743a-2030-42c6-a0b7-e8c787f6f37b"
+          ],
+          "trace_ids": [
+            "0bd46db80dab70b3fd869c4e28665f0f"
+          ],
+          "submission_hash": "3bdff9aa1911a7a77f5df55e0d949d2669b09fb45627f82dccb35fbcc6abd87e",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 16,
+              "payload_sha256": "168cb8f14cf01047c193ba688675b1a820313ca39ffb62c029f14bb6af6b8dab"
+            }
+          ]
+        },
+        {
+          "run_id": "1e69ea5e-7f7f-40e3-b95b-94663edf4734",
+          "native_sha256": "26fb0916c371165e6110696fd67cbeb7a4e7647c8f7c577918f3f0b0919671cf",
+          "otlp_sha256": "e86766afdd159a2e549b55d9d8ea1a68adc3e7c3bd9ff89a684f77e95fdf7bda",
+          "session_ids": [
+            "1e69ea5e-7f7f-40e3-b95b-94663edf4734"
+          ],
+          "trace_ids": [
+            "57b146d5dcef6cb84cc2753ae6cec731"
+          ],
+          "submission_hash": "440ce9e893fcc851f341559c1d26ba3ff3a5789c9d645a706008b9b73dc5c19a",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 18,
+              "payload_sha256": "e86766afdd159a2e549b55d9d8ea1a68adc3e7c3bd9ff89a684f77e95fdf7bda"
+            }
+          ]
+        },
+        {
+          "run_id": "aa86b7d9-3527-4481-926b-d65012b6fd06",
+          "native_sha256": "b6527465aec4a7246f368bc69616f04051542d78e51c8439f5df21f8072e58da",
+          "otlp_sha256": "d9a1484a8cdd6563affb2fe70c72e67fb45a6b375a6aa9ca47bc1c44fc8105f4",
+          "session_ids": [
+            "aa86b7d9-3527-4481-926b-d65012b6fd06"
+          ],
+          "trace_ids": [
+            "c2961b575470f034cee169e6f8cf68b6"
+          ],
+          "submission_hash": "af637111fb09145ee01738c8cc51385d1e82cf5a55dffa5e0af65b08d2dcd6e7",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 20,
+              "payload_sha256": "d9a1484a8cdd6563affb2fe70c72e67fb45a6b375a6aa9ca47bc1c44fc8105f4"
+            }
+          ]
+        },
+        {
+          "run_id": "38fba73c-e82c-49e2-9dd4-3fca7d63bdfd",
+          "native_sha256": "afbf4d395e1652c5521842b2c204777dd1b56312eb725d9a586b5ee86ae5dca0",
+          "otlp_sha256": "c50191c111211a597039cb83e0a8edca19c778e92c433793ea256fc6b18555f9",
+          "session_ids": [
+            "38fba73c-e82c-49e2-9dd4-3fca7d63bdfd"
+          ],
+          "trace_ids": [
+            "47f0500fe5b6013bedd4c1d95bb39729"
+          ],
+          "submission_hash": "9e5c43e27f6ecc588b1117b774bf45e9ee6108d107848aa64f03bff86011a079",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 23,
+              "payload_sha256": "c50191c111211a597039cb83e0a8edca19c778e92c433793ea256fc6b18555f9"
+            }
+          ]
+        },
+        {
+          "run_id": "71ff896b-3c40-4903-a819-e4d5aa98f11b",
+          "native_sha256": "527c826c437deebbc0b71f30cd5f8b42845fefdcae12b56d6ec0452011b1520a",
+          "otlp_sha256": "dfefd1ccf200ee77ca51ee959a2d210baa6bd5a069d695782f8052d612b61af5",
+          "session_ids": [
+            "71ff896b-3c40-4903-a819-e4d5aa98f11b"
+          ],
+          "trace_ids": [
+            "b43fce802cebf1973b1e5c19e895350e"
+          ],
+          "submission_hash": "907abc7c0bfe93ae3a346e2cda2f13e882c2b87fde5d2815440b172f8bbb00f5",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 19,
+              "payload_sha256": "dfefd1ccf200ee77ca51ee959a2d210baa6bd5a069d695782f8052d612b61af5"
+            }
+          ]
+        },
+        {
+          "run_id": "a95e1037-7728-4d70-836a-f0f8b9604e94",
+          "native_sha256": "fe4fcddff8db1fe44999fd4f3230afd806f01c4ed39947fe2f049fae898dafa7",
+          "otlp_sha256": "d1583472b66e738e1785491a06aa68d92712a73a8b1a12853176d548716e1787",
+          "session_ids": [
+            "a95e1037-7728-4d70-836a-f0f8b9604e94"
+          ],
+          "trace_ids": [
+            "916d8ecca615d75c4a6b7863df221912"
+          ],
+          "submission_hash": "f78d7b56bfce1aea82cc3c9f6d1dd6cd29c403142862ace0cbd156180a348d5d",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 21,
+              "payload_sha256": "d1583472b66e738e1785491a06aa68d92712a73a8b1a12853176d548716e1787"
+            }
+          ]
+        },
+        {
+          "run_id": "ea871692-692b-4028-8456-126aba55dac8",
+          "native_sha256": "9e0bb34c2662d6b21694ac3094770026b340a42553a1c3fa5f29ed520c9479ea",
+          "otlp_sha256": "c652d7c530fb7fc1a4713ba088971f773e7741e4e231009637b8088296a9504d",
+          "session_ids": [
+            "ea871692-692b-4028-8456-126aba55dac8"
+          ],
+          "trace_ids": [
+            "bdb8ce63d495eaaefc21a88b3f59c502"
+          ],
+          "submission_hash": "fd404c7c2f4c6806e922ebf4f4724e866db729285da3a22e6b57d20336770f10",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 22,
+              "payload_sha256": "c652d7c530fb7fc1a4713ba088971f773e7741e4e231009637b8088296a9504d"
+            }
+          ]
+        },
+        {
+          "run_id": "87a2727c-dec6-49d9-a03b-cd33351c7f48",
+          "native_sha256": "c7fe64a6d0a51268987f2cdefef8b4191515cfcf618bcc72d3954ea312050c75",
+          "otlp_sha256": "846af685ce3b4eff900429d8674e9896cb96aff4d4fabc15dd5f1008e6a1c1f0",
+          "session_ids": [
+            "87a2727c-dec6-49d9-a03b-cd33351c7f48"
+          ],
+          "trace_ids": [
+            "ee36dbe3c210e1f923b90cd048881d4e"
+          ],
+          "submission_hash": "831ac9b3b51f2332fbc2f29109030c2bf1522926614ac940c5154df45d92a9eb",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 24,
+              "payload_sha256": "846af685ce3b4eff900429d8674e9896cb96aff4d4fabc15dd5f1008e6a1c1f0"
+            }
+          ]
+        },
+        {
+          "run_id": "8562d613-be4e-4350-9e8d-8ac02a644845",
+          "native_sha256": "3dc1d72a2ae1765c31372657be793d5d7ad17816f4b71d7584198c18508f380a",
+          "otlp_sha256": "9f9ad326f0ca86083b914f57cf28aa4713ebbb7f92af71e616f255562a6e957d",
+          "session_ids": [
+            "8562d613-be4e-4350-9e8d-8ac02a644845"
+          ],
+          "trace_ids": [
+            "7f417bddaae280ca0929fdcb0a79d1a6"
+          ],
+          "submission_hash": "9244c77e6c2344e0f31907ebb6e6ebf7612a0d11b2a206277d184a2ebadc3f1b",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 27,
+              "payload_sha256": "9f9ad326f0ca86083b914f57cf28aa4713ebbb7f92af71e616f255562a6e957d"
+            }
+          ]
+        },
+        {
+          "run_id": "00f64f52-6070-4f28-9070-cc52bdf4de13",
+          "native_sha256": "9884c31ee8a1bca4984669ff26b97f8b10c4b62c42c7bbe293676bff345e6c3e",
+          "otlp_sha256": "fe0f0e4fc28a3458488858a1a133c29e806f69f35ffea6b2725f5d955ab86f9f",
+          "session_ids": [
+            "00f64f52-6070-4f28-9070-cc52bdf4de13"
+          ],
+          "trace_ids": [
+            "d160daccbebb7b8fa8c4b729c4479bc4"
+          ],
+          "submission_hash": "c991a37db91633a509a07de9fd5c9e77ed10c2b321064bdc81a9aa754dfe837e",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 26,
+              "payload_sha256": "fe0f0e4fc28a3458488858a1a133c29e806f69f35ffea6b2725f5d955ab86f9f"
+            }
+          ]
+        },
+        {
+          "run_id": "5a7c902f-5503-4289-9afc-76609043cc3a",
+          "native_sha256": "bdd10e68858c200799dbbdd72d7c4ac0ab728a144b40a57238de88ea9d59b935",
+          "otlp_sha256": "a75a92af61116383a01b9f76dcdfc8785b8436c3f58108f9c00562fa64e4cd32",
+          "session_ids": [
+            "5a7c902f-5503-4289-9afc-76609043cc3a"
+          ],
+          "trace_ids": [
+            "d3928c3b05491889e13a6ff31388cddb"
+          ],
+          "submission_hash": "f808d727094fd9dc89f818610dc836b2150656f953b8206801b287ea6ac7ed97",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 25,
+              "payload_sha256": "a75a92af61116383a01b9f76dcdfc8785b8436c3f58108f9c00562fa64e4cd32"
+            }
+          ]
+        },
+        {
+          "run_id": "959de722-b6ae-433c-80fe-fc5062db90e7",
+          "native_sha256": "7f3c1d318149effbb94815b7263010088ad62c7b75833c9f1e6b09c5885f18cb",
+          "otlp_sha256": "241443d8314661d72708af9d9238ecddd34fd7e7271c2716a518674ed46c0200",
+          "session_ids": [
+            "959de722-b6ae-433c-80fe-fc5062db90e7"
+          ],
+          "trace_ids": [
+            "afc56b0b09459acb1291d39171282458"
+          ],
+          "submission_hash": "59cdbb2e8f11fe5a10df11ae6c7738a58110a77d8809b0a2c0e0504938c5a728",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 31,
+              "payload_sha256": "241443d8314661d72708af9d9238ecddd34fd7e7271c2716a518674ed46c0200"
+            }
+          ]
+        },
+        {
+          "run_id": "6a0f735d-c6df-4cd3-bcb6-489807e94b58",
+          "native_sha256": "ef0023731e313df019bc42d7519f355c20ef7917fd97ad9c877f3201a3fcb18c",
+          "otlp_sha256": "c032196db771547e70bf7d797e6b1ff203b6b8f5e94f1244f12cd8aa8a770254",
+          "session_ids": [
+            "6a0f735d-c6df-4cd3-bcb6-489807e94b58"
+          ],
+          "trace_ids": [
+            "1de7f4f3675727022284db4da562bab3"
+          ],
+          "submission_hash": "278b84a3fbccf922ecf217a7e7499c8c0860d27ac7172c871e07fa8aad423a95",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 28,
+              "payload_sha256": "c032196db771547e70bf7d797e6b1ff203b6b8f5e94f1244f12cd8aa8a770254"
+            }
+          ]
+        },
+        {
+          "run_id": "15c9af27-f25b-43b4-a75c-409991b14a37",
+          "native_sha256": "bfb40e708d13d9265a483ec4e49d25771f7c88319df9bbc3a193aed06394ae0c",
+          "otlp_sha256": "56de807d0dcd5a6d5943872498220d34ce353d9dbb778029a607a5a128384243",
+          "session_ids": [
+            "15c9af27-f25b-43b4-a75c-409991b14a37"
+          ],
+          "trace_ids": [
+            "92a214557b5fa6b51216b2f6305e93ed"
+          ],
+          "submission_hash": "d3a1089277c143b8781d85eec011f7185bb88eba9c551c82cc80f701ededc603",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 29,
+              "payload_sha256": "56de807d0dcd5a6d5943872498220d34ce353d9dbb778029a607a5a128384243"
+            }
+          ]
+        },
+        {
+          "run_id": "2645ec0d-e014-4d99-96ce-ec0b0dc714fb",
+          "native_sha256": "cfbfa638adf5ba2a0db47eea9a8d54a7a48940c4bf1eee83bdfdc911a642c127",
+          "otlp_sha256": "e26370a22fb693b58bd0061358907fe859fbca89541ea43868b97cba7501d4c9",
+          "session_ids": [
+            "2645ec0d-e014-4d99-96ce-ec0b0dc714fb"
+          ],
+          "trace_ids": [
+            "67aa914935b68e85c42a6a57181dd137"
+          ],
+          "submission_hash": "cc7e020f53cafe5932406f2877b7aa4f3b976a4b7253225bcde0ed7f9fbea6df",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 30,
+              "payload_sha256": "e26370a22fb693b58bd0061358907fe859fbca89541ea43868b97cba7501d4c9"
+            }
+          ]
+        },
+        {
+          "run_id": "ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+          "native_sha256": "9d2ef443d0daf66b89671841bddab07117179fa13baf9479fcddc506bfd4c080",
+          "otlp_sha256": "eb329c79b401b3858cd447cc680473e6a8c543971d53513f2629bfc17b32b381",
+          "session_ids": [
+            "ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9"
+          ],
+          "trace_ids": [
+            "cefafd39e2ea6eec880aa24f15a872ce"
+          ],
+          "submission_hash": "b097c11dde32ce988e1c6748f80d7ad8a6a5175b8f4077749e99e4c3a1ea76e7",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 41,
+              "payload_sha256": "eb329c79b401b3858cd447cc680473e6a8c543971d53513f2629bfc17b32b381"
+            }
+          ]
+        },
+        {
+          "run_id": "3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd",
+          "native_sha256": "c8402061010b1796183aa9bb6b92f05bd7b224ad0195ccd40a43752abb74a5c7",
+          "otlp_sha256": "2efd1c068bd9a13c7f8a02d964eac41667804516ce867ab8f6cecf39d9db3cdc",
+          "session_ids": [
+            "3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd"
+          ],
+          "trace_ids": [
+            "0d349dd1fbf5a651ec976c1b9ae92c9c"
+          ],
+          "submission_hash": "d7b2c609ae4c96c315564e35c5b4af0904acd950417f98de75739033fad3344b",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 32,
+              "payload_sha256": "2efd1c068bd9a13c7f8a02d964eac41667804516ce867ab8f6cecf39d9db3cdc"
+            }
+          ]
+        },
+        {
+          "run_id": "b8182790-1837-4290-b467-47ac1231783b",
+          "native_sha256": "2782ac6ce22ce49372b9275df4e37b7902bfcd99e164c278f6f213b297b0c7d3",
+          "otlp_sha256": "5844a51e18e5713098d8175b6245bd4ec8cb95a5f876320c61f0d2e6dfa7b28e",
+          "session_ids": [
+            "b8182790-1837-4290-b467-47ac1231783b"
+          ],
+          "trace_ids": [
+            "3188d3c05719b404be12ab801d6166a9"
+          ],
+          "submission_hash": "57b149c6d800006ff63fc61196b5629344cab89ae19bb6ba47b4aa342bbf39cb",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 34,
+              "payload_sha256": "5844a51e18e5713098d8175b6245bd4ec8cb95a5f876320c61f0d2e6dfa7b28e"
+            }
+          ]
+        },
+        {
+          "run_id": "740a2f8e-7509-4915-880d-a21086bffe9a",
+          "native_sha256": "ac4a0ac620e36a5794f69be9658fc79de7f5ec9f594f9c391436b0e399f6e1f8",
+          "otlp_sha256": "08d380598afa6df13a5736a76f098337ab375a40873c1188faa7c1726cd5a3d3",
+          "session_ids": [
+            "740a2f8e-7509-4915-880d-a21086bffe9a"
+          ],
+          "trace_ids": [
+            "fc19ddf4a6588cf1a270eb15d17b81e5"
+          ],
+          "submission_hash": "3d12405ef2e01348d8164a294173796fefe91dcbf0beca34bbd60154f2d79486",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 33,
+              "payload_sha256": "08d380598afa6df13a5736a76f098337ab375a40873c1188faa7c1726cd5a3d3"
+            }
+          ]
+        },
+        {
+          "run_id": "724b281a-c3d0-43a8-85df-6e8df56845e7",
+          "native_sha256": "1ce17f88745382e8b84f2599867f2e06acc1164569ceaca420b82c9e6337303c",
+          "otlp_sha256": "b6a1d73fda1e1639810fbeaac9064347e45b9346389a932c511e9696e67d9c2e",
+          "session_ids": [
+            "724b281a-c3d0-43a8-85df-6e8df56845e7"
+          ],
+          "trace_ids": [
+            "a4bcd03536cd6ce62a01d2173182b1ef"
+          ],
+          "submission_hash": "c5dc4dc6aaaa48e1ef3786024838d1dd4a3bd110a6a180b4dee0de7dd5012cc0",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 35,
+              "payload_sha256": "b6a1d73fda1e1639810fbeaac9064347e45b9346389a932c511e9696e67d9c2e"
+            }
+          ]
+        },
+        {
+          "run_id": "133cba3d-7333-4f8a-be4f-f44b8e93e154",
+          "native_sha256": "ec650e4c5c245ad5547d688dde4b3228320a5be262644e6e3cb8f86a70be969b",
+          "otlp_sha256": "4dc72a0c139e37d9d93a2b3f0148f50ee6b775ad9b866cd1142bd69ed827eb32",
+          "session_ids": [
+            "133cba3d-7333-4f8a-be4f-f44b8e93e154"
+          ],
+          "trace_ids": [
+            "8d57de33b16541a6eba1946e4a6270b8"
+          ],
+          "submission_hash": "3edf4183ffafc986f600f3cd7818609b26c8df23c9e558e53bb6bbd0a576c1cf",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 36,
+              "payload_sha256": "4dc72a0c139e37d9d93a2b3f0148f50ee6b775ad9b866cd1142bd69ed827eb32"
+            }
+          ]
+        },
+        {
+          "run_id": "cdcf39ea-b857-4b0f-a3e7-75ad0395fd40",
+          "native_sha256": "8237f56ceb0204e2d3e53155d2abfa9cfb83ab19712fbd4b0d439e23fe2a1f0f",
+          "otlp_sha256": "0d3e060bd018bf46a2aab98423fd8ddd2bb36bb34dbbb9995eb09e9d3bc0597a",
+          "session_ids": [
+            "cdcf39ea-b857-4b0f-a3e7-75ad0395fd40"
+          ],
+          "trace_ids": [
+            "d71dda93b1478257686e31f1ff52378f"
+          ],
+          "submission_hash": "6efbdf5419a20fe25d29350e3d6cb41e608757b3180d732c8a5a5617da4b412a",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 37,
+              "payload_sha256": "0d3e060bd018bf46a2aab98423fd8ddd2bb36bb34dbbb9995eb09e9d3bc0597a"
+            }
+          ]
+        },
+        {
+          "run_id": "51463b84-66e0-4a29-9992-b74a598cf1cc",
+          "native_sha256": "c40caa815373a444d65d519b394e777212c8959aa81195cf1bf72b2e83b8bddb",
+          "otlp_sha256": "6b39d43724364382a22d174279a20c7e059da8d80a2ac50cff72eb10b753b563",
+          "session_ids": [
+            "51463b84-66e0-4a29-9992-b74a598cf1cc"
+          ],
+          "trace_ids": [
+            "8329879a5b7199a67d27e0026f01e9ac"
+          ],
+          "submission_hash": "ab36fa5f464705d3d6a1fa9ef58dbe99885234ad3ee00d638930c2e456cfbf7c",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 40,
+              "payload_sha256": "6b39d43724364382a22d174279a20c7e059da8d80a2ac50cff72eb10b753b563"
+            }
+          ]
+        },
+        {
+          "run_id": "434b58e3-f948-4cfb-92a5-577b1c4c4af8",
+          "native_sha256": "5466fddff7de2453d463893e76038564bdff8d81758c114cf08f76d4a2b2c2b5",
+          "otlp_sha256": "7e4a0c54bb8af38f6a9f346082110fd3a7944272175b9506047e837d2aada513",
+          "session_ids": [
+            "434b58e3-f948-4cfb-92a5-577b1c4c4af8"
+          ],
+          "trace_ids": [
+            "26db106f06e850e7f6177a673d876c8b"
+          ],
+          "submission_hash": "bdddabf233b8c1ca7f65b7a33d3f9765004bc36f77a01817822cd8a1bd127cc3",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 39,
+              "payload_sha256": "7e4a0c54bb8af38f6a9f346082110fd3a7944272175b9506047e837d2aada513"
+            }
+          ]
+        },
+        {
+          "run_id": "8521b60c-d58e-4f17-8cd0-75cf45d82d8b",
+          "native_sha256": "66e2a771e7e31a98e4ae45da25c1b47fc15ea91be33a60918d25718ab8866dc1",
+          "otlp_sha256": "6638234078e9a6ac702d7ee2413019627d7d851e520c2473484c8647ae3b80fc",
+          "session_ids": [
+            "8521b60c-d58e-4f17-8cd0-75cf45d82d8b"
+          ],
+          "trace_ids": [
+            "3fa30e1ac1c9176e36bd8fb9185519fb"
+          ],
+          "submission_hash": "608613d705148b839dce1d14ef1e5a1ce99944b9bbd7d25006a8179fc2aad68f",
+          "monitor_instance": "acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 38,
+              "payload_sha256": "6638234078e9a6ac702d7ee2413019627d7d851e520c2473484c8647ae3b80fc"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "model_calls": 0,
+  "evaluations": 0,
+  "stdout": "{\"experiment_id\": \"b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"synthetic\": false, \"input_hashes\": {\"normal/spec.md\": \"60591f585f9a0bc57085819acc4462f0bd596c360fac79cff249fee8d510b1a0\", \"anti/spec.md\": \"4efee9a74d163f6fabad8c5392e395717869e074b34d81cb46489124f714c551\", \"implementation_prompt.md\": \"27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2\", \"evaluation/requirements-ledger.json\": \"5d6f0d13d547983b4e30a070e813b36c2ce5588e9b2cf29f3f3df47dd15bbf13\", \"evaluation/case-manifest.json\": \"4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461\"}, \"planned\": 40, \"phase\": \"data-acquisition\", \"started\": 40, \"not_started\": 0, \"evaluated\": 0, \"evaluation_attempted\": 40, \"evaluation_completed\": 40, \"evaluation_valid\": 0, \"evaluation_invalid\": 0, \"evaluation_pending\": 40, \"evaluation_unavailable\": 0, \"usage_complete\": 28, \"plotted\": 0, \"code_hashes\": {\"scripts/copilot_batch.py\": \"8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9\", \"scripts/telemetry_link.py\": \"d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0\", \"analysis/collect_runs.py\": \"de52f7e5500f66e113f19a8edfc2308ce229d03c6c22ee1475a18fc6c2bd22c9\", \"analysis/aggregate.py\": \"74729573a8213fe95fd3cd63cf16f51b5a44e12eac72f77a608676c9e089e95d\", \"analysis/plot.py\": \"65674114efc8165da021d2e0ed9e28e18d6840b9c8bd901ad50b2b6c3d9c0d2a\"}, \"telemetry_refs\": [{\"run_id\": \"cf61291c-7b69-4c30-880e-0d7c8a036a2f\", \"native_sha256\": \"eedfe34566b446b3624b728b6b2bd8d5297958d8f15383841941a88b3d0d2dd6\", \"otlp_sha256\": \"602fc749ca9364e47f124f857aad09786795af2619a943d4b96305caeb3681e3\", \"session_ids\": [\"cf61291c-7b69-4c30-880e-0d7c8a036a2f\"], \"trace_ids\": [\"43ec22ff1404cd1ba52c2b41c0cda9da\"], \"submission_hash\": \"9d2c469d5e6c52c56b1856015050aea6d292c213e4e4cebc14ec946c12ec69f4\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 14, \"payload_sha256\": \"602fc749ca9364e47f124f857aad09786795af2619a943d4b96305caeb3681e3\"}]}, {\"run_id\": \"25a01c2b-cf66-4053-848c-9af10ef2ef81\", \"native_sha256\": \"e3fd90252f00dabadcda9b729fa78eaeca6f35ea7691fc304073897b9a4924fd\", \"otlp_sha256\": \"cf697ccbac780670638bea94a85293f2c41dd57433abc8c4ca70c548840d247b\", \"session_ids\": [\"25a01c2b-cf66-4053-848c-9af10ef2ef81\"], \"trace_ids\": [\"1dc3992c2691f3ddfb0ec1070c35f434\"], \"submission_hash\": \"fab9ae917395a995174261e4d1b0d125ebf19225e993acf0f4605a8ff69a1808\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 5, \"payload_sha256\": \"cf697ccbac780670638bea94a85293f2c41dd57433abc8c4ca70c548840d247b\"}]}, {\"run_id\": \"ca85fc9b-7678-41f4-88bb-257f702ea65b\", \"native_sha256\": \"504c93137022ca2ae4b6523d5bbd4ce77fd6d1d9edc6788682cf71c8a1e018b9\", \"otlp_sha256\": \"85788a91e5730c0317881d73458c2bda7e71153ab1754c6cc9eb6a13aa00edf0\", \"session_ids\": [\"ca85fc9b-7678-41f4-88bb-257f702ea65b\"], \"trace_ids\": [\"f801c5fce9705f0f9d90e1aa3a80d288\"], \"submission_hash\": \"9f92b74397fb78fe391c28d574500c14f431f121cac11ecb02ab47954983c0b0\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 4, \"payload_sha256\": \"85788a91e5730c0317881d73458c2bda7e71153ab1754c6cc9eb6a13aa00edf0\"}]}, {\"run_id\": \"f7474040-55b4-40da-b89d-a9a016139246\", \"native_sha256\": \"bd7deeceee3c74065460b4de23b3bf86b50576b0746b65a7b3976f0f6e4c8495\", \"otlp_sha256\": \"9100c20ceef8a23760254909612a5ae2b7a7952b7fb42d4587096efe0d681f2d\", \"session_ids\": [\"f7474040-55b4-40da-b89d-a9a016139246\"], \"trace_ids\": [\"18a4d561f6b31788d73c3e02ac227ee3\"], \"submission_hash\": \"d7fefb14e628c361cfad124cc88d3579e4d94d68037bfef116eb5be8f52a610b\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 3, \"payload_sha256\": \"9100c20ceef8a23760254909612a5ae2b7a7952b7fb42d4587096efe0d681f2d\"}]}, {\"run_id\": \"451385f8-693c-4881-927a-2fd87ad343e5\", \"native_sha256\": \"7849c942cf5832b173c2c121318a99a291bc416572cf08fcbe7d54157fcddaef\", \"otlp_sha256\": \"466e5b096477f01601bd1e650872193cd379e00d36094adf13b19f374ce3a4e3\", \"session_ids\": [\"451385f8-693c-4881-927a-2fd87ad343e5\"], \"trace_ids\": [\"bda26b5104338f505c00ebbd6ca63460\"], \"submission_hash\": \"69f8db1639de8fefc3d08d222edbdc0f40a5de815cf541ad547347d9b2685e90\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 2, \"payload_sha256\": \"466e5b096477f01601bd1e650872193cd379e00d36094adf13b19f374ce3a4e3\"}]}, {\"run_id\": \"41824f90-f8f8-45bc-b801-1762e265cd0f\", \"native_sha256\": \"650656a8ba6594fcdd27e6d6d33c93d30dbc90cf3f92e5b5ead6a50c918f0918\", \"otlp_sha256\": \"c0e8ddd54e0d976095891f1e15fd8460f5dca04f05b5e4ab3b79e81c7aaf10e6\", \"session_ids\": [\"41824f90-f8f8-45bc-b801-1762e265cd0f\"], \"trace_ids\": [\"e1be9c9ab5bd349470a963cd1bf04a9e\"], \"submission_hash\": \"ad529701ba27a10b7c72cfd4c7b34444c452c1aa3505bf85ea8e66c163093c25\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 10, \"payload_sha256\": \"c0e8ddd54e0d976095891f1e15fd8460f5dca04f05b5e4ab3b79e81c7aaf10e6\"}]}, {\"run_id\": \"ccac6a7d-177d-46df-b4d1-a3a441da6f3a\", \"native_sha256\": \"938cb1c9f74f8e0481a472e5620b39a3659db0093694ee49b148de85666e373b\", \"otlp_sha256\": \"42c62657813eed36bf7e71c8bdf6121733cdf855a26b00b7fdfcc943392e64aa\", \"session_ids\": [\"ccac6a7d-177d-46df-b4d1-a3a441da6f3a\"], \"trace_ids\": [\"9ef9d4f91fb22d51124df188c5454797\"], \"submission_hash\": \"4222dd294eef727acf78528adf8b8ea1fc2eb4d2f79c151401482d4308d83f3f\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 6, \"payload_sha256\": \"42c62657813eed36bf7e71c8bdf6121733cdf855a26b00b7fdfcc943392e64aa\"}]}, {\"run_id\": \"9b477a67-1f93-4d09-b58a-d7969894d590\", \"native_sha256\": \"348a03d33c99768c9389c5c8d50735524370a7c68a4ef299da453795720b491b\", \"otlp_sha256\": \"3692c8902ffc60be6dd68b0628a12a14320e58ce0e22bca5fee49ac6a6fbdd51\", \"session_ids\": [\"9b477a67-1f93-4d09-b58a-d7969894d590\"], \"trace_ids\": [\"dfe0da11225cfa2372103cbe34360b1c\"], \"submission_hash\": \"170a932dfe7e6b4d70fba40486ae3aad43f5257807a6a4bdbce148f6a491448e\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 8, \"payload_sha256\": \"3692c8902ffc60be6dd68b0628a12a14320e58ce0e22bca5fee49ac6a6fbdd51\"}]}, {\"run_id\": \"9305af1b-22f7-490c-9f39-d6e7f82619fb\", \"native_sha256\": \"b23b5c459fe94bfd4a535541b88e638c75e6a9dff3be32cde578df01fac821b5\", \"otlp_sha256\": \"0fecf644fdec974b8332f0d83636c9ab38f39c8d98f89edb6d583290177dd23f\", \"session_ids\": [\"9305af1b-22f7-490c-9f39-d6e7f82619fb\"], \"trace_ids\": [\"ce788c3be45bfe849ce87abd9ed5da67\"], \"submission_hash\": \"31a5aab2b9f6523c0817d5997a8c2aee37b0957430248e69ffd6e5046cc702ef\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 7, \"payload_sha256\": \"0fecf644fdec974b8332f0d83636c9ab38f39c8d98f89edb6d583290177dd23f\"}]}, {\"run_id\": \"5864c2dd-59e9-4a85-b07d-28c093aaa16a\", \"native_sha256\": \"7d6c164939c794c2b5a153e70d702aac25a84c9278ac63fe09a8a2f232969a11\", \"otlp_sha256\": \"044c5e7bc72dd8dbde26d2cec6d374843ab985ae8bc0a2b3d9205f57ef0f28c8\", \"session_ids\": [\"5864c2dd-59e9-4a85-b07d-28c093aaa16a\"], \"trace_ids\": [\"b230e24a129025ae7bb47f1c427fbbcc\"], \"submission_hash\": \"6aa8583465fa541a2cb03a636f7317135841aef9227f53607ff072ee7ce629d3\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 9, \"payload_sha256\": \"044c5e7bc72dd8dbde26d2cec6d374843ab985ae8bc0a2b3d9205f57ef0f28c8\"}]}, {\"run_id\": \"7cce7b2d-1ee9-410e-a216-da48d74b3f23\", \"native_sha256\": \"454bed5c566dfb643d7de2106ed6608ad0f62f49881c7272e37dcf51901d68e1\", \"otlp_sha256\": \"37fa4756759d6c4357cfa0d2923dfae28d4e4e2a9afc1c8d4f155c2395793701\", \"session_ids\": [\"7cce7b2d-1ee9-410e-a216-da48d74b3f23\"], \"trace_ids\": [\"aeb31cff1d1340e226928efa0b11a9b6\"], \"submission_hash\": \"68d2d139ab91936c33e9fdcbc737da5c7d48111b54088fea9c921ef9c4e45642\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 11, \"payload_sha256\": \"37fa4756759d6c4357cfa0d2923dfae28d4e4e2a9afc1c8d4f155c2395793701\"}]}, {\"run_id\": \"8685c69d-7825-4148-9052-9543c7ede4fc\", \"native_sha256\": \"487bd857a953487c43dd3d13391dd31e858f7b8081d467fcca7dd20cb3a1500e\", \"otlp_sha256\": \"9746f7718e1093c828439eea6ddc5f7389f714b6535605d9cea74ae4ffbf8b22\", \"session_ids\": [\"8685c69d-7825-4148-9052-9543c7ede4fc\"], \"trace_ids\": [\"c7e462c1b12c22e52af33e7d6c76c033\"], \"submission_hash\": \"e2db04257ac023117baba046d88299f3aa394bd4d937cfc8e679153f8e9fd7ef\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 17, \"payload_sha256\": \"9746f7718e1093c828439eea6ddc5f7389f714b6535605d9cea74ae4ffbf8b22\"}]}, {\"run_id\": \"cbbb10c7-8f02-4692-8214-a371b9bcc307\", \"native_sha256\": \"6b7721f6a551613e134c0cdd8ba68c8b828d29f193d0bcc1d65956e4d9544e2a\", \"otlp_sha256\": \"02505c5b04f735e2cc0e36261e4940a2c0d77c583996a2016e19d2c5231755a5\", \"session_ids\": [\"cbbb10c7-8f02-4692-8214-a371b9bcc307\"], \"trace_ids\": [\"fb6d5c6396cc3e6aba57f390a8c95c4f\"], \"submission_hash\": \"6bf226848a2f21998f6d423d8a8a288a5bc4df15b6387a4066e14247f0851541\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 12, \"payload_sha256\": \"02505c5b04f735e2cc0e36261e4940a2c0d77c583996a2016e19d2c5231755a5\"}]}, {\"run_id\": \"cb52fec6-4294-41ad-8a10-e507d4995f0d\", \"native_sha256\": \"93188cfd7ace37e8c61b5bf355088f2f0a3e010807a2359cada313866b9d3b1a\", \"otlp_sha256\": \"46c7d0f6d25753ced94b30ea79bcbfe3e1dee5f329cefe6946e1641c80e71424\", \"session_ids\": [\"cb52fec6-4294-41ad-8a10-e507d4995f0d\"], \"trace_ids\": [\"45e45276773e4d0b8a29b090a00e6019\"], \"submission_hash\": \"8794c208d64e5f3fd2b06d3374bdfad341b44ad9b65ce4f38bf7c5486a557393\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 13, \"payload_sha256\": \"46c7d0f6d25753ced94b30ea79bcbfe3e1dee5f329cefe6946e1641c80e71424\"}]}, {\"run_id\": \"cd059f6d-258d-45e1-a395-eecbda0ac97a\", \"native_sha256\": \"b5b452c1db7c9b9856e9299b133f3ca0537ce1dbacb9f3dfa1de8a26b259db4d\", \"otlp_sha256\": \"a063ff7919b3a0207ba02fbb81b8166cda02c4309a21d42b156d5b00a6fffca1\", \"session_ids\": [\"cd059f6d-258d-45e1-a395-eecbda0ac97a\"], \"trace_ids\": [\"70be2aad02b0128283724c2fc5811a8a\"], \"submission_hash\": \"262410dc28b78fc6243fa41571aff8073cf3638dc6b6d184e44a5f7365170f46\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 15, \"payload_sha256\": \"a063ff7919b3a0207ba02fbb81b8166cda02c4309a21d42b156d5b00a6fffca1\"}]}, {\"run_id\": \"c276743a-2030-42c6-a0b7-e8c787f6f37b\", \"native_sha256\": \"e34fe6ab244b37e90c96275433f75fba9ac0229164778abfc5a46b9e1fa3ac18\", \"otlp_sha256\": \"168cb8f14cf01047c193ba688675b1a820313ca39ffb62c029f14bb6af6b8dab\", \"session_ids\": [\"c276743a-2030-42c6-a0b7-e8c787f6f37b\"], \"trace_ids\": [\"0bd46db80dab70b3fd869c4e28665f0f\"], \"submission_hash\": \"3bdff9aa1911a7a77f5df55e0d949d2669b09fb45627f82dccb35fbcc6abd87e\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 16, \"payload_sha256\": \"168cb8f14cf01047c193ba688675b1a820313ca39ffb62c029f14bb6af6b8dab\"}]}, {\"run_id\": \"1e69ea5e-7f7f-40e3-b95b-94663edf4734\", \"native_sha256\": \"26fb0916c371165e6110696fd67cbeb7a4e7647c8f7c577918f3f0b0919671cf\", \"otlp_sha256\": \"e86766afdd159a2e549b55d9d8ea1a68adc3e7c3bd9ff89a684f77e95fdf7bda\", \"session_ids\": [\"1e69ea5e-7f7f-40e3-b95b-94663edf4734\"], \"trace_ids\": [\"57b146d5dcef6cb84cc2753ae6cec731\"], \"submission_hash\": \"440ce9e893fcc851f341559c1d26ba3ff3a5789c9d645a706008b9b73dc5c19a\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 18, \"payload_sha256\": \"e86766afdd159a2e549b55d9d8ea1a68adc3e7c3bd9ff89a684f77e95fdf7bda\"}]}, {\"run_id\": \"aa86b7d9-3527-4481-926b-d65012b6fd06\", \"native_sha256\": \"b6527465aec4a7246f368bc69616f04051542d78e51c8439f5df21f8072e58da\", \"otlp_sha256\": \"d9a1484a8cdd6563affb2fe70c72e67fb45a6b375a6aa9ca47bc1c44fc8105f4\", \"session_ids\": [\"aa86b7d9-3527-4481-926b-d65012b6fd06\"], \"trace_ids\": [\"c2961b575470f034cee169e6f8cf68b6\"], \"submission_hash\": \"af637111fb09145ee01738c8cc51385d1e82cf5a55dffa5e0af65b08d2dcd6e7\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 20, \"payload_sha256\": \"d9a1484a8cdd6563affb2fe70c72e67fb45a6b375a6aa9ca47bc1c44fc8105f4\"}]}, {\"run_id\": \"38fba73c-e82c-49e2-9dd4-3fca7d63bdfd\", \"native_sha256\": \"afbf4d395e1652c5521842b2c204777dd1b56312eb725d9a586b5ee86ae5dca0\", \"otlp_sha256\": \"c50191c111211a597039cb83e0a8edca19c778e92c433793ea256fc6b18555f9\", \"session_ids\": [\"38fba73c-e82c-49e2-9dd4-3fca7d63bdfd\"], \"trace_ids\": [\"47f0500fe5b6013bedd4c1d95bb39729\"], \"submission_hash\": \"9e5c43e27f6ecc588b1117b774bf45e9ee6108d107848aa64f03bff86011a079\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 23, \"payload_sha256\": \"c50191c111211a597039cb83e0a8edca19c778e92c433793ea256fc6b18555f9\"}]}, {\"run_id\": \"71ff896b-3c40-4903-a819-e4d5aa98f11b\", \"native_sha256\": \"527c826c437deebbc0b71f30cd5f8b42845fefdcae12b56d6ec0452011b1520a\", \"otlp_sha256\": \"dfefd1ccf200ee77ca51ee959a2d210baa6bd5a069d695782f8052d612b61af5\", \"session_ids\": [\"71ff896b-3c40-4903-a819-e4d5aa98f11b\"], \"trace_ids\": [\"b43fce802cebf1973b1e5c19e895350e\"], \"submission_hash\": \"907abc7c0bfe93ae3a346e2cda2f13e882c2b87fde5d2815440b172f8bbb00f5\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 19, \"payload_sha256\": \"dfefd1ccf200ee77ca51ee959a2d210baa6bd5a069d695782f8052d612b61af5\"}]}, {\"run_id\": \"a95e1037-7728-4d70-836a-f0f8b9604e94\", \"native_sha256\": \"fe4fcddff8db1fe44999fd4f3230afd806f01c4ed39947fe2f049fae898dafa7\", \"otlp_sha256\": \"d1583472b66e738e1785491a06aa68d92712a73a8b1a12853176d548716e1787\", \"session_ids\": [\"a95e1037-7728-4d70-836a-f0f8b9604e94\"], \"trace_ids\": [\"916d8ecca615d75c4a6b7863df221912\"], \"submission_hash\": \"f78d7b56bfce1aea82cc3c9f6d1dd6cd29c403142862ace0cbd156180a348d5d\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 21, \"payload_sha256\": \"d1583472b66e738e1785491a06aa68d92712a73a8b1a12853176d548716e1787\"}]}, {\"run_id\": \"ea871692-692b-4028-8456-126aba55dac8\", \"native_sha256\": \"9e0bb34c2662d6b21694ac3094770026b340a42553a1c3fa5f29ed520c9479ea\", \"otlp_sha256\": \"c652d7c530fb7fc1a4713ba088971f773e7741e4e231009637b8088296a9504d\", \"session_ids\": [\"ea871692-692b-4028-8456-126aba55dac8\"], \"trace_ids\": [\"bdb8ce63d495eaaefc21a88b3f59c502\"], \"submission_hash\": \"fd404c7c2f4c6806e922ebf4f4724e866db729285da3a22e6b57d20336770f10\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 22, \"payload_sha256\": \"c652d7c530fb7fc1a4713ba088971f773e7741e4e231009637b8088296a9504d\"}]}, {\"run_id\": \"87a2727c-dec6-49d9-a03b-cd33351c7f48\", \"native_sha256\": \"c7fe64a6d0a51268987f2cdefef8b4191515cfcf618bcc72d3954ea312050c75\", \"otlp_sha256\": \"846af685ce3b4eff900429d8674e9896cb96aff4d4fabc15dd5f1008e6a1c1f0\", \"session_ids\": [\"87a2727c-dec6-49d9-a03b-cd33351c7f48\"], \"trace_ids\": [\"ee36dbe3c210e1f923b90cd048881d4e\"], \"submission_hash\": \"831ac9b3b51f2332fbc2f29109030c2bf1522926614ac940c5154df45d92a9eb\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 24, \"payload_sha256\": \"846af685ce3b4eff900429d8674e9896cb96aff4d4fabc15dd5f1008e6a1c1f0\"}]}, {\"run_id\": \"8562d613-be4e-4350-9e8d-8ac02a644845\", \"native_sha256\": \"3dc1d72a2ae1765c31372657be793d5d7ad17816f4b71d7584198c18508f380a\", \"otlp_sha256\": \"9f9ad326f0ca86083b914f57cf28aa4713ebbb7f92af71e616f255562a6e957d\", \"session_ids\": [\"8562d613-be4e-4350-9e8d-8ac02a644845\"], \"trace_ids\": [\"7f417bddaae280ca0929fdcb0a79d1a6\"], \"submission_hash\": \"9244c77e6c2344e0f31907ebb6e6ebf7612a0d11b2a206277d184a2ebadc3f1b\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 27, \"payload_sha256\": \"9f9ad326f0ca86083b914f57cf28aa4713ebbb7f92af71e616f255562a6e957d\"}]}, {\"run_id\": \"00f64f52-6070-4f28-9070-cc52bdf4de13\", \"native_sha256\": \"9884c31ee8a1bca4984669ff26b97f8b10c4b62c42c7bbe293676bff345e6c3e\", \"otlp_sha256\": \"fe0f0e4fc28a3458488858a1a133c29e806f69f35ffea6b2725f5d955ab86f9f\", \"session_ids\": [\"00f64f52-6070-4f28-9070-cc52bdf4de13\"], \"trace_ids\": [\"d160daccbebb7b8fa8c4b729c4479bc4\"], \"submission_hash\": \"c991a37db91633a509a07de9fd5c9e77ed10c2b321064bdc81a9aa754dfe837e\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 26, \"payload_sha256\": \"fe0f0e4fc28a3458488858a1a133c29e806f69f35ffea6b2725f5d955ab86f9f\"}]}, {\"run_id\": \"5a7c902f-5503-4289-9afc-76609043cc3a\", \"native_sha256\": \"bdd10e68858c200799dbbdd72d7c4ac0ab728a144b40a57238de88ea9d59b935\", \"otlp_sha256\": \"a75a92af61116383a01b9f76dcdfc8785b8436c3f58108f9c00562fa64e4cd32\", \"session_ids\": [\"5a7c902f-5503-4289-9afc-76609043cc3a\"], \"trace_ids\": [\"d3928c3b05491889e13a6ff31388cddb\"], \"submission_hash\": \"f808d727094fd9dc89f818610dc836b2150656f953b8206801b287ea6ac7ed97\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 25, \"payload_sha256\": \"a75a92af61116383a01b9f76dcdfc8785b8436c3f58108f9c00562fa64e4cd32\"}]}, {\"run_id\": \"959de722-b6ae-433c-80fe-fc5062db90e7\", \"native_sha256\": \"7f3c1d318149effbb94815b7263010088ad62c7b75833c9f1e6b09c5885f18cb\", \"otlp_sha256\": \"241443d8314661d72708af9d9238ecddd34fd7e7271c2716a518674ed46c0200\", \"session_ids\": [\"959de722-b6ae-433c-80fe-fc5062db90e7\"], \"trace_ids\": [\"afc56b0b09459acb1291d39171282458\"], \"submission_hash\": \"59cdbb2e8f11fe5a10df11ae6c7738a58110a77d8809b0a2c0e0504938c5a728\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 31, \"payload_sha256\": \"241443d8314661d72708af9d9238ecddd34fd7e7271c2716a518674ed46c0200\"}]}, {\"run_id\": \"6a0f735d-c6df-4cd3-bcb6-489807e94b58\", \"native_sha256\": \"ef0023731e313df019bc42d7519f355c20ef7917fd97ad9c877f3201a3fcb18c\", \"otlp_sha256\": \"c032196db771547e70bf7d797e6b1ff203b6b8f5e94f1244f12cd8aa8a770254\", \"session_ids\": [\"6a0f735d-c6df-4cd3-bcb6-489807e94b58\"], \"trace_ids\": [\"1de7f4f3675727022284db4da562bab3\"], \"submission_hash\": \"278b84a3fbccf922ecf217a7e7499c8c0860d27ac7172c871e07fa8aad423a95\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 28, \"payload_sha256\": \"c032196db771547e70bf7d797e6b1ff203b6b8f5e94f1244f12cd8aa8a770254\"}]}, {\"run_id\": \"15c9af27-f25b-43b4-a75c-409991b14a37\", \"native_sha256\": \"bfb40e708d13d9265a483ec4e49d25771f7c88319df9bbc3a193aed06394ae0c\", \"otlp_sha256\": \"56de807d0dcd5a6d5943872498220d34ce353d9dbb778029a607a5a128384243\", \"session_ids\": [\"15c9af27-f25b-43b4-a75c-409991b14a37\"], \"trace_ids\": [\"92a214557b5fa6b51216b2f6305e93ed\"], \"submission_hash\": \"d3a1089277c143b8781d85eec011f7185bb88eba9c551c82cc80f701ededc603\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 29, \"payload_sha256\": \"56de807d0dcd5a6d5943872498220d34ce353d9dbb778029a607a5a128384243\"}]}, {\"run_id\": \"2645ec0d-e014-4d99-96ce-ec0b0dc714fb\", \"native_sha256\": \"cfbfa638adf5ba2a0db47eea9a8d54a7a48940c4bf1eee83bdfdc911a642c127\", \"otlp_sha256\": \"e26370a22fb693b58bd0061358907fe859fbca89541ea43868b97cba7501d4c9\", \"session_ids\": [\"2645ec0d-e014-4d99-96ce-ec0b0dc714fb\"], \"trace_ids\": [\"67aa914935b68e85c42a6a57181dd137\"], \"submission_hash\": \"cc7e020f53cafe5932406f2877b7aa4f3b976a4b7253225bcde0ed7f9fbea6df\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 30, \"payload_sha256\": \"e26370a22fb693b58bd0061358907fe859fbca89541ea43868b97cba7501d4c9\"}]}, {\"run_id\": \"ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9\", \"native_sha256\": \"9d2ef443d0daf66b89671841bddab07117179fa13baf9479fcddc506bfd4c080\", \"otlp_sha256\": \"eb329c79b401b3858cd447cc680473e6a8c543971d53513f2629bfc17b32b381\", \"session_ids\": [\"ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9\"], \"trace_ids\": [\"cefafd39e2ea6eec880aa24f15a872ce\"], \"submission_hash\": \"b097c11dde32ce988e1c6748f80d7ad8a6a5175b8f4077749e99e4c3a1ea76e7\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 41, \"payload_sha256\": \"eb329c79b401b3858cd447cc680473e6a8c543971d53513f2629bfc17b32b381\"}]}, {\"run_id\": \"3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd\", \"native_sha256\": \"c8402061010b1796183aa9bb6b92f05bd7b224ad0195ccd40a43752abb74a5c7\", \"otlp_sha256\": \"2efd1c068bd9a13c7f8a02d964eac41667804516ce867ab8f6cecf39d9db3cdc\", \"session_ids\": [\"3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd\"], \"trace_ids\": [\"0d349dd1fbf5a651ec976c1b9ae92c9c\"], \"submission_hash\": \"d7b2c609ae4c96c315564e35c5b4af0904acd950417f98de75739033fad3344b\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 32, \"payload_sha256\": \"2efd1c068bd9a13c7f8a02d964eac41667804516ce867ab8f6cecf39d9db3cdc\"}]}, {\"run_id\": \"b8182790-1837-4290-b467-47ac1231783b\", \"native_sha256\": \"2782ac6ce22ce49372b9275df4e37b7902bfcd99e164c278f6f213b297b0c7d3\", \"otlp_sha256\": \"5844a51e18e5713098d8175b6245bd4ec8cb95a5f876320c61f0d2e6dfa7b28e\", \"session_ids\": [\"b8182790-1837-4290-b467-47ac1231783b\"], \"trace_ids\": [\"3188d3c05719b404be12ab801d6166a9\"], \"submission_hash\": \"57b149c6d800006ff63fc61196b5629344cab89ae19bb6ba47b4aa342bbf39cb\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 34, \"payload_sha256\": \"5844a51e18e5713098d8175b6245bd4ec8cb95a5f876320c61f0d2e6dfa7b28e\"}]}, {\"run_id\": \"740a2f8e-7509-4915-880d-a21086bffe9a\", \"native_sha256\": \"ac4a0ac620e36a5794f69be9658fc79de7f5ec9f594f9c391436b0e399f6e1f8\", \"otlp_sha256\": \"08d380598afa6df13a5736a76f098337ab375a40873c1188faa7c1726cd5a3d3\", \"session_ids\": [\"740a2f8e-7509-4915-880d-a21086bffe9a\"], \"trace_ids\": [\"fc19ddf4a6588cf1a270eb15d17b81e5\"], \"submission_hash\": \"3d12405ef2e01348d8164a294173796fefe91dcbf0beca34bbd60154f2d79486\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 33, \"payload_sha256\": \"08d380598afa6df13a5736a76f098337ab375a40873c1188faa7c1726cd5a3d3\"}]}, {\"run_id\": \"724b281a-c3d0-43a8-85df-6e8df56845e7\", \"native_sha256\": \"1ce17f88745382e8b84f2599867f2e06acc1164569ceaca420b82c9e6337303c\", \"otlp_sha256\": \"b6a1d73fda1e1639810fbeaac9064347e45b9346389a932c511e9696e67d9c2e\", \"session_ids\": [\"724b281a-c3d0-43a8-85df-6e8df56845e7\"], \"trace_ids\": [\"a4bcd03536cd6ce62a01d2173182b1ef\"], \"submission_hash\": \"c5dc4dc6aaaa48e1ef3786024838d1dd4a3bd110a6a180b4dee0de7dd5012cc0\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 35, \"payload_sha256\": \"b6a1d73fda1e1639810fbeaac9064347e45b9346389a932c511e9696e67d9c2e\"}]}, {\"run_id\": \"133cba3d-7333-4f8a-be4f-f44b8e93e154\", \"native_sha256\": \"ec650e4c5c245ad5547d688dde4b3228320a5be262644e6e3cb8f86a70be969b\", \"otlp_sha256\": \"4dc72a0c139e37d9d93a2b3f0148f50ee6b775ad9b866cd1142bd69ed827eb32\", \"session_ids\": [\"133cba3d-7333-4f8a-be4f-f44b8e93e154\"], \"trace_ids\": [\"8d57de33b16541a6eba1946e4a6270b8\"], \"submission_hash\": \"3edf4183ffafc986f600f3cd7818609b26c8df23c9e558e53bb6bbd0a576c1cf\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 36, \"payload_sha256\": \"4dc72a0c139e37d9d93a2b3f0148f50ee6b775ad9b866cd1142bd69ed827eb32\"}]}, {\"run_id\": \"cdcf39ea-b857-4b0f-a3e7-75ad0395fd40\", \"native_sha256\": \"8237f56ceb0204e2d3e53155d2abfa9cfb83ab19712fbd4b0d439e23fe2a1f0f\", \"otlp_sha256\": \"0d3e060bd018bf46a2aab98423fd8ddd2bb36bb34dbbb9995eb09e9d3bc0597a\", \"session_ids\": [\"cdcf39ea-b857-4b0f-a3e7-75ad0395fd40\"], \"trace_ids\": [\"d71dda93b1478257686e31f1ff52378f\"], \"submission_hash\": \"6efbdf5419a20fe25d29350e3d6cb41e608757b3180d732c8a5a5617da4b412a\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 37, \"payload_sha256\": \"0d3e060bd018bf46a2aab98423fd8ddd2bb36bb34dbbb9995eb09e9d3bc0597a\"}]}, {\"run_id\": \"51463b84-66e0-4a29-9992-b74a598cf1cc\", \"native_sha256\": \"c40caa815373a444d65d519b394e777212c8959aa81195cf1bf72b2e83b8bddb\", \"otlp_sha256\": \"6b39d43724364382a22d174279a20c7e059da8d80a2ac50cff72eb10b753b563\", \"session_ids\": [\"51463b84-66e0-4a29-9992-b74a598cf1cc\"], \"trace_ids\": [\"8329879a5b7199a67d27e0026f01e9ac\"], \"submission_hash\": \"ab36fa5f464705d3d6a1fa9ef58dbe99885234ad3ee00d638930c2e456cfbf7c\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 40, \"payload_sha256\": \"6b39d43724364382a22d174279a20c7e059da8d80a2ac50cff72eb10b753b563\"}]}, {\"run_id\": \"434b58e3-f948-4cfb-92a5-577b1c4c4af8\", \"native_sha256\": \"5466fddff7de2453d463893e76038564bdff8d81758c114cf08f76d4a2b2c2b5\", \"otlp_sha256\": \"7e4a0c54bb8af38f6a9f346082110fd3a7944272175b9506047e837d2aada513\", \"session_ids\": [\"434b58e3-f948-4cfb-92a5-577b1c4c4af8\"], \"trace_ids\": [\"26db106f06e850e7f6177a673d876c8b\"], \"submission_hash\": \"bdddabf233b8c1ca7f65b7a33d3f9765004bc36f77a01817822cd8a1bd127cc3\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 39, \"payload_sha256\": \"7e4a0c54bb8af38f6a9f346082110fd3a7944272175b9506047e837d2aada513\"}]}, {\"run_id\": \"8521b60c-d58e-4f17-8cd0-75cf45d82d8b\", \"native_sha256\": \"66e2a771e7e31a98e4ae45da25c1b47fc15ea91be33a60918d25718ab8866dc1\", \"otlp_sha256\": \"6638234078e9a6ac702d7ee2413019627d7d851e520c2473484c8647ae3b80fc\", \"session_ids\": [\"8521b60c-d58e-4f17-8cd0-75cf45d82d8b\"], \"trace_ids\": [\"3fa30e1ac1c9176e36bd8fb9185519fb\"], \"submission_hash\": \"608613d705148b839dce1d14ef1e5a1ce99944b9bbd7d25006a8179fc2aad68f\", \"monitor_instance\": \"acquisition20-b040f39a-7153-4bfc-8bb6-6f5215cb585a\", \"monitor_build_hashes\": [\"ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74\", \"b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e\", \"b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a\"], \"monitor_schema\": [[\"monitor\", 12], [\"skill_projection\", 1]], \"ingestion_records\": [{\"raw_record_id\": 38, \"payload_sha256\": \"6638234078e9a6ac702d7ee2413019627d7d851e520c2473484c8647ae3b80fc\"}]}]}"
+}

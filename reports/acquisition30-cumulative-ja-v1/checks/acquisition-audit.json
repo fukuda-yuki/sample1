@@ -1,0 +1,1172 @@
+{
+  "kind": "final-acquisition-audit",
+  "experiment_id": "b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+  "planned": 40,
+  "started": 40,
+  "conditions": {
+    "normal": 20,
+    "anti": 20
+  },
+  "archived_and_restored_bytes_verified": true,
+  "running_owned_containers": [],
+  "old_hashes_unchanged": true,
+  "shared_archive_verification_cache_entries": 120,
+  "runs": [
+    {
+      "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+      "planned_run": "normal-001",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 172,
+        "bash": 329,
+        "edit": 7,
+        "create": 41
+      },
+      "original": {
+        "package_id": "copilot-cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+        "package_sha256": "fa746a55dd1213d1693e162c6d56e573730e6282ae8e904bf5dadd6dc8eb4bf7",
+        "files": 813
+      },
+      "linked": {
+        "package_id": "linked-cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+        "package_sha256": "bc43325e1a0518d6c5246724fb4cf85d9577d592e95705b01c51688c3e549c43",
+        "files": 792
+      },
+      "evaluation": {
+        "package_id": "evaluation-1041753a-9a1b-466f-941b-836393c8d49c",
+        "package_sha256": "2dfe2b94fe348a760d32d72dbf623885b742f76ec4ea38d117b8cac0f25c6934",
+        "files": 26
+      }
+    },
+    {
+      "run_id": "25a01c2b-cf66-4053-848c-9af10ef2ef81",
+      "planned_run": "anti-001",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 137,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 32,
+        "bash": 77,
+        "glob": 2,
+        "create": 43,
+        "edit": 12
+      },
+      "original": {
+        "package_id": "copilot-25a01c2b-cf66-4053-848c-9af10ef2ef81",
+        "package_sha256": "e386b055bd392141238be6eb63bbf6f8c293265df056e5c396b2d27790900293",
+        "files": 247
+      },
+      "linked": {
+        "package_id": "linked-25a01c2b-cf66-4053-848c-9af10ef2ef81",
+        "package_sha256": "fe957a1a904f8e85297feaf9354606dc7ed17550b1960cdc27193105ae66a65a",
+        "files": 226
+      },
+      "evaluation": {
+        "package_id": "evaluation-9d0b59f4-aea9-4110-b1b5-78ea84266b2c",
+        "package_sha256": "b032cc2e71e355af794515c3db6b45967fb7ae286aeba83717da00364134bd34",
+        "files": 212
+      }
+    },
+    {
+      "run_id": "ca85fc9b-7678-41f4-88bb-257f702ea65b",
+      "planned_run": "anti-002",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 14,
+        "bash": 90,
+        "create": 24
+      },
+      "original": {
+        "package_id": "copilot-ca85fc9b-7678-41f4-88bb-257f702ea65b",
+        "package_sha256": "08cd1915e73e41d2734cef5cc6b3aa1df963916eb70ff490b469f00e9df296e2",
+        "files": 197
+      },
+      "linked": {
+        "package_id": "linked-ca85fc9b-7678-41f4-88bb-257f702ea65b",
+        "package_sha256": "f1f95936b4e59e470e81c37c485173164afc58d0b24f9a6dea00b3702a1d2fdd",
+        "files": 176
+      },
+      "evaluation": {
+        "package_id": "evaluation-4e5e0eb8-b678-4bc8-83dc-4319454b682f",
+        "package_sha256": "4d8d2181269c094c0ab669a0414689018bc9bebe02b5cc4de267061b24eba56e",
+        "files": 146
+      }
+    },
+    {
+      "run_id": "f7474040-55b4-40da-b89d-a9a016139246",
+      "planned_run": "normal-002",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 18,
+        "bash": 93,
+        "create": 6
+      },
+      "original": {
+        "package_id": "copilot-f7474040-55b4-40da-b89d-a9a016139246",
+        "package_sha256": "c826a1a68dababd364745eb1ce339059da8f90b99d56ad580d97c0d9be2642a9",
+        "files": 186
+      },
+      "linked": {
+        "package_id": "linked-f7474040-55b4-40da-b89d-a9a016139246",
+        "package_sha256": "21cea6ca508598e37c224bfab4348bcd6fe10ce77c543e3f95b41d345dd75098",
+        "files": 165
+      },
+      "evaluation": {
+        "package_id": "evaluation-d3021999-25e8-4920-ae99-976a65e1fdb5",
+        "package_sha256": "f6508e6476ddfb7d2f8195b385a8d65f3f3d6d338baec72e80503563975398ec",
+        "files": 116
+      }
+    },
+    {
+      "run_id": "451385f8-693c-4881-927a-2fd87ad343e5",
+      "planned_run": "normal-003",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 6,
+        "bash": 82
+      },
+      "original": {
+        "package_id": "copilot-451385f8-693c-4881-927a-2fd87ad343e5",
+        "package_sha256": "bb0c2c40815acba13117fcffa73cbc248dfc9cf5aac8cb6835b40efe5553e4e4",
+        "files": 168
+      },
+      "linked": {
+        "package_id": "linked-451385f8-693c-4881-927a-2fd87ad343e5",
+        "package_sha256": "a4994e36712de5bfa8fe8741f616958eb37f618b77d7b69caaba357a07f6df22",
+        "files": 147
+      },
+      "evaluation": {
+        "package_id": "evaluation-b22545a8-8448-40f7-a4f4-9c53fcd1fb58",
+        "package_sha256": "8dc896d8884126076cc12836f0c2a00d8d3851d3026e31947bdb7dd99c02fd69",
+        "files": 180
+      }
+    },
+    {
+      "run_id": "41824f90-f8f8-45bc-b801-1762e265cd0f",
+      "planned_run": "anti-003",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 11,
+        "bash": 162,
+        "list_bash": 1,
+        "read_bash": 4,
+        "stop_bash": 3
+      },
+      "original": {
+        "package_id": "copilot-41824f90-f8f8-45bc-b801-1762e265cd0f",
+        "package_sha256": "5ac0296a0b06f179bc5558fc25192bf9821b2cdd3e3d4dcda4223785f53f008a",
+        "files": 284
+      },
+      "linked": {
+        "package_id": "linked-41824f90-f8f8-45bc-b801-1762e265cd0f",
+        "package_sha256": "2d6f74b1c245311af16df9b60cd871c1cf70a0f78f805706274132ed5d1bfdf5",
+        "files": 263
+      },
+      "evaluation": {
+        "package_id": "evaluation-550e32e7-1135-428a-a2bf-f1e14fee5f0b",
+        "package_sha256": "bceb918a1d53ac553246e907f62638bc4b41fde1dd559f987d96dcafdb37dfcf",
+        "files": 138
+      }
+    },
+    {
+      "run_id": "ccac6a7d-177d-46df-b4d1-a3a441da6f3a",
+      "planned_run": "anti-004",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 13,
+        "bash": 65
+      },
+      "original": {
+        "package_id": "copilot-ccac6a7d-177d-46df-b4d1-a3a441da6f3a",
+        "package_sha256": "3531b23e37703a49b0348bc0b1343ccf2962c3c13f490b90dcc3e68e94f06270",
+        "files": 147
+      },
+      "linked": {
+        "package_id": "linked-ccac6a7d-177d-46df-b4d1-a3a441da6f3a",
+        "package_sha256": "58dcfb163b73b848dfdc361d0bd131ac090abdb2b0d5288cc524fbd353bb6b88",
+        "files": 126
+      },
+      "evaluation": {
+        "package_id": "evaluation-10d79c25-2978-435f-bd7c-fb3e793c02e0",
+        "package_sha256": "4037310aa27cbfcc1e634799ce1380e96f647c6192be2b0bef7fda1728bb91ac",
+        "files": 152
+      }
+    },
+    {
+      "run_id": "9b477a67-1f93-4d09-b58a-d7969894d590",
+      "planned_run": "normal-004",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 21,
+        "bash": 114,
+        "create": 34,
+        "edit": 5
+      },
+      "original": {
+        "package_id": "copilot-9b477a67-1f93-4d09-b58a-d7969894d590",
+        "package_sha256": "c6a5c87ca01008302d6d3694a03619c15d6c67ec537c71bc216178f32a8cf5de",
+        "files": 257
+      },
+      "linked": {
+        "package_id": "linked-9b477a67-1f93-4d09-b58a-d7969894d590",
+        "package_sha256": "129309479b0aa4fbd975767c9a6c06e43df1b6a1951abcbed7b591983fad4919",
+        "files": 236
+      },
+      "evaluation": {
+        "package_id": "evaluation-9338a04d-2ba2-4ef8-a08d-556bb79d7ca0",
+        "package_sha256": "91d17aabc2a434f53f93293cc6726b788995cd45e32a2043cd33c16a45ff49cf",
+        "files": 114
+      }
+    },
+    {
+      "run_id": "9305af1b-22f7-490c-9f39-d6e7f82619fb",
+      "planned_run": "anti-005",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 17,
+        "bash": 70,
+        "create": 32,
+        "edit": 9,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-9305af1b-22f7-490c-9f39-d6e7f82619fb",
+        "package_sha256": "9a5e93e033112b84cf0544d0f837782d71804077a1d1a6d9b56fc379f31fbcbb",
+        "files": 199
+      },
+      "linked": {
+        "package_id": "linked-9305af1b-22f7-490c-9f39-d6e7f82619fb",
+        "package_sha256": "b2d6b5f9bd955f2428df684219914dbf3c42161b45ffec82e64bb7647ce81830",
+        "files": 178
+      },
+      "evaluation": {
+        "package_id": "evaluation-9da2677b-4e85-4e2e-be99-ad9349b09736",
+        "package_sha256": "c4e071869685663140f362d261f7c0365e7474cb9181661217f4d073d5613e0f",
+        "files": 156
+      }
+    },
+    {
+      "run_id": "5864c2dd-59e9-4a85-b07d-28c093aaa16a",
+      "planned_run": "normal-005",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 13,
+        "bash": 78
+      },
+      "original": {
+        "package_id": "copilot-5864c2dd-59e9-4a85-b07d-28c093aaa16a",
+        "package_sha256": "90a9254aa090795e6de85cca1f737a396cb8ebc0f5f2cfaa033a6e275edb331d",
+        "files": 171
+      },
+      "linked": {
+        "package_id": "linked-5864c2dd-59e9-4a85-b07d-28c093aaa16a",
+        "package_sha256": "1fd7c180bfba775df97efa985674955dc0b057879b10c90b01484b0cb32f9eef",
+        "files": 150
+      },
+      "evaluation": {
+        "package_id": "evaluation-cf836794-f141-477b-9bd6-6313c02b0094",
+        "package_sha256": "9a119c0faf2dfaa4ddd5492ada87a88a88c22fd08e918b94dc9c85f2b8f43388",
+        "files": 130
+      }
+    },
+    {
+      "run_id": "7cce7b2d-1ee9-410e-a216-da48d74b3f23",
+      "planned_run": "normal-006",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 137,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 14,
+        "bash": 74,
+        "create": 18,
+        "edit": 2
+      },
+      "original": {
+        "package_id": "copilot-7cce7b2d-1ee9-410e-a216-da48d74b3f23",
+        "package_sha256": "403c25ca72e9984b361f88241667fa5cd4ddf1df5e3a1e2d5c9850213f28dca7",
+        "files": 184
+      },
+      "linked": {
+        "package_id": "linked-7cce7b2d-1ee9-410e-a216-da48d74b3f23",
+        "package_sha256": "f2ab4f8b42ae5951e411c4f05cfd9d699ed378bf6085506d95ab30cac2202daa",
+        "files": 163
+      },
+      "evaluation": {
+        "package_id": "evaluation-00228dd0-e23b-41fa-9916-b99f1355b824",
+        "package_sha256": "52ff5e48076316dd24d6d98f5cd775a200faca077cc962669cb05500bb94a3ca",
+        "files": 114
+      }
+    },
+    {
+      "run_id": "8685c69d-7825-4148-9052-9543c7ede4fc",
+      "planned_run": "anti-006",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 137,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 21,
+        "bash": 112,
+        "glob": 1,
+        "create": 36,
+        "edit": 7
+      },
+      "original": {
+        "package_id": "copilot-8685c69d-7825-4148-9052-9543c7ede4fc",
+        "package_sha256": "69597158e677820ad543d1db51fd005099c012c4e33a6f6d0417453d54b90df2",
+        "files": 322
+      },
+      "linked": {
+        "package_id": "linked-8685c69d-7825-4148-9052-9543c7ede4fc",
+        "package_sha256": "cb7e73429ebc71c0cd1df0cb3b839e5064b2a3b451a6c2fa6eac73bdc502c1a1",
+        "files": 301
+      },
+      "evaluation": {
+        "package_id": "evaluation-7872a0f5-9ab2-4e4e-8f2d-8d5b6be0b51b",
+        "package_sha256": "9cd9ce1535e0f6d13c2ea543c0c8bc50cc72b6bd4c5e0c5ddf4dbea15e4ec431",
+        "files": 26
+      }
+    },
+    {
+      "run_id": "cbbb10c7-8f02-4692-8214-a371b9bcc307",
+      "planned_run": "normal-007",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 10,
+        "bash": 81
+      },
+      "original": {
+        "package_id": "copilot-cbbb10c7-8f02-4692-8214-a371b9bcc307",
+        "package_sha256": "5120b29dd6d12335e7cbee98a0630a6fb10cddf2b4b93c945ec6a3a207c5469f",
+        "files": 169
+      },
+      "linked": {
+        "package_id": "linked-cbbb10c7-8f02-4692-8214-a371b9bcc307",
+        "package_sha256": "15d58c34570fa6422ff781533406d457b4413d56effedbd15fde7963569e28f9",
+        "files": 148
+      },
+      "evaluation": {
+        "package_id": "evaluation-8d7d2d3c-68eb-4552-8cc3-dbd3c8d777f5",
+        "package_sha256": "6b0e283ee5640ee364efd8a07a417708863fd25cc99824194c925b2b6d334b5a",
+        "files": 184
+      }
+    },
+    {
+      "run_id": "cb52fec6-4294-41ad-8a10-e507d4995f0d",
+      "planned_run": "anti-007",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 19,
+        "bash": 86,
+        "create": 13
+      },
+      "original": {
+        "package_id": "copilot-cb52fec6-4294-41ad-8a10-e507d4995f0d",
+        "package_sha256": "7b619cdf8dee881a9c78606069a8a998cd4154863fb3c4f4860d80b313ebc931",
+        "files": 198
+      },
+      "linked": {
+        "package_id": "linked-cb52fec6-4294-41ad-8a10-e507d4995f0d",
+        "package_sha256": "5d22cb5af49005c7ed3371cb52d309008ac52f205ef6b845d80e26dba0509d84",
+        "files": 177
+      },
+      "evaluation": {
+        "package_id": "evaluation-aadb2544-5ffc-478a-96e7-ebbd4d5b82f9",
+        "package_sha256": "48c52d22ecb48bbd851a85bef842a939100c557609f4575a874ff758b036266d",
+        "files": 168
+      }
+    },
+    {
+      "run_id": "cd059f6d-258d-45e1-a395-eecbda0ac97a",
+      "planned_run": "normal-008",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 14,
+        "bash": 96,
+        "create": 34,
+        "edit": 1
+      },
+      "original": {
+        "package_id": "copilot-cd059f6d-258d-45e1-a395-eecbda0ac97a",
+        "package_sha256": "d6a64697ee58615c5b121006ffa0bfa73389ada23a7fc6d996a26ae734d14673",
+        "files": 221
+      },
+      "linked": {
+        "package_id": "linked-cd059f6d-258d-45e1-a395-eecbda0ac97a",
+        "package_sha256": "b04a76fb26cf32370903bac85c44ba91cee07f1db9e1ff0e545b2210135474df",
+        "files": 200
+      },
+      "evaluation": {
+        "package_id": "evaluation-cdf66cb7-0870-4384-89a0-74c4d8e896b8",
+        "package_sha256": "9831a5d6de4708d1840f3565f33746b44be0c0548baa3443b97a46943c5ae9fa",
+        "files": 158
+      }
+    },
+    {
+      "run_id": "c276743a-2030-42c6-a0b7-e8c787f6f37b",
+      "planned_run": "anti-008",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 15,
+        "bash": 80
+      },
+      "original": {
+        "package_id": "copilot-c276743a-2030-42c6-a0b7-e8c787f6f37b",
+        "package_sha256": "53a7a415cd834f3930e674e539936a5ca139c931b2af089db881c38b4728c0d8",
+        "files": 165
+      },
+      "linked": {
+        "package_id": "linked-c276743a-2030-42c6-a0b7-e8c787f6f37b",
+        "package_sha256": "109d9e82aad91417e1b7cf2f298604e0adcdfdaee209357c139fecc2475c00e1",
+        "files": 144
+      },
+      "evaluation": {
+        "package_id": "evaluation-fc01be25-cb2b-41a1-be35-df8fb6e80021",
+        "package_sha256": "59cd24d7399c063e5149080cf05ef2251d31f52e4020970ebd5e254badb2e3d3",
+        "files": 190
+      }
+    },
+    {
+      "run_id": "1e69ea5e-7f7f-40e3-b95b-94663edf4734",
+      "planned_run": "normal-009",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 16,
+        "bash": 67,
+        "create": 8
+      },
+      "original": {
+        "package_id": "copilot-1e69ea5e-7f7f-40e3-b95b-94663edf4734",
+        "package_sha256": "2e87a21fca778d587693236cc76ad970681e6fffb116975cab99c6cad91a4fa9",
+        "files": 166
+      },
+      "linked": {
+        "package_id": "linked-1e69ea5e-7f7f-40e3-b95b-94663edf4734",
+        "package_sha256": "a7b74ac219762d7d1c7b5bc71670ed5feac0a75973870cb778808035ee809590",
+        "files": 145
+      },
+      "evaluation": {
+        "package_id": "evaluation-6c439cb9-6403-4b33-b8e9-a0ede7468821",
+        "package_sha256": "bc94874f8e1007940425487b8f5e696d0f7476d91a05548c6a9b4a4b03046553",
+        "files": 132
+      }
+    },
+    {
+      "run_id": "aa86b7d9-3527-4481-926b-d65012b6fd06",
+      "planned_run": "anti-009",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 23,
+        "bash": 66,
+        "create": 34,
+        "edit": 14
+      },
+      "original": {
+        "package_id": "copilot-aa86b7d9-3527-4481-926b-d65012b6fd06",
+        "package_sha256": "d8d2004599aa84e1d4379fa49cce351341f48372407e2b919a641b8765f4ff09",
+        "files": 213
+      },
+      "linked": {
+        "package_id": "linked-aa86b7d9-3527-4481-926b-d65012b6fd06",
+        "package_sha256": "f604c9885d29626f85c5e0585e60e29959282e454ab6aa82e5c58e50eb6b98aa",
+        "files": 192
+      },
+      "evaluation": {
+        "package_id": "evaluation-c8fc6626-425f-4eb2-a5db-b4255385888c",
+        "package_sha256": "35cf434abe967e31ffd3e97fba0a7343f4533d3300f15da9e6b175b775e586bf",
+        "files": 136
+      }
+    },
+    {
+      "run_id": "38fba73c-e82c-49e2-9dd4-3fca7d63bdfd",
+      "planned_run": "anti-010",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 137,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 18,
+        "bash": 126,
+        "list_bash": 2,
+        "read_bash": 6,
+        "stop_bash": 6
+      },
+      "original": {
+        "package_id": "copilot-38fba73c-e82c-49e2-9dd4-3fca7d63bdfd",
+        "package_sha256": "2f280101459ae5bc49d26855deef24d1df5020ec2b1e656d8e4f5504b0ad4d7f",
+        "files": 230
+      },
+      "linked": {
+        "package_id": "linked-38fba73c-e82c-49e2-9dd4-3fca7d63bdfd",
+        "package_sha256": "657eb0777d697b3b0df32793963944d9ad90ce641ac889b6b1d96dd8db463170",
+        "files": 209
+      },
+      "evaluation": {
+        "package_id": "evaluation-72df94ab-b14d-4c6d-bf5c-b120217f3b21",
+        "package_sha256": "a54b2ee336a7fee002bae0be6d8dbb74069dae07ca77d78a98f9d08ce893528f",
+        "files": 212
+      }
+    },
+    {
+      "run_id": "71ff896b-3c40-4903-a819-e4d5aa98f11b",
+      "planned_run": "normal-010",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 16,
+        "bash": 51,
+        "create": 29,
+        "edit": 2,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-71ff896b-3c40-4903-a819-e4d5aa98f11b",
+        "package_sha256": "45d9087d4022e36f81fa5c05b4f62006593161844b3943758139159f51d9521f",
+        "files": 171
+      },
+      "linked": {
+        "package_id": "linked-71ff896b-3c40-4903-a819-e4d5aa98f11b",
+        "package_sha256": "a7ad9335cb97290511d46fd4b18ce64ac29a0df5b9d9356571e11feb1d55d1ac",
+        "files": 150
+      },
+      "evaluation": {
+        "package_id": "evaluation-fb4f0baf-93d5-4de2-8e4a-39c940f963f7",
+        "package_sha256": "d286775f6516021501473e593d1e24d966bb620a241d62cfd2b47540837d227f",
+        "files": 112
+      }
+    },
+    {
+      "run_id": "a95e1037-7728-4d70-836a-f0f8b9604e94",
+      "planned_run": "normal-011",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 16,
+        "bash": 76,
+        "edit": 3,
+        "create": 38,
+        "stop_bash": 4,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-a95e1037-7728-4d70-836a-f0f8b9604e94",
+        "package_sha256": "c691fd92f700293bbdac1d6e33c490a9be267977237354673b7468526e2e1e64",
+        "files": 212
+      },
+      "linked": {
+        "package_id": "linked-a95e1037-7728-4d70-836a-f0f8b9604e94",
+        "package_sha256": "3a8d193f3c3d6ef91bb526767f374d25cd8b522c4d20b0c8ad18dee2b2633a66",
+        "files": 191
+      },
+      "evaluation": {
+        "package_id": "evaluation-15bdf62d-683f-435d-af40-c014bfa47bdd",
+        "package_sha256": "f536f9f45cefd6692c89c63799c7961d622fdbd7f2ab9ebaadedfa2f06fd1153",
+        "files": 106
+      }
+    },
+    {
+      "run_id": "ea871692-692b-4028-8456-126aba55dac8",
+      "planned_run": "anti-011",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 10,
+        "bash": 94
+      },
+      "original": {
+        "package_id": "copilot-ea871692-692b-4028-8456-126aba55dac8",
+        "package_sha256": "90423da29d9cdac44882dd2238fb48dbe9a4ee160155864f7aaa806326a9334b",
+        "files": 175
+      },
+      "linked": {
+        "package_id": "linked-ea871692-692b-4028-8456-126aba55dac8",
+        "package_sha256": "8487321bb8d3d2694f6bfd70870481339ffdb51bfb0869c6b2c895c152dbdc22",
+        "files": 154
+      },
+      "evaluation": {
+        "package_id": "evaluation-09624fca-0af0-49a1-bd24-37a2eff7d8d9",
+        "package_sha256": "ccf42771747cc15f159fe9d943d6607768550499b74d0ca281f7d8a47bfc62d8",
+        "files": 146
+      }
+    },
+    {
+      "run_id": "87a2727c-dec6-49d9-a03b-cd33351c7f48",
+      "planned_run": "anti-012",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 22,
+        "bash": 74,
+        "create": 27,
+        "edit": 8
+      },
+      "original": {
+        "package_id": "copilot-87a2727c-dec6-49d9-a03b-cd33351c7f48",
+        "package_sha256": "f074bdc455e603dc4fa4c4b6d04a9b9eac1f96f400e2e566b9cfbd7ec3ddaf84",
+        "files": 199
+      },
+      "linked": {
+        "package_id": "linked-87a2727c-dec6-49d9-a03b-cd33351c7f48",
+        "package_sha256": "6a0d31f4f7cb5179b4b33a2b2c27c89d92a7e6b1a14501fc6e794c68d181db76",
+        "files": 178
+      },
+      "evaluation": {
+        "package_id": "evaluation-07ab9268-3217-4612-b237-0cb306a1093b",
+        "package_sha256": "6092e7376acc3b27f5311af2e7b548da7f749da28ad2d6d0540091cdea7aea03",
+        "files": 146
+      }
+    },
+    {
+      "run_id": "8562d613-be4e-4350-9e8d-8ac02a644845",
+      "planned_run": "normal-012",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 137,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 27,
+        "bash": 117,
+        "edit": 4,
+        "create": 16
+      },
+      "original": {
+        "package_id": "copilot-8562d613-be4e-4350-9e8d-8ac02a644845",
+        "package_sha256": "7dbf418b48907750b6a53af8d9b66a9a689310e565029aeaea013fc609d40828",
+        "files": 217
+      },
+      "linked": {
+        "package_id": "linked-8562d613-be4e-4350-9e8d-8ac02a644845",
+        "package_sha256": "7f70e45afd3732bfdc23a54c16d0a9f8b9fcc8e7ce7d54f6e4473ed2608cf467",
+        "files": 196
+      },
+      "evaluation": {
+        "package_id": "evaluation-829cf941-f2d4-4cab-9845-afc996955c21",
+        "package_sha256": "b9ccf10b1f912a5fd104673b47402ce71841ae7946dc4194134c39717f8323c4",
+        "files": 128
+      }
+    },
+    {
+      "run_id": "00f64f52-6070-4f28-9070-cc52bdf4de13",
+      "planned_run": "normal-013",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 137,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 11,
+        "bash": 87
+      },
+      "original": {
+        "package_id": "copilot-00f64f52-6070-4f28-9070-cc52bdf4de13",
+        "package_sha256": "34c304f7ad0534465db71c2fc2b413e4bc0715520057e57ef8e0d4c26a2f4c8e",
+        "files": 173
+      },
+      "linked": {
+        "package_id": "linked-00f64f52-6070-4f28-9070-cc52bdf4de13",
+        "package_sha256": "8d19e0c35f676e40dbd8804987fa18b23c4326b2198d86e6e14b08557187dcae",
+        "files": 152
+      },
+      "evaluation": {
+        "package_id": "evaluation-4922d5a7-60a4-457b-87d1-0e5de58f3361",
+        "package_sha256": "b7880ebedfc32393b27e6bbb8fb42e35bd2795b8e09b2e8e00a33860cd778572",
+        "files": 118
+      }
+    },
+    {
+      "run_id": "5a7c902f-5503-4289-9afc-76609043cc3a",
+      "planned_run": "anti-013",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 14,
+        "bash": 48,
+        "read_bash": 1,
+        "create": 30,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-5a7c902f-5503-4289-9afc-76609043cc3a",
+        "package_sha256": "561ecd369bcace3a372684b75136e7b82559fe98679482d25f2cc4b9972ad8b5",
+        "files": 165
+      },
+      "linked": {
+        "package_id": "linked-5a7c902f-5503-4289-9afc-76609043cc3a",
+        "package_sha256": "d04347a5b1d134b7131d6819770dc8c5ee144a203a848f8879df2de92aaef958",
+        "files": 144
+      },
+      "evaluation": {
+        "package_id": "evaluation-7c3b137f-12b1-49f0-a05c-ff3ad1b0c5c5",
+        "package_sha256": "e0f64033cbdba540317f16e84e0b5a8e7da42084ce2c7cb26bf498c2a420536a",
+        "files": 136
+      }
+    },
+    {
+      "run_id": "959de722-b6ae-433c-80fe-fc5062db90e7",
+      "planned_run": "normal-014",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 137,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 16,
+        "bash": 95,
+        "list_bash": 6,
+        "stop_bash": 6,
+        "create": 24,
+        "edit": 3
+      },
+      "original": {
+        "package_id": "copilot-959de722-b6ae-433c-80fe-fc5062db90e7",
+        "package_sha256": "e39049fa8249a61797d99d850111b2b6b19e284f8ea73ad273a5ab5a6784b0c5",
+        "files": 244
+      },
+      "linked": {
+        "package_id": "linked-959de722-b6ae-433c-80fe-fc5062db90e7",
+        "package_sha256": "54a08928441584e743c1b1ef2b29ae076634632acab0e1f2737b734c1bf11f52",
+        "files": 223
+      },
+      "evaluation": {
+        "package_id": "evaluation-addb5e13-e1ef-481e-a61b-e73854391386",
+        "package_sha256": "e1ff6c9cdb30233a04e239d7999e218f21fac5592eeecf020db79749d0045398",
+        "files": 130
+      }
+    },
+    {
+      "run_id": "6a0f735d-c6df-4cd3-bcb6-489807e94b58",
+      "planned_run": "anti-014",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 16,
+        "bash": 99,
+        "edit": 3,
+        "create": 12,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-6a0f735d-c6df-4cd3-bcb6-489807e94b58",
+        "package_sha256": "fe49e97d968cbe8b0e530afd38a293f064e34da41bcea6fe9ee257ec9799a2c0",
+        "files": 209
+      },
+      "linked": {
+        "package_id": "linked-6a0f735d-c6df-4cd3-bcb6-489807e94b58",
+        "package_sha256": "7ba09f5aceec77e86c3627afd4f2812c775a4715edab56839e3d5c8149884e30",
+        "files": 188
+      },
+      "evaluation": {
+        "package_id": "evaluation-11c23cd6-35fd-42df-8884-61694e5b58e5",
+        "package_sha256": "01fd17ddef9f89eddf42ef016c30222802277ace2a24da9c98c1dffb5b970ed9",
+        "files": 138
+      }
+    },
+    {
+      "run_id": "15c9af27-f25b-43b4-a75c-409991b14a37",
+      "planned_run": "anti-015",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 20,
+        "bash": 82,
+        "glob": 1
+      },
+      "original": {
+        "package_id": "copilot-15c9af27-f25b-43b4-a75c-409991b14a37",
+        "package_sha256": "3e5df8500edc204e163a34864f9e390d1abaf76991265bdd44cf3f8c467e7654",
+        "files": 173
+      },
+      "linked": {
+        "package_id": "linked-15c9af27-f25b-43b4-a75c-409991b14a37",
+        "package_sha256": "2b7ae3a44717fd4e542c21507129565c6d7784fb527f01174523f9c06cf6d368",
+        "files": 152
+      },
+      "evaluation": {
+        "package_id": "evaluation-b9468858-c8d8-442d-ae0a-594003d287ca",
+        "package_sha256": "bb4e60d7f725e5c6022dbc087feda727e18ff7d0a458fdd50a35f0e6848a3d78",
+        "files": 160
+      }
+    },
+    {
+      "run_id": "2645ec0d-e014-4d99-96ce-ec0b0dc714fb",
+      "planned_run": "normal-015",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 16,
+        "bash": 82,
+        "create": 30,
+        "list_bash": 2
+      },
+      "original": {
+        "package_id": "copilot-2645ec0d-e014-4d99-96ce-ec0b0dc714fb",
+        "package_sha256": "7784126bb7dfd1bb9efc54260467d4c00f6a16e2430077bea067d767e72f97c4",
+        "files": 209
+      },
+      "linked": {
+        "package_id": "linked-2645ec0d-e014-4d99-96ce-ec0b0dc714fb",
+        "package_sha256": "7685210295d20d7ae0441d26d35f98e4e0b88cdadce361b209cf0ce7536c80ba",
+        "files": 188
+      },
+      "evaluation": {
+        "package_id": "evaluation-8fac4a65-6ccb-43ce-b510-0cb219b6ddec",
+        "package_sha256": "682ddd61f3442a188c069090582ad1d9f0f8869bdc3a45135912fb11d5f7f445",
+        "files": 112
+      }
+    },
+    {
+      "run_id": "ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+      "planned_run": "normal-016",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 20,
+        "bash": 175,
+        "list_bash": 2
+      },
+      "original": {
+        "package_id": "copilot-ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+        "package_sha256": "91913ec9a34d7562ab6f0289c99a28f952fe057355ae71fb91fa5b25beac8e4b",
+        "files": 312
+      },
+      "linked": {
+        "package_id": "linked-ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+        "package_sha256": "dbe1fa2544ecc3de21198a39d206fdbf19696d4fca6a843361aa7e4035ff8e8d",
+        "files": 291
+      },
+      "evaluation": {
+        "package_id": "evaluation-439472fb-f203-420a-9e2f-2a0901763aa8",
+        "package_sha256": "049c8a1a9a49f967516fed6c6ecf9fe68190d8509189f815e13c0c53330761a4",
+        "files": 26
+      }
+    },
+    {
+      "run_id": "3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd",
+      "planned_run": "anti-016",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 14,
+        "bash": 84,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd",
+        "package_sha256": "93fd73057c4c2780838422a3e9bf5870c9b2023b141e1b8b5cea59076a7f2ee0",
+        "files": 162
+      },
+      "linked": {
+        "package_id": "linked-3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd",
+        "package_sha256": "48e9f89dae755cb73432a5e30265a69fa3415f1350ebe03a7dfb5763f984cc99",
+        "files": 141
+      },
+      "evaluation": {
+        "package_id": "evaluation-d8788ec3-674c-40ab-9c91-459c4fdd6e0a",
+        "package_sha256": "80dcc4bfeb07b49fa649ce84972dc06f16b202067ee641fe4b6fd2e0505eb6ad",
+        "files": 134
+      }
+    },
+    {
+      "run_id": "b8182790-1837-4290-b467-47ac1231783b",
+      "planned_run": "normal-017",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 27,
+        "bash": 93,
+        "create": 30,
+        "edit": 16,
+        "read_bash": 1,
+        "list_bash": 1,
+        "stop_bash": 4,
+        "grep": 1
+      },
+      "original": {
+        "package_id": "copilot-b8182790-1837-4290-b467-47ac1231783b",
+        "package_sha256": "d8089d9a82bb1ced318fc23f7d4b4ce9313abf85a31acabdabe3fc031871248b",
+        "files": 272
+      },
+      "linked": {
+        "package_id": "linked-b8182790-1837-4290-b467-47ac1231783b",
+        "package_sha256": "542d8dcd11ab7bad2afb7e6a6b5bc5c85b438363c3a1c83279383a25baabdf1a",
+        "files": 251
+      },
+      "evaluation": {
+        "package_id": "evaluation-75e54e2b-93b7-460a-a77c-d9066791dbac",
+        "package_sha256": "54f1ecc10243836d76f17fc372ffe78284e36c18a262272354fe340481249f26",
+        "files": 104
+      }
+    },
+    {
+      "run_id": "740a2f8e-7509-4915-880d-a21086bffe9a",
+      "planned_run": "anti-017",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 137,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 19,
+        "bash": 65,
+        "edit": 4,
+        "create": 35
+      },
+      "original": {
+        "package_id": "copilot-740a2f8e-7509-4915-880d-a21086bffe9a",
+        "package_sha256": "413f4984e309890e70dca5a25232763c3acb13572af6b526dc7ef272c607e6ec",
+        "files": 199
+      },
+      "linked": {
+        "package_id": "linked-740a2f8e-7509-4915-880d-a21086bffe9a",
+        "package_sha256": "34cf345558239dc4f27815bb967f7cf53bc4782510b207d54c1d56bb21c7ee6c",
+        "files": 178
+      },
+      "evaluation": {
+        "package_id": "evaluation-a9c087e4-565a-4e61-8352-a86fb3594ed0",
+        "package_sha256": "76b38a8081207a0f7d1254716324970660862763600cb8e9fb35119ad17eaa5f",
+        "files": 164
+      }
+    },
+    {
+      "run_id": "724b281a-c3d0-43a8-85df-6e8df56845e7",
+      "planned_run": "normal-018",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 22,
+        "bash": 87,
+        "create": 29,
+        "edit": 6,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-724b281a-c3d0-43a8-85df-6e8df56845e7",
+        "package_sha256": "7501ac81cf90c4be92ffc2df0d165fc9f59e71dad66d01d66acb75fd27ff17fa",
+        "files": 213
+      },
+      "linked": {
+        "package_id": "linked-724b281a-c3d0-43a8-85df-6e8df56845e7",
+        "package_sha256": "1a5a156dc6b82f178dceea57e3bfe26e6d41e92d4103ff71b18368067517dbf0",
+        "files": 192
+      },
+      "evaluation": {
+        "package_id": "evaluation-cc5921d1-a29b-4d50-80c3-7e4856f46ac0",
+        "package_sha256": "a465c1a2b9b5dabb395515a97e541f9439a90cfdd13e8c8f0aad6d1144081945",
+        "files": 155
+      }
+    },
+    {
+      "run_id": "133cba3d-7333-4f8a-be4f-f44b8e93e154",
+      "planned_run": "anti-018",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 20,
+        "bash": 57,
+        "edit": 7,
+        "create": 40,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-133cba3d-7333-4f8a-be4f-f44b8e93e154",
+        "package_sha256": "78445cb31c4617e2bec48a95f56f10c7fa6dc8702bcde75563416fc492d6dee0",
+        "files": 210
+      },
+      "linked": {
+        "package_id": "linked-133cba3d-7333-4f8a-be4f-f44b8e93e154",
+        "package_sha256": "12de82f365d7e106d30caaa450ebac79644115fa8b92b2657d463457d793a077",
+        "files": 189
+      },
+      "evaluation": {
+        "package_id": "evaluation-c763cade-9714-46fb-9e14-48728ba072c7",
+        "package_sha256": "13a9be440e5602a71cc4298b3e026bc80362b64e20beb088f6132f5bfbef1b42",
+        "files": 154
+      }
+    },
+    {
+      "run_id": "cdcf39ea-b857-4b0f-a3e7-75ad0395fd40",
+      "planned_run": "anti-019",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 17,
+        "bash": 82,
+        "create": 10,
+        "edit": 2
+      },
+      "original": {
+        "package_id": "copilot-cdcf39ea-b857-4b0f-a3e7-75ad0395fd40",
+        "package_sha256": "cd98c02c24cc7579a6a7727f5fbf8a4d3e0bea1ce9bdea9376e3fc07d30c7a2e",
+        "files": 179
+      },
+      "linked": {
+        "package_id": "linked-cdcf39ea-b857-4b0f-a3e7-75ad0395fd40",
+        "package_sha256": "f2480b9e2c471c352b21f61dde5a2e92d71de7846269a005569e0c552dfa1ed2",
+        "files": 158
+      },
+      "evaluation": {
+        "package_id": "evaluation-7ce03e77-4971-43c2-acf6-7e05ff651087",
+        "package_sha256": "49ae1f280b5baddbd6209fc726e0621201761042eabecf739116bd94e4c4144c",
+        "files": 140
+      }
+    },
+    {
+      "run_id": "51463b84-66e0-4a29-9992-b74a598cf1cc",
+      "planned_run": "normal-019",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 13,
+        "bash": 153
+      },
+      "original": {
+        "package_id": "copilot-51463b84-66e0-4a29-9992-b74a598cf1cc",
+        "package_sha256": "96e449071aa30c02dafba25fce4815a50463bbca764c271b9501da30ee73ef36",
+        "files": 260
+      },
+      "linked": {
+        "package_id": "linked-51463b84-66e0-4a29-9992-b74a598cf1cc",
+        "package_sha256": "c7d23bdef2a70686aac875f39a17fe9cb2e2137bb05268938772de6d1fdb3b5f",
+        "files": 239
+      },
+      "evaluation": {
+        "package_id": "evaluation-42139772-695b-4dbe-94a7-742314e4f2aa",
+        "package_sha256": "a903a1123657c133837df071f81e185ca54f27c061dd4ccfa46ca67448b68689",
+        "files": 114
+      }
+    },
+    {
+      "run_id": "434b58e3-f948-4cfb-92a5-577b1c4c4af8",
+      "planned_run": "normal-020",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 17,
+        "bash": 78,
+        "create": 34,
+        "edit": 5
+      },
+      "original": {
+        "package_id": "copilot-434b58e3-f948-4cfb-92a5-577b1c4c4af8",
+        "package_sha256": "e883b3e8dd2adba53dcf08990d0fcb55b76d3ed51772b977da4e0054f477076b",
+        "files": 211
+      },
+      "linked": {
+        "package_id": "linked-434b58e3-f948-4cfb-92a5-577b1c4c4af8",
+        "package_sha256": "952c905ba978e0e88c6b100a8903e8d80f3a67751fef97fcf2ff592bd36e5ef1",
+        "files": 190
+      },
+      "evaluation": {
+        "package_id": "evaluation-e4dd3f7a-4e39-41fa-b7a4-32d0f52a5a15",
+        "package_sha256": "fa3afc97ca3689f898a634f77f02651a065ce4d40bebf585c3dc96c417f08e63",
+        "files": 106
+      }
+    },
+    {
+      "run_id": "8521b60c-d58e-4f17-8cd0-75cf45d82d8b",
+      "planned_run": "anti-020",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_completed",
+      "exit_code": 0,
+      "implementation_subagent_tools_disabled": true,
+      "executed_tool_counts": {
+        "view": 13,
+        "bash": 84,
+        "list_bash": 1
+      },
+      "original": {
+        "package_id": "copilot-8521b60c-d58e-4f17-8cd0-75cf45d82d8b",
+        "package_sha256": "3ce9d22450675581b8f9513ab501159e5cfbe35b591f32f62f0ec098e3b4e7dd",
+        "files": 175
+      },
+      "linked": {
+        "package_id": "linked-8521b60c-d58e-4f17-8cd0-75cf45d82d8b",
+        "package_sha256": "4b7cb3caddc0b91b5684c3b016eb9e22347b20d1d009d3095245f356bc4325bb",
+        "files": 154
+      },
+      "evaluation": {
+        "package_id": "evaluation-07419fd9-a581-4df9-b7a4-005c1e8fe645",
+        "package_sha256": "bcfe9317e3a92e253450061a1394773dda8c77ddad7cc6e12a37bd3b41f0de28",
+        "files": 212
+      }
+    }
+  ],
+  "model_calls": 0,
+  "evaluations": 0
+}

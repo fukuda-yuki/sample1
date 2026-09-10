@@ -1,0 +1,75 @@
+{
+  "font_file": "YuGothR.ttc",
+  "font_sha256": "cd24b5617c1e26572b0a7fe7e558f7121ca42c36f7b50e8d9216ac222a1c0a93",
+  "figures": [
+    {
+      "figure": "01-study-flow",
+      "source_data": [
+        "analysis-policy.json",
+        "source/additional/planned-runs.json"
+      ],
+      "limitations": [
+        "前回20件の再実装・再採点は行っていない。"
+      ],
+      "results_sha256": "7bc9b3474daf85e7cef80061070841fc0286e31adf7e98d9994550c7a1041288",
+      "generator_sha256": "a491289e79f1c86c2f55d46556c04f44a7d48643d7ffe6ff55b797f4b89b8afc"
+    },
+    {
+      "figure": "02-batch-distributions",
+      "source_data": [
+        "runs"
+      ],
+      "limitations": [
+        "Muse Spark 1.2のみ。合格率は評価出力であり有効品質ではない。"
+      ],
+      "results_sha256": "7bc9b3474daf85e7cef80061070841fc0286e31adf7e98d9994550c7a1041288",
+      "generator_sha256": "a491289e79f1c86c2f55d46556c04f44a7d48643d7ffe6ff55b797f4b89b8afc"
+    },
+    {
+      "figure": "03-tokens-pass-rate",
+      "source_data": [
+        "runs"
+      ],
+      "limitations": [
+        "同一条件内でも消費量の因果効果を示す図ではない。"
+      ],
+      "results_sha256": "7bc9b3474daf85e7cef80061070841fc0286e31adf7e98d9994550c7a1041288",
+      "generator_sha256": "a491289e79f1c86c2f55d46556c04f44a7d48643d7ffe6ff55b797f4b89b8afc"
+    },
+    {
+      "figure": "04-paired-differences",
+      "source_data": [
+        "pairs",
+        "bootstrap"
+      ],
+      "limitations": [
+        "20,000回、seed 20260911。バッチ内の完全な予定ペアを単位とするpercentile bootstrap。"
+      ],
+      "results_sha256": "7bc9b3474daf85e7cef80061070841fc0286e31adf7e98d9994550c7a1041288",
+      "generator_sha256": "a491289e79f1c86c2f55d46556c04f44a7d48643d7ffe6ff55b797f4b89b8afc"
+    },
+    {
+      "figure": "05-feature-heatmap",
+      "source_data": [
+        "features"
+      ],
+      "limitations": [
+        "機能別は各対象IDの保存済み合否の集計。未到達を機能全体の実装欠如と断定しない。"
+      ],
+      "results_sha256": "7bc9b3474daf85e7cef80061070841fc0286e31adf7e98d9994550c7a1041288",
+      "generator_sha256": "a491289e79f1c86c2f55d46556c04f44a7d48643d7ffe6ff55b797f4b89b8afc"
+    },
+    {
+      "figure": "06-approval-path",
+      "source_data": [
+        "reviews/approval-path.json"
+      ],
+      "limitations": [
+        "固定コード・保存画面2枚・通信trace・保存メールを照合。新たな操作・再評価は行わない。",
+        "この具体例を全Run・全機能の動作確認と解釈しない。"
+      ],
+      "results_sha256": "7bc9b3474daf85e7cef80061070841fc0286e31adf7e98d9994550c7a1041288",
+      "generator_sha256": "a491289e79f1c86c2f55d46556c04f44a7d48643d7ffe6ff55b797f4b89b8afc"
+    }
+  ]
+}

@@ -1,0 +1,2470 @@
+{
+  "runs": [
+    {
+      "planned_run": "normal-001",
+      "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+      "condition": "normal",
+      "submission_hash": "9d2c469d5e6c52c56b1856015050aea6d292c213e4e4cebc14ec946c12ec69f4",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 3026.428787582,
+      "started_at": "2026-09-10T16:08:02.037788+00:00",
+      "ended_at": "2026-09-10T16:58:20.012684+00:00",
+      "gateway_http": {
+        "200": 549,
+        "None": 2,
+        "400": 183
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 549,
+        "None": 185
+      },
+      "request_count": 734,
+      "lockfiles": {
+        "frontend/package-lock.json": "6ef70571bcdcc1d56dd7f0d626faae079507dd78a72ecd14f7d2ba3fb7560b1b"
+      },
+      "original": {
+        "package_id": "copilot-cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+        "sha256": "fa746a55dd1213d1693e162c6d56e573730e6282ae8e904bf5dadd6dc8eb4bf7"
+      },
+      "original_restoration": {
+        "path": "receipts/3b286200-c762-4e82-b4e2-8253bea181db.json",
+        "sha256": "c594e6c8d6728fcf1bd784f172494e5d6cfb06ee5ba20c61df1ffe354a9bef3f"
+      },
+      "linked_restoration": {
+        "path": "receipts/b9c851f6-9154-42cb-95e4-7623a58304c3.json",
+        "sha256": "07a79af26a9a4bab9bada6917d7548d660fed1b93852a3da3ddc7b2062e09080"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-001",
+      "run_id": "25a01c2b-cf66-4053-848c-9af10ef2ef81",
+      "condition": "anti",
+      "submission_hash": "fab9ae917395a995174261e4d1b0d125ebf19225e993acf0f4605a8ff69a1808",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 865.826889192,
+      "started_at": "2026-09-10T16:08:02.142818+00:00",
+      "ended_at": "2026-09-10T16:22:27.972218+00:00",
+      "gateway_http": {
+        "200": 164,
+        "400": 6
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 164,
+        "None": 6
+      },
+      "request_count": 170,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-25a01c2b-cf66-4053-848c-9af10ef2ef81",
+        "sha256": "e386b055bd392141238be6eb63bbf6f8c293265df056e5c396b2d27790900293"
+      },
+      "original_restoration": {
+        "path": "receipts/875f7c3a-3875-40e6-8f49-99d91eae579d.json",
+        "sha256": "98235a31b83c39c50523e3b022375231f2892a9d08896ddecba127d75c802577"
+      },
+      "linked_restoration": {
+        "path": "receipts/528010d5-31e2-48ff-81b8-d214cbed54cf.json",
+        "sha256": "33ddf7a09b13922cf0772fb45a772e00adf9e8cbcab9afd73ea85a6f74ce8aa8"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-002",
+      "run_id": "ca85fc9b-7678-41f4-88bb-257f702ea65b",
+      "condition": "anti",
+      "submission_hash": "9f92b74397fb78fe391c28d574500c14f431f121cac11ecb02ab47954983c0b0",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 729.9921799609999,
+      "started_at": "2026-09-10T16:08:02.440771+00:00",
+      "ended_at": "2026-09-10T16:20:12.435389+00:00",
+      "gateway_http": {
+        "200": 127
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 127
+      },
+      "request_count": 127,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-ca85fc9b-7678-41f4-88bb-257f702ea65b",
+        "sha256": "08cd1915e73e41d2734cef5cc6b3aa1df963916eb70ff490b469f00e9df296e2"
+      },
+      "original_restoration": {
+        "path": "receipts/9a0d716b-b9a9-48d1-ada4-a2b9d66ac49e.json",
+        "sha256": "dac22060b87d5d740ecf676049976616fd575053072ff9f2a7522d3b3c644a93"
+      },
+      "linked_restoration": {
+        "path": "receipts/d97da76c-6aff-4c4b-bc29-58398803be20.json",
+        "sha256": "372cca81a87c7cefdce52923d9304a9d2f4a1ea11b05d10e09899a70309b2b4c"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-002",
+      "run_id": "f7474040-55b4-40da-b89d-a9a016139246",
+      "condition": "normal",
+      "submission_hash": "d7fefb14e628c361cfad124cc88d3579e4d94d68037bfef116eb5be8f52a610b",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 705.188568626,
+      "started_at": "2026-09-10T16:08:02.722913+00:00",
+      "ended_at": "2026-09-10T16:19:47.914504+00:00",
+      "gateway_http": {
+        "200": 110
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 110
+      },
+      "request_count": 110,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-f7474040-55b4-40da-b89d-a9a016139246",
+        "sha256": "c826a1a68dababd364745eb1ce339059da8f90b99d56ad580d97c0d9be2642a9"
+      },
+      "original_restoration": {
+        "path": "receipts/c3c2849b-0945-471c-ae9a-82d8bb2418a1.json",
+        "sha256": "f459cf7d9b08c3b7bb0f9db60a3b6531960ea465eafc8686e2f097acab4fe811"
+      },
+      "linked_restoration": {
+        "path": "receipts/c7d6489e-0c62-4273-b43d-9e0c5b23654a.json",
+        "sha256": "7caafa616166dce8f32736968e061b8e22e288899d07b313ab08d4f65b3fb052"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-003",
+      "run_id": "451385f8-693c-4881-927a-2fd87ad343e5",
+      "condition": "normal",
+      "submission_hash": "69f8db1639de8fefc3d08d222edbdc0f40a5de815cf541ad547347d9b2685e90",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 543.577822876,
+      "started_at": "2026-09-10T16:08:03.038257+00:00",
+      "ended_at": "2026-09-10T16:17:06.618374+00:00",
+      "gateway_http": {
+        "200": 88
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 88
+      },
+      "request_count": 88,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-451385f8-693c-4881-927a-2fd87ad343e5",
+        "sha256": "bb0c2c40815acba13117fcffa73cbc248dfc9cf5aac8cb6835b40efe5553e4e4"
+      },
+      "original_restoration": {
+        "path": "receipts/90e3f120-abee-4556-af4d-a17566b24872.json",
+        "sha256": "b6d3b1cfc92894645d0490653e4ae7e289d8f78ab05c65acb90b4bae2b202718"
+      },
+      "linked_restoration": {
+        "path": "receipts/c1626041-e582-4ce6-9bac-45a61ef6a954.json",
+        "sha256": "efb2e01166c772b6ca287f2e84c1e882ef30816ac35c54e7af6a8a7e8df0270b"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-003",
+      "run_id": "41824f90-f8f8-45bc-b801-1762e265cd0f",
+      "condition": "anti",
+      "submission_hash": "ad529701ba27a10b7c72cfd4c7b34444c452c1aa3505bf85ea8e66c163093c25",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 1500.859435399,
+      "started_at": "2026-09-10T16:18:20.013858+00:00",
+      "ended_at": "2026-09-10T16:43:20.875512+00:00",
+      "gateway_http": {
+        "200": 181,
+        "None": 3,
+        "400": 26
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 181,
+        "None": 29
+      },
+      "request_count": 210,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-41824f90-f8f8-45bc-b801-1762e265cd0f",
+        "sha256": "5ac0296a0b06f179bc5558fc25192bf9821b2cdd3e3d4dcda4223785f53f008a"
+      },
+      "original_restoration": {
+        "path": "receipts/57a6657b-cfab-4bee-8424-2fbb7b90d2bb.json",
+        "sha256": "36b541ed3b6800c9208f873332344b8f90549c12b8aecd7a032186a15cfec33e"
+      },
+      "linked_restoration": {
+        "path": "receipts/77693a25-e36a-4972-8253-9b7dff97d148.json",
+        "sha256": "38d93d7067e710b0be905b107637d053fe45de7dc5b46840b75d2183ded8b2ff"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-004",
+      "run_id": "ccac6a7d-177d-46df-b4d1-a3a441da6f3a",
+      "condition": "anti",
+      "submission_hash": "4222dd294eef727acf78528adf8b8ea1fc2eb4d2f79c151401482d4308d83f3f",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 576.152101055,
+      "started_at": "2026-09-10T16:21:09.643818+00:00",
+      "ended_at": "2026-09-10T16:30:45.797914+00:00",
+      "gateway_http": {
+        "200": 78,
+        "None": 1
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 78,
+        "None": 1
+      },
+      "request_count": 79,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-ccac6a7d-177d-46df-b4d1-a3a441da6f3a",
+        "sha256": "3531b23e37703a49b0348bc0b1343ccf2962c3c13f490b90dcc3e68e94f06270"
+      },
+      "original_restoration": {
+        "path": "receipts/4ed6002b-fd2c-4a2c-9917-fdaec6a00fae.json",
+        "sha256": "3d1d92092a93982758d34c04470bd190c5e040fa97a80f5c72eacda88f66e66c"
+      },
+      "linked_restoration": {
+        "path": "receipts/6503074c-9818-4d43-8783-47af0a59a1db.json",
+        "sha256": "c5ebcb94540273b4ae5d7c22ce52558fa10619a3365dbeb391cb5d526dfeb3ed"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-004",
+      "run_id": "9b477a67-1f93-4d09-b58a-d7969894d590",
+      "condition": "normal",
+      "submission_hash": "170a932dfe7e6b4d70fba40486ae3aad43f5257807a6a4bdbce148f6a491448e",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 984.750398121,
+      "started_at": "2026-09-10T16:22:02.905186+00:00",
+      "ended_at": "2026-09-10T16:38:27.658641+00:00",
+      "gateway_http": {
+        "200": 172,
+        "None": 3
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 172,
+        "None": 3
+      },
+      "request_count": 175,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-9b477a67-1f93-4d09-b58a-d7969894d590",
+        "sha256": "c6a5c87ca01008302d6d3694a03619c15d6c67ec537c71bc216178f32a8cf5de"
+      },
+      "original_restoration": {
+        "path": "receipts/7baad225-0003-43bf-aaff-f9b5f0b105f2.json",
+        "sha256": "2dfda79d1224a7f3680e766e52393fdd82c1914a358038c6d5a4232dff6ab646"
+      },
+      "linked_restoration": {
+        "path": "receipts/01dd0d98-6121-4e95-b953-6306fd73a668.json",
+        "sha256": "08a7d2173e27fea7bdb72e6660b2a4e645af595bd597840da94bb204d64cffc2"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-005",
+      "run_id": "9305af1b-22f7-490c-9f39-d6e7f82619fb",
+      "condition": "anti",
+      "submission_hash": "31a5aab2b9f6523c0817d5997a8c2aee37b0957430248e69ffd6e5046cc702ef",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 683.024100547,
+      "started_at": "2026-09-10T16:24:25.190660+00:00",
+      "ended_at": "2026-09-10T16:35:48.217585+00:00",
+      "gateway_http": {
+        "200": 125
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 125
+      },
+      "request_count": 125,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-9305af1b-22f7-490c-9f39-d6e7f82619fb",
+        "sha256": "9a5e93e033112b84cf0544d0f837782d71804077a1d1a6d9b56fc379f31fbcbb"
+      },
+      "original_restoration": {
+        "path": "receipts/7a444f62-0883-4fd5-bab9-eb54597f103a.json",
+        "sha256": "dfdf42883e27555f49dd0e44df51db37c6a3a04d3a21c1e191bc3625ab25d6aa"
+      },
+      "linked_restoration": {
+        "path": "receipts/d1172d2d-a52b-41ce-b34c-18851f2cad66.json",
+        "sha256": "c28f056cd0c34b5297efdd934e89e21cd07915e1f12bbdc5694147e1be8039e8"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-005",
+      "run_id": "5864c2dd-59e9-4a85-b07d-28c093aaa16a",
+      "condition": "normal",
+      "submission_hash": "6aa8583465fa541a2cb03a636f7317135841aef9227f53607ff072ee7ce629d3",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 457.1234462279999,
+      "started_at": "2026-09-10T16:32:04.865840+00:00",
+      "ended_at": "2026-09-10T16:39:41.991505+00:00",
+      "gateway_http": {
+        "200": 90
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 90
+      },
+      "request_count": 90,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-5864c2dd-59e9-4a85-b07d-28c093aaa16a",
+        "sha256": "90a9254aa090795e6de85cca1f737a396cb8ebc0f5f2cfaa033a6e275edb331d"
+      },
+      "original_restoration": {
+        "path": "receipts/0712cdeb-17e7-4398-bc7e-b1baa067becc.json",
+        "sha256": "0bee961d313bfb30aecbf62ee69ff6d4080aab219588b9185f21e9a679eb765f"
+      },
+      "linked_restoration": {
+        "path": "receipts/6359e3bd-51e9-45c1-9bfe-fae681585e8a.json",
+        "sha256": "cb42ea18e83ece29b859cacfe363cd353a85ae6db5bd834149cc0381b2c7411d"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-006",
+      "run_id": "7cce7b2d-1ee9-410e-a216-da48d74b3f23",
+      "condition": "normal",
+      "submission_hash": "68d2d139ab91936c33e9fdcbc737da5c7d48111b54088fea9c921ef9c4e45642",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 603.8925859059998,
+      "started_at": "2026-09-10T16:37:18.797367+00:00",
+      "ended_at": "2026-09-10T16:47:22.692250+00:00",
+      "gateway_http": {
+        "200": 107
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 107
+      },
+      "request_count": 107,
+      "lockfiles": {
+        "frontend/package-lock.json": "2f2e5afa626d48636084b2a5e99403429deaf344bbd1b88ef0316e53f6b84ddb"
+      },
+      "original": {
+        "package_id": "copilot-7cce7b2d-1ee9-410e-a216-da48d74b3f23",
+        "sha256": "403c25ca72e9984b361f88241667fa5cd4ddf1df5e3a1e2d5c9850213f28dca7"
+      },
+      "original_restoration": {
+        "path": "receipts/ee554c55-07b1-4f06-abec-453a36b0f73c.json",
+        "sha256": "b90f3ecd43948ca95bfac924068603db85217dbef4554f6420b9642273b3bec4"
+      },
+      "linked_restoration": {
+        "path": "receipts/3fd361c2-1e23-4c35-9e07-dfdde013d490.json",
+        "sha256": "0ab0f600d7007dd65d0280dc719b8c5d399fef2f28f11820c1164344989d2b44"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-006",
+      "run_id": "8685c69d-7825-4148-9052-9543c7ede4fc",
+      "condition": "anti",
+      "submission_hash": "e2db04257ac023117baba046d88299f3aa394bd4d937cfc8e679153f8e9fd7ef",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 1513.8398115610003,
+      "started_at": "2026-09-10T16:40:26.818735+00:00",
+      "ended_at": "2026-09-10T17:05:28.666799+00:00",
+      "gateway_http": {
+        "200": 177
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 177
+      },
+      "request_count": 177,
+      "lockfiles": {
+        "frontend/package-lock.json": "2a7448e0d92c472f54244df9dd243b2c48b85184ef95633310a5f9ff629212ce"
+      },
+      "original": {
+        "package_id": "copilot-8685c69d-7825-4148-9052-9543c7ede4fc",
+        "sha256": "69597158e677820ad543d1db51fd005099c012c4e33a6f6d0417453d54b90df2"
+      },
+      "original_restoration": {
+        "path": "receipts/05179831-33f7-4ae2-aa44-2e2235ad4257.json",
+        "sha256": "e5bebc2b887f2dbd34aa6a2d21957cce3404f1fae72b9a8c8bdb1c4ecd029a2d"
+      },
+      "linked_restoration": {
+        "path": "receipts/87a684b9-8abb-488b-8f5b-d442a3456267.json",
+        "sha256": "7c65c310bea9cfc464e9f1e6ce2d9cd6132e8e0cc1328bb9737a599fd09250f7"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-007",
+      "run_id": "cbbb10c7-8f02-4692-8214-a371b9bcc307",
+      "condition": "normal",
+      "submission_hash": "6bf226848a2f21998f6d423d8a8a288a5bc4df15b6387a4066e14247f0851541",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 610.8273929269999,
+      "started_at": "2026-09-10T16:41:13.938252+00:00",
+      "ended_at": "2026-09-10T16:51:22.415507+00:00",
+      "gateway_http": {
+        "200": 90
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 90
+      },
+      "request_count": 90,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-cbbb10c7-8f02-4692-8214-a371b9bcc307",
+        "sha256": "5120b29dd6d12335e7cbee98a0630a6fb10cddf2b4b93c945ec6a3a207c5469f"
+      },
+      "original_restoration": {
+        "path": "receipts/52cdd628-d42c-4502-90c4-11dbec2e075b.json",
+        "sha256": "2c0bea4ec848704ab47d45b40d9ef17b34f9c147fca0df91d266db4dff8daaed"
+      },
+      "linked_restoration": {
+        "path": "receipts/d8056079-8437-4be9-bbbf-ac65ccc8710d.json",
+        "sha256": "323c7ab0b84ae16274b76bb0d251b86ec56db4340088a0142dd81920a741d42f"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-007",
+      "run_id": "cb52fec6-4294-41ad-8a10-e507d4995f0d",
+      "condition": "anti",
+      "submission_hash": "8794c208d64e5f3fd2b06d3374bdfad341b44ad9b65ce4f38bf7c5486a557393",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 789.9520182749998,
+      "started_at": "2026-09-10T16:45:36.359193+00:00",
+      "ended_at": "2026-09-10T16:58:37.856779+00:00",
+      "gateway_http": {
+        "200": 117
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 117
+      },
+      "request_count": 117,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-cb52fec6-4294-41ad-8a10-e507d4995f0d",
+        "sha256": "7b619cdf8dee881a9c78606069a8a998cd4154863fb3c4f4860d80b313ebc931"
+      },
+      "original_restoration": {
+        "path": "receipts/e2125dd5-2746-4e4e-943f-49b5f1d5869c.json",
+        "sha256": "f27b1c88af073304f40d142b3924721cb0c16d8f30b7859e64d89e87bf13a617"
+      },
+      "linked_restoration": {
+        "path": "receipts/584b4fb0-9f0c-4975-85bb-0f4065e4dbd9.json",
+        "sha256": "4e6909c2b865c01ff6c53ddfd25008864bb6a586f5bd25cb2a16e3f793ec3353"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-008",
+      "run_id": "cd059f6d-258d-45e1-a395-eecbda0ac97a",
+      "condition": "normal",
+      "submission_hash": "262410dc28b78fc6243fa41571aff8073cf3638dc6b6d184e44a5f7365170f46",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 836.4944422829999,
+      "started_at": "2026-09-10T16:48:46.926634+00:00",
+      "ended_at": "2026-09-10T17:02:31.429988+00:00",
+      "gateway_http": {
+        "200": 139
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 139
+      },
+      "request_count": 139,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-cd059f6d-258d-45e1-a395-eecbda0ac97a",
+        "sha256": "d6a64697ee58615c5b121006ffa0bfa73389ada23a7fc6d996a26ae734d14673"
+      },
+      "original_restoration": {
+        "path": "receipts/6fb21fec-3631-4294-a029-0f966b8a482a.json",
+        "sha256": "4743764bb5f39725c1a65d2b35588503437a61bb626d53507103d4b1d53cd97c"
+      },
+      "linked_restoration": {
+        "path": "receipts/7bdaeb69-81d7-4c45-8939-c92daa8567e2.json",
+        "sha256": "a01619fb056c992d30a3d9852710b8a35bc9c048adade8b7cc80b72bd3efb3a2"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-008",
+      "run_id": "c276743a-2030-42c6-a0b7-e8c787f6f37b",
+      "condition": "anti",
+      "submission_hash": "3bdff9aa1911a7a77f5df55e0d949d2669b09fb45627f82dccb35fbcc6abd87e",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 627.0852492200002,
+      "started_at": "2026-09-10T16:52:41.296277+00:00",
+      "ended_at": "2026-09-10T17:02:59.626190+00:00",
+      "gateway_http": {
+        "200": 93
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 93
+      },
+      "request_count": 93,
+      "lockfiles": {
+        "frontend/package-lock.json": "64f8be05936dd0af9428c743f458d70c5a126bfafb60f741c2ae73f1ecde62e4"
+      },
+      "original": {
+        "package_id": "copilot-c276743a-2030-42c6-a0b7-e8c787f6f37b",
+        "sha256": "53a7a415cd834f3930e674e539936a5ca139c931b2af089db881c38b4728c0d8"
+      },
+      "original_restoration": {
+        "path": "receipts/796f6ad0-5295-4684-8e22-ff22eb9b4797.json",
+        "sha256": "25fabd71ea39046cd4eaaa7962b00b02c0d4f624b0698352908912de164c9c7f"
+      },
+      "linked_restoration": {
+        "path": "receipts/77e2ac8a-76a7-443a-aac0-25f5b512b0c4.json",
+        "sha256": "e299263f8aeb03bf3b8c6335e627553491f2b5b29a4ac76e10fd7dfddfb8e58f"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-009",
+      "run_id": "1e69ea5e-7f7f-40e3-b95b-94663edf4734",
+      "condition": "normal",
+      "submission_hash": "440ce9e893fcc851f341559c1d26ba3ff3a5789c9d645a706008b9b73dc5c19a",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 580.3690495599999,
+      "started_at": "2026-09-10T17:00:06.272470+00:00",
+      "ended_at": "2026-09-10T17:09:44.560363+00:00",
+      "gateway_http": {
+        "200": 88
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 88
+      },
+      "request_count": 88,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-1e69ea5e-7f7f-40e3-b95b-94663edf4734",
+        "sha256": "2e87a21fca778d587693236cc76ad970681e6fffb116975cab99c6cad91a4fa9"
+      },
+      "original_restoration": {
+        "path": "receipts/813443e6-f04b-497f-8b8d-de2c61d2c5bb.json",
+        "sha256": "1f62293010e033b11ea32329a2499aca28ba18882cf928c84dcf2b35a62e5095"
+      },
+      "linked_restoration": {
+        "path": "receipts/873f2213-c66d-4660-873e-d6f03ff71692.json",
+        "sha256": "55bd675f20d58c4e3d74dfbbaf927d3d8ceeeb2d631937edc261d863328032c7"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-009",
+      "run_id": "aa86b7d9-3527-4481-926b-d65012b6fd06",
+      "condition": "anti",
+      "submission_hash": "af637111fb09145ee01738c8cc51385d1e82cf5a55dffa5e0af65b08d2dcd6e7",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 773.2177219099999,
+      "started_at": "2026-09-10T17:03:55.850567+00:00",
+      "ended_at": "2026-09-10T17:16:48.155855+00:00",
+      "gateway_http": {
+        "200": 136
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 136
+      },
+      "request_count": 136,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-aa86b7d9-3527-4481-926b-d65012b6fd06",
+        "sha256": "d8d2004599aa84e1d4379fa49cce351341f48372407e2b919a641b8765f4ff09"
+      },
+      "original_restoration": {
+        "path": "receipts/823f275b-6575-4638-b05a-ea3b950e9732.json",
+        "sha256": "c287d721f0067f7576b6c423f4b26988804ecd1dc80a8c2e7673f42af5798363"
+      },
+      "linked_restoration": {
+        "path": "receipts/6595e622-e4f1-4bc3-a064-2445360d3b95.json",
+        "sha256": "cab050ec101f8eb0e0ebaf8e0ea8661a0e04552c7ed15b6f1ba4bb74f955f4d4"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-010",
+      "run_id": "38fba73c-e82c-49e2-9dd4-3fca7d63bdfd",
+      "condition": "anti",
+      "submission_hash": "9e5c43e27f6ecc588b1117b774bf45e9ee6108d107848aa64f03bff86011a079",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 1102.721628065,
+      "started_at": "2026-09-10T17:04:57.551489+00:00",
+      "ended_at": "2026-09-10T17:23:17.163202+00:00",
+      "gateway_http": {
+        "200": 157
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 157
+      },
+      "request_count": 157,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-38fba73c-e82c-49e2-9dd4-3fca7d63bdfd",
+        "sha256": "2f280101459ae5bc49d26855deef24d1df5020ec2b1e656d8e4f5504b0ad4d7f"
+      },
+      "original_restoration": {
+        "path": "receipts/3e52e7a0-6d4e-4e15-9bb6-15af50ebdf92.json",
+        "sha256": "a66330ac489e5e27d072170a43b6ddc2863058440c10582775ef143832340707"
+      },
+      "linked_restoration": {
+        "path": "receipts/cc5f198e-b329-465c-b899-8ab09f5d0c43.json",
+        "sha256": "ae20defb56e59b7e51b72671900dedbf008d76d1411475c7756c8c2b58f05354"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-010",
+      "run_id": "71ff896b-3c40-4903-a819-e4d5aa98f11b",
+      "condition": "normal",
+      "submission_hash": "907abc7c0bfe93ae3a346e2cda2f13e882c2b87fde5d2815440b172f8bbb00f5",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 550.5846395369999,
+      "started_at": "2026-09-10T17:05:38.675282+00:00",
+      "ended_at": "2026-09-10T17:14:48.748615+00:00",
+      "gateway_http": {
+        "200": 98
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 98
+      },
+      "request_count": 98,
+      "lockfiles": {
+        "frontend/package-lock.json": "0327f464a9661c82801cded094ba8048f24add86083cc9af4abb4b8e432ee292"
+      },
+      "original": {
+        "package_id": "copilot-71ff896b-3c40-4903-a819-e4d5aa98f11b",
+        "sha256": "45d9087d4022e36f81fa5c05b4f62006593161844b3943758139159f51d9521f"
+      },
+      "original_restoration": {
+        "path": "receipts/70bd566c-7310-48bd-814d-087b0876eb21.json",
+        "sha256": "b71bb41c66811ba3bc2cd537c85aaef3c2438b5d92d2e132a29ec0117cad238a"
+      },
+      "linked_restoration": {
+        "path": "receipts/aa2c1c71-3d9d-455d-8c18-c1ac7a98d8f6.json",
+        "sha256": "4bdba4c1fa3a6971d3eaeba5c1321920c7ea289b7388a7d557c86d2f7112eefc"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-011",
+      "run_id": "a95e1037-7728-4d70-836a-f0f8b9604e94",
+      "condition": "normal",
+      "submission_hash": "f78d7b56bfce1aea82cc3c9f6d1dd6cd29c403142862ace0cbd156180a348d5d",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 707.4263357259997,
+      "started_at": "2026-09-10T17:08:03.244501+00:00",
+      "ended_at": "2026-09-10T17:19:48.939757+00:00",
+      "gateway_http": {
+        "200": 131
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 131
+      },
+      "request_count": 131,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-a95e1037-7728-4d70-836a-f0f8b9604e94",
+        "sha256": "c691fd92f700293bbdac1d6e33c490a9be267977237354673b7468526e2e1e64"
+      },
+      "original_restoration": {
+        "path": "receipts/e95b3cd6-b392-41ea-966e-ac216c7d9620.json",
+        "sha256": "6314143c38ef9c6bc7d098c1dd6533a06be6155d9a7ff54d2d3dcbc612260b48"
+      },
+      "linked_restoration": {
+        "path": "receipts/acf27340-230d-4eca-9dd2-ca21b59045e1.json",
+        "sha256": "100e44b03bdf743544814fe68c47434c7fbba3affcd991d857780ed1c7cd662d"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-011",
+      "run_id": "ea871692-692b-4028-8456-126aba55dac8",
+      "condition": "anti",
+      "submission_hash": "fd404c7c2f4c6806e922ebf4f4724e866db729285da3a22e6b57d20336770f10",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 656.2392921910005,
+      "started_at": "2026-09-10T17:11:03.969659+00:00",
+      "ended_at": "2026-09-10T17:21:57.503636+00:00",
+      "gateway_http": {
+        "200": 104
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 104
+      },
+      "request_count": 104,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-ea871692-692b-4028-8456-126aba55dac8",
+        "sha256": "90423da29d9cdac44882dd2238fb48dbe9a4ee160155864f7aaa806326a9334b"
+      },
+      "original_restoration": {
+        "path": "receipts/ec5a904f-2cb8-4912-af3a-b314ba85be2b.json",
+        "sha256": "7b203ca1cb40dfe55fdbc3cc45087c5c1612a84ae6bf9f0a0a5de64cfcd75316"
+      },
+      "linked_restoration": {
+        "path": "receipts/7b9b554e-190f-4f9a-a4c8-20221de21f96.json",
+        "sha256": "6e5055f47b98732a53ce52f0298c45ba8eada66ec6f2eaecb71df6019b564b2b"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-012",
+      "run_id": "87a2727c-dec6-49d9-a03b-cd33351c7f48",
+      "condition": "anti",
+      "submission_hash": "831ac9b3b51f2332fbc2f29109030c2bf1522926614ac940c5154df45d92a9eb",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 710.4814085999997,
+      "started_at": "2026-09-10T17:16:11.793398+00:00",
+      "ended_at": "2026-09-10T17:27:57.186479+00:00",
+      "gateway_http": {
+        "200": 130
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 130
+      },
+      "request_count": 130,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-87a2727c-dec6-49d9-a03b-cd33351c7f48",
+        "sha256": "f074bdc455e603dc4fa4c4b6d04a9b9eac1f96f400e2e566b9cfbd7ec3ddaf84"
+      },
+      "original_restoration": {
+        "path": "receipts/e87390d9-1375-4fc6-bde0-31610c3d3fb0.json",
+        "sha256": "d766e5690df1d69cb25f789940edfb95a35fad5c1b962a4d4db122b9b8a1ea3d"
+      },
+      "linked_restoration": {
+        "path": "receipts/55fea39f-0498-4b0c-ab04-fc3ec62371ef.json",
+        "sha256": "58791f5c58656bf0c20ee1b6b42822b3a4c7eb4593724c125d9c4380c45cdb1b"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-012",
+      "run_id": "8562d613-be4e-4350-9e8d-8ac02a644845",
+      "condition": "normal",
+      "submission_hash": "9244c77e6c2344e0f31907ebb6e6ebf7612a0d11b2a206277d184a2ebadc3f1b",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 953.5525990059996,
+      "started_at": "2026-09-10T17:18:28.833180+00:00",
+      "ended_at": "2026-09-10T17:34:14.321053+00:00",
+      "gateway_http": {
+        "200": 162
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 162
+      },
+      "request_count": 162,
+      "lockfiles": {
+        "frontend/package-lock.json": "64f8be05936dd0af9428c743f458d70c5a126bfafb60f741c2ae73f1ecde62e4"
+      },
+      "original": {
+        "package_id": "copilot-8562d613-be4e-4350-9e8d-8ac02a644845",
+        "sha256": "7dbf418b48907750b6a53af8d9b66a9a689310e565029aeaea013fc609d40828"
+      },
+      "original_restoration": {
+        "path": "receipts/6b178858-e0d1-4b6a-93fc-f2002943c399.json",
+        "sha256": "3766c2a46f20ec2f6ae5be6b47a963be60a16aaf4b9eb1a689b64fd705d7eeb7"
+      },
+      "linked_restoration": {
+        "path": "receipts/14ddfe73-ed7f-4682-bb4d-1f4f02fcf460.json",
+        "sha256": "d825ddea414397987f29da2fd952b14daab2c89998b3e86f1dda4b23680572f2"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-013",
+      "run_id": "00f64f52-6070-4f28-9070-cc52bdf4de13",
+      "condition": "normal",
+      "submission_hash": "c991a37db91633a509a07de9fd5c9e77ed10c2b321064bdc81a9aa754dfe837e",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 715.3195311970003,
+      "started_at": "2026-09-10T17:21:20.985958+00:00",
+      "ended_at": "2026-09-10T17:33:10.047665+00:00",
+      "gateway_http": {
+        "200": 98
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 98
+      },
+      "request_count": 98,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-00f64f52-6070-4f28-9070-cc52bdf4de13",
+        "sha256": "34c304f7ad0534465db71c2fc2b413e4bc0715520057e57ef8e0d4c26a2f4c8e"
+      },
+      "original_restoration": {
+        "path": "receipts/28364a21-92cd-477b-aad4-8c6ac9ca9d36.json",
+        "sha256": "ba6fd8dbd53e55cf2bec90a72fe579c8a3f9c3a4d374a5f4a74ca4ede95fc405"
+      },
+      "linked_restoration": {
+        "path": "receipts/47997e47-581d-47b1-9953-c431a61b04a5.json",
+        "sha256": "8299d17e82a0abb32144d33df4af43f1fd18c77c664a238dd5e3a5a318c7a94a"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-013",
+      "run_id": "5a7c902f-5503-4289-9afc-76609043cc3a",
+      "condition": "anti",
+      "submission_hash": "f808d727094fd9dc89f818610dc836b2150656f953b8206801b287ea6ac7ed97",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 490.04248809899946,
+      "started_at": "2026-09-10T17:23:18.523152+00:00",
+      "ended_at": "2026-09-10T17:31:23.108425+00:00",
+      "gateway_http": {
+        "200": 91
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 91
+      },
+      "request_count": 91,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-5a7c902f-5503-4289-9afc-76609043cc3a",
+        "sha256": "561ecd369bcace3a372684b75136e7b82559fe98679482d25f2cc4b9972ad8b5"
+      },
+      "original_restoration": {
+        "path": "receipts/4082393a-df2a-48d3-ab33-42529ba10d25.json",
+        "sha256": "ed1eece79dc888b9617a987ed7256d55e078a9e7ac8db6eba1787e18680c4c93"
+      },
+      "linked_restoration": {
+        "path": "receipts/f36e93c8-f01a-48ee-9aca-1bd3635435d6.json",
+        "sha256": "f9f56eabfc1659a6a02f3dab5af77a7bcb0d18ec51c7730d464d400c2000892a"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-014",
+      "run_id": "959de722-b6ae-433c-80fe-fc5062db90e7",
+      "condition": "normal",
+      "submission_hash": "59cdbb2e8f11fe5a10df11ae6c7738a58110a77d8809b0a2c0e0504938c5a728",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 1605.2721194879996,
+      "started_at": "2026-09-10T17:25:05.643323+00:00",
+      "ended_at": "2026-09-10T17:51:27.676237+00:00",
+      "gateway_http": {
+        "200": 149,
+        "400": 20
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 149,
+        "None": 20
+      },
+      "request_count": 169,
+      "lockfiles": {
+        "frontend/package-lock.json": "c11c56681fa0d4a94ba6f3e01f98df54bdabbf2419f3c686e5cf685d7f22a604"
+      },
+      "original": {
+        "package_id": "copilot-959de722-b6ae-433c-80fe-fc5062db90e7",
+        "sha256": "e39049fa8249a61797d99d850111b2b6b19e284f8ea73ad273a5ab5a6784b0c5"
+      },
+      "original_restoration": {
+        "path": "receipts/7114e4ec-dbe7-4d14-b3f5-b4ed378baba5.json",
+        "sha256": "f214632fdb495bc05b172df76440617bebb910936676bb0e89c2e81fcdeca433"
+      },
+      "linked_restoration": {
+        "path": "receipts/d8a7e185-1cf5-4dd9-af3e-833cdc094ab2.json",
+        "sha256": "57dff498e54f37d39661306ed1db7191dda5dafbb2f3850658351453a4c5ba16"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-014",
+      "run_id": "6a0f735d-c6df-4cd3-bcb6-489807e94b58",
+      "condition": "anti",
+      "submission_hash": "278b84a3fbccf922ecf217a7e7499c8c0860d27ac7172c871e07fa8aad423a95",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 768.5682422890004,
+      "started_at": "2026-09-10T17:29:29.246984+00:00",
+      "ended_at": "2026-09-10T17:42:07.799193+00:00",
+      "gateway_http": {
+        "200": 125
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 125
+      },
+      "request_count": 125,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-6a0f735d-c6df-4cd3-bcb6-489807e94b58",
+        "sha256": "fe49e97d968cbe8b0e530afd38a293f064e34da41bcea6fe9ee257ec9799a2c0"
+      },
+      "original_restoration": {
+        "path": "receipts/8d703f76-c7f7-4b85-999c-93f4c0155a2f.json",
+        "sha256": "c7aaacbe958ea620fb7efd61250bb83401c44bb30c6df2c8e12ecc1d56a8a580"
+      },
+      "linked_restoration": {
+        "path": "receipts/ddd73b86-05f7-4b04-9779-b69791ff3b34.json",
+        "sha256": "2916aac8caf596dadeadc9b914f5179a03fa457ee5c90004adb74498a735218a"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-015",
+      "run_id": "15c9af27-f25b-43b4-a75c-409991b14a37",
+      "condition": "anti",
+      "submission_hash": "d3a1089277c143b8781d85eec011f7185bb88eba9c551c82cc80f701ededc603",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 693.9527767220006,
+      "started_at": "2026-09-10T17:32:42.066015+00:00",
+      "ended_at": "2026-09-10T17:44:06.001475+00:00",
+      "gateway_http": {
+        "200": 97
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 97
+      },
+      "request_count": 97,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-15c9af27-f25b-43b4-a75c-409991b14a37",
+        "sha256": "3e5df8500edc204e163a34864f9e390d1abaf76991265bdd44cf3f8c467e7654"
+      },
+      "original_restoration": {
+        "path": "receipts/37a2dd96-839e-488e-8531-dc87ade6852f.json",
+        "sha256": "13cef0c67c88f731a9ca955d3136333c75c9c185ff66ec0202338fd4a00743e5"
+      },
+      "linked_restoration": {
+        "path": "receipts/00164a17-f272-40a4-aa1f-3396e9aa89e3.json",
+        "sha256": "9ce6d8e04fe89783141459750bf0a3c78ac480bf53e828924e726436568b3dbc"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-015",
+      "run_id": "2645ec0d-e014-4d99-96ce-ec0b0dc714fb",
+      "condition": "normal",
+      "submission_hash": "cc7e020f53cafe5932406f2877b7aa4f3b976a4b7253225bcde0ed7f9fbea6df",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 752.8965338790003,
+      "started_at": "2026-09-10T17:34:31.489156+00:00",
+      "ended_at": "2026-09-10T17:46:52.702596+00:00",
+      "gateway_http": {
+        "200": 128,
+        "400": 1
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 128,
+        "None": 1
+      },
+      "request_count": 129,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-2645ec0d-e014-4d99-96ce-ec0b0dc714fb",
+        "sha256": "7784126bb7dfd1bb9efc54260467d4c00f6a16e2430077bea067d767e72f97c4"
+      },
+      "original_restoration": {
+        "path": "receipts/83c535b6-6348-4eb2-8207-19aa9b8e207c.json",
+        "sha256": "597371b4292a8952d478804d417ce5f7c7acfdfc1c7ce999af763ba293769501"
+      },
+      "linked_restoration": {
+        "path": "receipts/832c0a66-f6ce-4f01-9522-01b93cbac2ed.json",
+        "sha256": "46ba19a5298d9b8d28911520a25c6f28efeebf408472dd0bcda58572defdf145"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-016",
+      "run_id": "ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+      "condition": "normal",
+      "submission_hash": "b097c11dde32ce988e1c6748f80d7ad8a6a5175b8f4077749e99e4c3a1ea76e7",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 3340.3755708709996,
+      "started_at": "2026-09-10T17:35:51.058306+00:00",
+      "ended_at": "2026-09-10T18:30:25.650725+00:00",
+      "gateway_http": {
+        "200": 197,
+        "400": 34
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 193,
+        "None": 38
+      },
+      "request_count": 231,
+      "lockfiles": {
+        "frontend/package-lock.json": "8e258dd205f5af7e4aaaa57a19a91ad1812d94ba2cc98d2d4c2e0b5e69e995ae"
+      },
+      "original": {
+        "package_id": "copilot-ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+        "sha256": "91913ec9a34d7562ab6f0289c99a28f952fe057355ae71fb91fa5b25beac8e4b"
+      },
+      "original_restoration": {
+        "path": "receipts/995a135a-f60e-4448-97e3-1c72b7a1afe5.json",
+        "sha256": "9cdb2d9fc952bd352ea6962438339b9fc62cb76e8887be66fe7024a3be670d68"
+      },
+      "linked_restoration": {
+        "path": "receipts/22cfe7cf-6cb6-41ff-9413-04175915c2c0.json",
+        "sha256": "d3eab01190f0a80c2ae358977ed7666d6aac4742e67178b5d472f4c9b2013a49"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-016",
+      "run_id": "3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd",
+      "condition": "anti",
+      "submission_hash": "d7b2c609ae4c96c315564e35c5b4af0904acd950417f98de75739033fad3344b",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 651.486668128,
+      "started_at": "2026-09-10T17:43:47.943708+00:00",
+      "ended_at": "2026-09-10T17:54:27.200331+00:00",
+      "gateway_http": {
+        "200": 97
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 97
+      },
+      "request_count": 97,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd",
+        "sha256": "93fd73057c4c2780838422a3e9bf5870c9b2023b141e1b8b5cea59076a7f2ee0"
+      },
+      "original_restoration": {
+        "path": "receipts/5d26c380-5057-4a37-889a-f1c1be489589.json",
+        "sha256": "786439042c656bc58fb2a3af7cc7ce0c7cf669af0678fd42c6a7a43ba1eafe2f"
+      },
+      "linked_restoration": {
+        "path": "receipts/ad4e3772-2739-4559-8359-20a7a5956979.json",
+        "sha256": "296941e43e2aac3a8be3bb2886268e4cfbf1eec2f0551a76ff612e0a1bb44a6f"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-017",
+      "run_id": "b8182790-1837-4290-b467-47ac1231783b",
+      "condition": "normal",
+      "submission_hash": "57b149c6d800006ff63fc61196b5629344cab89ae19bb6ba47b4aa342bbf39cb",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 963.4255353439994,
+      "started_at": "2026-09-10T17:45:21.464046+00:00",
+      "ended_at": "2026-09-10T18:01:06.772598+00:00",
+      "gateway_http": {
+        "200": 170,
+        "400": 29
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 170,
+        "None": 29
+      },
+      "request_count": 199,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-b8182790-1837-4290-b467-47ac1231783b",
+        "sha256": "d8089d9a82bb1ced318fc23f7d4b4ce9313abf85a31acabdabe3fc031871248b"
+      },
+      "original_restoration": {
+        "path": "receipts/496ce571-4077-486a-8946-1d09393920c0.json",
+        "sha256": "133988daa68417e31d9122026671d78a2208336990f030f006c14ed93cb51145"
+      },
+      "linked_restoration": {
+        "path": "receipts/e2a42673-e564-49bb-ab62-0b0adcb3e0ea.json",
+        "sha256": "e3544085eb78914bd8f4121347a44bbdd8c5807b0552157798dfab22f738d5df"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-017",
+      "run_id": "740a2f8e-7509-4915-880d-a21086bffe9a",
+      "condition": "anti",
+      "submission_hash": "3d12405ef2e01348d8164a294173796fefe91dcbf0beca34bbd60154f2d79486",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 645.8996580180001,
+      "started_at": "2026-09-10T17:48:39.216763+00:00",
+      "ended_at": "2026-09-10T17:59:13.639301+00:00",
+      "gateway_http": {
+        "200": 122
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 122
+      },
+      "request_count": 122,
+      "lockfiles": {
+        "frontend/package-lock.json": "ba4d3da03b0c76121b18be6d500ed9327058ac8074f22189392115228e5b63ac"
+      },
+      "original": {
+        "package_id": "copilot-740a2f8e-7509-4915-880d-a21086bffe9a",
+        "sha256": "413f4984e309890e70dca5a25232763c3acb13572af6b526dc7ef272c607e6ec"
+      },
+      "original_restoration": {
+        "path": "receipts/0d25ba8e-b1e2-4543-9084-459819ab55f5.json",
+        "sha256": "a7ab4a3d1a60d03fcc2912d83f19d9018cb5297ea28fafeb04e45e53d6769337"
+      },
+      "linked_restoration": {
+        "path": "receipts/74cac1af-992d-467d-b56b-812b87b8307f.json",
+        "sha256": "1b540f16404c80667308b9fae3ee4690055ede51ac0dfc177206fea347d32508"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-018",
+      "run_id": "724b281a-c3d0-43a8-85df-6e8df56845e7",
+      "condition": "normal",
+      "submission_hash": "c5dc4dc6aaaa48e1ef3786024838d1dd4a3bd110a6a180b4dee0de7dd5012cc0",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 726.9645889079993,
+      "started_at": "2026-09-10T17:53:32.175454+00:00",
+      "ended_at": "2026-09-10T18:05:25.262964+00:00",
+      "gateway_http": {
+        "200": 145
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 145
+      },
+      "request_count": 145,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-724b281a-c3d0-43a8-85df-6e8df56845e7",
+        "sha256": "7501ac81cf90c4be92ffc2df0d165fc9f59e71dad66d01d66acb75fd27ff17fa"
+      },
+      "original_restoration": {
+        "path": "receipts/f4b1eed5-caf1-4020-bc23-e608672bf2bf.json",
+        "sha256": "061f20ae67dfc9ae658b132fc95450031d5440b3bd5ae764ddfbd0cb05ac0af5"
+      },
+      "linked_restoration": {
+        "path": "receipts/2df73f54-d3b0-4acf-b77a-7fd5dc7af744.json",
+        "sha256": "a8f3d5e6c19f8f3f91174acc2bfb4785a233d0574b0d687971c2cba5cb8c0af2"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-018",
+      "run_id": "133cba3d-7333-4f8a-be4f-f44b8e93e154",
+      "condition": "anti",
+      "submission_hash": "3edf4183ffafc986f600f3cd7818609b26c8df23c9e558e53bb6bbd0a576c1cf",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 604.5483914639999,
+      "started_at": "2026-09-10T17:55:45.055552+00:00",
+      "ended_at": "2026-09-10T18:05:38.097244+00:00",
+      "gateway_http": {
+        "200": 124,
+        "400": 4
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 124,
+        "None": 4
+      },
+      "request_count": 128,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-133cba3d-7333-4f8a-be4f-f44b8e93e154",
+        "sha256": "78445cb31c4617e2bec48a95f56f10c7fa6dc8702bcde75563416fc492d6dee0"
+      },
+      "original_restoration": {
+        "path": "receipts/c8254b46-ed9c-4149-ab41-dd619eeb98a1.json",
+        "sha256": "eb9bce02c1a53cb01377961be2ace01263f67c59e3e0ceaceb39195974b8762d"
+      },
+      "linked_restoration": {
+        "path": "receipts/d9bed9b1-b6dc-4f12-9931-54e9ba2b63ac.json",
+        "sha256": "0611ce97247838f5e6b9558ed7f817fdf24c2e0fd8307404070a865ed26a25ec"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-019",
+      "run_id": "cdcf39ea-b857-4b0f-a3e7-75ad0395fd40",
+      "condition": "anti",
+      "submission_hash": "6efbdf5419a20fe25d29350e3d6cb41e608757b3180d732c8a5a5617da4b412a",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 801.1632917819998,
+      "started_at": "2026-09-10T18:00:45.449154+00:00",
+      "ended_at": "2026-09-10T18:13:50.183248+00:00",
+      "gateway_http": {
+        "200": 110,
+        "400": 2
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 110,
+        "None": 2
+      },
+      "request_count": 112,
+      "lockfiles": {
+        "frontend/package-lock.json": "75c6a4026118638120df67051f0f284d3676878ef6b99cc19e4dfa8950f6f288"
+      },
+      "original": {
+        "package_id": "copilot-cdcf39ea-b857-4b0f-a3e7-75ad0395fd40",
+        "sha256": "cd98c02c24cc7579a6a7727f5fbf8a4d3e0bea1ce9bdea9376e3fc07d30c7a2e"
+      },
+      "original_restoration": {
+        "path": "receipts/19a641d5-e9fb-4fb4-83d0-215e0b84da9b.json",
+        "sha256": "b53d5ed3106d6e627fca8d42ca671d31fb886317da7137b9acae98f571968f50"
+      },
+      "linked_restoration": {
+        "path": "receipts/d64f1f8e-763a-4366-82e6-8b834f413bb7.json",
+        "sha256": "54a84021db8070cbf71a0a43f753d817572ad4949ed6f2c38a07678e84ef08f5"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-019",
+      "run_id": "51463b84-66e0-4a29-9992-b74a598cf1cc",
+      "condition": "normal",
+      "submission_hash": "ab36fa5f464705d3d6a1fa9ef58dbe99885234ad3ee00d638930c2e456cfbf7c",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 959.6846324829994,
+      "started_at": "2026-09-10T18:03:20.095118+00:00",
+      "ended_at": "2026-09-10T18:18:59.300333+00:00",
+      "gateway_http": {
+        "200": 166,
+        "400": 13
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 166,
+        "None": 13
+      },
+      "request_count": 179,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-51463b84-66e0-4a29-9992-b74a598cf1cc",
+        "sha256": "96e449071aa30c02dafba25fce4815a50463bbca764c271b9501da30ee73ef36"
+      },
+      "original_restoration": {
+        "path": "receipts/c5996d5f-21a2-4ad9-a7f0-760b98698388.json",
+        "sha256": "18d398c361a3f40c77c99f715a30eff1725758f2f1f0988d208f4fc3a7c95c11"
+      },
+      "linked_restoration": {
+        "path": "receipts/f2cc9bf4-f564-431e-9905-e5181cfd9274.json",
+        "sha256": "7c4df75d20681cd3f84e295447608c0ce37a52fbc3857ab45142425db047feda"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "normal-020",
+      "run_id": "434b58e3-f948-4cfb-92a5-577b1c4c4af8",
+      "condition": "normal",
+      "submission_hash": "bdddabf233b8c1ca7f65b7a33d3f9765004bc36f77a01817822cd8a1bd127cc3",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "stop_method": null,
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": false,
+      "elapsed_seconds": 688.2149668069997,
+      "started_at": "2026-09-10T18:07:00.641635+00:00",
+      "ended_at": "2026-09-10T18:18:13.210908+00:00",
+      "gateway_http": {
+        "200": 134
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 134
+      },
+      "request_count": 134,
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "original": {
+        "package_id": "copilot-434b58e3-f948-4cfb-92a5-577b1c4c4af8",
+        "sha256": "e883b3e8dd2adba53dcf08990d0fcb55b76d3ed51772b977da4e0054f477076b"
+      },
+      "original_restoration": {
+        "path": "receipts/db343f95-0bfd-4449-b4ea-5e07d987af05.json",
+        "sha256": "d0e7dd710896431ab44ba206818c2bae0df9c58043ed01cf5dc45116d0f375e2"
+      },
+      "linked_restoration": {
+        "path": "receipts/4178c3d3-c262-42ad-8682-8ed7df08c25a.json",
+        "sha256": "df9afa5c195fa0e1adcad124aaa9727ee58fc89272e73dd713e266d5fb779738"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    },
+    {
+      "planned_run": "anti-020",
+      "run_id": "8521b60c-d58e-4f17-8cd0-75cf45d82d8b",
+      "condition": "anti",
+      "submission_hash": "608613d705148b839dce1d14ef1e5a1ce99944b9bbd7d25006a8179fc2aad68f",
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+      "processes_stopped": true,
+      "submission_fixed": true,
+      "completion_declaration_captured": true,
+      "elapsed_seconds": 576.054134553,
+      "started_at": "2026-09-10T18:08:00.705968+00:00",
+      "ended_at": "2026-09-10T18:17:23.542090+00:00",
+      "gateway_http": {
+        "200": 96
+      },
+      "response_model_ids": {
+        "muse-spark-1.2-contributor": 96
+      },
+      "request_count": 96,
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "original": {
+        "package_id": "copilot-8521b60c-d58e-4f17-8cd0-75cf45d82d8b",
+        "sha256": "3ce9d22450675581b8f9513ab501159e5cfbe35b591f32f62f0ec098e3b4e7dd"
+      },
+      "original_restoration": {
+        "path": "receipts/1d32142f-e2a4-4e42-b8bd-4715081ca021.json",
+        "sha256": "6e1c1809b3cf4c5b6676d2ed4a646bda28bff543a1265208271bd039ebdf163c"
+      },
+      "linked_restoration": {
+        "path": "receipts/38b6c744-19ee-4149-95c3-cd8bf6c9976f.json",
+        "sha256": "1e232e9bed95cf88a381382757b3a98faaa21f60a4631a788507ee85b16ad508"
+      },
+      "management_sha256": {
+        "run_experiment.py": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "5768d1a3bd02c009fdba3e6c603eeceb02551512fc3e1eaad13097deba7f69c5",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "40a2e89c7d04919067b4e0d289dc7237fb1e5e72c0ad60b20ccad8ac9197314a",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e",
+        "parallel_acquisition.py": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e"
+      },
+      "fallback_of": null
+    }
+  ]
+}

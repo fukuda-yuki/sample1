@@ -1,0 +1,71 @@
+{
+  "report_sha256": "94d5802626e932986c242b778603f6cd008e4e50bdcbb720051ed8e7a0b02246",
+  "preview_sha256": "4f301de93be53c2f16a8c1d250c82c70696f9f17ef1f179168d4d3f515a71d55",
+  "renderer": "marked + Chromium (Playwright)",
+  "browser_version": "152.0.4191.66",
+  "state": {
+    "title": "仕様書の不整合とAI実装：累計60件の取得と保存済みv6評価",
+    "h2": [
+      "1. 背景と研究目的",
+      "2. 実験方法と指標",
+      "3. 結果",
+      "4. 考察と限界",
+      "5. 結論",
+      "6. データ、再現性、レビュー"
+    ],
+    "tables": 8,
+    "images": [
+      {
+        "alt": "図1 実装、原本保管、共通評価、累計分析の関係",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図2 前回、追加、累計の条件別分布",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図3 記録済み総トークンと保存済み合格率",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図4 予定ペア内の差とbootstrap区間",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図5 20機能の保存済み合格率",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図6 50万円の承認者から権限と通知先への対応",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      }
+    ],
+    "horizontalOverflow": false
+  },
+  "narrow": {
+    "width": 800,
+    "horizontalOverflow": false,
+    "images": [
+      704,
+      704,
+      704,
+      704,
+      704,
+      704
+    ]
+  },
+  "remoteRequests": [],
+  "scope": "Rendering this report only; no study app or evaluator was run."
+}

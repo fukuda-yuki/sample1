@@ -1,0 +1,54 @@
+{
+  "agent": "github-copilot-cli",
+  "provider": "opencode-go",
+  "base_url": "https://opencode.ai/zen/go/v1",
+  "wire_api": "responses",
+  "experiment_version": "copilot-acquisition20-parallel-20260911",
+  "model_id": "muse-spark-1.2-contributor",
+  "agent_version": "1.0.83-5",
+  "effort": null,
+  "subagent_policy": "disabled",
+  "tool_versions": {
+    "copilot": "1.0.83-5"
+  },
+  "environment": {
+    "image": "sha256:d70dc026cbd41542004ed010b6f40650be8dd7f7531fd59fd6a3d05ef3e407cb",
+    "timezone": "Asia/Tokyo"
+  },
+  "budget": {
+    "kind": "wall_clock_seconds",
+    "scope": "container",
+    "value": 3600
+  },
+  "authorization_file": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/authorization.json",
+  "score_version": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+  "evaluator_files": {
+    "evidence-index.mjs": "32ae7dba803e2e294ce3d039fcad31b56ad09528df1ffcba742ff7cb4747a50f",
+    "run.mjs": "73e63750f9e7c809be4b87353362d0b3d69b5815e52ca292b952197f35f76d04",
+    "playwright.config.ts": "fb2b8080826ed298e2c833223efdbe62c97b81237328faa3065f0f927cd63b0c",
+    "package-lock.json": "8969aa7d1926bdcf26ea363c240f54a1d3bea70da48b73086b8c01a6035171f8",
+    "case-manifest.json": "8c5dc76598500231fbba1bda4c15b61b707914b4e2ce2544374e2259cc31edde",
+    "requirements-ledger.json": "968bfe696a89e1d0490fb08d03c6e6797769955bb73ba10249e7a53efe841b66",
+    "tests/ui.ts": "285a2a6a5f08f1d539a6176b23eca3bc5ad611c26999e5ba49f6e5f5005097fd",
+    "tests/application.spec.ts": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+    "tests/observation.ts": "885769e25ee40f43ab966fa27a4bf25bf5ee406707359236f6e4d6f8136f6da1"
+  },
+  "experiment_id": "b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+  "phase": "data-acquisition",
+  "seed": 20260911,
+  "batch_schema": 2,
+  "contract_version": 2,
+  "repetitions_per_condition": 20,
+  "max_parallel": 5,
+  "model_http_503_policy": "stop_run_and_cleanup",
+  "measurement_review_required": true,
+  "synthetic": false,
+  "input_hashes": {
+    "normal/spec.md": "60591f585f9a0bc57085819acc4462f0bd596c360fac79cff249fee8d510b1a0",
+    "anti/spec.md": "4efee9a74d163f6fabad8c5392e395717869e074b34d81cb46489124f714c551",
+    "implementation_prompt.md": "27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2",
+    "evaluation/requirements-ledger.json": "5d6f0d13d547983b4e30a070e813b36c2ce5588e9b2cf29f3f3df47dd15bbf13",
+    "evaluation/case-manifest.json": "4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461"
+  },
+  "acquisition_policy": "parallel-preserve-first-v1"
+}

@@ -1,0 +1,1031 @@
+{
+  "schema_version": 1,
+  "observations": [
+    {
+      "observation_id": "OBS-new-normal-003-display",
+      "run_id": "451385f8-693c-4881-927a-2fd87ad343e5",
+      "planned_run": "normal-003",
+      "batch": "additional",
+      "evaluation_uuid": "b22545a8-8448-40f7-a4f4-9c53fcd1fb58",
+      "submission_hash": "69f8db1639de8fefc3d08d222edbdc0f40a5de815cf541ad547347d9b2685e90",
+      "v6_hash": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+      "summary_sha256": "7850175ee85ffc3cf7d8adb94f321976603027a81b0b1077ae8b53f6ee394077",
+      "results_sha256": "92ab1d8f192efad309dede8638b302551231bf47ea33c1c4a2516a94f6f292d5",
+      "raw_passed_ids": 19,
+      "facts": [
+        "保存されたユーザー管理画面には5行の編集ボタンがあるが氏名等の列は空欄。",
+        "T-006-01の保存画面では1件見つかりましたと表示され、申請一覧の値が空欄。",
+        "同ケースの保存通信ではGETが200で、titleが評価用申請、amountが999999、approverNameが課長 一郎。",
+        "固定されたReact一覧はa.Title・a.Id等の大文字開始の項目を読む。API応答のキーはtitle・id等の小文字開始。",
+        "固定コードの承認者分岐は1000000円以上で部長、未満で課長。"
+      ],
+      "interpretation": "この一覧では、API応答と描画側の項目名の不一致が空欄表示を生み、v6は作成した申請の詳細へ到達できなかった。閾値の静的な一致だけでは保存済み合格率の高さを保証しない具体例。",
+      "attribution_scope": "T-006-01の一覧から詳細への到達失敗と、確認した一覧描画。19/57全体の失点原因をこの一因に割り当てない。",
+      "classification": "implementation_display_contract_with_unreached_downstream_assertion",
+      "new_app_executions": 0,
+      "new_evaluations": 0,
+      "saved_screens_visually_inspected": 2,
+      "citations": [
+        {
+          "kind": "fixed_source",
+          "path": "frontend/src/pages/Applications.tsx",
+          "sha256": "f2335736f97e400afba80577d3dae8a4dbe656cb4523f372acbe67258432dd76",
+          "lines": [
+            {
+              "38": "      if(!res.ok) throw new Error(data.message)"
+            },
+            {
+              "40": "      setTotal(data.total)"
+            },
+            {
+              "89": "        {items.map((a:any)=><tr key={a.Id}>"
+            },
+            {
+              "92": "          <td><Link to={`/applications/${a.Id}`}>{a.Title}</Link></td>"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "frontend/src/pages/Users.tsx",
+          "sha256": "2359685082ea78a96e871a528f7a00d067faf7bb9bae51387d8d47fb151ea16f",
+          "lines": [
+            {
+              "34": "    <tbody>{users.map((u:any)=><tr key={u.Id}><td>{u.Name}</td><td>{u.Email}</td><td>{u.Department}</td><td>{u.Role}</td><td>{u.Status}</td><td><button onClick={()=>startEdit(u)}>編集</button></td></tr>)}</tbody>"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "backend/Program.cs",
+          "sha256": "caf1d07cbf0109e3d52191bbcadd403e58f02c61cf7622fdc0733f3a93b37378",
+          "lines": [
+            {
+              "12": "builder.Services.AddControllers();"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "backend/Controllers/ApplicationsController.cs",
+          "sha256": "6529b266863e93abcb100238c9e1bfc63eee1210f3956e249cd3021958ad1a1c",
+          "lines": [
+            {
+              "33": "    string GetApproverRole(int amount)=> amount>=1000000 ? \"部長\" : \"課長\";"
+            },
+            {
+              "88": "            a.Id, a.ApplicationNumber, a.Type, a.Title, a.Amount, a.Status, a.ApplicationDate, ApplicantName = a.Applicant != null ? a.Applicant.Name : \"\", ApproverName = a.Approver != null ? a.Approver.Name : a.ApproverRole, a.CreatedAt, a.SubmittedAt, a.ApprovedAt"
+            }
+          ]
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-001-01/main",
+          "path": "browser/application-T-001-01/test-failed-1.png",
+          "sha256": "60275255b985f89c13e9be8e3b9f6ac4332bfe410e00c12071cce145ec75862a",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-001-01/main",
+          "path": "browser/application-T-001-01/trace.zip",
+          "sha256": "8f56af4574ead8a0a112c0dafc6621c4ece1b9f60a8d0ecfd3de59ec4f25fad9",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-001-01/main",
+          "path": "browser/application-T-001-01/error-context.md",
+          "sha256": "374d2003939e7fac84e1e8845700e95301e7a788bbf7fb9821ed85aa3a878232",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-006-01/main",
+          "path": "browser/application-T-006-01/test-failed-1.png",
+          "sha256": "e4bc751e0e2c6e54fa862c2a18b7ae478d5bb2d1e181c6e70be5b0f6fcd5f18e",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-006-01/main",
+          "path": "browser/application-T-006-01/trace.zip",
+          "sha256": "f0a4f1d934b1bcec5b0384986c490973804d4fa4a64205d07167d8aefdc4afa0",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-006-01/main",
+          "path": "browser/application-T-006-01/error-context.md",
+          "sha256": "902dc3f530580d34dd3a0ca8e546c2892117206c0a0270dd01ed473caea7e17d",
+          "public_copy": false
+        }
+      ],
+      "saved_network_evidence": [
+        {
+          "archive_entry": "1-trace.network",
+          "line": 33,
+          "resource": "resources/a393dc8db6dfb1c9d91e0cbc137cb7dfb5859ecf.json",
+          "response_body_sha256": "c55191ac9bddc1444d16e60bedb8c94d3c30167ccb65507e6d6e276bb928ba52",
+          "http_status": 200,
+          "total": 1,
+          "item_keys": [
+            "amount",
+            "applicantName",
+            "applicationDate",
+            "applicationNumber",
+            "approvedAt",
+            "approverName",
+            "createdAt",
+            "id",
+            "status",
+            "submittedAt",
+            "title",
+            "type"
+          ],
+          "title": "評価用申請",
+          "amount": 999999,
+          "approver_name": "課長 一郎"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 34,
+          "resource": "resources/a393dc8db6dfb1c9d91e0cbc137cb7dfb5859ecf.json",
+          "response_body_sha256": "c55191ac9bddc1444d16e60bedb8c94d3c30167ccb65507e6d6e276bb928ba52",
+          "http_status": 200,
+          "total": 1,
+          "item_keys": [
+            "amount",
+            "applicantName",
+            "applicationDate",
+            "applicationNumber",
+            "approvedAt",
+            "approverName",
+            "createdAt",
+            "id",
+            "status",
+            "submittedAt",
+            "title",
+            "type"
+          ],
+          "title": "評価用申請",
+          "amount": 999999,
+          "approver_name": "課長 一郎"
+        }
+      ]
+    },
+    {
+      "observation_id": "OBS-new-anti-001-login-state",
+      "run_id": "25a01c2b-cf66-4053-848c-9af10ef2ef81",
+      "planned_run": "anti-001",
+      "batch": "additional",
+      "evaluation_uuid": "9d0b59f4-aea9-4110-b1b5-78ea84266b2c",
+      "submission_hash": "fab9ae917395a995174261e4d1b0d125ebf19225e993acf0f4605a8ff69a1808",
+      "v6_hash": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+      "summary_sha256": "3a1c1817f6ba0b088c5414faafe2a87ab1ee45b5aa21e56cef9a1f1e9bb61473",
+      "results_sha256": "4c0531fef3aeedb778dee7cc5b9026c40b12e478847a32a161365b6e63f2a887",
+      "raw_passed_ids": 3,
+      "outcome": "completed",
+      "facts": [
+        "T-002-01の保存画面はダッシュボードを表示する一方、上部はログイン・ユーザー登録のままでログアウトがない。",
+        "保存通信ではログイン前のauth/meは401、auth/loginは200、その後のdashboardも200。ログイン後のauth/meは記録されていない。",
+        "Layoutはマウント時に一度だけ現在ユーザーを取得し、Loginは成功時に画面遷移するだけ。LayoutはRoutesの外側で維持される。"
+      ],
+      "interpretation": "通常ログイン後にヘッダーの認証状態を更新する経路がない。保存された認証成功と画面上の未ログイン表示を説明し、v6のログアウト確認を通過できない原因になる。",
+      "attribution_scope": "確認したT-002-01と共通ヘッダーの状態更新。53 blocked IDのすべてを個別動作確認したという主張にはしない。",
+      "classification": "implementation_login_state_with_unreached_downstream_assertions",
+      "new_app_executions": 0,
+      "new_evaluations": 0,
+      "saved_screens_visually_inspected": 1,
+      "citations": [
+        {
+          "kind": "fixed_source",
+          "path": "frontend/src/components/Layout.tsx",
+          "sha256": "09c450bc72867f56b7f22965a6433cda661d7824eca17e518c82950c24d69a7a",
+          "lines": [
+            {
+              "6": "  const [user, setUser] = useState<any>(null)"
+            },
+            {
+              "8": "  useEffect(() => {"
+            },
+            {
+              "9": "    api('/api/auth/me').then(({ res, data }) => { if (res.ok) setUser(data); else setUser(null) })"
+            },
+            {
+              "10": "  }, [])"
+            },
+            {
+              "33": "            <><span>{user.Name} ({user.Role})</span> <button onClick={logout} style={{ marginLeft: 12 }}>ログアウト</button></>"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "frontend/src/pages/Login.tsx",
+          "sha256": "0f55763f27026a4e659292ebffd85bdf754c8f2efac4699d372937116c7082c3",
+          "lines": [
+            {
+              "13": "    const { res, data } = await apiJson('/api/auth/login', 'POST', { email, password })"
+            },
+            {
+              "14": "    if (res.ok) {"
+            },
+            {
+              "15": "      nav('/dashboard')"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "frontend/src/App.tsx",
+          "sha256": "70ba71759a5c3b3af8885dc19ae6b4bc9a86c9650a6b1628a9aa9efd23237a65",
+          "lines": [
+            {
+              "23": "          <Route path=\"/\" element={<Login />} />"
+            },
+            {
+              "24": "          <Route path=\"/register\" element={<Register />} />"
+            }
+          ]
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "browser/application-T-002-01/test-failed-1.png",
+          "sha256": "fb23baecaff1012b19422f40b552ad601b8ac189f8bbd1aa4a19160e85fcc217",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "browser/application-T-002-01/trace.zip",
+          "sha256": "a72aee470115d221a4749f01cbd207e0cfc2c2b68c04a6d0f9855c9230f66c04",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "browser/application-T-002-01/error-context.md",
+          "sha256": "22a80cadf5120fed7b123f56a150bb3c2b7142f076fff99e5c2c319d974fec1f",
+          "public_copy": false
+        }
+      ],
+      "saved_network_evidence": [
+        {
+          "archive_entry": "1-trace.network",
+          "line": 25,
+          "method": "GET",
+          "path": "/api/auth/me",
+          "status": 401,
+          "time": "2026-09-10T16:41:36.260Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 26,
+          "method": "GET",
+          "path": "/api/auth/me",
+          "status": 401,
+          "time": "2026-09-10T16:41:36.260Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 51,
+          "method": "GET",
+          "path": "/api/auth/me",
+          "status": 401,
+          "time": "2026-09-10T16:41:36.449Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 52,
+          "method": "GET",
+          "path": "/api/auth/me",
+          "status": 401,
+          "time": "2026-09-10T16:41:36.449Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 53,
+          "method": "POST",
+          "path": "/api/auth/register",
+          "status": 200,
+          "time": "2026-09-10T16:41:36.813Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 78,
+          "method": "GET",
+          "path": "/api/auth/me",
+          "status": 401,
+          "time": "2026-09-10T16:41:37.102Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 79,
+          "method": "GET",
+          "path": "/api/auth/me",
+          "status": 401,
+          "time": "2026-09-10T16:41:37.102Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 80,
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200,
+          "time": "2026-09-10T16:41:37.213Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 81,
+          "method": "GET",
+          "path": "/api/dashboard",
+          "status": 200,
+          "time": "2026-09-10T16:41:37.311Z"
+        },
+        {
+          "archive_entry": "1-trace.network",
+          "line": 82,
+          "method": "GET",
+          "path": "/api/dashboard",
+          "status": 200,
+          "time": "2026-09-10T16:41:37.311Z"
+        },
+        {
+          "archive_entry": "0-trace.network",
+          "line": 1,
+          "method": "POST",
+          "path": "/api/dev/reset",
+          "status": 200,
+          "time": "2026-09-10T16:41:35.683Z"
+        }
+      ],
+      "selection": "Early completed outputs with an observed prerequisite or startup failure; mechanism examples, not a random sample of cases."
+    },
+    {
+      "observation_id": "OBS-new-normal-001-startup",
+      "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+      "planned_run": "normal-001",
+      "batch": "additional",
+      "evaluation_uuid": "1041753a-9a1b-466f-941b-836393c8d49c",
+      "submission_hash": "9d2c469d5e6c52c56b1856015050aea6d292c213e4e4cebc14ec946c12ec69f4",
+      "v6_hash": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+      "summary_sha256": "d0709e1b6a64ede4d09b4759d491d6718ec0571b719606503b20648200f84e68",
+      "results_sha256": "2953b175b608c2e49ff727c342a319b55df22a2249d679be1704158e16539507",
+      "raw_passed_ids": 0,
+      "outcome": "server_unavailable",
+      "facts": [
+        "保存起動ログはnpmのoffline cacheにvite-5.4.2.tgzがなくENOTCACHEDで終了したことを示す。",
+        "固定lockfileはvite 5.4.2を指定する。可視の完了文書はlockfileを手動生成したと記す。",
+        "共通契約は外部接続不可・既設キャッシュの利用・npm ciによる標準起動を要求する。",
+        "v6 outcomeはserver_unavailable。業務ケースを開始できず、0合格・57 blocked IDの雛形だけが保存された。"
+      ],
+      "interpretation": "提出された依存物指定は固定オフライン環境で復元できなかった。大量の記録済みトークンや完了宣言から標準起動の達成を推定できない例。",
+      "attribution_scope": "保存された起動失敗と固定lockfile・契約の照合。別の環境なら起動できるか、全業務要件を満たすかは未確認。提出物を修正せず、再評価しない。",
+      "classification": "submitted_dependency_unavailable_in_fixed_runtime",
+      "new_app_executions": 0,
+      "new_evaluations": 0,
+      "saved_screens_visually_inspected": 0,
+      "citations": [
+        {
+          "kind": "fixed_source",
+          "path": "frontend/package-lock.json",
+          "sha256": "6ef70571bcdcc1d56dd7f0d626faae079507dd78a72ecd14f7d2ba3fb7560b1b",
+          "lines": [
+            {
+              "55": "    \"node_modules/vite\": {"
+            },
+            {
+              "56": "      \"version\": \"5.4.2\","
+            },
+            {
+              "57": "      \"resolved\": \"https://registry.npmjs.org/vite/-/vite-5.4.2.tgz\""
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "IMPLEMENTATION_RESULT.md",
+          "sha256": "5eb98950ec90c16412d3ef6c6839f2e5d740041fb4c0df28b9a3ab9cdc914b05",
+          "lines": [
+            {
+              "48": "- フロント検証: `npm install` 後に `npm run build` 成功（`npm ci` は lockfile を手動生成、実環境では `npm install` で正しい lock を再生成可能、EAI_AGAIN による遅延は 3600s タイムアウトで解消）、 `npm run dev` で http://localhost:5173 起動確認"
+            },
+            {
+              "59": "- 外部ネットワークは npm/nuget キャッシュ経由で解決、オフライン時は失敗する可能性あり"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "RUN_CONTRACT.md",
+          "sha256": "da05a5cdaaabd51f574e02bb459de6fae6562a038b6170a79cab12d7d3cc630b",
+          "lines": [
+            {
+              "39": "- `frontend/`: Viteプロジェクト。lockfileを含め、`npm ci` 後にこのディレクトリで `npm run dev -- --host 0.0.0.0` すると起動する。"
+            },
+            {
+              "47": "実行環境は外部サイトへ直接接続できない。許可ライブラリの事前キャッシュを利用する。npmキャッシュは `/tmp/npm-cache`、NuGetキャッシュは `/opt/nuget-cache`。利用可能な版はキャッシュから確認できる。環境には業務アプリの共通骨格は含まれない。"
+            }
+          ]
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "../management-evidence/app-logs.stdout.log",
+          "sha256": "53f56b124f0a5a2cbb626d4a9571d733b4d9c9919fb2481ae410535641a04b9b",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "../management-evidence/app-logs.stderr.log",
+          "sha256": "dcead26833a1f8d77362af6e0427ae9e5b458f84af3fa3a98dc2acd0e5a477b2",
+          "referenced_line_numbers": [1, 2],
+          "supported_statement": "ENOTCACHED: the fixed cache has no response for vite-5.4.2.tgz.",
+          "public_copy": false
+        }
+      ],
+      "saved_network_evidence": [],
+      "selection": "Early completed outputs with an observed prerequisite or startup failure; mechanism examples, not a random sample of cases."
+    },
+    {
+      "observation_id": "OBS-new-anti-002-approval",
+      "run_id": "ca85fc9b-7678-41f4-88bb-257f702ea65b",
+      "planned_run": "anti-002",
+      "batch": "additional",
+      "evaluation_uuid": "4e5e0eb8-b678-4bc8-83dc-4319454b682f",
+      "submission_hash": "9f92b74397fb78fe391c28d574500c14f431f121cac11ecb02ab47954983c0b0",
+      "v6_hash": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+      "summary_sha256": "bbac45da85b8299f520958cb617d3500ada60399aa45c25a08f109f1521461bc",
+      "results_sha256": "10a2aedd0db8f424312c01940f931327a331518859623161f531cf65c6acda59",
+      "raw_passed_ids": 33,
+      "facts": [
+        "T-011-01の保存通信では50万円の申請ID40が部長に割り当てられた。課長で詳細を開くGETは403、画面も参照権限なし。",
+        "固定コードは50万円以上を部長とし、申請者・承認者・管理者以外の参照を403にする。",
+        "T-014-01の別申請ID46は50万円で、保存画面は部長を表示する。保存された承認依頼メール1通の宛先は部長。",
+        "固定v6は差し戻しを課長で実施し、承認依頼通知も課長宛てを期待する。"
+      ],
+      "interpretation": "詳細仕様の閾値採用が、承認者と閲覧権限・通知先という複数の評価対象に対応する具体例。差し戻しケースは操作ボタンに到達できず、通知ケースは届いたメールの宛先が期待と異なる。",
+      "attribution_scope": "同一Run内の2ケース。申請ID40と46は別の申請。差し戻し自体の更新処理の成否や、全後続10 IDの原因をこの記録だけで確定しない。",
+      "classification": "threshold_choice_associated_with_authorization_and_mail_recipient",
+      "new_app_executions": 0,
+      "new_evaluations": 0,
+      "saved_screens_visually_inspected": 2,
+      "citations": [
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-011-01/main",
+          "path": "browser/application-T-011-01/test-failed-1.png",
+          "sha256": "1733fbb45000115ccaa36d13985c8b5f2c5a85876fabd269233cefdc1291585c",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-011-01/main",
+          "path": "browser/application-T-011-01/error-context.md",
+          "sha256": "500347a39a2a69c5979ae1941586f2e53752c560da2fffd71aa5c72ba7604d2f",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-011-01/main",
+          "path": "browser/application-T-011-01/trace.zip",
+          "sha256": "5386761102be8b831dea6dc5be26a045bfc9d7d7a69d1b32491fe823c827c042",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-014-01/main",
+          "path": "browser/application-T-014-01/test-failed-1.png",
+          "sha256": "70db5f8c2b3716ceb0787cd801f02a68825266283235c54459a66dd7c750f4cb",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-014-01/main",
+          "path": "browser/application-T-014-01/error-context.md",
+          "sha256": "b5fdf44cc263619f592933782d11ce21f126598ab0a3fd493e095655e87fb699",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "case_id": "T-014-01/main",
+          "path": "browser/application-T-014-01/trace.zip",
+          "sha256": "82c49d3048508bbf44a18d5d2ea033c31e32bca89914682b7d7c1c1ca8c28137",
+          "public_copy": false
+        },
+        {
+          "kind": "fixed_source",
+          "path": "backend/Program.cs",
+          "sha256": "1640a2b4e90933218694d59e34d2a4cea95b6388c765743f4d47f840c30cb943",
+          "lines": [
+            {
+              "548": "        string requiredRole = amount <= 499999 ? \"課長\" : \"部長\";"
+            },
+            {
+              "549": "        var approver = await db.Users.FirstOrDefaultAsync(u => u.Role == requiredRole && u.Status == \"有効\");"
+            },
+            {
+              "586": "        mail.Send(approver.Email, $\"【承認依頼】{entity.Title}\", bodyMail);"
+            },
+            {
+              "710": "    bool isApplicant = appEnt.ApplicantId==cur.Id;"
+            },
+            {
+              "711": "    bool isApprover = appEnt.ApproverId==cur.Id;"
+            },
+            {
+              "712": "    if (!isAdmin && !isApplicant && !isApprover) return Results.Json(new { message=\"この申請書を参照する権限がありません\"}, statusCode: 403);"
+            }
+          ]
+        },
+        {
+          "kind": "private_fixed_evaluator",
+          "path": "evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_numbers": [
+            42,
+            49
+          ],
+          "public_copy": false
+        }
+      ],
+      "saved_network_evidence": [
+        {
+          "case_id": "T-011-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 28,
+          "response_body_sha256": "9df99aaa9ae21764dd92822b90e5a488168d0ac5c6c87147d2870be4a3c69d76",
+          "method": "POST",
+          "path": "/api/applications",
+          "status": 200,
+          "body": {
+            "message": "申請を提出しました",
+            "id": 40,
+            "approverName": "部長 次郎",
+            "status": "承認待ち"
+          }
+        },
+        {
+          "case_id": "T-011-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 29,
+          "response_body_sha256": "2bd4ede2e380170bad89d969642a70939e3171f1c016dea1a6ead0d1377a83a0",
+          "method": "GET",
+          "path": "/api/applications",
+          "status": 200,
+          "body": {
+            "items": [
+              {
+                "id": 40,
+                "amount": 500000,
+                "approverName": "部長 次郎",
+                "status": "承認待ち"
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "T-011-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 30,
+          "response_body_sha256": "2bd4ede2e380170bad89d969642a70939e3171f1c016dea1a6ead0d1377a83a0",
+          "method": "GET",
+          "path": "/api/applications",
+          "status": 200,
+          "body": {
+            "items": [
+              {
+                "id": 40,
+                "amount": 500000,
+                "approverName": "部長 次郎",
+                "status": "承認待ち"
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "T-011-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 82,
+          "response_body_sha256": "17e4dee62a1d98464981a5e0399c46a39e78bf65dcdade7f3f49ad50aaf6980b",
+          "method": "GET",
+          "path": "/api/applications/40",
+          "status": 403,
+          "body": {
+            "message": "この申請書を参照する権限がありません"
+          }
+        },
+        {
+          "case_id": "T-011-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 83,
+          "response_body_sha256": "17e4dee62a1d98464981a5e0399c46a39e78bf65dcdade7f3f49ad50aaf6980b",
+          "method": "GET",
+          "path": "/api/applications/40",
+          "status": 403,
+          "body": {
+            "message": "この申請書を参照する権限がありません"
+          }
+        },
+        {
+          "case_id": "T-014-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 28,
+          "response_body_sha256": "46c0c5e5fc1d9fa4841b7ca125c44dcfd87e95155133b08341dd83523ad1d71c",
+          "method": "POST",
+          "path": "/api/applications",
+          "status": 200,
+          "body": {
+            "message": "申請を提出しました",
+            "id": 46,
+            "approverName": "部長 次郎",
+            "status": "承認待ち"
+          }
+        },
+        {
+          "case_id": "T-014-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 29,
+          "response_body_sha256": "261650aa6458672f8db6af0c47e21d4fe3a3aa02b13d99c3beec8c4935435e6a",
+          "method": "GET",
+          "path": "/api/applications",
+          "status": 200,
+          "body": {
+            "items": [
+              {
+                "id": 46,
+                "amount": 500000,
+                "approverName": "部長 次郎",
+                "status": "承認待ち"
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "T-014-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 30,
+          "response_body_sha256": "261650aa6458672f8db6af0c47e21d4fe3a3aa02b13d99c3beec8c4935435e6a",
+          "method": "GET",
+          "path": "/api/applications",
+          "status": 200,
+          "body": {
+            "items": [
+              {
+                "id": 46,
+                "amount": 500000,
+                "approverName": "部長 次郎",
+                "status": "承認待ち"
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "T-014-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 31,
+          "response_body_sha256": "8d94ff27d20db0436863099ceae7c9a515f5da7a832942cc6a1fe0dda4184a94",
+          "method": "GET",
+          "path": "/api/applications/46",
+          "status": 200,
+          "body": {
+            "id": 46,
+            "approverName": "部長 次郎",
+            "status": "承認待ち"
+          }
+        },
+        {
+          "case_id": "T-014-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 32,
+          "response_body_sha256": "8d94ff27d20db0436863099ceae7c9a515f5da7a832942cc6a1fe0dda4184a94",
+          "method": "GET",
+          "path": "/api/applications/46",
+          "status": 200,
+          "body": {
+            "id": 46,
+            "approverName": "部長 次郎",
+            "status": "承認待ち"
+          }
+        },
+        {
+          "case_id": "T-014-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 33,
+          "response_body_sha256": "261650aa6458672f8db6af0c47e21d4fe3a3aa02b13d99c3beec8c4935435e6a",
+          "method": "GET",
+          "path": "/api/applications",
+          "status": 200,
+          "body": {
+            "items": [
+              {
+                "id": 46,
+                "amount": 500000,
+                "approverName": "部長 次郎",
+                "status": "承認待ち"
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "T-014-01/main",
+          "archive_entry": "1-trace.network",
+          "line": 34,
+          "response_body_sha256": "261650aa6458672f8db6af0c47e21d4fe3a3aa02b13d99c3beec8c4935435e6a",
+          "method": "GET",
+          "path": "/api/applications",
+          "status": 200,
+          "body": {
+            "items": [
+              {
+                "id": 46,
+                "amount": 500000,
+                "approverName": "部長 次郎",
+                "status": "承認待ち"
+              }
+            ]
+          }
+        }
+      ],
+      "saved_mail": {
+        "attachment_sha256": "beb5ccccca9947512d72837a454e6aed61eb9a9b00e3f8fbfa53023b92a22f44",
+        "read_count": 9,
+        "messages": [
+          {
+            "sha256": "15cb64475a714534091b8f3e03a7ecead4d2083bbce3889f7f90978dd5dfdb2a",
+            "to": "bucho@example.com",
+            "subject": "【承認依頼】評価用申請",
+            "body": "申請番号:REQ-20260911-0001\nタイトル:評価用申請\nステータス:承認待ち\n詳細:http://localhost:5173/applications/46"
+          }
+        ]
+      },
+      "selection": "First additional anti output with the previously defined 50万円 boundary pattern; two previously motivated downstream cases. Not an unbiased sample of all failures."
+    },
+    {
+      "observation_id": "OBS-new-anti-006-excluded-source",
+      "run_id": "8685c69d-7825-4148-9052-9543c7ede4fc",
+      "planned_run": "anti-006",
+      "batch": "additional",
+      "evaluation_uuid": "7872a0f5-9ab2-4e4e-8f2d-8d5b6be0b51b",
+      "submission_hash": "e2db04257ac023117baba046d88299f3aa394bd4d937cfc8e679153f8e9fd7ef",
+      "v6_hash": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+      "summary_sha256": "efd9467d4fc939402f7c21b1dc25cf7020c3d9d659cc66eaea15fd773045d8f5",
+      "results_sha256": "24373902ee9342e7b83698a295f73cd7052ab22d1d400115d510fccb397f853d",
+      "raw_passed_ids": 0,
+      "outcome": "server_unavailable",
+      "facts": [
+        "固定package.jsonはローカルViteパッケージを参照し、そのbin定義はbin/vite.jsを指定する。",
+        "保存された実装tool呼び出しはfrontend/local-pkgs/vite/bin/vite.jsを手書きして実行権限を付けるコマンドを含む。",
+        "共通契約は手書きソースをbin/等に保存しないよう明示し、管理コードはその名前のディレクトリを提出対象から除外する。",
+        "提出snapshotと固定ソースには当該bin/vite.jsがない。保存評価ログはvite: not found、終了コード127を示す。",
+        "業務ケースを開始できず、0合格・57 blocked ID・58ケースの雛形が保存された。"
+      ],
+      "interpretation": "手書きの起動コードを明示的な提出除外ディレクトリへ置いたため、固定提出物の標準起動が成立しなかった。作業環境と提出契約の不一致を示し、原本のコピー破損とは区別する。",
+      "attribution_scope": "保存tool呼び出し、固定契約・package定義・snapshot、保存起動ログの照合。除外ファイルを戻した場合の起動や業務品質は未検証であり、提出物の修正・再採点はしない。",
+      "classification": "handwritten_entrypoint_in_explicitly_excluded_submission_directory",
+      "new_app_executions": 0,
+      "new_evaluations": 0,
+      "saved_screens_visually_inspected": 0,
+      "citations": [
+        {
+          "kind": "fixed_source",
+          "path": "RUN_CONTRACT.md",
+          "sha256": "da05a5cdaaabd51f574e02bb459de6fae6562a038b6170a79cab12d7d3cc630b",
+          "lines": [
+            {
+              "45": "手書きソースを `bin/`, `obj/`, `node_modules/`, `maildrop/`, `.git/`, `.codex/`, `.cache/` やDB拡張子のファイルに保存しない。これらは実行生成物として提出対象から除外する。"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "frontend/local-pkgs/vite/package.json",
+          "sha256": "1aa328ea7d5afecdf45be7e9594e2d5a76c4591ad65f56e3c3e1fc2abc41360c",
+          "lines": [
+            {
+              "4": "  \"bin\": {\"vite\":\"bin/vite.js\"},"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "frontend/package.json",
+          "sha256": "f84aaae5334318c043ac16ac82b393ddaa6e4f2215a52a982155be49680ac26b",
+          "lines": [
+            {
+              "18": "    \"vite\": \"file:./local-pkgs/vite\","
+            }
+          ]
+        },
+        {
+          "kind": "saved_implementation_tool_call",
+          "path": "agent.stdout.log",
+          "sha256": "a4bca76ca8b833f7dfcc312bfed9d8b1df4d1073e094b4c313c735b02b2a70b8",
+          "line": 3435,
+          "tool_call_id": "call_01a08c4489247d52a0f0b3b06a0abda2",
+          "tool_name": "bash",
+          "command_sha256": "5183348b67ebb7dd3d3dfb4278508d7b56688b99f097fa5c5c68ef5255e96f47",
+          "excerpts": [
+            "cat > frontend/local-pkgs/vite/bin/vite.js <<'EOF'",
+            "chmod +x frontend/local-pkgs/vite/bin/vite.js"
+          ],
+          "scope": "Visible tool arguments only; no hidden reasoning read or reproduced."
+        },
+        {
+          "kind": "saved_management_source",
+          "path": "management-source/run_experiment.py",
+          "sha256": "fb3abf09a2d09d32848e55f5283c22a236bd663a2f7b3e285a6af0e371b6793d",
+          "lines": [
+            {
+              "20": "EXCLUDED_DIRS = {'node_modules', 'bin', 'obj', '.git', '.codex', '.cache', 'maildrop'}"
+            }
+          ]
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "../management-evidence/app-logs.stdout.log",
+          "sha256": "154a2b25d18e2dd75de22fbc263bfc0355003b1a7c18f621ac10e91f175d6161",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "../management-evidence/app-logs.stderr.log",
+          "sha256": "de89ee23ed968889836a5891e65da6e922e543e038b99a14eee9ca8285fa768c",
+          "public_copy": false
+        }
+      ],
+      "selection": "A whole-evaluation startup failure; selected to explain missingness, not sampled as a representative business case."
+    },
+    {
+      "observation_id": "OBS-new-normal-016-startup",
+      "run_id": "ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+      "planned_run": "normal-016",
+      "batch": "additional",
+      "evaluation_uuid": "439472fb-f203-420a-9e2f-2a0901763aa8",
+      "submission_hash": "b097c11dde32ce988e1c6748f80d7ad8a6a5175b8f4077749e99e4c3a1ea76e7",
+      "v6_hash": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+      "summary_sha256": "6e45bbc636defdb82f61c6e16bdec912c87eabee1238fc55984dbe281e9d2ce0",
+      "results_sha256": "cc4ef275aac12ff779ae90c47e0b50dbc208d1df5ebf8178ab6cf197420f8dd0",
+      "raw_passed_ids": 0,
+      "outcome": "server_unavailable",
+      "facts": [
+        "保存起動ログはnpmが@types/reactのメタデータをoffline cacheから取得できずENOTCACHEDで終了したことを示す。",
+        "固定package.jsonは@types/reactの範囲^18.3.3を指定する。lockfileVersion 3のpackagesにはルート項目のみがあり、node_modules以下の解決済み項目がない。",
+        "可視の完了文書はnpm installとdev起動が最終的に成功したと述べる。一方、保存された固定提出物の標準起動は成立しなかった。",
+        "共通契約はnpm ciによる標準起動、事前キャッシュの利用、外部接続不可を明示する。",
+        "業務ケースを開始できず、0合格・57 blocked ID・58ケースの雛形が保存された。"
+      ],
+      "interpretation": "固定提出物の依存関係を指定されたオフライン環境で再現できなかった。完了文書の自己申告と、評価環境の起動記録を別々の証拠として扱う必要がある。",
+      "attribution_scope": "保存起動ログ・固定package/lockfile・共通契約の照合。実装時の自主確認がどの環境状態で成立したか、依存関係を変更すれば業務要件が通るかは未検証。",
+      "classification": "submitted_dependency_unavailable_in_fixed_runtime",
+      "new_app_executions": 0,
+      "new_evaluations": 0,
+      "saved_screens_visually_inspected": 0,
+      "citations": [
+        {
+          "kind": "fixed_source",
+          "path": "frontend/package.json",
+          "sha256": "cf521eda622ba03ad4e77488dc2f554455bd05ea1e157192c45a9ec9b8625c93",
+          "lines": [
+            {
+              "7": "    \"dev\": \"node server.js\","
+            },
+            {
+              "17": "    \"@types/react\": \"^18.3.3\","
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "frontend/package-lock.json",
+          "sha256": "8e258dd205f5af7e4aaaa57a19a91ad1812d94ba2cc98d2d4c2e0b5e69e995ae",
+          "lines": [
+            {
+              "6": "  \"packages\": {"
+            },
+            {
+              "16": "        \"@types/react\": \"^18.3.3\","
+            },
+            {
+              "37": "    \"@types/react\": {"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "IMPLEMENTATION_RESULT.md",
+          "sha256": "cf2789bbca4e8e4d8b85dc4ab8637ff172e038667f52d9e182fde4e92a7ec429",
+          "lines": [
+            {
+              "4": "- **完了**: バックエンド全20機能、フロントエンド主要画面、認証・申請フロー・CSV・ダッシュボード・管理機能・メール出力・リセットAPI を実装。起動確認済み。"
+            },
+            {
+              "25": "- フロントエンド: `npm install` および `npm run dev` の起動確認（ネットワーク遅延のためインストールに時間を要するが、最終的に成功）。手動ブラウザ確認は実施予定。"
+            },
+            {
+              "34": "- 外部ネットワークは遅延あり（npm はリトライで最終成功）"
+            }
+          ]
+        },
+        {
+          "kind": "fixed_source",
+          "path": "RUN_CONTRACT.md",
+          "sha256": "da05a5cdaaabd51f574e02bb459de6fae6562a038b6170a79cab12d7d3cc630b",
+          "lines": [
+            {
+              "39": "- `frontend/`: Viteプロジェクト。lockfileを含め、`npm ci` 後にこのディレクトリで `npm run dev -- --host 0.0.0.0` すると起動する。"
+            },
+            {
+              "47": "実行環境は外部サイトへ直接接続できない。許可ライブラリの事前キャッシュを利用する。npmキャッシュは `/tmp/npm-cache`、NuGetキャッシュは `/opt/nuget-cache`。利用可能な版はキャッシュから確認できる。環境には業務アプリの共通骨格は含まれない。"
+            }
+          ]
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "../management-evidence/app-logs.stdout.log",
+          "sha256": "89fab9d4f28bfbaa59f1e1db297fd88c3cbb30ed14c71762f36413c58ccb1747",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "../management-evidence/app-logs.stderr.log",
+          "sha256": "ee584ff28ea0b36096d2ffa07a3b70f721b9fdab3116ffb0cd117a25e750dd48",
+          "public_copy": false
+        }
+      ],
+      "selection": "Whole-evaluation failure inspected to explain missingness; not a random sample or a rerun."
+    },
+    {
+      "observation_id": "OBS-new-normal-018-blank-entry",
+      "run_id": "724b281a-c3d0-43a8-85df-6e8df56845e7",
+      "planned_run": "normal-018",
+      "batch": "additional",
+      "evaluation_uuid": "cc5921d1-a29b-4d50-80c3-7e4856f46ac0",
+      "submission_hash": "c5dc4dc6aaaa48e1ef3786024838d1dd4a3bd110a6a180b4dee0de7dd5012cc0",
+      "v6_hash": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+      "summary_sha256": "33816da01ad7bc98a5f7fcc9d928331bf99f8d9a1f8092b66eed08892894be01",
+      "results_sha256": "0d898b28df3e374d3aa6613161e88dcbd1392e71cf37816cf871d8cc70d08265",
+      "raw_passed_ids": 0,
+      "outcome": "completed",
+      "facts": [
+        "T-001-01の保存画面は空白で、フォームやナビゲーションが描画されていない。",
+        "同じ保存traceはHeaderでReact is not definedというJavaScript例外を記録する。入口HTMLとApp.tsx等の取得は200。",
+        "固定App.tsxはuseEffect・useState・createContextを名前付きでimportするがReactをimportせず、HeaderでReact.useContextを呼ぶ。Headerはルート共通で描画される。",
+        "v6はcompletedを返し、原出力は0合格・5 fail・52 blocked ID。到達タグは業務判定到達0・評価未確定58である。"
+      ],
+      "interpretation": "共通ヘッダーの未定義変数による描画例外が通常の入口を塞いだ。HTTPサーバーは起動しているため、起動不能の雛形とは異なり、保存済みv6出力として0/57を保持する。ただし全業務要件の不達を独立に判定した0点ではない。",
+      "attribution_scope": "T-001-01の保存画面・traceと固定共通Headerの照合。58ケース全ての画面を個別確認したものではなく、描画例外を修正した場合の得点も未検証。",
+      "classification": "implementation_frontend_reference_error_with_no_business_assertion_reached",
+      "new_app_executions": 0,
+      "new_evaluations": 0,
+      "saved_screens_visually_inspected": 1,
+      "citations": [
+        {
+          "kind": "fixed_source",
+          "path": "frontend/src/App.tsx",
+          "sha256": "0270d5257cbede0fe0be5100580ab1c25a6793ec32d1276757ca660d29e43e43",
+          "lines": [
+            {
+              "1": "import { BrowserRouter, Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom'"
+            },
+            {
+              "2": "import { useEffect, useState, createContext } from 'react'"
+            },
+            {
+              "32": "function Header(){"
+            },
+            {
+              "33": "  const {user, setUser}=React.useContext(AuthContext)"
+            },
+            {
+              "60": "    <AuthContext.Provider value={{user,setUser}}>"
+            }
+          ]
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "browser/application-T-001-01/trace.zip",
+          "sha256": "75fe918972a688264184b1af7b1ccd59f30b9ab260f72d3b79005d0f7c4b8e38",
+          "public_copy": false
+        },
+        {
+          "kind": "private_saved_evaluation",
+          "path": "browser/application-T-001-01/test-failed-1.png",
+          "sha256": "0eedff4f17110edaeb2861add633ae605662c5b89dc6c6706a0b63847ad24858",
+          "public_copy": false
+        }
+      ],
+      "saved_page_errors": [
+        {
+          "archive_entry": "1-trace.trace",
+          "line": 14,
+          "message": "React is not defined"
+        },
+        {
+          "archive_entry": "1-trace.trace",
+          "line": 31,
+          "message": "React is not defined"
+        }
+      ],
+      "selection": "The minimum completed-run score, inspected after final aggregation to explain the low tail; not a random sample."
+    }
+  ]
+}

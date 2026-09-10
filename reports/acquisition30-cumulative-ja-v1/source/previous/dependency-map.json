@@ -1,0 +1,1250 @@
+{
+  "schema_version": 1,
+  "source_database": {
+    "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/reports/acquisition10-preserve-first-20260910/analysis.sqlite",
+    "sha256": "c5816c01c64f735e2cfb919df1d4fe8f1ce551d432c4201feff74fe9fe807d33"
+  },
+  "ledger": {
+    "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/evaluation/requirements-ledger.json",
+    "sha256": "5d6f0d13d547983b4e30a070e813b36c2ce5588e9b2cf29f3f3df47dd15bbf13"
+  },
+  "case_manifest": {
+    "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/evaluation/case-manifest.json",
+    "sha256": "4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461"
+  },
+  "saved_evaluator_sha256": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+  "all_twenty_saved_application_specs_sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+  "saved_source_versions_verified": [
+    {
+      "planned_run": "anti-001",
+      "evaluation_uuid": "55cb359f-b3d4-4718-9ff0-7d22e8a8d291",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/55cb359f-b3d4-4718-9ff0-7d22e8a8d291/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-002",
+      "evaluation_uuid": "5a74c522-9727-460f-b330-b0b9674ddcab",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/5a74c522-9727-460f-b330-b0b9674ddcab/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-003",
+      "evaluation_uuid": "7e20cd9d-2f88-415a-934f-14ecf781a9d1",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/7e20cd9d-2f88-415a-934f-14ecf781a9d1/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-004",
+      "evaluation_uuid": "b51d0072-9a86-4e06-95a7-7bc1562d771c",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/b51d0072-9a86-4e06-95a7-7bc1562d771c/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-005",
+      "evaluation_uuid": "e3e6f2e9-b0b8-4f4b-ac43-376a06f2773c",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/e3e6f2e9-b0b8-4f4b-ac43-376a06f2773c/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-006",
+      "evaluation_uuid": "db310dfc-e839-4833-8d46-3fa20f6e1b88",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/db310dfc-e839-4833-8d46-3fa20f6e1b88/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-007",
+      "evaluation_uuid": "ca426959-1d8c-43b3-b9c8-c083495f7393",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/ca426959-1d8c-43b3-b9c8-c083495f7393/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-008",
+      "evaluation_uuid": "b49f8844-5ba3-4166-a62a-62434e0083f7",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/b49f8844-5ba3-4166-a62a-62434e0083f7/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-009",
+      "evaluation_uuid": "0d517b73-c4e5-46f0-899b-e72979026898",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "anti-010",
+      "evaluation_uuid": "60ea41fe-16e4-4586-a4ec-76f8279947e8",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/60ea41fe-16e4-4586-a4ec-76f8279947e8/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-001",
+      "evaluation_uuid": "04d5df29-90d6-4c89-8a4e-f7c4946b2b96",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/04d5df29-90d6-4c89-8a4e-f7c4946b2b96/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-002",
+      "evaluation_uuid": "34f2bf8a-14bb-4ccf-a834-fd95f57120a6",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/34f2bf8a-14bb-4ccf-a834-fd95f57120a6/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-003",
+      "evaluation_uuid": "79c28b3a-4baa-4a81-a83c-a8f42da4b717",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/79c28b3a-4baa-4a81-a83c-a8f42da4b717/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-004",
+      "evaluation_uuid": "7d42fdd0-7a68-4b11-bfe3-a1f1a5fb3b46",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/7d42fdd0-7a68-4b11-bfe3-a1f1a5fb3b46/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-005",
+      "evaluation_uuid": "bed22a25-b5e5-4124-be25-eaf44f2023d0",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/bed22a25-b5e5-4124-be25-eaf44f2023d0/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-006",
+      "evaluation_uuid": "41898b27-30df-4236-9760-baec6f699927",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/41898b27-30df-4236-9760-baec6f699927/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-007",
+      "evaluation_uuid": "ed0e4c75-c806-491e-b474-710e2a602912",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/ed0e4c75-c806-491e-b474-710e2a602912/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-008",
+      "evaluation_uuid": "3e8a42fa-6424-4ab4-89e1-582efd444fb2",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/3e8a42fa-6424-4ab4-89e1-582efd444fb2/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-009",
+      "evaluation_uuid": "068beb0a-7e3b-48f5-b1f8-9473dfc5e2d2",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/068beb0a-7e3b-48f5-b1f8-9473dfc5e2d2/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    },
+    {
+      "planned_run": "normal-010",
+      "evaluation_uuid": "91823a4d-a62e-4ada-a118-ff735a53ecdd",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/91823a4d-a62e-4ada-a118-ff735a53ecdd/result/evaluator-snapshot/tests/application.spec.ts",
+      "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0"
+    }
+  ],
+  "groups": {
+    "direct_threshold": 3,
+    "downstream_threshold": 10,
+    "other": 44
+  },
+  "items": [
+    {
+      "evaluation_id": "T-001-01",
+      "feature_id": "F-001",
+      "title": "🟢 正常系: ユーザー新規登録",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 12,
+          "line_end": 12
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-001-02",
+      "feature_id": "F-001",
+      "title": "🔴 異常系: メールアドレス重複エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 13,
+          "line_end": 13
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-001-03",
+      "feature_id": "F-001",
+      "title": "🔴 異常系: パスワード強度不足エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 14,
+          "line_end": 14
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-001-04",
+      "feature_id": "F-001",
+      "title": "🔴 異常系: パスワード不一致エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 15,
+          "line_end": 15
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-002-01",
+      "feature_id": "F-002",
+      "title": "🟢 正常系: ログイン成功",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 16,
+          "line_end": 16
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-002-02",
+      "feature_id": "F-002",
+      "title": "🟢 正常系: ログアウト成功",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 17,
+          "line_end": 17
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-002-03",
+      "feature_id": "F-002",
+      "title": "🔴 異常系: 認証失敗",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 18,
+          "line_end": 18
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-002-04",
+      "feature_id": "F-002",
+      "title": "🔴 異常系: アカウントロック",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 19,
+          "line_end": 19
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-003-01",
+      "feature_id": "F-003",
+      "title": "🟢 正常系: 申請種別選択と入力フォーム表示",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 20,
+          "line_end": 20
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-003-02",
+      "feature_id": "F-003",
+      "title": "🔴 異常系: 申請種別未選択エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 21,
+          "line_end": 21
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-004-01",
+      "feature_id": "F-004",
+      "title": "🟢 正常系: 申請内容の入力",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 22,
+          "line_end": 22
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-004-02",
+      "feature_id": "F-004",
+      "title": "🔴 異常系: 申請金額範囲外エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 23,
+          "line_end": 23
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-004-03",
+      "feature_id": "F-004",
+      "title": "🔴 異常系: ファイルサイズ超過エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 24,
+          "line_end": 24
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-005-01",
+      "feature_id": "F-005",
+      "title": "🟢 正常系: 下書き保存",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 25,
+          "line_end": 25
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-005-02",
+      "feature_id": "F-005",
+      "title": "🟢 正常系: 下書き再編集",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 26,
+          "line_end": 26
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-006-01",
+      "feature_id": "F-006",
+      "title": "🟢 正常系: 申請提出（課長承認ルート）",
+      "category": "normal",
+      "dependency_group": "direct_threshold",
+      "explanation": "100万円未満かつ50万円以上の入力で課長を期待。T-006-05はlowerとupperの両成功で1点。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 27,
+          "line_end": 27
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-006-02",
+      "feature_id": "F-006",
+      "title": "🟢 正常系: 申請提出（部長承認ルート）",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 27,
+          "line_end": 27
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-006-03",
+      "feature_id": "F-006",
+      "title": "🟡 境界値テスト: 承認ルート境界値（999,999円 → 課長）",
+      "category": "boundary",
+      "dependency_group": "direct_threshold",
+      "explanation": "100万円未満かつ50万円以上の入力で課長を期待。T-006-05はlowerとupperの両成功で1点。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 27,
+          "line_end": 27
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-006-04",
+      "feature_id": "F-006",
+      "title": "🟡 境界値テスト: 承認ルート境界値（1,000,000円 → 部長）",
+      "category": "boundary",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 27,
+          "line_end": 27
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-006-05",
+      "feature_id": "F-006",
+      "title": "🟡 境界値テスト: 承認ルート境界値（999,998円・1,000,001円）",
+      "category": "boundary",
+      "dependency_group": "direct_threshold",
+      "explanation": "100万円未満かつ50万円以上の入力で課長を期待。T-006-05はlowerとupperの両成功で1点。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 28,
+          "line_end": 28
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-006-06",
+      "feature_id": "F-006",
+      "title": "🔴 異常系: 必須項目未入力での提出エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 29,
+          "line_end": 29
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-007-01",
+      "feature_id": "F-007",
+      "title": "🟢 正常系: 申請一覧表示（一般ユーザー）",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 30,
+          "line_end": 30
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-007-02",
+      "feature_id": "F-007",
+      "title": "🟢 正常系: 申請一覧表示（課長）",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 31,
+          "line_end": 31
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-007-03",
+      "feature_id": "F-007",
+      "title": "🟢 正常系: ページネーション",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 32,
+          "line_end": 32
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-008-01",
+      "feature_id": "F-008",
+      "title": "🟢 正常系: キーワード検索",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 33,
+          "line_end": 33
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-008-02",
+      "feature_id": "F-008",
+      "title": "🟢 正常系: ステータスで絞り込み",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 34,
+          "line_end": 34
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-008-03",
+      "feature_id": "F-008",
+      "title": "🔴 異常系: 日付範囲不正エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 35,
+          "line_end": 35
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-008-04",
+      "feature_id": "F-008",
+      "title": "🟢 正常系: 検索結果0件",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 36,
+          "line_end": 36
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-009-01",
+      "feature_id": "F-009",
+      "title": "🟢 正常系: 申請詳細表示（申請者本人）",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 37,
+          "line_end": 37
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-009-02",
+      "feature_id": "F-009",
+      "title": "🔴 異常系: 他ユーザーの申請詳細へのアクセス拒否",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 38,
+          "line_end": 38
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": true,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-010-01",
+      "feature_id": "F-010",
+      "title": "🟢 正常系: 課長による承認",
+      "category": "normal",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請を課長が承認する前提",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 39,
+          "line_end": 39
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-010-02",
+      "feature_id": "F-010",
+      "title": "🟢 正常系: 部長による承認",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 40,
+          "line_end": 40
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-010-03",
+      "feature_id": "F-010",
+      "title": "🔴 異常系: 承認権限のないユーザーによる承認不可",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 41,
+          "line_end": 41
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": true,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-011-01",
+      "feature_id": "F-011",
+      "title": "🟢 正常系: 差し戻し処理",
+      "category": "normal",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請を課長が差し戻す前提",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 42,
+          "line_end": 42
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-011-02",
+      "feature_id": "F-011",
+      "title": "🔴 異常系: 差し戻しコメント未入力エラー",
+      "category": "negative",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請を課長が差し戻せる前提で未入力を検査",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 43,
+          "line_end": 43
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-012-01",
+      "feature_id": "F-012",
+      "title": "🟢 正常系: 承認待ち申請の取り消し",
+      "category": "normal",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請の取消メールを課長宛に期待",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 44,
+          "line_end": 44
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-012-02",
+      "feature_id": "F-012",
+      "title": "🔴 異常系: 承認済み申請の取り消し不可",
+      "category": "negative",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請を課長が承認してから取消禁止を検査",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 45,
+          "line_end": 45
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-013-01",
+      "feature_id": "F-013",
+      "title": "🟢 正常系: 差し戻し申請の再提出",
+      "category": "normal",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請を課長が差し戻し、再提出通知も課長宛に期待",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 47,
+          "line_end": 47
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 46,
+          "line_end": 46
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-013-02",
+      "feature_id": "F-013",
+      "title": "🔴 異常系: 不正なステータス遷移",
+      "category": "negative",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請を課長が承認してから不正遷移を検査",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 48,
+          "line_end": 48
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-014-01",
+      "feature_id": "F-014",
+      "title": "🟢 正常系: 申請提出時の承認者へのメール通知",
+      "category": "normal",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請の承認依頼メールを課長宛に期待",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 49,
+          "line_end": 49
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-014-02",
+      "feature_id": "F-014",
+      "title": "🟢 正常系: 承認完了時の申請者へのメール通知",
+      "category": "normal",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請を課長が承認した後の完了メールを検査",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 50,
+          "line_end": 50
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-015-01",
+      "feature_id": "F-015",
+      "title": "🟢 正常系: 承認履歴の表示",
+      "category": "normal",
+      "dependency_group": "downstream_threshold",
+      "explanation": "50万円申請を課長が差し戻し、再提出・承認する履歴を検査",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 51,
+          "line_end": 51
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 9,
+          "line_end": 10
+        },
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 46,
+          "line_end": 46
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-016-01",
+      "feature_id": "F-016",
+      "title": "🟢 正常系: CSVエクスポート",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 53,
+          "line_end": 53
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-016-02",
+      "feature_id": "F-016",
+      "title": "🟢 正常系: 検索条件を絞り込んだCSVエクスポート",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 54,
+          "line_end": 54
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-016-03",
+      "feature_id": "F-016",
+      "title": "🔴 異常系: 一般ユーザーによるCSVエクスポート権限エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 55,
+          "line_end": 55
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-017-01",
+      "feature_id": "F-017",
+      "title": "🟢 正常系: 一般ユーザーのダッシュボード表示",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 56,
+          "line_end": 56
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-017-02",
+      "feature_id": "F-017",
+      "title": "🟢 正常系: 課長のダッシュボード表示",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 57,
+          "line_end": 57
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-018-01",
+      "feature_id": "F-018",
+      "title": "🟢 正常系: ユーザー情報編集",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 58,
+          "line_end": 58
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-018-02",
+      "feature_id": "F-018",
+      "title": "🔴 異常系: 自分自身の無効化エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 59,
+          "line_end": 59
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-018-03",
+      "feature_id": "F-018",
+      "title": "🔴 異常系: 一般ユーザーによるユーザー管理アクセス拒否",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 60,
+          "line_end": 60
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-019-01",
+      "feature_id": "F-019",
+      "title": "🟢 正常系: パスワード変更成功",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 62,
+          "line_end": 62
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-019-02",
+      "feature_id": "F-019",
+      "title": "🔴 異常系: 現在のパスワード不一致エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 63,
+          "line_end": 63
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-019-03",
+      "feature_id": "F-019",
+      "title": "🔴 異常系: 同一パスワード設定エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 64,
+          "line_end": 64
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-020-01",
+      "feature_id": "F-020",
+      "title": "🟢 正常系: システム設定の変更",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 65,
+          "line_end": 65
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-020-02",
+      "feature_id": "F-020",
+      "title": "🟢 正常系: SMTPテスト送信",
+      "category": "normal",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 66,
+          "line_end": 66
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-020-03",
+      "feature_id": "F-020",
+      "title": "🔴 異常系: セッションタイムアウト範囲外エラー",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 67,
+          "line_end": 67
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    },
+    {
+      "evaluation_id": "T-020-04",
+      "feature_id": "F-020",
+      "title": "🔴 異常系: 一般ユーザーによるシステム設定アクセス拒否",
+      "category": "negative",
+      "dependency_group": "other",
+      "explanation": "今回定義した閾値の直接評価・課長前提の後続経路には分類しない。無影響を証明する分類ではない。",
+      "saved_v6_source_references": [
+        {
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/evaluator-snapshot/tests/application.spec.ts",
+          "sha256": "7f36dbc4c6ebe5993a90a6f073faa7c19d496e06ef7c33789c853101bf3cf5c0",
+          "line_start": 68,
+          "line_end": 68
+        }
+      ],
+      "uses_500000_setup_but_assertion_role_invariant": false,
+      "classification_kind": "事後の機序分析。採点・責任裁定の変更ではない。"
+    }
+  ],
+  "invariants": [
+    "57評価ID・58ケース・等配点を維持",
+    "T-006-05の両ケース成功で1点",
+    "13IDの除外集計は感度分析であり修正採点ではない",
+    "case statusから責任のimplementation分類を作らない"
+  ]
+}

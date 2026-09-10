@@ -1,0 +1,2 @@
+# These four non-model test logs are public verification artifacts.
+!checks/preflight/*.log

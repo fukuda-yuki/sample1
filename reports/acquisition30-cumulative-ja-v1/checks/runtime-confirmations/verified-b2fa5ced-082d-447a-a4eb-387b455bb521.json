@@ -1,0 +1,13 @@
+{
+  "runtime_reference": {
+    "package_id": "report-runtime-2f1cd461-69ca-43a0-9a60-ff4f641a842a",
+    "sha256": "7fce9305c1ca304f34019cd3a8a63325b7fbe5d48e41985240d5d6e316756bca"
+  },
+  "original_restoration": {
+    "path": "receipts/d3d69ba6-cbe7-4518-856e-ee12c1d10718.json",
+    "sha256": "16f7bd6684412f07f4ee4808041bebae50a32c2ca9d0606688e85e8d5a636714"
+  },
+  "file_count": 4372,
+  "archive_and_restored_bytes_reverified": true,
+  "copy_or_mode_reapplication": false
+}

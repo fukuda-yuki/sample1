@@ -1,0 +1,26 @@
+﻿stratum,condition,metric,slot_key,value,lower,upper,definition
+previous,normal,passed_ids,previous/normal-001,31,34.5,46.5,当該バッチ・条件内の1.5 IQR。除外しない。
+previous,normal,passed_ids,previous/normal-002,50,34.5,46.5,当該バッチ・条件内の1.5 IQR。除外しない。
+previous,anti,passed_ids,previous/anti-004,3,8.0,46.0,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,normal,recorded_total_tokens,additional/normal-001,64175188,-3435299.125,18785573.875,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,normal,passed_ids,additional/normal-003,19,23.0,61.0,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,normal,passed_ids,additional/normal-007,17,23.0,61.0,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,normal,passed_ids,additional/normal-008,14,23.0,61.0,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,normal,passed_ids,additional/normal-018,0,23.0,61.0,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,anti,recorded_total_tokens,additional/anti-001,10679074,2331003.375,10519516.375,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,anti,recorded_total_tokens,additional/anti-003,14864139,2331003.375,10519516.375,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,anti,passed_ids,additional/anti-001,3,6.5,54.5,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,anti,passed_ids,additional/anti-010,3,6.5,54.5,当該バッチ・条件内の1.5 IQR。除外しない。
+additional,anti,passed_ids,additional/anti-020,3,6.5,54.5,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,normal,recorded_total_tokens,additional/normal-001,64175188,438482.75,13539938.75,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,normal,recorded_total_tokens,additional/normal-016,15518424,438482.75,13539938.75,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,normal,passed_ids,additional/normal-003,19,25.375,58.375,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,normal,passed_ids,additional/normal-007,17,25.375,58.375,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,normal,passed_ids,additional/normal-008,14,25.375,58.375,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,normal,passed_ids,additional/normal-018,0,25.375,58.375,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,anti,recorded_total_tokens,additional/anti-001,10679074,1836964.25,10673144.25,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,anti,recorded_total_tokens,additional/anti-003,14864139,1836964.25,10673144.25,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,anti,passed_ids,previous/anti-004,3,9.0,49.0,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,anti,passed_ids,additional/anti-001,3,9.0,49.0,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,anti,passed_ids,additional/anti-010,3,9.0,49.0,当該バッチ・条件内の1.5 IQR。除外しない。
+cumulative,anti,passed_ids,additional/anti-020,3,9.0,49.0,当該バッチ・条件内の1.5 IQR。除外しない。

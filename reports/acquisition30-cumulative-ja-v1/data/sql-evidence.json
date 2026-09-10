@@ -1,0 +1,2538 @@
+{
+  "database_sha256": "81d8d8440456bce7535923ebf00afd369897a30f4349bf3524bbf5d7910fddc0",
+  "queries_sha256": "5d29e0fdeab97eae6b3890bf4d527ff6b13be083535da49b9361eb945c147b6c",
+  "database_access": "SQLite read-only immutable URI",
+  "queries": {
+    "C01_condition_statistics": {
+      "sql": "WITH population AS (\n  SELECT batch AS stratum, * FROM runs\n  UNION ALL SELECT 'cumulative' AS stratum, * FROM runs\n)\nSELECT stratum, condition, COUNT(*) AS planned, COUNT(run_id) AS started,\n       COUNT(passed_ids) AS scored, SUM(recorded_total_tokens) AS recorded_tokens,\n       AVG(recorded_total_tokens) AS mean_recorded_tokens,\n       AVG(passed_ids) AS mean_passed_ids, 100.0*AVG(passed_ids)/57 AS mean_pass_rate\nFROM population WHERE model_id='muse-spark-1.2-contributor'\nGROUP BY stratum, condition ORDER BY stratum, condition;",
+      "rows": [
+        {
+          "stratum": "additional",
+          "condition": "anti",
+          "planned": 20,
+          "started": 20,
+          "scored": 19,
+          "recorded_tokens": 138374878,
+          "mean_recorded_tokens": 6918743.9,
+          "mean_passed_ids": 26.842105263157894,
+          "mean_pass_rate": 47.091412742382275
+        },
+        {
+          "stratum": "additional",
+          "condition": "normal",
+          "planned": 20,
+          "started": 20,
+          "scored": 18,
+          "recorded_tokens": 209337241,
+          "mean_recorded_tokens": 10466862.05,
+          "mean_passed_ids": 37.5,
+          "mean_pass_rate": 65.78947368421052
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "anti",
+          "planned": 30,
+          "started": 30,
+          "scored": 29,
+          "recorded_tokens": 201409561,
+          "mean_recorded_tokens": 6713652.033333333,
+          "mean_passed_ids": 26.482758620689655,
+          "mean_pass_rate": 46.46098003629764
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "normal",
+          "planned": 30,
+          "started": 30,
+          "scored": 28,
+          "recorded_tokens": 280624545,
+          "mean_recorded_tokens": 9354151.5,
+          "mean_passed_ids": 38.464285714285715,
+          "mean_pass_rate": 67.4812030075188
+        },
+        {
+          "stratum": "previous",
+          "condition": "anti",
+          "planned": 10,
+          "started": 10,
+          "scored": 10,
+          "recorded_tokens": 63034683,
+          "mean_recorded_tokens": 6303468.3,
+          "mean_passed_ids": 25.8,
+          "mean_pass_rate": 45.26315789473684
+        },
+        {
+          "stratum": "previous",
+          "condition": "normal",
+          "planned": 10,
+          "started": 10,
+          "scored": 10,
+          "recorded_tokens": 71287304,
+          "mean_recorded_tokens": 7128730.4,
+          "mean_passed_ids": 40.2,
+          "mean_pass_rate": 70.5263157894737
+        }
+      ]
+    },
+    "C02_population_and_validity": {
+      "sql": "SELECT batch, condition, model_id, evaluation_validity, COUNT(*) AS planned,\n       COUNT(run_id) AS started, COUNT(passed_ids) AS scored,\n       SUM(json_extract(row_json,'$.effective_quality') IS NOT NULL) AS effective_quality_available,\n       SUM(json_extract(row_json,'$.source_usage_complete')=0) AS usage_incomplete\nFROM runs GROUP BY batch, condition, model_id, evaluation_validity\nORDER BY batch, condition, model_id, evaluation_validity;",
+      "rows": [
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "model_id": "muse-spark-1.2-contributor",
+          "evaluation_validity": "pending",
+          "planned": 20,
+          "started": 20,
+          "scored": 19,
+          "effective_quality_available": 0,
+          "usage_incomplete": 5
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "model_id": "muse-spark-1.2-contributor",
+          "evaluation_validity": "pending",
+          "planned": 20,
+          "started": 20,
+          "scored": 18,
+          "effective_quality_available": 0,
+          "usage_incomplete": 7
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "model_id": "muse-spark-1.2-contributor",
+          "evaluation_validity": "invalid",
+          "planned": 1,
+          "started": 1,
+          "scored": 1,
+          "effective_quality_available": 0,
+          "usage_incomplete": 0
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "model_id": "muse-spark-1.2-contributor",
+          "evaluation_validity": "pending",
+          "planned": 9,
+          "started": 9,
+          "scored": 9,
+          "effective_quality_available": 0,
+          "usage_incomplete": 1
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "model_id": "muse-spark-1.2-contributor",
+          "evaluation_validity": "pending",
+          "planned": 10,
+          "started": 10,
+          "scored": 10,
+          "effective_quality_available": 0,
+          "usage_incomplete": 5
+        }
+      ]
+    },
+    "C03_dependency_groups": {
+      "sql": "WITH population AS (\n SELECT r.batch AS stratum, r.condition, i.* FROM id_results i JOIN runs r USING(run_id)\n WHERE r.model_id='muse-spark-1.2-contributor'\n UNION ALL\n SELECT 'cumulative', r.condition, i.* FROM id_results i JOIN runs r USING(run_id)\n WHERE r.model_id='muse-spark-1.2-contributor'\n)\nSELECT stratum, condition, dependency_group, COUNT(DISTINCT run_id) AS runs,\n       COUNT(*) AS ids, SUM(passed) AS passed_ids,\n       1.0*SUM(passed)/COUNT(DISTINCT run_id) AS mean_passed_ids\nFROM population WHERE passed IS NOT NULL GROUP BY stratum, condition, dependency_group\nORDER BY stratum, dependency_group, condition;",
+      "rows": [
+        {
+          "stratum": "additional",
+          "condition": "anti",
+          "dependency_group": "direct_threshold",
+          "runs": 19,
+          "ids": 57,
+          "passed_ids": 0,
+          "mean_passed_ids": 0.0
+        },
+        {
+          "stratum": "additional",
+          "condition": "normal",
+          "dependency_group": "direct_threshold",
+          "runs": 18,
+          "ids": 54,
+          "passed_ids": 42,
+          "mean_passed_ids": 2.3333333333333335
+        },
+        {
+          "stratum": "additional",
+          "condition": "anti",
+          "dependency_group": "downstream_threshold",
+          "runs": 19,
+          "ids": 190,
+          "passed_ids": 0,
+          "mean_passed_ids": 0.0
+        },
+        {
+          "stratum": "additional",
+          "condition": "normal",
+          "dependency_group": "downstream_threshold",
+          "runs": 18,
+          "ids": 180,
+          "passed_ids": 95,
+          "mean_passed_ids": 5.277777777777778
+        },
+        {
+          "stratum": "additional",
+          "condition": "anti",
+          "dependency_group": "other",
+          "runs": 19,
+          "ids": 836,
+          "passed_ids": 510,
+          "mean_passed_ids": 26.842105263157894
+        },
+        {
+          "stratum": "additional",
+          "condition": "normal",
+          "dependency_group": "other",
+          "runs": 18,
+          "ids": 792,
+          "passed_ids": 538,
+          "mean_passed_ids": 29.88888888888889
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "anti",
+          "dependency_group": "direct_threshold",
+          "runs": 29,
+          "ids": 87,
+          "passed_ids": 0,
+          "mean_passed_ids": 0.0
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "normal",
+          "dependency_group": "direct_threshold",
+          "runs": 28,
+          "ids": 84,
+          "passed_ids": 72,
+          "mean_passed_ids": 2.5714285714285716
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "anti",
+          "dependency_group": "downstream_threshold",
+          "runs": 29,
+          "ids": 290,
+          "passed_ids": 1,
+          "mean_passed_ids": 0.034482758620689655
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "normal",
+          "dependency_group": "downstream_threshold",
+          "runs": 28,
+          "ids": 280,
+          "passed_ids": 156,
+          "mean_passed_ids": 5.571428571428571
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "anti",
+          "dependency_group": "other",
+          "runs": 29,
+          "ids": 1276,
+          "passed_ids": 767,
+          "mean_passed_ids": 26.448275862068964
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "normal",
+          "dependency_group": "other",
+          "runs": 28,
+          "ids": 1232,
+          "passed_ids": 849,
+          "mean_passed_ids": 30.321428571428573
+        },
+        {
+          "stratum": "previous",
+          "condition": "anti",
+          "dependency_group": "direct_threshold",
+          "runs": 10,
+          "ids": 30,
+          "passed_ids": 0,
+          "mean_passed_ids": 0.0
+        },
+        {
+          "stratum": "previous",
+          "condition": "normal",
+          "dependency_group": "direct_threshold",
+          "runs": 10,
+          "ids": 30,
+          "passed_ids": 30,
+          "mean_passed_ids": 3.0
+        },
+        {
+          "stratum": "previous",
+          "condition": "anti",
+          "dependency_group": "downstream_threshold",
+          "runs": 10,
+          "ids": 100,
+          "passed_ids": 1,
+          "mean_passed_ids": 0.1
+        },
+        {
+          "stratum": "previous",
+          "condition": "normal",
+          "dependency_group": "downstream_threshold",
+          "runs": 10,
+          "ids": 100,
+          "passed_ids": 61,
+          "mean_passed_ids": 6.1
+        },
+        {
+          "stratum": "previous",
+          "condition": "anti",
+          "dependency_group": "other",
+          "runs": 10,
+          "ids": 440,
+          "passed_ids": 257,
+          "mean_passed_ids": 25.7
+        },
+        {
+          "stratum": "previous",
+          "condition": "normal",
+          "dependency_group": "other",
+          "runs": 10,
+          "ids": 440,
+          "passed_ids": 311,
+          "mean_passed_ids": 31.1
+        }
+      ]
+    },
+    "C04_recorded_and_static_thresholds": {
+      "sql": "SELECT batch, condition,\n       json_extract(row_json,'$.static_threshold_yen') AS static_threshold_yen,\n       json_extract(row_json,'$.recorded_threshold_yen') AS recorded_threshold_yen,\n       json_extract(row_json,'$.explicit_conflict_recorded') AS explicit_conflict_recorded,\n       json_extract(row_json,'$.saved_500k_pattern_matches') AS saved_500k_pattern_matches,\n       COUNT(*) AS runs\nFROM runs WHERE model_id='muse-spark-1.2-contributor'\nGROUP BY batch, condition, static_threshold_yen, recorded_threshold_yen,\n         explicit_conflict_recorded, saved_500k_pattern_matches\nORDER BY batch, condition, static_threshold_yen;",
+      "rows": [
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "static_threshold_yen": 500000,
+          "recorded_threshold_yen": 500000,
+          "explicit_conflict_recorded": 1,
+          "saved_500k_pattern_matches": null,
+          "runs": 1
+        },
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "static_threshold_yen": 500000,
+          "recorded_threshold_yen": 500000,
+          "explicit_conflict_recorded": 1,
+          "saved_500k_pattern_matches": 0,
+          "runs": 5
+        },
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "static_threshold_yen": 500000,
+          "recorded_threshold_yen": 500000,
+          "explicit_conflict_recorded": 1,
+          "saved_500k_pattern_matches": 1,
+          "runs": 14
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "static_threshold_yen": 1000000,
+          "recorded_threshold_yen": null,
+          "explicit_conflict_recorded": 0,
+          "saved_500k_pattern_matches": 0,
+          "runs": 5
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "static_threshold_yen": 1000000,
+          "recorded_threshold_yen": 1000000,
+          "explicit_conflict_recorded": 0,
+          "saved_500k_pattern_matches": null,
+          "runs": 2
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "static_threshold_yen": 1000000,
+          "recorded_threshold_yen": 1000000,
+          "explicit_conflict_recorded": 0,
+          "saved_500k_pattern_matches": 0,
+          "runs": 13
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "static_threshold_yen": 500000,
+          "recorded_threshold_yen": 500000,
+          "explicit_conflict_recorded": 1,
+          "saved_500k_pattern_matches": 0,
+          "runs": 3
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "static_threshold_yen": 500000,
+          "recorded_threshold_yen": 500000,
+          "explicit_conflict_recorded": 1,
+          "saved_500k_pattern_matches": 1,
+          "runs": 7
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "static_threshold_yen": 1000000,
+          "recorded_threshold_yen": 1000000,
+          "explicit_conflict_recorded": 0,
+          "saved_500k_pattern_matches": 0,
+          "runs": 10
+        }
+      ]
+    },
+    "C05_reachability": {
+      "sql": "SELECT batch, condition, COUNT(passed_ids) AS scored_runs,\n       SUM(json_extract(row_json,'$.business_assertion_reached')) AS reached_cases,\n       SUM(json_extract(row_json,'$.prerequisite_blocked')) AS prerequisite_blocked_cases,\n       SUM(json_extract(row_json,'$.evaluation_unresolved')) AS unresolved_cases,\n       SUM(json_extract(row_json,'$.reachability_unknown')) AS unknown_cases\nFROM runs WHERE model_id='muse-spark-1.2-contributor'\nGROUP BY batch, condition ORDER BY batch, condition;",
+      "rows": [
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "scored_runs": 19,
+          "reached_cases": 688,
+          "prerequisite_blocked_cases": 248,
+          "unresolved_cases": 258,
+          "unknown_cases": 58
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "scored_runs": 18,
+          "reached_cases": 806,
+          "prerequisite_blocked_cases": 138,
+          "unresolved_cases": 240,
+          "unknown_cases": 116
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "scored_runs": 10,
+          "reached_cases": 352,
+          "prerequisite_blocked_cases": 127,
+          "unresolved_cases": 178,
+          "unknown_cases": 0
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "scored_runs": 10,
+          "reached_cases": 486,
+          "prerequisite_blocked_cases": 50,
+          "unresolved_cases": 96,
+          "unknown_cases": 0
+        }
+      ]
+    },
+    "C06_responses_and_tokens": {
+      "sql": "SELECT batch, condition, COUNT(recorded_total_tokens) AS token_runs,\n       SUM(json_extract(row_json,'$.http_200')) AS successful_http_responses,\n       SUM(recorded_total_tokens) AS recorded_tokens,\n       1.0*SUM(recorded_total_tokens)/NULLIF(SUM(json_extract(row_json,'$.http_200')),0) AS tokens_per_successful_response,\n       SUM(json_extract(row_json,'$.http_400')) AS http_400,\n       SUM(json_extract(row_json,'$.http_429')) AS http_429,\n       SUM(json_extract(row_json,'$.http_503')) AS http_503\nFROM runs WHERE model_id='muse-spark-1.2-contributor'\nGROUP BY batch, condition ORDER BY batch, condition;",
+      "rows": [
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "token_runs": 20,
+          "successful_http_responses": 2451,
+          "recorded_tokens": 138374878,
+          "tokens_per_successful_response": 56456.49857201143,
+          "http_400": 38,
+          "http_429": 0,
+          "http_503": 0
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "token_runs": 20,
+          "successful_http_responses": 3011,
+          "recorded_tokens": 209337241,
+          "tokens_per_successful_response": 69524.15841912986,
+          "http_400": 280,
+          "http_429": 0,
+          "http_503": 0
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "token_runs": 10,
+          "successful_http_responses": 1154,
+          "recorded_tokens": 63034683,
+          "tokens_per_successful_response": 54622.775563258234,
+          "http_400": 4,
+          "http_429": 0,
+          "http_503": 0
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "token_runs": 10,
+          "successful_http_responses": 1270,
+          "recorded_tokens": 71287304,
+          "tokens_per_successful_response": 56131.73543307087,
+          "http_400": 25,
+          "http_429": 0,
+          "http_503": 0
+        }
+      ]
+    },
+    "C07_termination": {
+      "sql": "SELECT batch, condition, json_extract(row_json,'$.raw_end_reason') AS end_reason,\n         json_extract(row_json,'$.stop_trigger') AS stop_trigger,\n         json_extract(row_json,'$.stop_method') AS stop_method,\n       json_extract(row_json,'$.exit_code') AS cli_exit_code,\n       json_extract(row_json,'$.completion_declaration_captured') AS declaration,\n       COUNT(*) AS runs, AVG(recorded_total_tokens) AS mean_tokens,\n       AVG(passed_ids) AS mean_passed_ids\nFROM runs GROUP BY batch, condition, end_reason, stop_trigger, stop_method, cli_exit_code, declaration\nORDER BY batch, condition, end_reason;",
+      "rows": [
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "end_reason": "agent_completed",
+          "stop_trigger": null,
+          "stop_method": null,
+          "cli_exit_code": 0,
+          "declaration": 0,
+          "runs": 12,
+          "mean_tokens": 5876698.833333333,
+          "mean_passed_ids": 30.25
+        },
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "end_reason": "agent_completed",
+          "stop_trigger": "copilot_completion_declaration",
+          "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+          "cli_exit_code": 0,
+          "declaration": 1,
+          "runs": 4,
+          "mean_tokens": 8271007.5,
+          "mean_passed_ids": 29.25
+        },
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "end_reason": "agent_completed",
+          "stop_trigger": "copilot_completion_declaration",
+          "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+          "cli_exit_code": 137,
+          "declaration": 1,
+          "runs": 4,
+          "mean_tokens": 8692615.5,
+          "mean_passed_ids": 10.0
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "end_reason": "agent_completed",
+          "stop_trigger": null,
+          "stop_method": null,
+          "cli_exit_code": 0,
+          "declaration": 0,
+          "runs": 12,
+          "mean_tokens": 12786682.083333334,
+          "mean_passed_ids": 34.5
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "end_reason": "agent_completed",
+          "stop_trigger": "copilot_completion_declaration",
+          "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+          "cli_exit_code": 0,
+          "declaration": 1,
+          "runs": 4,
+          "mean_tokens": 6452088.5,
+          "mean_passed_ids": 40.5
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "end_reason": "agent_completed",
+          "stop_trigger": "copilot_completion_declaration",
+          "stop_method": "owned_worker_kill_after_copilot_completion_declaration",
+          "cli_exit_code": 137,
+          "declaration": 1,
+          "runs": 4,
+          "mean_tokens": 7522175.5,
+          "mean_passed_ids": 42.0
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "end_reason": "agent_completed",
+          "stop_trigger": null,
+          "stop_method": null,
+          "cli_exit_code": 0,
+          "declaration": 0,
+          "runs": 4,
+          "mean_tokens": 6369914.25,
+          "mean_passed_ids": 24.0
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "end_reason": "agent_completed",
+          "stop_trigger": "copilot_completion_declaration",
+          "stop_method": null,
+          "cli_exit_code": 0,
+          "declaration": 1,
+          "runs": 1,
+          "mean_tokens": 3965456.0,
+          "mean_passed_ids": 31.0
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "end_reason": "agent_completed",
+          "stop_trigger": "copilot_completion_declaration",
+          "stop_method": null,
+          "cli_exit_code": 137,
+          "declaration": 1,
+          "runs": 4,
+          "mean_tokens": 6605223.0,
+          "mean_passed_ids": 24.75
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "end_reason": "agent_error",
+          "stop_trigger": null,
+          "stop_method": null,
+          "cli_exit_code": 137,
+          "declaration": 1,
+          "runs": 1,
+          "mean_tokens": 7168678.0,
+          "mean_passed_ids": 32.0
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "end_reason": "agent_completed",
+          "stop_trigger": null,
+          "stop_method": null,
+          "cli_exit_code": 0,
+          "declaration": 0,
+          "runs": 6,
+          "mean_tokens": 7048760.166666667,
+          "mean_passed_ids": 40.166666666666664
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "end_reason": "agent_completed",
+          "stop_trigger": "copilot_completion_declaration",
+          "stop_method": null,
+          "cli_exit_code": 0,
+          "declaration": 1,
+          "runs": 1,
+          "mean_tokens": 9080470.0,
+          "mean_passed_ids": 37.0
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "end_reason": "agent_completed",
+          "stop_trigger": "copilot_completion_declaration",
+          "stop_method": null,
+          "cli_exit_code": 137,
+          "declaration": 1,
+          "runs": 3,
+          "mean_tokens": 6638091.0,
+          "mean_passed_ids": 41.333333333333336
+        }
+      ]
+    },
+    "C08_pairs": {
+      "sql": "SELECT n.batch, json_extract(n.row_json,'$.pair_id') AS pair_id,\n       n.slot_key AS normal_slot, a.slot_key AS anti_slot,\n       a.recorded_total_tokens-n.recorded_total_tokens AS token_difference,\n       a.passed_ids-n.passed_ids AS passed_difference,\n       100.0*(a.passed_ids-n.passed_ids)/57 AS pass_rate_difference_pp\nFROM runs n JOIN runs a ON n.batch=a.batch\n AND json_extract(n.row_json,'$.pair_id')=json_extract(a.row_json,'$.pair_id')\n AND n.condition='normal' AND a.condition='anti'\nWHERE n.model_id='muse-spark-1.2-contributor' AND a.model_id='muse-spark-1.2-contributor'\nORDER BY n.batch, pair_id;",
+      "rows": [
+        {
+          "batch": "additional",
+          "pair_id": 1,
+          "normal_slot": "additional/normal-001",
+          "anti_slot": "additional/anti-001",
+          "token_difference": -53496114,
+          "passed_difference": null,
+          "pass_rate_difference_pp": null
+        },
+        {
+          "batch": "additional",
+          "pair_id": 2,
+          "normal_slot": "additional/normal-002",
+          "anti_slot": "additional/anti-002",
+          "token_difference": 160833,
+          "passed_difference": -12,
+          "pass_rate_difference_pp": -21.05263157894737
+        },
+        {
+          "batch": "additional",
+          "pair_id": 3,
+          "normal_slot": "additional/normal-003",
+          "anti_slot": "additional/anti-003",
+          "token_difference": 10833948,
+          "passed_difference": 18,
+          "pass_rate_difference_pp": 31.57894736842105
+        },
+        {
+          "batch": "additional",
+          "pair_id": 4,
+          "normal_slot": "additional/normal-004",
+          "anti_slot": "additional/anti-004",
+          "token_difference": -6448314,
+          "passed_difference": -16,
+          "pass_rate_difference_pp": -28.07017543859649
+        },
+        {
+          "batch": "additional",
+          "pair_id": 5,
+          "normal_slot": "additional/normal-005",
+          "anti_slot": "additional/anti-005",
+          "token_difference": 2698148,
+          "passed_difference": -10,
+          "pass_rate_difference_pp": -17.54385964912281
+        },
+        {
+          "batch": "additional",
+          "pair_id": 6,
+          "normal_slot": "additional/normal-006",
+          "anti_slot": "additional/anti-006",
+          "token_difference": 4591518,
+          "passed_difference": null,
+          "pass_rate_difference_pp": null
+        },
+        {
+          "batch": "additional",
+          "pair_id": 7,
+          "normal_slot": "additional/normal-007",
+          "anti_slot": "additional/anti-007",
+          "token_difference": 1666709,
+          "passed_difference": 8,
+          "pass_rate_difference_pp": 14.035087719298245
+        },
+        {
+          "batch": "additional",
+          "pair_id": 8,
+          "normal_slot": "additional/normal-008",
+          "anti_slot": "additional/anti-008",
+          "token_difference": -2944184,
+          "passed_difference": 0,
+          "pass_rate_difference_pp": 0.0
+        },
+        {
+          "batch": "additional",
+          "pair_id": 9,
+          "normal_slot": "additional/normal-009",
+          "anti_slot": "additional/anti-009",
+          "token_difference": 3833036,
+          "passed_difference": 1,
+          "pass_rate_difference_pp": 1.7543859649122806
+        },
+        {
+          "batch": "additional",
+          "pair_id": 10,
+          "normal_slot": "additional/normal-010",
+          "anti_slot": "additional/anti-010",
+          "token_difference": 4099244,
+          "passed_difference": -44,
+          "pass_rate_difference_pp": -77.19298245614036
+        },
+        {
+          "batch": "additional",
+          "pair_id": 11,
+          "normal_slot": "additional/normal-011",
+          "anti_slot": "additional/anti-011",
+          "token_difference": -1243069,
+          "passed_difference": -17,
+          "pass_rate_difference_pp": -29.82456140350877
+        },
+        {
+          "batch": "additional",
+          "pair_id": 12,
+          "normal_slot": "additional/normal-012",
+          "anti_slot": "additional/anti-012",
+          "token_difference": -1472658,
+          "passed_difference": -6,
+          "pass_rate_difference_pp": -10.526315789473685
+        },
+        {
+          "batch": "additional",
+          "pair_id": 13,
+          "normal_slot": "additional/normal-013",
+          "anti_slot": "additional/anti-013",
+          "token_difference": -819278,
+          "passed_difference": -6,
+          "pass_rate_difference_pp": -10.526315789473685
+        },
+        {
+          "batch": "additional",
+          "pair_id": 14,
+          "normal_slot": "additional/normal-014",
+          "anti_slot": "additional/anti-014",
+          "token_difference": -4402097,
+          "passed_difference": -1,
+          "pass_rate_difference_pp": -1.7543859649122806
+        },
+        {
+          "batch": "additional",
+          "pair_id": 15,
+          "normal_slot": "additional/normal-015",
+          "anti_slot": "additional/anti-015",
+          "token_difference": -2526887,
+          "passed_difference": -21,
+          "pass_rate_difference_pp": -36.8421052631579
+        },
+        {
+          "batch": "additional",
+          "pair_id": 16,
+          "normal_slot": "additional/normal-016",
+          "anti_slot": "additional/anti-016",
+          "token_difference": -9980616,
+          "passed_difference": null,
+          "pass_rate_difference_pp": null
+        },
+        {
+          "batch": "additional",
+          "pair_id": 17,
+          "normal_slot": "additional/normal-017",
+          "anti_slot": "additional/anti-017",
+          "token_difference": -7499498,
+          "passed_difference": -27,
+          "pass_rate_difference_pp": -47.36842105263158
+        },
+        {
+          "batch": "additional",
+          "pair_id": 18,
+          "normal_slot": "additional/normal-018",
+          "anti_slot": "additional/anti-018",
+          "token_difference": -537968,
+          "passed_difference": 29,
+          "pass_rate_difference_pp": 50.87719298245614
+        },
+        {
+          "batch": "additional",
+          "pair_id": 19,
+          "normal_slot": "additional/normal-019",
+          "anti_slot": "additional/anti-019",
+          "token_difference": -5370799,
+          "passed_difference": -10,
+          "pass_rate_difference_pp": -17.54385964912281
+        },
+        {
+          "batch": "additional",
+          "pair_id": 20,
+          "normal_slot": "additional/normal-020",
+          "anti_slot": "additional/anti-020",
+          "token_difference": -2104317,
+          "passed_difference": -47,
+          "pass_rate_difference_pp": -82.45614035087719
+        },
+        {
+          "batch": "previous",
+          "pair_id": 1,
+          "normal_slot": "previous/normal-001",
+          "anti_slot": "previous/anti-001",
+          "token_difference": -623255,
+          "passed_difference": 1,
+          "pass_rate_difference_pp": 1.7543859649122806
+        },
+        {
+          "batch": "previous",
+          "pair_id": 2,
+          "normal_slot": "previous/normal-002",
+          "anti_slot": "previous/anti-002",
+          "token_difference": 3042902,
+          "passed_difference": -17,
+          "pass_rate_difference_pp": -29.82456140350877
+        },
+        {
+          "batch": "previous",
+          "pair_id": 3,
+          "normal_slot": "previous/normal-003",
+          "anti_slot": "previous/anti-003",
+          "token_difference": 1483690,
+          "passed_difference": -13,
+          "pass_rate_difference_pp": -22.80701754385965
+        },
+        {
+          "batch": "previous",
+          "pair_id": 4,
+          "normal_slot": "previous/normal-004",
+          "anti_slot": "previous/anti-004",
+          "token_difference": -2073587,
+          "passed_difference": -39,
+          "pass_rate_difference_pp": -68.42105263157895
+        },
+        {
+          "batch": "previous",
+          "pair_id": 5,
+          "normal_slot": "previous/normal-005",
+          "anti_slot": "previous/anti-005",
+          "token_difference": -1931057,
+          "passed_difference": -21,
+          "pass_rate_difference_pp": -36.8421052631579
+        },
+        {
+          "batch": "previous",
+          "pair_id": 6,
+          "normal_slot": "previous/normal-006",
+          "anti_slot": "previous/anti-006",
+          "token_difference": -2880038,
+          "passed_difference": -11,
+          "pass_rate_difference_pp": -19.29824561403509
+        },
+        {
+          "batch": "previous",
+          "pair_id": 7,
+          "normal_slot": "previous/normal-007",
+          "anti_slot": "previous/anti-007",
+          "token_difference": -570426,
+          "passed_difference": -9,
+          "pass_rate_difference_pp": -15.789473684210526
+        },
+        {
+          "batch": "previous",
+          "pair_id": 8,
+          "normal_slot": "previous/normal-008",
+          "anti_slot": "previous/anti-008",
+          "token_difference": -2200494,
+          "passed_difference": -9,
+          "pass_rate_difference_pp": -15.789473684210526
+        },
+        {
+          "batch": "previous",
+          "pair_id": 9,
+          "normal_slot": "previous/normal-009",
+          "anti_slot": "previous/anti-009",
+          "token_difference": -1159181,
+          "passed_difference": 0,
+          "pass_rate_difference_pp": 0.0
+        },
+        {
+          "batch": "previous",
+          "pair_id": 10,
+          "normal_slot": "previous/normal-010",
+          "anti_slot": "previous/anti-010",
+          "token_difference": -1341175,
+          "passed_difference": -26,
+          "pass_rate_difference_pp": -45.6140350877193
+        }
+      ]
+    },
+    "C09_extremes_and_efficiency": {
+      "sql": "SELECT slot_key, condition, batch, recorded_total_tokens, passed_ids,\n       1.0*recorded_total_tokens/NULLIF(passed_ids,0) AS tokens_per_passed_id,\n       json_extract(row_json,'$.elapsed_seconds') AS elapsed_seconds,\n       json_extract(row_json,'$.raw_end_reason') AS end_reason\nFROM runs WHERE model_id='muse-spark-1.2-contributor'\nORDER BY recorded_total_tokens DESC, slot_key;",
+      "rows": [
+        {
+          "slot_key": "additional/normal-001",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 64175188,
+          "passed_ids": null,
+          "tokens_per_passed_id": null,
+          "elapsed_seconds": 3026.428787582,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-016",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 15518424,
+          "passed_ids": null,
+          "tokens_per_passed_id": null,
+          "elapsed_seconds": 3340.3755708709996,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-003",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 14864139,
+          "passed_ids": 37,
+          "tokens_per_passed_id": 401733.4864864865,
+          "elapsed_seconds": 1500.859435399,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-017",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 13272983,
+          "passed_ids": 51,
+          "tokens_per_passed_id": 260254.568627451,
+          "elapsed_seconds": 963.4255353439994,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-019",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 11217678,
+          "passed_ids": 46,
+          "tokens_per_passed_id": 243862.5652173913,
+          "elapsed_seconds": 959.6846324829994,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-014",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 11119210,
+          "passed_ids": 38,
+          "tokens_per_passed_id": 292610.7894736842,
+          "elapsed_seconds": 1605.2721194879996,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-001",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 10679074,
+          "passed_ids": 3,
+          "tokens_per_passed_id": 3559691.3333333335,
+          "elapsed_seconds": 865.826889192,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-004",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 10230592,
+          "passed_ids": 46,
+          "tokens_per_passed_id": 222404.1739130435,
+          "elapsed_seconds": 984.750398121,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-006",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 9566667,
+          "passed_ids": null,
+          "tokens_per_passed_id": null,
+          "elapsed_seconds": 1513.8398115610003,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-003",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 9125827,
+          "passed_ids": 29,
+          "tokens_per_passed_id": 314683.6896551724,
+          "elapsed_seconds": 705.007227821,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-006",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 9080470,
+          "passed_ids": 37,
+          "tokens_per_passed_id": 245418.1081081081,
+          "elapsed_seconds": 894.1695410779994,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-002",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 8981662,
+          "passed_ids": 33,
+          "tokens_per_passed_id": 272171.57575757575,
+          "elapsed_seconds": 769.2288236669999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-012",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 8838558,
+          "passed_ids": 40,
+          "tokens_per_passed_id": 220963.95,
+          "elapsed_seconds": 953.5525990059996,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-010",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 8751236,
+          "passed_ids": 3,
+          "tokens_per_passed_id": 2917078.6666666665,
+          "elapsed_seconds": 1102.721628065,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-010",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 7991897,
+          "passed_ids": 39,
+          "tokens_per_passed_id": 204920.4358974359,
+          "elapsed_seconds": 838.7355598150025,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-008",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 7937543,
+          "passed_ids": 14,
+          "tokens_per_passed_id": 566967.3571428572,
+          "elapsed_seconds": 836.4944422829999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-018",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 7878575,
+          "passed_ids": 0,
+          "tokens_per_passed_id": null,
+          "elapsed_seconds": 726.9645889079993,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-001",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 7791933,
+          "passed_ids": 31,
+          "tokens_per_passed_id": 251352.67741935485,
+          "elapsed_seconds": 672.9076047140001,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-009",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 7697596,
+          "passed_ids": 38,
+          "tokens_per_passed_id": 202568.31578947368,
+          "elapsed_seconds": 773.2177219099999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-003",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 7642137,
+          "passed_ids": 42,
+          "tokens_per_passed_id": 181955.64285714287,
+          "elapsed_seconds": 622.5546170000002,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-012",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 7365900,
+          "passed_ids": 34,
+          "tokens_per_passed_id": 216644.11764705883,
+          "elapsed_seconds": 710.4814085999997,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-018",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 7340607,
+          "passed_ids": 29,
+          "tokens_per_passed_id": 253124.37931034484,
+          "elapsed_seconds": 604.5483914639999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-015",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 7333748,
+          "passed_ids": 47,
+          "tokens_per_passed_id": 156037.1914893617,
+          "elapsed_seconds": 752.8965338790003,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-005",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 7257799,
+          "passed_ids": 42,
+          "tokens_per_passed_id": 172804.7380952381,
+          "elapsed_seconds": 731.0838700370005,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-009",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 7238639,
+          "passed_ids": 39,
+          "tokens_per_passed_id": 185606.12820512822,
+          "elapsed_seconds": 825.1715630969993,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-001",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 7168678,
+          "passed_ids": 32,
+          "tokens_per_passed_id": 224021.1875,
+          "elapsed_seconds": 1102.122734233,
+          "end_reason": "agent_error"
+        },
+        {
+          "slot_key": "previous/normal-004",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 7165382,
+          "passed_ids": 42,
+          "tokens_per_passed_id": 170604.33333333334,
+          "elapsed_seconds": 653.6502480969993,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-020",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 7088804,
+          "passed_ids": 50,
+          "tokens_per_passed_id": 141776.08,
+          "elapsed_seconds": 688.2149668069997,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-011",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 6895579,
+          "passed_ids": 50,
+          "tokens_per_passed_id": 137911.58,
+          "elapsed_seconds": 707.4263357259997,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-005",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 6847170,
+          "passed_ids": 28,
+          "tokens_per_passed_id": 244541.7857142857,
+          "elapsed_seconds": 683.024100547,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-014",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 6717113,
+          "passed_ids": 37,
+          "tokens_per_passed_id": 181543.5945945946,
+          "elapsed_seconds": 768.5682422890004,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-010",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 6650722,
+          "passed_ids": 13,
+          "tokens_per_passed_id": 511594.0,
+          "elapsed_seconds": 732.5660913129977,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-002",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 6499827,
+          "passed_ids": 33,
+          "tokens_per_passed_id": 196964.45454545456,
+          "elapsed_seconds": 729.9921799609999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-002",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 6338994,
+          "passed_ids": 45,
+          "tokens_per_passed_id": 140866.53333333333,
+          "elapsed_seconds": 705.188568626,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-007",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 6331375,
+          "passed_ids": 25,
+          "tokens_per_passed_id": 253255.0,
+          "elapsed_seconds": 789.9520182749998,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-006",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 6200432,
+          "passed_ids": 26,
+          "tokens_per_passed_id": 238478.15384615384,
+          "elapsed_seconds": 682.7255318309999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-008",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 6165950,
+          "passed_ids": 40,
+          "tokens_per_passed_id": 154148.75,
+          "elapsed_seconds": 644.4595332289973,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-009",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 6079458,
+          "passed_ids": 39,
+          "tokens_per_passed_id": 155883.53846153847,
+          "elapsed_seconds": 751.7365665949983,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-002",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 5938760,
+          "passed_ids": 50,
+          "tokens_per_passed_id": 118775.2,
+          "elapsed_seconds": 645.8316490139999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-019",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 5846879,
+          "passed_ids": 36,
+          "tokens_per_passed_id": 162413.30555555556,
+          "elapsed_seconds": 801.1632917819998,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-017",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 5773485,
+          "passed_ids": 24,
+          "tokens_per_passed_id": 240561.875,
+          "elapsed_seconds": 645.8996580180001,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-011",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 5652510,
+          "passed_ids": 33,
+          "tokens_per_passed_id": 171288.18181818182,
+          "elapsed_seconds": 656.2392921910005,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-016",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 5537808,
+          "passed_ids": 39,
+          "tokens_per_passed_id": 141995.07692307694,
+          "elapsed_seconds": 651.486668128,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-005",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 5326742,
+          "passed_ids": 21,
+          "tokens_per_passed_id": 253654.38095238095,
+          "elapsed_seconds": 656.4344648040005,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-013",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 5155785,
+          "passed_ids": 44,
+          "tokens_per_passed_id": 117176.93181818182,
+          "elapsed_seconds": 715.3195311970003,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-004",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 5091795,
+          "passed_ids": 3,
+          "tokens_per_passed_id": 1697265.0,
+          "elapsed_seconds": 722.8375337469997,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/normal-007",
+          "condition": "normal",
+          "batch": "previous",
+          "recorded_total_tokens": 5014337,
+          "passed_ids": 40,
+          "tokens_per_passed_id": 125358.425,
+          "elapsed_seconds": 648.0386382529996,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-008",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 4993359,
+          "passed_ids": 14,
+          "tokens_per_passed_id": 356668.5,
+          "elapsed_seconds": 627.0852492200002,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-020",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 4984487,
+          "passed_ids": 3,
+          "tokens_per_passed_id": 1661495.6666666667,
+          "elapsed_seconds": 576.054134553,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-006",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 4975149,
+          "passed_ids": 46,
+          "tokens_per_passed_id": 108155.41304347826,
+          "elapsed_seconds": 603.8925859059998,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-015",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 4806861,
+          "passed_ids": 26,
+          "tokens_per_passed_id": 184879.26923076922,
+          "elapsed_seconds": 693.9527767220006,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-007",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 4664666,
+          "passed_ids": 17,
+          "tokens_per_passed_id": 274392.1176470588,
+          "elapsed_seconds": 610.8273929269999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-010",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 4651992,
+          "passed_ids": 47,
+          "tokens_per_passed_id": 98978.55319148937,
+          "elapsed_seconds": 550.5846395369999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-007",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 4443911,
+          "passed_ids": 31,
+          "tokens_per_passed_id": 143351.96774193548,
+          "elapsed_seconds": 638.7119814959988,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-013",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 4336507,
+          "passed_ids": 38,
+          "tokens_per_passed_id": 114118.6052631579,
+          "elapsed_seconds": 490.04248809899946,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-005",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 4149022,
+          "passed_ids": 38,
+          "tokens_per_passed_id": 109184.78947368421,
+          "elapsed_seconds": 457.1234462279999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-003",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 4030191,
+          "passed_ids": 19,
+          "tokens_per_passed_id": 212115.31578947368,
+          "elapsed_seconds": 543.577822876,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "previous/anti-008",
+          "condition": "anti",
+          "batch": "previous",
+          "recorded_total_tokens": 3965456,
+          "passed_ids": 31,
+          "tokens_per_passed_id": 127917.93548387097,
+          "elapsed_seconds": 604.0726913000017,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/normal-009",
+          "condition": "normal",
+          "batch": "additional",
+          "recorded_total_tokens": 3864560,
+          "passed_ids": 37,
+          "tokens_per_passed_id": 104447.56756756757,
+          "elapsed_seconds": 580.3690495599999,
+          "end_reason": "agent_completed"
+        },
+        {
+          "slot_key": "additional/anti-004",
+          "condition": "anti",
+          "batch": "additional",
+          "recorded_total_tokens": 3782278,
+          "passed_ids": 30,
+          "tokens_per_passed_id": 126075.93333333333,
+          "elapsed_seconds": 576.152101055,
+          "end_reason": "agent_completed"
+        }
+      ]
+    },
+    "C10_order_sensitivity": {
+      "sql": "SELECT batch, condition,\n       CASE WHEN json_extract(row_json,'$.pair_id')<=(CASE batch WHEN 'previous' THEN 5 ELSE 10 END)\n       THEN 'first_half' ELSE 'second_half' END AS schedule_half,\n       COUNT(*) AS planned, COUNT(recorded_total_tokens) AS token_runs,\n       AVG(recorded_total_tokens) AS mean_tokens, AVG(passed_ids) AS mean_passed_ids\nFROM runs WHERE model_id='muse-spark-1.2-contributor'\nGROUP BY batch, condition, schedule_half ORDER BY batch, schedule_half, condition;",
+      "rows": [
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "schedule_half": "first_half",
+          "planned": 10,
+          "token_runs": 10,
+          "mean_tokens": 8001272.1,
+          "mean_passed_ids": 23.444444444444443
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "schedule_half": "first_half",
+          "planned": 10,
+          "token_runs": 10,
+          "mean_tokens": 11501789.7,
+          "mean_passed_ids": 34.333333333333336
+        },
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "schedule_half": "second_half",
+          "planned": 10,
+          "token_runs": 10,
+          "mean_tokens": 5836215.7,
+          "mean_passed_ids": 29.9
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "schedule_half": "second_half",
+          "planned": 10,
+          "token_runs": 10,
+          "mean_tokens": 9431934.4,
+          "mean_passed_ids": 40.666666666666664
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "schedule_half": "first_half",
+          "planned": 5,
+          "token_runs": 5,
+          "mean_tokens": 7138940.8,
+          "mean_passed_ids": 23.6
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "schedule_half": "first_half",
+          "planned": 5,
+          "token_runs": 5,
+          "mean_tokens": 7159202.2,
+          "mean_passed_ids": 41.4
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "schedule_half": "second_half",
+          "planned": 5,
+          "token_runs": 5,
+          "mean_tokens": 5467995.8,
+          "mean_passed_ids": 28.0
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "schedule_half": "second_half",
+          "planned": 5,
+          "token_runs": 5,
+          "mean_tokens": 7098258.6,
+          "mean_passed_ids": 39.0
+        }
+      ]
+    },
+    "C11_case_count": {
+      "sql": "SELECT batch, COUNT(DISTINCT run_id) AS output_runs, COUNT(*) AS saved_case_records,\n       COUNT(DISTINCT CASE WHEN score_available THEN run_id END) AS available_score_runs,\n       SUM(score_available) AS case_records_in_available_outputs,\n       SUM(status='pass') AS pass_cases, SUM(status='fail') AS fail_cases,\n       SUM(status='blocked') AS blocked_cases, SUM(status='error') AS error_cases\nFROM case_results GROUP BY batch ORDER BY batch;",
+      "rows": [
+        {
+          "batch": "additional",
+          "output_runs": 40,
+          "saved_case_records": 2320,
+          "available_score_runs": 37,
+          "case_records_in_available_outputs": 2146,
+          "pass_cases": 1213,
+          "fail_cases": 547,
+          "blocked_cases": 560,
+          "error_cases": 0
+        },
+        {
+          "batch": "previous",
+          "output_runs": 20,
+          "saved_case_records": 1160,
+          "available_score_runs": 20,
+          "case_records_in_available_outputs": 1160,
+          "pass_cases": 677,
+          "fail_cases": 304,
+          "blocked_cases": 179,
+          "error_cases": 0
+        }
+      ]
+    },
+    "C12_item_gap": {
+      "sql": "SELECT i.test_id, i.feature_id, i.dependency_group,\n       COUNT(CASE r.condition WHEN 'normal' THEN i.passed END) AS normal_available_runs,\n       COUNT(CASE r.condition WHEN 'anti' THEN i.passed END) AS anti_available_runs,\n       AVG(CASE r.condition WHEN 'normal' THEN i.passed END) AS normal_pass_fraction,\n       AVG(CASE r.condition WHEN 'anti' THEN i.passed END) AS anti_pass_fraction,\n       AVG(CASE r.condition WHEN 'normal' THEN i.passed END)-AVG(CASE r.condition WHEN 'anti' THEN i.passed END) AS mean_normal_minus_anti,\n       SUM(CASE r.condition WHEN 'normal' THEN i.passed ELSE 0 END) AS normal_passed,\n       SUM(CASE r.condition WHEN 'anti' THEN i.passed ELSE 0 END) AS anti_passed,\n       SUM(CASE r.condition WHEN 'normal' THEN i.passed ELSE -i.passed END) AS normal_minus_anti\nFROM id_results i JOIN runs r USING(run_id)\nWHERE r.model_id='muse-spark-1.2-contributor' AND i.passed IS NOT NULL\nGROUP BY i.test_id ORDER BY normal_minus_anti DESC, i.test_id;",
+      "rows": [
+        {
+          "test_id": "T-006-01",
+          "feature_id": "F-006",
+          "dependency_group": "direct_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.8571428571428571,
+          "normal_passed": 24,
+          "anti_passed": 0,
+          "normal_minus_anti": 24
+        },
+        {
+          "test_id": "T-006-03",
+          "feature_id": "F-006",
+          "dependency_group": "direct_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.8571428571428571,
+          "normal_passed": 24,
+          "anti_passed": 0,
+          "normal_minus_anti": 24
+        },
+        {
+          "test_id": "T-006-05",
+          "feature_id": "F-006",
+          "dependency_group": "direct_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.8571428571428571,
+          "normal_passed": 24,
+          "anti_passed": 0,
+          "normal_minus_anti": 24
+        },
+        {
+          "test_id": "T-012-02",
+          "feature_id": "F-012",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.8571428571428571,
+          "normal_passed": 24,
+          "anti_passed": 0,
+          "normal_minus_anti": 24
+        },
+        {
+          "test_id": "T-013-02",
+          "feature_id": "F-013",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.8571428571428571,
+          "normal_passed": 24,
+          "anti_passed": 0,
+          "normal_minus_anti": 24
+        },
+        {
+          "test_id": "T-014-02",
+          "feature_id": "F-014",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.8571428571428571,
+          "normal_passed": 24,
+          "anti_passed": 0,
+          "normal_minus_anti": 24
+        },
+        {
+          "test_id": "T-014-01",
+          "feature_id": "F-014",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.7142857142857143,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.7142857142857143,
+          "normal_passed": 20,
+          "anti_passed": 0,
+          "normal_minus_anti": 20
+        },
+        {
+          "test_id": "T-011-02",
+          "feature_id": "F-011",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.7142857142857143,
+          "anti_pass_fraction": 0.034482758620689655,
+          "mean_normal_minus_anti": 0.6798029556650247,
+          "normal_passed": 20,
+          "anti_passed": 1,
+          "normal_minus_anti": 19
+        },
+        {
+          "test_id": "T-010-01",
+          "feature_id": "F-010",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.5,
+          "normal_passed": 14,
+          "anti_passed": 0,
+          "normal_minus_anti": 14
+        },
+        {
+          "test_id": "T-011-01",
+          "feature_id": "F-011",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.5,
+          "normal_passed": 14,
+          "anti_passed": 0,
+          "normal_minus_anti": 14
+        },
+        {
+          "test_id": "T-012-01",
+          "feature_id": "F-012",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.5,
+          "normal_passed": 14,
+          "anti_passed": 0,
+          "normal_minus_anti": 14
+        },
+        {
+          "test_id": "T-004-02",
+          "feature_id": "F-004",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.6785714285714286,
+          "anti_pass_fraction": 0.41379310344827586,
+          "mean_normal_minus_anti": 0.26477832512315275,
+          "normal_passed": 19,
+          "anti_passed": 12,
+          "normal_minus_anti": 7
+        },
+        {
+          "test_id": "T-007-02",
+          "feature_id": "F-007",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.6785714285714286,
+          "anti_pass_fraction": 0.4482758620689655,
+          "mean_normal_minus_anti": 0.23029556650246308,
+          "normal_passed": 19,
+          "anti_passed": 13,
+          "normal_minus_anti": 6
+        },
+        {
+          "test_id": "T-008-01",
+          "feature_id": "F-008",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5714285714285714,
+          "anti_pass_fraction": 0.3448275862068966,
+          "mean_normal_minus_anti": 0.22660098522167482,
+          "normal_passed": 16,
+          "anti_passed": 10,
+          "normal_minus_anti": 6
+        },
+        {
+          "test_id": "T-008-02",
+          "feature_id": "F-008",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5714285714285714,
+          "anti_pass_fraction": 0.3793103448275862,
+          "mean_normal_minus_anti": 0.1921182266009852,
+          "normal_passed": 16,
+          "anti_passed": 11,
+          "normal_minus_anti": 5
+        },
+        {
+          "test_id": "T-008-04",
+          "feature_id": "F-008",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9642857142857143,
+          "anti_pass_fraction": 0.7586206896551724,
+          "mean_normal_minus_anti": 0.20566502463054193,
+          "normal_passed": 27,
+          "anti_passed": 22,
+          "normal_minus_anti": 5
+        },
+        {
+          "test_id": "T-004-01",
+          "feature_id": "F-004",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.75,
+          "anti_pass_fraction": 0.5862068965517241,
+          "mean_normal_minus_anti": 0.1637931034482759,
+          "normal_passed": 21,
+          "anti_passed": 17,
+          "normal_minus_anti": 4
+        },
+        {
+          "test_id": "T-007-01",
+          "feature_id": "F-007",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.6071428571428571,
+          "anti_pass_fraction": 0.4482758620689655,
+          "mean_normal_minus_anti": 0.15886699507389157,
+          "normal_passed": 17,
+          "anti_passed": 13,
+          "normal_minus_anti": 4
+        },
+        {
+          "test_id": "T-007-03",
+          "feature_id": "F-007",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.4642857142857143,
+          "anti_pass_fraction": 0.3103448275862069,
+          "mean_normal_minus_anti": 0.1539408866995074,
+          "normal_passed": 13,
+          "anti_passed": 9,
+          "normal_minus_anti": 4
+        },
+        {
+          "test_id": "T-009-02",
+          "feature_id": "F-009",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8214285714285714,
+          "anti_pass_fraction": 0.6551724137931034,
+          "mean_normal_minus_anti": 0.16625615763546797,
+          "normal_passed": 23,
+          "anti_passed": 19,
+          "normal_minus_anti": 4
+        },
+        {
+          "test_id": "T-010-02",
+          "feature_id": "F-010",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.6896551724137931,
+          "mean_normal_minus_anti": 0.16748768472906395,
+          "normal_passed": 24,
+          "anti_passed": 20,
+          "normal_minus_anti": 4
+        },
+        {
+          "test_id": "T-016-02",
+          "feature_id": "F-016",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5,
+          "anti_pass_fraction": 0.3448275862068966,
+          "mean_normal_minus_anti": 0.15517241379310343,
+          "normal_passed": 14,
+          "anti_passed": 10,
+          "normal_minus_anti": 4
+        },
+        {
+          "test_id": "T-016-03",
+          "feature_id": "F-016",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9285714285714286,
+          "anti_pass_fraction": 0.7586206896551724,
+          "mean_normal_minus_anti": 0.16995073891625623,
+          "normal_passed": 26,
+          "anti_passed": 22,
+          "normal_minus_anti": 4
+        },
+        {
+          "test_id": "T-017-02",
+          "feature_id": "F-017",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5,
+          "anti_pass_fraction": 0.3448275862068966,
+          "mean_normal_minus_anti": 0.15517241379310343,
+          "normal_passed": 14,
+          "anti_passed": 10,
+          "normal_minus_anti": 4
+        },
+        {
+          "test_id": "T-001-01",
+          "feature_id": "F-001",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.7241379310344828,
+          "mean_normal_minus_anti": 0.13300492610837433,
+          "normal_passed": 24,
+          "anti_passed": 21,
+          "normal_minus_anti": 3
+        },
+        {
+          "test_id": "T-006-04",
+          "feature_id": "F-006",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.7241379310344828,
+          "mean_normal_minus_anti": 0.13300492610837433,
+          "normal_passed": 24,
+          "anti_passed": 21,
+          "normal_minus_anti": 3
+        },
+        {
+          "test_id": "T-006-06",
+          "feature_id": "F-006",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9285714285714286,
+          "anti_pass_fraction": 0.7931034482758621,
+          "mean_normal_minus_anti": 0.1354679802955665,
+          "normal_passed": 26,
+          "anti_passed": 23,
+          "normal_minus_anti": 3
+        },
+        {
+          "test_id": "T-010-03",
+          "feature_id": "F-010",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.7241379310344828,
+          "mean_normal_minus_anti": 0.13300492610837433,
+          "normal_passed": 24,
+          "anti_passed": 21,
+          "normal_minus_anti": 3
+        },
+        {
+          "test_id": "T-020-02",
+          "feature_id": "F-020",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9285714285714286,
+          "anti_pass_fraction": 0.7931034482758621,
+          "mean_normal_minus_anti": 0.1354679802955665,
+          "normal_passed": 26,
+          "anti_passed": 23,
+          "normal_minus_anti": 3
+        },
+        {
+          "test_id": "T-001-02",
+          "feature_id": "F-001",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8928571428571429,
+          "anti_pass_fraction": 0.7931034482758621,
+          "mean_normal_minus_anti": 0.0997536945812808,
+          "normal_passed": 25,
+          "anti_passed": 23,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-002-03",
+          "feature_id": "F-002",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9642857142857143,
+          "anti_pass_fraction": 0.8620689655172413,
+          "mean_normal_minus_anti": 0.10221674876847298,
+          "normal_passed": 27,
+          "anti_passed": 25,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-003-02",
+          "feature_id": "F-003",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5357142857142857,
+          "anti_pass_fraction": 0.4482758620689655,
+          "mean_normal_minus_anti": 0.08743842364532017,
+          "normal_passed": 15,
+          "anti_passed": 13,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-005-01",
+          "feature_id": "F-005",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.6428571428571429,
+          "anti_pass_fraction": 0.5517241379310345,
+          "mean_normal_minus_anti": 0.09113300492610843,
+          "normal_passed": 18,
+          "anti_passed": 16,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-006-02",
+          "feature_id": "F-006",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8214285714285714,
+          "anti_pass_fraction": 0.7241379310344828,
+          "mean_normal_minus_anti": 0.09729064039408863,
+          "normal_passed": 23,
+          "anti_passed": 21,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-008-03",
+          "feature_id": "F-008",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8571428571428571,
+          "anti_pass_fraction": 0.7586206896551724,
+          "mean_normal_minus_anti": 0.09852216748768472,
+          "normal_passed": 24,
+          "anti_passed": 22,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-018-03",
+          "feature_id": "F-018",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8928571428571429,
+          "anti_pass_fraction": 0.7931034482758621,
+          "mean_normal_minus_anti": 0.0997536945812808,
+          "normal_passed": 25,
+          "anti_passed": 23,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-019-02",
+          "feature_id": "F-019",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9642857142857143,
+          "anti_pass_fraction": 0.8620689655172413,
+          "mean_normal_minus_anti": 0.10221674876847298,
+          "normal_passed": 27,
+          "anti_passed": 25,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-019-03",
+          "feature_id": "F-019",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9642857142857143,
+          "anti_pass_fraction": 0.8620689655172413,
+          "mean_normal_minus_anti": 0.10221674876847298,
+          "normal_passed": 27,
+          "anti_passed": 25,
+          "normal_minus_anti": 2
+        },
+        {
+          "test_id": "T-002-02",
+          "feature_id": "F-002",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.14285714285714285,
+          "anti_pass_fraction": 0.10344827586206896,
+          "mean_normal_minus_anti": 0.039408866995073885,
+          "normal_passed": 4,
+          "anti_passed": 3,
+          "normal_minus_anti": 1
+        },
+        {
+          "test_id": "T-003-01",
+          "feature_id": "F-003",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.7857142857142857,
+          "anti_pass_fraction": 0.7241379310344828,
+          "mean_normal_minus_anti": 0.061576354679802936,
+          "normal_passed": 22,
+          "anti_passed": 21,
+          "normal_minus_anti": 1
+        },
+        {
+          "test_id": "T-004-03",
+          "feature_id": "F-004",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.07142857142857142,
+          "anti_pass_fraction": 0.034482758620689655,
+          "mean_normal_minus_anti": 0.03694581280788177,
+          "normal_passed": 2,
+          "anti_passed": 1,
+          "normal_minus_anti": 1
+        },
+        {
+          "test_id": "T-013-01",
+          "feature_id": "F-013",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.03571428571428571,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.03571428571428571,
+          "normal_passed": 1,
+          "anti_passed": 0,
+          "normal_minus_anti": 1
+        },
+        {
+          "test_id": "T-015-01",
+          "feature_id": "F-015",
+          "dependency_group": "downstream_threshold",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.03571428571428571,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.03571428571428571,
+          "normal_passed": 1,
+          "anti_passed": 0,
+          "normal_minus_anti": 1
+        },
+        {
+          "test_id": "T-018-01",
+          "feature_id": "F-018",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.7857142857142857,
+          "anti_pass_fraction": 0.7241379310344828,
+          "mean_normal_minus_anti": 0.061576354679802936,
+          "normal_passed": 22,
+          "anti_passed": 21,
+          "normal_minus_anti": 1
+        },
+        {
+          "test_id": "T-002-01",
+          "feature_id": "F-002",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.6428571428571429,
+          "anti_pass_fraction": 0.6206896551724138,
+          "mean_normal_minus_anti": 0.022167487684729092,
+          "normal_passed": 18,
+          "anti_passed": 18,
+          "normal_minus_anti": 0
+        },
+        {
+          "test_id": "T-016-01",
+          "feature_id": "F-016",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.0,
+          "anti_pass_fraction": 0.0,
+          "mean_normal_minus_anti": 0.0,
+          "normal_passed": 0,
+          "anti_passed": 0,
+          "normal_minus_anti": 0
+        },
+        {
+          "test_id": "T-018-02",
+          "feature_id": "F-018",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.8214285714285714,
+          "anti_pass_fraction": 0.7931034482758621,
+          "mean_normal_minus_anti": 0.028325123152709297,
+          "normal_passed": 23,
+          "anti_passed": 23,
+          "normal_minus_anti": 0
+        },
+        {
+          "test_id": "T-019-01",
+          "feature_id": "F-019",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5,
+          "anti_pass_fraction": 0.4827586206896552,
+          "mean_normal_minus_anti": 0.017241379310344807,
+          "normal_passed": 14,
+          "anti_passed": 14,
+          "normal_minus_anti": 0
+        },
+        {
+          "test_id": "T-020-01",
+          "feature_id": "F-020",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.7142857142857143,
+          "anti_pass_fraction": 0.6896551724137931,
+          "mean_normal_minus_anti": 0.024630541871921152,
+          "normal_passed": 20,
+          "anti_passed": 20,
+          "normal_minus_anti": 0
+        },
+        {
+          "test_id": "T-020-03",
+          "feature_id": "F-020",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.7142857142857143,
+          "anti_pass_fraction": 0.6896551724137931,
+          "mean_normal_minus_anti": 0.024630541871921152,
+          "normal_passed": 20,
+          "anti_passed": 20,
+          "normal_minus_anti": 0
+        },
+        {
+          "test_id": "T-001-03",
+          "feature_id": "F-001",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9285714285714286,
+          "anti_pass_fraction": 0.9310344827586207,
+          "mean_normal_minus_anti": -0.0024630541871920597,
+          "normal_passed": 26,
+          "anti_passed": 27,
+          "normal_minus_anti": -1
+        },
+        {
+          "test_id": "T-001-04",
+          "feature_id": "F-001",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9285714285714286,
+          "anti_pass_fraction": 0.9310344827586207,
+          "mean_normal_minus_anti": -0.0024630541871920597,
+          "normal_passed": 26,
+          "anti_passed": 27,
+          "normal_minus_anti": -1
+        },
+        {
+          "test_id": "T-002-04",
+          "feature_id": "F-002",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.9642857142857143,
+          "anti_pass_fraction": 1.0,
+          "mean_normal_minus_anti": -0.0357142857142857,
+          "normal_passed": 27,
+          "anti_passed": 29,
+          "normal_minus_anti": -2
+        },
+        {
+          "test_id": "T-017-01",
+          "feature_id": "F-017",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.21428571428571427,
+          "anti_pass_fraction": 0.27586206896551724,
+          "mean_normal_minus_anti": -0.061576354679802964,
+          "normal_passed": 6,
+          "anti_passed": 8,
+          "normal_minus_anti": -2
+        },
+        {
+          "test_id": "T-020-04",
+          "feature_id": "F-020",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.5714285714285714,
+          "anti_pass_fraction": 0.6206896551724138,
+          "mean_normal_minus_anti": -0.049261083743842415,
+          "normal_passed": 16,
+          "anti_passed": 18,
+          "normal_minus_anti": -2
+        },
+        {
+          "test_id": "T-005-02",
+          "feature_id": "F-005",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.35714285714285715,
+          "anti_pass_fraction": 0.4482758620689655,
+          "mean_normal_minus_anti": -0.09113300492610837,
+          "normal_passed": 10,
+          "anti_passed": 13,
+          "normal_minus_anti": -3
+        },
+        {
+          "test_id": "T-009-01",
+          "feature_id": "F-009",
+          "dependency_group": "other",
+          "normal_available_runs": 28,
+          "anti_available_runs": 29,
+          "normal_pass_fraction": 0.32142857142857145,
+          "anti_pass_fraction": 0.4827586206896552,
+          "mean_normal_minus_anti": -0.16133004926108374,
+          "normal_passed": 9,
+          "anti_passed": 14,
+          "normal_minus_anti": -5
+        }
+      ]
+    },
+    "C13_medians": {
+      "sql": "WITH population AS (\n SELECT batch AS stratum, * FROM runs\n UNION ALL SELECT 'cumulative', * FROM runs\n), values_long AS (\n SELECT stratum,condition,'tokens' AS metric,recorded_total_tokens AS value\n FROM population WHERE model_id='muse-spark-1.2-contributor' AND recorded_total_tokens IS NOT NULL\n UNION ALL\n SELECT stratum,condition,'passed_ids',passed_ids\n FROM population WHERE model_id='muse-spark-1.2-contributor' AND passed_ids IS NOT NULL\n), ordered AS (\n SELECT *,ROW_NUMBER() OVER(PARTITION BY stratum,condition,metric ORDER BY value) AS rn,\n          COUNT(*) OVER(PARTITION BY stratum,condition,metric) AS n\n FROM values_long\n)\nSELECT stratum,condition,metric,AVG(value) AS median_value,MAX(n) AS n\nFROM ordered WHERE rn IN ((n+1)/2,(n+2)/2)\nGROUP BY stratum,condition,metric ORDER BY stratum,condition,metric;",
+      "rows": [
+        {
+          "stratum": "additional",
+          "condition": "anti",
+          "metric": "passed_ids",
+          "median_value": 30.0,
+          "n": 19
+        },
+        {
+          "stratum": "additional",
+          "condition": "anti",
+          "metric": "tokens",
+          "median_value": 6415601.0,
+          "n": 20
+        },
+        {
+          "stratum": "additional",
+          "condition": "normal",
+          "metric": "passed_ids",
+          "median_value": 44.5,
+          "n": 18
+        },
+        {
+          "stratum": "additional",
+          "condition": "normal",
+          "metric": "tokens",
+          "median_value": 7211276.0,
+          "n": 20
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "anti",
+          "metric": "passed_ids",
+          "median_value": 30.0,
+          "n": 29
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "anti",
+          "metric": "tokens",
+          "median_value": 6265903.5,
+          "n": 30
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "normal",
+          "metric": "passed_ids",
+          "median_value": 41.0,
+          "n": 28
+        },
+        {
+          "stratum": "cumulative",
+          "condition": "normal",
+          "metric": "tokens",
+          "median_value": 7248219.0,
+          "n": 30
+        },
+        {
+          "stratum": "previous",
+          "condition": "anti",
+          "metric": "passed_ids",
+          "median_value": 30.0,
+          "n": 10
+        },
+        {
+          "stratum": "previous",
+          "condition": "anti",
+          "metric": "tokens",
+          "median_value": 6139945.0,
+          "n": 10
+        },
+        {
+          "stratum": "previous",
+          "condition": "normal",
+          "metric": "passed_ids",
+          "median_value": 40.0,
+          "n": 10
+        },
+        {
+          "stratum": "previous",
+          "condition": "normal",
+          "metric": "tokens",
+          "median_value": 7248219.0,
+          "n": 10
+        }
+      ]
+    },
+    "C14_unavailable_evaluations": {
+      "sql": "SELECT slot_key,run_id,evaluation_uuid,recorded_total_tokens,\n       json_extract(row_json,'$.evaluation_outcome') AS evaluation_outcome,\n       json_extract(row_json,'$.source_passed_ids') AS source_passed_ids,\n       passed_ids AS analysis_passed_ids\nFROM runs WHERE passed_ids IS NULL ORDER BY batch,slot_key;",
+      "rows": [
+        {
+          "slot_key": "additional/anti-006",
+          "run_id": "8685c69d-7825-4148-9052-9543c7ede4fc",
+          "evaluation_uuid": "7872a0f5-9ab2-4e4e-8f2d-8d5b6be0b51b",
+          "recorded_total_tokens": 9566667,
+          "evaluation_outcome": "server_unavailable",
+          "source_passed_ids": 0,
+          "analysis_passed_ids": null
+        },
+        {
+          "slot_key": "additional/normal-001",
+          "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+          "evaluation_uuid": "1041753a-9a1b-466f-941b-836393c8d49c",
+          "recorded_total_tokens": 64175188,
+          "evaluation_outcome": "server_unavailable",
+          "source_passed_ids": 0,
+          "analysis_passed_ids": null
+        },
+        {
+          "slot_key": "additional/normal-016",
+          "run_id": "ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+          "evaluation_uuid": "439472fb-f203-420a-9e2f-2a0901763aa8",
+          "recorded_total_tokens": 15518424,
+          "evaluation_outcome": "server_unavailable",
+          "source_passed_ids": 0,
+          "analysis_passed_ids": null
+        }
+      ]
+    },
+    "C15_token_components_post_hoc": {
+      "sql": "SELECT batch,condition,COUNT(json_extract(row_json,'$.recorded_input_tokens')) AS observed_runs,\n       SUM(json_extract(row_json,'$.recorded_input_tokens')) AS input_tokens,\n       SUM(json_extract(row_json,'$.recorded_output_tokens')) AS output_tokens,\n       SUM(json_extract(row_json,'$.recorded_cached_input_tokens')) AS cached_input_tokens,\n       COUNT(json_extract(row_json,'$.recorded_cached_input_tokens')) AS complete_cache_detail_runs,\n       SUM(json_extract(row_json,'$.usage_requests')) AS observed_requests\nFROM runs WHERE model_id='muse-spark-1.2-contributor'\nGROUP BY batch,condition ORDER BY batch,condition;",
+      "rows": [
+        {
+          "batch": "additional",
+          "condition": "anti",
+          "observed_runs": 20,
+          "input_tokens": 137267265,
+          "output_tokens": 1107613,
+          "cached_input_tokens": 134673709,
+          "complete_cache_detail_runs": 20,
+          "observed_requests": 2451
+        },
+        {
+          "batch": "additional",
+          "condition": "normal",
+          "observed_runs": 20,
+          "input_tokens": 208159480,
+          "output_tokens": 1177761,
+          "cached_input_tokens": 204344247,
+          "complete_cache_detail_runs": 20,
+          "observed_requests": 3007
+        },
+        {
+          "batch": "previous",
+          "condition": "anti",
+          "observed_runs": 10,
+          "input_tokens": 62522892,
+          "output_tokens": 511791,
+          "cached_input_tokens": 61430279,
+          "complete_cache_detail_runs": 10,
+          "observed_requests": 1154
+        },
+        {
+          "batch": "previous",
+          "condition": "normal",
+          "observed_runs": 10,
+          "input_tokens": 70743535,
+          "output_tokens": 543769,
+          "cached_input_tokens": 69640364,
+          "complete_cache_detail_runs": 10,
+          "observed_requests": 1270
+        }
+      ]
+    }
+  }
+}

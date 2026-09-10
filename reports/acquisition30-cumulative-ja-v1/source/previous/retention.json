@@ -1,0 +1,1146 @@
+{
+  "runs": [
+    {
+      "planned_run": "normal-001",
+      "run_id": "daedcc21-8243-4234-8df7-945db1b684c0",
+      "submission_hash": "6cfe9293f5ebb775cf4a0c3af4f5191fadd02ccc7dd88741b8aba3a30dda4f63",
+      "original": {
+        "package_id": "copilot-daedcc21-8243-4234-8df7-945db1b684c0",
+        "sha256": "4b109392a8eb856b3037d7754f3a060435da0cd988ddcdf48bb00f649e54bc38"
+      },
+      "original_restoration": {
+        "path": "receipts/874ece19-f673-450c-ac72-afcf9da4f70d.json",
+        "sha256": "a16748e2ab27b36557faae2c334b4cbf488695ca849e179a1abefb0d4489df30"
+      },
+      "linked_restoration": {
+        "path": "receipts/fb1f9832-935d-443c-a0d3-e5501aea965a.json",
+        "sha256": "e7f8a16516743ace7634464966880fb6e2b3f5433fd0a122d837c8730c311e88"
+      },
+      "processing": {
+        "path": "measurements/8850bb06-39b5-49f6-b8bb-89ffe9daa917/measurement.json",
+        "sha256": "704ed4708b995bbbdbb2a811cb0efe0edd6a030bc5362ecc0287ed6c8bf5a69c"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "3b9af38de4312b63311a029d7e8a68f595e6a38eeaf84301d468dcd9778721bf"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 672.9076047140001,
+      "started_at": "2026-09-10T01:38:13.855908+00:00",
+      "ended_at": "2026-09-10T01:49:26.765323+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 124,
+        "400": 10
+      },
+      "response_spool_files": 134
+    },
+    {
+      "planned_run": "normal-002",
+      "run_id": "6a301665-ffc6-40e3-918a-d7fad37e8d29",
+      "submission_hash": "2a864e4618996c56344eee0d4b76a8bf1e11b5bf080029b49dc4dd3eb225a238",
+      "original": {
+        "package_id": "copilot-6a301665-ffc6-40e3-918a-d7fad37e8d29",
+        "sha256": "3eec780b3f7071c8d1fce4d10c4bfed05ee54b2f242457b9e10a7760cf517c2c"
+      },
+      "original_restoration": {
+        "path": "receipts/dc970ad9-42a8-4962-9ca7-033fd179b629.json",
+        "sha256": "4035cb31ee74eb206d8a5a921cc2b616ab2c40e340482138ec2e8333a121bd11"
+      },
+      "linked_restoration": {
+        "path": "receipts/6ea24872-64d1-48c3-b1d7-0850a011feea.json",
+        "sha256": "879effe81f54e3207318219531b552be6a84adca34aae7b17188860e2452d4c8"
+      },
+      "processing": {
+        "path": "measurements/bb280aea-a02d-4211-9496-0976cf403e92/measurement.json",
+        "sha256": "4f60e480c608b588bc3cda83b8ff69767089a45cdcd59de3251d97df12b83489"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 645.8316490139999,
+      "started_at": "2026-09-10T01:52:41.445154+00:00",
+      "ended_at": "2026-09-10T02:03:27.278944+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 118
+      },
+      "response_spool_files": 118
+    },
+    {
+      "planned_run": "normal-003",
+      "run_id": "cf27fbcf-5851-4bb9-8d56-b0fb385878e7",
+      "submission_hash": "dd718aa97992f40afe4eb0d419019b40d290e736c32adfd4edabbe01db9e9acf",
+      "original": {
+        "package_id": "copilot-cf27fbcf-5851-4bb9-8d56-b0fb385878e7",
+        "sha256": "8d063dca29dfe75d599f30707fc13d0bfd2bb4e092f7e77fffadcb4c9628f576"
+      },
+      "original_restoration": {
+        "path": "receipts/8cc86dbd-dc2d-4ef7-9ccd-862837eecee3.json",
+        "sha256": "40e6fa1c404a5a46b38d5d7005d7d15d527425b7c09b5ed843a73615a20f6dff"
+      },
+      "linked_restoration": {
+        "path": "receipts/d8a295ac-ebb1-404b-ac1d-80c9ddb1569d.json",
+        "sha256": "f5d504c2703d547a0fa1842f9e4a8ce47a1214e5576a42b6deff3ada262d64fa"
+      },
+      "processing": {
+        "path": "measurements/82e45989-939c-4797-9365-022ebedf7b8d/measurement.json",
+        "sha256": "b6acd068aec1dfbe572dc1fdba3e5adfa107df5d9864fee5f8395389f47ddd0c"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 622.5546170000002,
+      "started_at": "2026-09-10T02:43:43.990986+00:00",
+      "ended_at": "2026-09-10T02:54:06.547905+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 124,
+        "400": 3
+      },
+      "response_spool_files": 127
+    },
+    {
+      "planned_run": "normal-004",
+      "run_id": "833a4f06-b9c0-4a95-a03e-65dea5922e72",
+      "submission_hash": "8856d45fdda3dc43ccc923b1bbb8a2b7f6654c0c4b9ca08dcacda95425633fac",
+      "original": {
+        "package_id": "copilot-833a4f06-b9c0-4a95-a03e-65dea5922e72",
+        "sha256": "ee3542c60009fe2a9e78d0bb18e993749dd8050cb8d68d438525150df3b61f97"
+      },
+      "original_restoration": {
+        "path": "receipts/dca903a5-a9ab-4a18-a741-14049c4bfa63.json",
+        "sha256": "fbf312973b6af3e50ebc4379b8a2da20576ab280e301fc8bcecae23e671da8a4"
+      },
+      "linked_restoration": {
+        "path": "receipts/2ac9ddff-0003-4404-a934-c51bc1114ab6.json",
+        "sha256": "4621831ee041f01216f2ec3e3833dcb6ff923826f9b2047c6b7ab57b90a4aae3"
+      },
+      "processing": {
+        "path": "measurements/1bfd571f-8abd-49b1-b140-aad8be37dca5/measurement.json",
+        "sha256": "f3703fef98955349d76832a80a5bc1bcb21b6b8cf6f67cc133776d42c6a58756"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 653.6502480969993,
+      "started_at": "2026-09-10T03:21:21.852975+00:00",
+      "ended_at": "2026-09-10T03:32:15.505126+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 133
+      },
+      "response_spool_files": 133
+    },
+    {
+      "planned_run": "normal-005",
+      "run_id": "4fec6537-4704-46a5-a732-8ea312b2551c",
+      "submission_hash": "8ab09258b63c9886ad4add70c5518e0c60b4a8290aa01acd7afe4fc2717330a9",
+      "original": {
+        "package_id": "copilot-4fec6537-4704-46a5-a732-8ea312b2551c",
+        "sha256": "276794b49946330c45baae7437fc4034f0935fd32621ac1ead5fd11106f3a46a"
+      },
+      "original_restoration": {
+        "path": "receipts/92744a21-a3f1-4470-bd43-c9da46c15b2d.json",
+        "sha256": "083b1151456ede0dd83d4b63f48db3f14b3a8f555c6394b5406e55d46aead743"
+      },
+      "linked_restoration": {
+        "path": "receipts/e8edd445-a8aa-4d7e-b556-6e512f1f6d05.json",
+        "sha256": "4a8a4b52792b512dec1b58e57d4349a91c21f0a9f6423a8c2d2b4054cadafb48"
+      },
+      "processing": {
+        "path": "measurements/97ba7fd9-bc13-4866-87df-21cec3211d66/measurement.json",
+        "sha256": "b124efb308be2b371e9fef0573e87599ffafdb9bf68e182bba05f48e67c1ee47"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 731.0838700370005,
+      "started_at": "2026-09-10T03:41:07.962398+00:00",
+      "ended_at": "2026-09-10T03:53:15.774203+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 117,
+        "400": 9
+      },
+      "response_spool_files": 126
+    },
+    {
+      "planned_run": "normal-006",
+      "run_id": "bf51ba90-dc2c-4f70-85da-a9de5642d0a4",
+      "submission_hash": "a2f91fbf3bb6d05c17bd3fc518162bdcf1ee52e1e0dae91b76e75aa761ee6ebb",
+      "original": {
+        "package_id": "copilot-bf51ba90-dc2c-4f70-85da-a9de5642d0a4",
+        "sha256": "076ccca2a939151a59b383c1388a4f5a006a1057b19206aa598427ee2ca921fd"
+      },
+      "original_restoration": {
+        "path": "receipts/6edc6fb3-8195-496a-9480-a24957b6b693.json",
+        "sha256": "fef1e9e3f921f5c484dbaf598c3d99747ef1e8e20f8ac67320d63f9d426505a9"
+      },
+      "linked_restoration": {
+        "path": "receipts/76d6ab95-7369-430e-be2e-5f19187fceb4.json",
+        "sha256": "5e8074b53ba57b4c5e517d86dd90dae505deae64a6e3c297dac1b4f9e8f48289"
+      },
+      "processing": {
+        "path": "measurements/f7f6875d-c74d-4af9-8b8e-db620351f101/measurement.json",
+        "sha256": "b4003e16b1369c3d5648e4c7c223a56304a2c565c681f90090fa482de0bceb26"
+      },
+      "lockfiles": {
+        "package-lock.json": "7ccb2da2c808ccb34a6343b92a3ce7c50346934919701051c7628df8be789642",
+        "frontend/package-lock.json": "efc5eb821b6e4e662b0db43c53a163f3b517ca5b9ef99dd891d7dd0bac10b6fa"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 894.1695410779994,
+      "started_at": "2026-09-10T04:25:03.429978+00:00",
+      "ended_at": "2026-09-10T04:39:40.653413+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 151,
+        "400": 2
+      },
+      "response_spool_files": 153
+    },
+    {
+      "planned_run": "normal-007",
+      "run_id": "09dbcec8-c9c3-49ec-921c-766894607e07",
+      "submission_hash": "fe1f8f87e8ee60a5221ee0de9b8da45cdf2e724707aadc9c526f3cf0915c5087",
+      "original": {
+        "package_id": "copilot-09dbcec8-c9c3-49ec-921c-766894607e07",
+        "sha256": "d51f99dcc6b83e3da56da71ebc8a1fa61760b29a3011e24f9888e8efa7715712"
+      },
+      "original_restoration": {
+        "path": "receipts/0159b97e-3377-4bcb-a40a-7e3bfecb776d.json",
+        "sha256": "c61afe167043a4d533db473c1fafedb4c1080c390382cd81e6ee321b829bdb07"
+      },
+      "linked_restoration": {
+        "path": "receipts/77b4f42f-42d2-461e-8848-0f9156f0340a.json",
+        "sha256": "57254780ab8d97758d38c1d2ea23f7da1bfd9507029ebcf84952e33fc6bb8633"
+      },
+      "processing": {
+        "path": "measurements/a55459e3-677a-4771-8d4c-ad47df94f057/measurement.json",
+        "sha256": "a6aff209e8618a0401efe2ebfd62c5a95fe27cc4f084224d5d36698d14851038"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "3b9af38de4312b63311a029d7e8a68f595e6a38eeaf84301d468dcd9778721bf"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 648.0386382529996,
+      "started_at": "2026-09-10T05:15:50.864548+00:00",
+      "ended_at": "2026-09-10T05:26:23.344773+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 106
+      },
+      "response_spool_files": 106
+    },
+    {
+      "planned_run": "normal-008",
+      "run_id": "cc1ad56e-0db0-4187-8d1d-9e89552abe92",
+      "submission_hash": "2b42ff14937250bf9eceb359fa9e69a3dec925062a480858fd04ec094540df2d",
+      "original": {
+        "package_id": "copilot-cc1ad56e-0db0-4187-8d1d-9e89552abe92",
+        "sha256": "c16d6e39bbe6f5f83d293e4461cde0b24da190110937e37e921247ac5a6cc2b5"
+      },
+      "original_restoration": {
+        "path": "receipts/6333c67d-874e-4758-ba14-f2a4fca1a106.json",
+        "sha256": "4a56e95a0b8efcf29667357b02fb8c7a841ed3a153a1699fdf15c1e842f7e9c1"
+      },
+      "linked_restoration": {
+        "path": "receipts/9d2548cc-ad56-4aa0-8071-18715965f8d4.json",
+        "sha256": "f96fcc3f84fe68291a4827abe72f8f72283d6b9e1eaf74f302953abc308578b3"
+      },
+      "processing": {
+        "path": "measurements/0fd01f06-3d06-4039-8d2c-9f1d71785e95/measurement.json",
+        "sha256": "f00cea24b217a57d731d5cbde576feff4479b3597ee5c1a03b3f5fe53baa5110"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 644.4595332289973,
+      "started_at": "2026-09-10T06:29:18.284715+00:00",
+      "ended_at": "2026-09-10T06:39:43.553748+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 118
+      },
+      "response_spool_files": 118
+    },
+    {
+      "planned_run": "normal-009",
+      "run_id": "b8bb85c7-e468-42ff-ad70-e10746737b87",
+      "submission_hash": "78dd337d6a66f08bf80b5a933460692b89d1f0739f64300ac39416663fed8018",
+      "original": {
+        "package_id": "copilot-b8bb85c7-e468-42ff-ad70-e10746737b87",
+        "sha256": "02911f86f4caeef5f2ae245dda2b72cdf8f9076501e2b6b185b29d3e8ed03c75"
+      },
+      "original_restoration": {
+        "path": "receipts/08e111cf-a486-4e90-b4eb-1eebd831c3c5.json",
+        "sha256": "04628a25d10b84401752b667240bcc330455225dba2ca7fa9ab40837af830411"
+      },
+      "linked_restoration": {
+        "path": "receipts/8d95f16d-0e23-4354-83a9-8ff0a9a7089b.json",
+        "sha256": "9861be5622170d0c9ac20fb8411b7cc61c21608964b7d0253440be09d53c29dd"
+      },
+      "processing": {
+        "path": "measurements/0fb826bf-2a59-4e83-933b-e6cce36ee91e/measurement.json",
+        "sha256": "45160dbbe1a86ea45cd8e77c4ce6c8b181c171daccad07ef390b0b2864214afd"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "45f96540a8de850d16c001d2b410a8166f6599039ab25ea1b6c787eb9b418c02"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 825.1715630969993,
+      "started_at": "2026-09-10T07:25:05.893645+00:00",
+      "ended_at": "2026-09-10T07:38:24.723156+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 128,
+        "400": 1
+      },
+      "response_spool_files": 129
+    },
+    {
+      "planned_run": "normal-010",
+      "run_id": "ba9b31f3-7a29-4fad-ac2d-bba3bac61a0f",
+      "submission_hash": "9c27863ec5d780e2656735e3898d11b56188558078bb925fd699a213dd9b8626",
+      "original": {
+        "package_id": "copilot-ba9b31f3-7a29-4fad-ac2d-bba3bac61a0f",
+        "sha256": "fc194d39bd257a7a3d5a7684d7c983ac9b8b38e3b2dad59a8f95a6aa1cc44f10"
+      },
+      "original_restoration": {
+        "path": "receipts/160d232a-dc6b-41f5-a816-4f5b755b47aa.json",
+        "sha256": "6306181db76f9367622b8f1c805fb23a89e82e08d140a81b7eec97f9f977e327"
+      },
+      "linked_restoration": {
+        "path": "receipts/1b153321-c958-4b54-b365-8cfcac2316cc.json",
+        "sha256": "884987508ceba66d553b3f95c9e45330bee0c2f2de30a6117a16b20318ba05de"
+      },
+      "processing": {
+        "path": "measurements/8710ea5a-c8ec-4f14-951a-27907f8b99da/measurement.json",
+        "sha256": "e298e2228bfb103cb684dff01cd2ba775fc59132431fd5f102946c41791860a6"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 838.7355598150025,
+      "started_at": "2026-09-10T08:27:09.128509+00:00",
+      "ended_at": "2026-09-10T08:40:36.868113+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 151
+      },
+      "response_spool_files": 151
+    },
+    {
+      "planned_run": "anti-001",
+      "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+      "submission_hash": "f21b262efb7e3e444d3bb9cc2176ccdc45cb4b501d6ebe3e9076cda047cbcd6a",
+      "original": {
+        "package_id": "copilot-256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+        "sha256": "cff2ca0e0dac277c8e7c94c5e8fa25fa2d057438a189d43430fec26a39742aca"
+      },
+      "original_restoration": {
+        "path": "receipts/255d69d2-612a-4d68-87b8-f4994c90c3c7.json",
+        "sha256": "815ab1fd5ebe1f7f4d278b642dc1051ab6fb49ca7b41b05e10ee165a18488663"
+      },
+      "linked_restoration": {
+        "path": "receipts/377d04b2-14d6-47bb-85fe-292dad263196.json",
+        "sha256": "37a4d84f285628fe8617626559b787950703cdfa5e132a7952e565d5671b277c"
+      },
+      "processing": {
+        "path": "measurements/a5a5b195-f84d-40eb-9a15-9ed14cbbad36/measurement.json",
+        "sha256": "fa4f8e33546b6ad023e6940c4d8c6e5634505592cd9a9db5283cae915364dabc"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "bb4340b65ecea279c5b9af623933e4d5a8e3539395504031823700eae79e2119",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "01c796ccd62a06c3d8934455c440db0cc1b60b3132961f8dc70596775cf62812",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "9de8b803c297124f1135d0b05db68acc21b68fa82fbe69d41b188b6e5250a329",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "2db3d52de5c63b01ecba0c26c6b93e0adfd2e5d8372dd191ff9bbab14d43476d",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "e9c13cbf7b22ce642d8bf2fe9d5b87d8b95fcdef4529ebed7740c3a712b671b0",
+        "serial_acquisition.py": "57b7f3f3b48f3643542105219ebe352cdd113c1541beb56eb16f1bbdde378047"
+      },
+      "elapsed_seconds": 1102.122734233,
+      "started_at": "2026-09-09T23:53:27.613095+00:00",
+      "ended_at": "2026-09-10T00:11:49.737853+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_error",
+      "exit_code": 137,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 127
+      },
+      "response_spool_files": 0
+    },
+    {
+      "planned_run": "anti-002",
+      "run_id": "11440dd4-c70f-466e-b37a-96376727430e",
+      "submission_hash": "0738b0e902b4be6232bbb1e299234079ba2ddd78359300a1dceb06095a3f90b7",
+      "original": {
+        "package_id": "copilot-11440dd4-c70f-466e-b37a-96376727430e",
+        "sha256": "65e97d9febd1e9f9bb8639dc0341813bdb82b04f5f8d5827bb7fedc854dfe11f"
+      },
+      "original_restoration": {
+        "path": "receipts/8f6d68e1-4231-43d2-ad83-03116129e175.json",
+        "sha256": "322e502b104364c4a0ae81a98230c3466822e8c74d1116d0396b49aa137ee09d"
+      },
+      "linked_restoration": {
+        "path": "receipts/cad207fc-7ced-474e-8de5-0fd4274437e0.json",
+        "sha256": "4a77ef301f2d5d47eae0011b39f99fd6c568e42e1093f1f89865cc776db756f2"
+      },
+      "processing": {
+        "path": "measurements/73a8b997-1d2c-4990-99f3-9a944462ca30/measurement.json",
+        "sha256": "8a6e43cf8bfd7a4fc690224d574e35ebe381ea0af4b49dc9cccc63387ce12e4a"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 769.2288236669999,
+      "started_at": "2026-09-10T02:07:24.522342+00:00",
+      "ended_at": "2026-09-10T02:20:13.753208+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 153,
+        "400": 4
+      },
+      "response_spool_files": 157
+    },
+    {
+      "planned_run": "anti-003",
+      "run_id": "9a8c5ff6-e5df-4b20-8646-cf11e16ed257",
+      "submission_hash": "87f736835260b0da2198fd1f5e119854fb4c43be7c74974009ee3ad5f17c8132",
+      "original": {
+        "package_id": "copilot-9a8c5ff6-e5df-4b20-8646-cf11e16ed257",
+        "sha256": "65ef67be52925e111bf00e77b71c68fe8ff60196a5838e6deec12819fa4340e9"
+      },
+      "original_restoration": {
+        "path": "receipts/2b745e30-e882-4a61-82ec-be4337e14b56.json",
+        "sha256": "ac67fb549014b0fd4c8f61b65e1a2af911d025ed99083567c79ef343947e2210"
+      },
+      "linked_restoration": {
+        "path": "receipts/a3495c40-d2ae-42c6-85e2-e06b6f93e6bd.json",
+        "sha256": "8690435a0d3e99c05fb3b8838ea09ce01ad063d08dac5609dac8b73aaca3a307"
+      },
+      "processing": {
+        "path": "measurements/1d24c91c-5b06-4be0-94d7-7ad0033b32f9/measurement.json",
+        "sha256": "ca3d94100f481c4406115b751c91d9ab51edbfd87f1082ee3baabf0fdc26ac77"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 705.007227821,
+      "started_at": "2026-09-10T02:25:43.383168+00:00",
+      "ended_at": "2026-09-10T02:37:28.392194+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 152
+      },
+      "response_spool_files": 152
+    },
+    {
+      "planned_run": "anti-004",
+      "run_id": "47b5dc69-6cad-48e4-9959-339ef37bccd4",
+      "submission_hash": "f0d2598cc2dcac3622ddb92cd91cf44cd607af8201da622a13542554b66b62d9",
+      "original": {
+        "package_id": "copilot-47b5dc69-6cad-48e4-9959-339ef37bccd4",
+        "sha256": "e76356d03be89004e18300a97a5a2ac6da61d3fce315fd5cbcbceacbde632ef5"
+      },
+      "original_restoration": {
+        "path": "receipts/483ba032-4d0d-40b4-90c6-98ee7f0f29a0.json",
+        "sha256": "7e89d04dd897aeb55b8d7ec4af5a6d041671d5832ca84df4678312e35ba68526"
+      },
+      "linked_restoration": {
+        "path": "receipts/26c33b2f-4fdb-46d1-ae47-cdb47a6109d7.json",
+        "sha256": "12ba0d95e31e7bdf62ec0b1edbf6811f254a125ecbcf44d4bbe3155b1aaeb619"
+      },
+      "processing": {
+        "path": "measurements/f2e0546c-aae1-4dee-9c60-2d619685996b/measurement.json",
+        "sha256": "2b3e8d051e0a4aa0c55cd0eeb6df3c6eba1d566f95b78004c6bda299b7354f95"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "0327f464a9661c82801cded094ba8048f24add86083cc9af4abb4b8e432ee292"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 722.8375337469997,
+      "started_at": "2026-09-10T03:01:19.192696+00:00",
+      "ended_at": "2026-09-10T03:13:22.032111+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 102
+      },
+      "response_spool_files": 102
+    },
+    {
+      "planned_run": "anti-005",
+      "run_id": "600f4ba8-acdf-42ae-99e7-c86b95372d7e",
+      "submission_hash": "d4e26ddee8486f2dbb325043160d9d7b89cbd737bff1c302604d9c83d49dfe52",
+      "original": {
+        "package_id": "copilot-600f4ba8-acdf-42ae-99e7-c86b95372d7e",
+        "sha256": "dc021668f57753958dc6cfcff70790e4b56a04bec280182a53d1b11870b12418"
+      },
+      "original_restoration": {
+        "path": "receipts/da118000-e59d-4c57-ac97-de1f1a9e7db3.json",
+        "sha256": "611b4db4ce7dbab85d03be73a386d4f146d5aab3c2f2e05040dd39ff85678254"
+      },
+      "linked_restoration": {
+        "path": "receipts/49796887-82c0-4b94-99ea-28dfeed6749d.json",
+        "sha256": "2d88ada696b72dffdc9f7ec2d963be6c727677e112a6d35d5a19f90b660d4672"
+      },
+      "processing": {
+        "path": "measurements/4097a2ba-245e-4eef-a709-2b9a1a6e84dc/measurement.json",
+        "sha256": "01713ffbafcffb91a0175e6fc4a288d4099729a27501f0e4267509f73091c0f2"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 656.4344648040005,
+      "started_at": "2026-09-10T04:03:20.412573+00:00",
+      "ended_at": "2026-09-10T04:14:06.751962+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 118
+      },
+      "response_spool_files": 118
+    },
+    {
+      "planned_run": "anti-006",
+      "run_id": "6af34679-56f4-46d3-96f9-270931c32699",
+      "submission_hash": "d97e411d85df844b265ec4bc6affe4d80a4a0dc7328af8ed706fa841242e64ce",
+      "original": {
+        "package_id": "copilot-6af34679-56f4-46d3-96f9-270931c32699",
+        "sha256": "fd215c697921ecf470dbc6ed5f814761e6f6cbb185431f2376f98000c0c1b7f3"
+      },
+      "original_restoration": {
+        "path": "receipts/454c879b-76f1-4963-80ea-ebdddc4bfe2c.json",
+        "sha256": "f6672dd952a27029f157244c799a758f0a98fbb9c17091a429b3577bb69531b1"
+      },
+      "linked_restoration": {
+        "path": "receipts/93d5c6b4-c76f-469d-beef-77956cef7067.json",
+        "sha256": "274169e678ca0c69d7b2a08881d9d036d603bbf43235dd0910a2261ba495d323"
+      },
+      "processing": {
+        "path": "measurements/1cb6ac91-d2cd-42aa-b25e-adcc405fc055/measurement.json",
+        "sha256": "4aac7c91ad33e734f25b9d70c6bf636263b39186a62c5f4494878718c48018c9"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 682.7255318309999,
+      "started_at": "2026-09-10T04:52:09.984170+00:00",
+      "ended_at": "2026-09-10T05:03:17.846564+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 105
+      },
+      "response_spool_files": 105
+    },
+    {
+      "planned_run": "anti-007",
+      "run_id": "76cac053-f623-45d1-96ff-c77edf4a0bee",
+      "submission_hash": "f1e74918bbc269ab50410c67a0cc6b6b72b7d55bc0a213cab90a8e28454d8a94",
+      "original": {
+        "package_id": "copilot-76cac053-f623-45d1-96ff-c77edf4a0bee",
+        "sha256": "4f47c94720923931eb43812ca58fc7b235324f1b8d0837923107258e7d2c150b"
+      },
+      "original_restoration": {
+        "path": "receipts/b71c6db3-0185-4444-9499-306fc11212e4.json",
+        "sha256": "030f90069268ecefa2007489718a00fffc26084562781d69a072fb83e5ed83cb"
+      },
+      "linked_restoration": {
+        "path": "receipts/9bf8580f-5459-4782-acfc-62ac9f0ace41.json",
+        "sha256": "75d5cb6d50f065e20b5c1976d4e7ac16f46e45bd6fab8993329a4197ad75e149"
+      },
+      "processing": {
+        "path": "measurements/50a7b0db-cf0d-425a-a901-6f57d1fedaa3/measurement.json",
+        "sha256": "f9d4d1808dfefaca8256b229f371a3b202d27c7190f5e29f0eeb47c776321c1a"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 638.7119814959988,
+      "started_at": "2026-09-10T05:39:53.097054+00:00",
+      "ended_at": "2026-09-10T05:50:14.989268+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 85
+      },
+      "response_spool_files": 85
+    },
+    {
+      "planned_run": "anti-008",
+      "run_id": "69c2fcf8-cab9-49f0-ae99-d1aef80a64ab",
+      "submission_hash": "709a3dc39689b1f0b71336fed4f99ddab7e6bf5efa6fcdf6fe3e0671b510d726",
+      "original": {
+        "package_id": "copilot-69c2fcf8-cab9-49f0-ae99-d1aef80a64ab",
+        "sha256": "390981b11ca371c0bfe50e29c2419ca77a62209777632e2c57e1d0822ef03393"
+      },
+      "original_restoration": {
+        "path": "receipts/3eb57131-9b17-4909-9012-fcd29768a8a5.json",
+        "sha256": "7eb5bf90db5394f76ac61a11afc919d928ee88e0ee4728c3507b34cd64708aec"
+      },
+      "linked_restoration": {
+        "path": "receipts/8a424e0a-82d1-418b-bb6d-89d679cf7953.json",
+        "sha256": "c70d440113b9c0beda16dc173723aafaa1bd537a6cdadd646519459bba7a5943"
+      },
+      "processing": {
+        "path": "measurements/4fedf1bc-89e4-497b-8ff7-e8ff76525c64/measurement.json",
+        "sha256": "c59b6082ca3171e590b1d6f438d11a5ad08641074aed026488fffb896a9af584"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "19023ba4e28ec72ede7b39b88a9cde3bcb9c103f2427079c5ff0e1f0401f7ae9"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 604.0726913000017,
+      "started_at": "2026-09-10T06:04:30.888256+00:00",
+      "ended_at": "2026-09-10T06:14:17.770676+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 81
+      },
+      "response_spool_files": 81
+    },
+    {
+      "planned_run": "anti-009",
+      "run_id": "dc4b4eaa-b0e8-4bf9-abbd-f777a2008ee6",
+      "submission_hash": "785dbb4a650bfe1008a8ce40a65fb85c8540e4c2f478fdb431743333604754a5",
+      "original": {
+        "package_id": "copilot-dc4b4eaa-b0e8-4bf9-abbd-f777a2008ee6",
+        "sha256": "7f38a974924f6908bc65e5e3ed91f0b6edd299936b76335fd72353b5972576db"
+      },
+      "original_restoration": {
+        "path": "receipts/35ef9a47-0f86-4514-bf0f-8c723d0fce1a.json",
+        "sha256": "d3728e55c088c2d0b9cff8b696770d7ae3aee1cb0e8e32e584dfa699ab01775e"
+      },
+      "linked_restoration": {
+        "path": "receipts/30bcbdd4-8f66-4a8d-854a-c8e1c5dc75ca.json",
+        "sha256": "8cb8ed07b789afe8b961beb74b3e606fdb5f35f7d1813d0368334a3ec8affd30"
+      },
+      "processing": {
+        "path": "measurements/523e7a6c-9322-4ea5-8794-4037e734d6c6/measurement.json",
+        "sha256": "3fcad63f8070d9ab941e2ddbd7d815733ddd93982031c6cc0a3ae1bb256053ba"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 751.7365665949983,
+      "started_at": "2026-09-10T06:55:47.752784+00:00",
+      "ended_at": "2026-09-10T07:07:57.697520+00:00",
+      "completion_declaration_captured": false,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 0,
+      "stop_trigger": null,
+      "gateway_http": {
+        "200": 119
+      },
+      "response_spool_files": 119
+    },
+    {
+      "planned_run": "anti-010",
+      "run_id": "7e5974e1-e419-4e9d-96f3-332c91617c78",
+      "submission_hash": "2c4e6f80c92d843ffe0e878a3f5ac4d895d7a7d5e5f2ac9e96d291998027c2a4",
+      "original": {
+        "package_id": "copilot-7e5974e1-e419-4e9d-96f3-332c91617c78",
+        "sha256": "d4c03f6ecce70395808ae966c2b5db9572f5fdd60e81dec35577777e902b42ec"
+      },
+      "original_restoration": {
+        "path": "receipts/54da6537-e581-4a36-ae79-8e26cef95c29.json",
+        "sha256": "e9a8bff0d495f0bb7843a8f3bd22374d89e177387a60a5b75f70044c09614911"
+      },
+      "linked_restoration": {
+        "path": "receipts/c1c808b3-2698-4584-a1b7-95b1f65e0b25.json",
+        "sha256": "22001cea534be62cc960593d3215881dcbdab79034feb38be77b85fe3777f7e8"
+      },
+      "processing": {
+        "path": "measurements/e9a9f2b2-394d-4256-8ebe-9dfc649ca060/measurement.json",
+        "sha256": "f49189e9dc49ee7d3ba680035172ca088f33b8d6aaebb0fffd6e8d17b512e946"
+      },
+      "lockfiles": {
+        "frontend/package-lock.json": "d9a5342556568fdc6623ac8a744e46ed69d36cc0702cfd2d9b6f26b624c26d43"
+      },
+      "management_sha256": {
+        "run_experiment.py": "108a770b1067dfa1c2b334d82c2d0fe4b991c7314907a1a4c13de7f81d2ddf01",
+        "run_codex.py": "0d0913cc7e630ab327aef6cd663850f3249010b6eb9882915bee1e8665c23d12",
+        "model_gateway.py": "f57177319c1f2254c1096ed7e8e087b2cc2deaf99c1ecfeccbdfd18050300cc3",
+        "gateway_usage.py": "168f71c7c998720957c9a9ceb1fab249aff84cec9511beb74c8684848293a5c8",
+        "normalize_usage.py": "ff3f23f782246fbe3c4131c4e94ec8f2c79c9f588b9d0849fa2e44af110a9674",
+        "execution_scope.py": "97cf0e621b05ba9dadb98f27e956f7de979abae175a4b84b594a218d368351e6",
+        "diagnostic_scope.py": "d3182e8ebf3b55ac7ed6e8fe994ab78b02c5209798c723b6f7abf4e0b99e75d1",
+        "preservation_gate.py": "e80da7a8165785f1e9b9224fb72c4b0904fb4508244ca7e52314f819fd46da87",
+        "preserve.py": "125d52cd9c9d0cc766577a21d4d7261cfed9f6b2eefaa779712e70814e748e34",
+        "run_copilot.py": "4df990f15a89b940450d0799f9b9811ee4b502242f526e5ab99bdb4921190d60",
+        "copilot_scope.py": "3653397876d54c299b6264c9a13aa666c81367006bb5d0588f24ba9aed1de3ef",
+        "run_cleanup.py": "a9a12ba951166fae4e8156972d8a8d5e51283bdf77d28e2ae7315a7131a0e259",
+        "prepare_workspace.py": "5917c856dea1cc0ae505b5c2dd1bc4a962a49d2cdd66b3cd4c5860d8fc9797e8",
+        "telemetry_link.py": "d07c4e4cb662da6ffd2d325d9aadc9c8545824b7e71ff30ff9963852cbb6c2a0",
+        "copilot_parallel.py": "80509ea3508a3613f5da9502bc864d4189f2b72c4e9d74805daf92ef39865f7e",
+        "copilot_batch_worker.py": "d586eb00848ffb9c72ad7d1306a663d3726371128251cb1540485af5c3a455ab",
+        "copilot_recovery.py": "d7ecea0882ba712a7f574bcc4633b66f48f9c4d08b766438f957363aa10c76fd",
+        "copilot_batch.py": "8955279d2a8ecb1b1f8e9b7e12b881c2e59160d9a9fd2c144e908ac1390bfed9",
+        "serial_acquisition.py": "ff1c26cb8dd96befd80a742b8e26998927195a666f4d998f16535c1da1822c3e"
+      },
+      "elapsed_seconds": 732.5660913129977,
+      "started_at": "2026-09-10T07:56:42.012103+00:00",
+      "ended_at": "2026-09-10T08:08:31.641549+00:00",
+      "completion_declaration_captured": true,
+      "raw_end_reason": "agent_completed",
+      "exit_code": 137,
+      "stop_trigger": "copilot_completion_declaration",
+      "gateway_http": {
+        "200": 112
+      },
+      "response_spool_files": 112
+    }
+  ],
+  "readiness": {
+    "experiment_id": "dcacece4-120a-4258-bbd8-c09940dbb67c",
+    "reference": {
+      "package_id": "generation-ready-preserve-first-0dc66470-b1cf-4951-a52b-04de334e99a2",
+      "sha256": "58eb55dd769eb820ea195ad6fd5b993eeb1da417ca58de1beb6055764a3c3ace"
+    },
+    "restoration": {
+      "path": "receipts/f1298c2d-0f50-4781-b632-26972c005d1b.json",
+      "sha256": "da0d00d6dca945d7fd3fa8c2ba10ee491f0aef39d87b039f378335ad573a79cf"
+    },
+    "remaining": 19,
+    "next_slot": "normal-001",
+    "originals_unchanged": true,
+    "first_measurement_id": "a5a5b195-f84d-40eb-9a15-9ed14cbbad36"
+  }
+}

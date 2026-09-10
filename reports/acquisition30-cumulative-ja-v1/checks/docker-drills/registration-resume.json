@@ -1,0 +1,17 @@
+{
+  "model_calls": 0,
+  "v6_assertions_executed": false,
+  "docker_generated_result_records": 58,
+  "production_evaluate_run_resume_verified": true,
+  "registration_interruption_injected": true,
+  "evaluation_uuid_reused": "53394c3c-02f8-4061-b5b4-1be5a8886dca",
+  "submission_hash": "92ee947e739367b5873e08c92d7701703985a2a95608d867ff842d29331c5828",
+  "result_hashes_unchanged": {
+    "summary.json": "3a97810e9aa58a366b99afe196f227fcdd48d39292335a6bb293d75402318079",
+    "results.jsonl": "3f08cc0a250995f8fffca2f8244ea7ce9f6404ab3bc46e028204f84c0ffd3d62"
+  },
+  "helper_or_evaluator_restarts": 0,
+  "cleanup_commands": 6,
+  "registered_attempts": 1,
+  "archived_and_restored": true
+}

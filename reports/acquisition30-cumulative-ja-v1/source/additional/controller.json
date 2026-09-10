@@ -1,0 +1,25 @@
+{
+  "dispatch_id": "5fa80822-75dd-4a83-b88c-e5c02b07c2d2",
+  "experiment_id": "b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+  "owner": {
+    "pid": 1360,
+    "start_ticks": "13969",
+    "boot_id": "8eb14db8-763c-4123-b77a-538d31d2bc9e"
+  },
+  "status": "stopped",
+  "generation_readiness": {
+    "path": "receipts/32059582-b77e-4439-b8a0-15ef401699d3.json",
+    "sha256": "31b40bf9eb779dcfa942767b7bb48f9906e01102075e5573ed60d72be4051382"
+  },
+  "generation_proof_sha256": "9b0541eb94b71b64e40218e50c983bf9c99b8dc44ec37b4466e70d9891ae3ba0",
+  "started_at": 1789056479.7557194,
+  "stop_reason": null,
+  "evaluation_paused_for_resources": false,
+  "implementation_limit": 5,
+  "evaluation_limit": 4,
+  "active_count": 0,
+  "changes": [],
+  "applied_max_parallel": 5,
+  "generation_ended_at": 1789065167.0744424,
+  "finished_at": 1789071337.0949275
+}

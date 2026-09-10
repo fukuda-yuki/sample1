@@ -1,0 +1,104 @@
+{"at": 1789065490.4461675, "monotonic": 9265.451352965, "event": "resource_sample", "run_id": null, "available_memory_bytes": 22498541568, "load_average": [4.5029296875, 3.451171875, 2.73486328125], "implementation_processes": 0, "evaluations": 0}
+{"at": 1789065490.5788264, "monotonic": 9265.584012752, "event": "implementation_started", "run_id": "3377f463-8d10-4c28-821d-15d31dabff00", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 1}
+{"at": 1789065490.6476793, "monotonic": 9265.652865159, "event": "implementation_started", "run_id": "3be00a0b-d041-4856-8b9e-6e913f476862", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 2}
+{"at": 1789065490.7154775, "monotonic": 9265.720663358, "event": "implementation_started", "run_id": "598bed9c-3ea6-4e8c-9eab-1da431726668", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 3}
+{"at": 1789065490.791585, "monotonic": 9265.796770632, "event": "implementation_started", "run_id": "796d318a-7bbb-4e34-8591-264c5f1adaa5", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 4}
+{"at": 1789065490.869826, "monotonic": 9265.875011622, "event": "implementation_started", "run_id": "d953b2a8-2124-42b8-a09e-f35831c15c80", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 5}
+{"at": 1789065499.453733, "monotonic": 9274.458918958, "event": "implementation_stopped", "run_id": "d953b2a8-2124-42b8-a09e-f35831c15c80"}
+{"at": 1789065500.7353942, "monotonic": 9275.740579823, "event": "preserved_and_restored", "run_id": "d953b2a8-2124-42b8-a09e-f35831c15c80", "may_continue": true}
+{"at": 1789065500.8009949, "monotonic": 9275.806180602, "event": "implementation_started", "run_id": "d59b1d20-653c-4df8-8e11-8232477b0ec6", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 5}
+{"at": 1789065500.8429613, "monotonic": 9275.848147236, "event": "evaluation_started", "run_id": "d953b2a8-2124-42b8-a09e-f35831c15c80", "generation_done": false}
+{"at": 1789065501.58115, "monotonic": 9276.586335354, "event": "implementation_stopped", "run_id": "796d318a-7bbb-4e34-8591-264c5f1adaa5"}
+{"at": 1789065501.8536913, "monotonic": 9276.85887668, "event": "evaluation_failed", "run_id": "d953b2a8-2124-42b8-a09e-f35831c15c80", "error_type": "OSError"}
+{"at": 1789065503.1589208, "monotonic": 9278.164106876, "event": "preserved_and_restored", "run_id": "796d318a-7bbb-4e34-8591-264c5f1adaa5", "may_continue": true}
+{"at": 1789065503.2478225, "monotonic": 9278.253008479, "event": "implementation_started", "run_id": "7bcd3376-b4b1-48f4-ac78-a3de3a714312", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 5}
+{"at": 1789065503.329839, "monotonic": 9278.335025144, "event": "evaluation_started", "run_id": "796d318a-7bbb-4e34-8591-264c5f1adaa5", "generation_done": false}
+{"at": 1789065504.185097, "monotonic": 9279.190283031, "event": "implementation_stopped", "run_id": "598bed9c-3ea6-4e8c-9eab-1da431726668"}
+{"at": 1789065504.7589593, "monotonic": 9279.764145278, "event": "evaluation_preserved", "run_id": "796d318a-7bbb-4e34-8591-264c5f1adaa5", "evaluation_id": "a4a3eb89-36cc-415a-8eca-02abb1cba9fc"}
+{"at": 1789065505.5449166, "monotonic": 9280.550102511, "event": "preserved_and_restored", "run_id": "598bed9c-3ea6-4e8c-9eab-1da431726668", "may_continue": true}
+{"at": 1789065505.6051707, "monotonic": 9280.610356542, "event": "implementation_started", "run_id": "86065e78-5435-4542-9035-1b75c6b9f7ef", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 5}
+{"at": 1789065505.6545925, "monotonic": 9280.659778438, "event": "evaluation_started", "run_id": "598bed9c-3ea6-4e8c-9eab-1da431726668", "generation_done": false}
+{"at": 1789065505.9134746, "monotonic": 9280.91866052, "event": "implementation_stopped", "run_id": "3be00a0b-d041-4856-8b9e-6e913f476862"}
+{"at": 1789065506.9575276, "monotonic": 9281.962713233, "event": "evaluation_preserved", "run_id": "598bed9c-3ea6-4e8c-9eab-1da431726668", "evaluation_id": "762db3e6-b6eb-4b50-90e7-0f0f52936691"}
+{"at": 1789065507.2372582, "monotonic": 9282.242444094, "event": "preserved_and_restored", "run_id": "3be00a0b-d041-4856-8b9e-6e913f476862", "may_continue": true}
+{"at": 1789065507.3337798, "monotonic": 9282.338965759, "event": "implementation_started", "run_id": "0b1101ad-8dc4-4c77-a03e-cc807f0bb361", "model_id": "muse-spark-1.3-contributor", "fallback_of": "3be00a0b-d041-4856-8b9e-6e913f476862", "occupied": 5}
+{"at": 1789065507.3861887, "monotonic": 9282.391374684, "event": "evaluation_started", "run_id": "3be00a0b-d041-4856-8b9e-6e913f476862", "generation_done": false}
+{"at": 1789065508.1576853, "monotonic": 9283.162870906, "event": "implementation_stopped", "run_id": "d59b1d20-653c-4df8-8e11-8232477b0ec6"}
+{"at": 1789065508.442126, "monotonic": 9283.447311849, "event": "implementation_stopped", "run_id": "3377f463-8d10-4c28-821d-15d31dabff00"}
+{"at": 1789065508.6952856, "monotonic": 9283.700471273, "event": "evaluation_preserved", "run_id": "3be00a0b-d041-4856-8b9e-6e913f476862", "evaluation_id": "90f4701c-0672-4568-943a-53851aabe01c"}
+{"at": 1789065509.4490793, "monotonic": 9284.454265292, "event": "preserved_and_restored", "run_id": "d59b1d20-653c-4df8-8e11-8232477b0ec6", "may_continue": true}
+{"at": 1789065509.5539641, "monotonic": 9284.559149959, "event": "implementation_started", "run_id": "2b6de68e-57ca-4225-a124-6ba3e6b1775a", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 5}
+{"at": 1789065509.6203878, "monotonic": 9284.625573784, "event": "evaluation_started", "run_id": "d59b1d20-653c-4df8-8e11-8232477b0ec6", "generation_done": false}
+{"at": 1789065510.6533856, "monotonic": 9285.658571582, "event": "implementation_stopped", "run_id": "7bcd3376-b4b1-48f4-ac78-a3de3a714312"}
+{"at": 1789065510.6630504, "monotonic": 9285.668236445, "event": "evaluation_preserved", "run_id": "d59b1d20-653c-4df8-8e11-8232477b0ec6", "evaluation_id": "2bec68a2-3d3a-4698-8808-c005eefe151f"}
+{"at": 1789065510.9105241, "monotonic": 9285.915709989, "event": "preserved_and_restored", "run_id": "3377f463-8d10-4c28-821d-15d31dabff00", "may_continue": true}
+{"at": 1789065511.0135102, "monotonic": 9286.018696019, "event": "implementation_started", "run_id": "deeb2468-0aec-4a68-876c-21ac1d434e67", "model_id": "muse-spark-1.3-contributor", "fallback_of": "3377f463-8d10-4c28-821d-15d31dabff00", "occupied": 5}
+{"at": 1789065511.0716612, "monotonic": 9286.076847307, "event": "evaluation_started", "run_id": "3377f463-8d10-4c28-821d-15d31dabff00", "generation_done": false}
+{"at": 1789065512.0805376, "monotonic": 9287.085723452, "event": "evaluation_preserved", "run_id": "3377f463-8d10-4c28-821d-15d31dabff00", "evaluation_id": "a48519dd-2ff1-49f4-be56-dae706fcaca9"}
+{"at": 1789065511.609796, "monotonic": 9287.350767706, "event": "preserved_and_restored", "run_id": "7bcd3376-b4b1-48f4-ac78-a3de3a714312", "may_continue": true}
+{"at": 1789065511.708169, "monotonic": 9287.449140902, "event": "implementation_started", "run_id": "d48a09b4-bbb5-4c11-9a52-068d0687d537", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 5}
+{"at": 1789065511.775428, "monotonic": 9287.516400012, "event": "evaluation_started", "run_id": "7bcd3376-b4b1-48f4-ac78-a3de3a714312", "generation_done": false}
+{"at": 1789065512.5691683, "monotonic": 9288.310140056, "event": "implementation_stopped", "run_id": "86065e78-5435-4542-9035-1b75c6b9f7ef"}
+{"at": 1789065513.426732, "monotonic": 9289.167704057, "event": "evaluation_preserved", "run_id": "7bcd3376-b4b1-48f4-ac78-a3de3a714312", "evaluation_id": "23232c36-d175-44a2-b0c0-3146077041fe"}
+{"at": 1789065514.1202629, "monotonic": 9289.861234822, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065514.2638497, "monotonic": 9290.00482168, "event": "preserved_and_restored", "run_id": "86065e78-5435-4542-9035-1b75c6b9f7ef", "may_continue": true}
+{"at": 1789065514.3281438, "monotonic": 9290.069115812, "event": "evaluation_started", "run_id": "86065e78-5435-4542-9035-1b75c6b9f7ef", "generation_done": false}
+{"at": 1789065514.9019663, "monotonic": 9290.642938168, "event": "implementation_stopped", "run_id": "0b1101ad-8dc4-4c77-a03e-cc807f0bb361"}
+{"at": 1789065515.6906557, "monotonic": 9291.43162782, "event": "evaluation_preserved", "run_id": "86065e78-5435-4542-9035-1b75c6b9f7ef", "evaluation_id": "cb7cc59d-b643-42b6-b86c-d5bae65a80c6"}
+{"at": 1789065515.9986587, "monotonic": 9291.739630525, "event": "implementation_stopped", "run_id": "2b6de68e-57ca-4225-a124-6ba3e6b1775a"}
+{"at": 1789065516.0876846, "monotonic": 9291.828656516, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065516.2542126, "monotonic": 9291.995183865, "event": "preserved_and_restored", "run_id": "0b1101ad-8dc4-4c77-a03e-cc807f0bb361", "may_continue": true}
+{"at": 1789065516.3100796, "monotonic": 9292.051051176, "event": "evaluation_started", "run_id": "0b1101ad-8dc4-4c77-a03e-cc807f0bb361", "generation_done": false}
+{"at": 1789065517.2445133, "monotonic": 9292.985485368, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065517.2594619, "monotonic": 9293.000433493, "event": "preserved_and_restored", "run_id": "2b6de68e-57ca-4225-a124-6ba3e6b1775a", "may_continue": true}
+{"at": 1789065517.268088, "monotonic": 9293.009059682, "event": "evaluation_preserved", "run_id": "0b1101ad-8dc4-4c77-a03e-cc807f0bb361", "evaluation_id": "098f71cf-0ce7-4c33-bd55-d71e743e67f0"}
+{"at": 1789065517.3076684, "monotonic": 9293.048640262, "event": "evaluation_started", "run_id": "2b6de68e-57ca-4225-a124-6ba3e6b1775a", "generation_done": false}
+{"at": 1789065517.5564845, "monotonic": 9293.297456148, "event": "implementation_stopped", "run_id": "deeb2468-0aec-4a68-876c-21ac1d434e67"}
+{"at": 1789065518.3174276, "monotonic": 9294.058399466, "event": "evaluation_preserved", "run_id": "2b6de68e-57ca-4225-a124-6ba3e6b1775a", "evaluation_id": "b951a33d-89ba-4819-8e25-3db8c8896b44"}
+{"at": 1789065518.599312, "monotonic": 9294.340284212, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065518.8206913, "monotonic": 9294.561663092, "event": "preserved_and_restored", "run_id": "deeb2468-0aec-4a68-876c-21ac1d434e67", "may_continue": true}
+{"at": 1789065518.8673658, "monotonic": 9294.608337611, "event": "evaluation_started", "run_id": "deeb2468-0aec-4a68-876c-21ac1d434e67", "generation_done": false}
+{"at": 1789065519.3862338, "monotonic": 9295.127205673, "event": "implementation_stopped", "run_id": "d48a09b4-bbb5-4c11-9a52-068d0687d537"}
+{"at": 1789065519.721286, "monotonic": 9295.462257749, "event": "resource_sample", "run_id": null, "available_memory_bytes": 22096961536, "load_average": [6.564453125, 4.03515625, 2.95166015625], "implementation_processes": 0, "evaluations": 1}
+{"at": 1789065519.9978657, "monotonic": 9295.738837973, "event": "evaluation_preserved", "run_id": "deeb2468-0aec-4a68-876c-21ac1d434e67", "evaluation_id": "f66ff72f-489d-444f-aa98-fe28acffcabf"}
+{"at": 1789065521.0945923, "monotonic": 9296.835564161, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065521.2874691, "monotonic": 9297.028440712, "event": "preserved_and_restored", "run_id": "d48a09b4-bbb5-4c11-9a52-068d0687d537", "may_continue": true}
+{"at": 1789065521.332829, "monotonic": 9297.073800671, "event": "generation_ended", "run_id": null, "started": 12}
+{"at": 1789065521.3779233, "monotonic": 9297.118895313, "event": "evaluation_started", "run_id": "d48a09b4-bbb5-4c11-9a52-068d0687d537", "generation_done": true}
+{"at": 1789065522.4279294, "monotonic": 9298.168901244, "event": "evaluation_preserved", "run_id": "d48a09b4-bbb5-4c11-9a52-068d0687d537", "evaluation_id": "79bb1cbe-999a-4a07-8096-31aa73a241e4"}
+{"at": 1789065522.5608952, "monotonic": 9298.301867171, "event": "controller_finished", "run_id": null, "stop_reason": "operator_requested_stop"}
+{"at": 1789065522.780431, "monotonic": 9298.521402372, "event": "resource_sample", "run_id": null, "available_memory_bytes": 22375030784, "load_average": [6.6796875, 4.10107421875, 2.97900390625], "implementation_processes": 0, "evaluations": 0}
+{"at": 1789065522.9120228, "monotonic": 9298.652994647, "event": "implementation_started", "run_id": "5a73ccfc-bb5e-42de-bc93-f2c0c1a785fc", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 1}
+{"at": 1789065522.9722924, "monotonic": 9298.713263927, "event": "implementation_started", "run_id": "b907f7ed-1f01-4f55-a5b5-abee8ae21673", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 2}
+{"at": 1789065523.0363755, "monotonic": 9298.777347574, "event": "implementation_started", "run_id": "7aaec7bd-fe61-4138-af97-e5348e50f66f", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 3}
+{"at": 1789065523.1050308, "monotonic": 9298.846002414, "event": "implementation_started", "run_id": "de64f2e8-ef02-408b-9e5a-fd9abbb6d998", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 4}
+{"at": 1789065523.185304, "monotonic": 9298.926275702, "event": "implementation_started", "run_id": "40c2d55e-a6b8-42a7-af63-fe2a7431f0ec", "model_id": "muse-spark-1.2-contributor", "fallback_of": null, "occupied": 5}
+{"at": 1789065523.2462578, "monotonic": 9298.987229599, "event": "evaluation_started", "run_id": "d953b2a8-2124-42b8-a09e-f35831c15c80", "generation_done": false}
+{"at": 1789065523.4862213, "monotonic": 9299.227193283, "event": "evaluation_preserved", "run_id": "d953b2a8-2124-42b8-a09e-f35831c15c80", "evaluation_id": "c888348e-9ed5-4476-b73a-41a17940cc9f"}
+{"at": 1789065529.4874089, "monotonic": 9305.228380622, "event": "implementation_stopped", "run_id": "5a73ccfc-bb5e-42de-bc93-f2c0c1a785fc"}
+{"at": 1789065529.8249972, "monotonic": 9305.565968745, "event": "implementation_stopped", "run_id": "b907f7ed-1f01-4f55-a5b5-abee8ae21673"}
+{"at": 1789065530.107423, "monotonic": 9305.848394697, "event": "implementation_stopped", "run_id": "7aaec7bd-fe61-4138-af97-e5348e50f66f"}
+{"at": 1789065530.1383934, "monotonic": 9305.879365373, "event": "implementation_stopped", "run_id": "de64f2e8-ef02-408b-9e5a-fd9abbb6d998"}
+{"at": 1789065530.4231565, "monotonic": 9306.1641283, "event": "implementation_stopped", "run_id": "40c2d55e-a6b8-42a7-af63-fe2a7431f0ec"}
+{"at": 1789065530.6748414, "monotonic": 9306.415813232, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065530.6922667, "monotonic": 9306.433238075, "event": "preserved_and_restored", "run_id": "5a73ccfc-bb5e-42de-bc93-f2c0c1a785fc", "may_continue": true}
+{"at": 1789065530.8127456, "monotonic": 9306.553717228, "event": "evaluation_started", "run_id": "5a73ccfc-bb5e-42de-bc93-f2c0c1a785fc", "generation_done": false}
+{"at": 1789065531.793651, "monotonic": 9307.534623087, "event": "evaluation_preserved", "run_id": "5a73ccfc-bb5e-42de-bc93-f2c0c1a785fc", "evaluation_id": "10f18329-35e7-4ffb-8c15-fb95b44f5603"}
+{"at": 1789065532.1932049, "monotonic": 9307.93417674, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065532.3065116, "monotonic": 9308.047483165, "event": "preserved_and_restored", "run_id": "b907f7ed-1f01-4f55-a5b5-abee8ae21673", "may_continue": true}
+{"at": 1789065532.413252, "monotonic": 9308.154223696, "event": "evaluation_started", "run_id": "b907f7ed-1f01-4f55-a5b5-abee8ae21673", "generation_done": false}
+{"at": 1789065533.3855236, "monotonic": 9309.126495059, "event": "evaluation_preserved", "run_id": "b907f7ed-1f01-4f55-a5b5-abee8ae21673", "evaluation_id": "3922d861-5fe3-4427-b9ae-046d79548233"}
+{"at": 1789065533.8188164, "monotonic": 9309.559788828, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065533.906583, "monotonic": 9309.64755498, "event": "preserved_and_restored", "run_id": "7aaec7bd-fe61-4138-af97-e5348e50f66f", "may_continue": true}
+{"at": 1789065534.0385058, "monotonic": 9309.779477444, "event": "evaluation_started", "run_id": "7aaec7bd-fe61-4138-af97-e5348e50f66f", "generation_done": false}
+{"at": 1789065535.0387123, "monotonic": 9310.779684017, "event": "evaluation_preserved", "run_id": "7aaec7bd-fe61-4138-af97-e5348e50f66f", "evaluation_id": "8e2eac8e-438d-418c-b546-2238c37ea51e"}
+{"at": 1789065535.582229, "monotonic": 9311.323201135, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065535.8535547, "monotonic": 9311.594526285, "event": "preserved_and_restored", "run_id": "de64f2e8-ef02-408b-9e5a-fd9abbb6d998", "may_continue": true}
+{"at": 1789065535.9818773, "monotonic": 9311.722849113, "event": "evaluation_started", "run_id": "de64f2e8-ef02-408b-9e5a-fd9abbb6d998", "generation_done": false}
+{"at": 1789065536.994393, "monotonic": 9312.735364666, "event": "evaluation_preserved", "run_id": "de64f2e8-ef02-408b-9e5a-fd9abbb6d998", "evaluation_id": "ea972c64-5717-4153-823f-a496d0d1b799"}
+{"at": 1789065537.4893062, "monotonic": 9313.230278176, "event": "stop_new_starts", "run_id": null}
+{"at": 1789065537.511603, "monotonic": 9313.2525748, "event": "preserved_and_restored", "run_id": "40c2d55e-a6b8-42a7-af63-fe2a7431f0ec", "may_continue": true}
+{"at": 1789065537.551821, "monotonic": 9313.292792612, "event": "generation_ended", "run_id": null, "started": 17}
+{"at": 1789065537.598134, "monotonic": 9313.339106188, "event": "evaluation_started", "run_id": "40c2d55e-a6b8-42a7-af63-fe2a7431f0ec", "generation_done": true}
+{"at": 1789065538.6509104, "monotonic": 9314.391882679, "event": "evaluation_preserved", "run_id": "40c2d55e-a6b8-42a7-af63-fe2a7431f0ec", "evaluation_id": "1272dd31-ecd2-4edd-a430-a69655a2ccee"}
+{"at": 1789065538.7866802, "monotonic": 9314.527652541, "event": "controller_finished", "run_id": null, "stop_reason": "operator_requested_stop"}

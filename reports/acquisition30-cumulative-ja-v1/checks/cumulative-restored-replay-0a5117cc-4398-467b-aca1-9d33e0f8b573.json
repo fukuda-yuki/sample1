@@ -1,0 +1,61 @@
+{
+  "kind": "cumulative-restored-analysis",
+  "reference": {
+    "package_id": "cumulative-report-inputs-6dfbc944-d1e2-4613-adaf-e8304bc554f0",
+    "sha256": "1ad85fdcb74a4fe5063209153d6489577dd8ab61646c92c4283b66180875b557"
+  },
+  "restoration": {
+    "path": "receipts/edf7885f-1cc1-4a4b-b122-6c3398728d69.json",
+    "sha256": "15e3ea2d7ad6b08e07623e690aecccd599a4b441ceac01ff1ce0b38f00ab696f"
+  },
+  "runtime_reference": {
+    "package_id": "report-runtime-2f1cd461-69ca-43a0-9a60-ff4f641a842a",
+    "sha256": "7fce9305c1ca304f34019cd3a8a63325b7fbe5d48e41985240d5d6e316756bca"
+  },
+  "image": "mcr.microsoft.com/playwright@sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d",
+  "identical_outputs": [
+    "data/analysis.sqlite",
+    "data/bootstrap.csv",
+    "data/case_results.csv",
+    "data/correlations.csv",
+    "data/features.csv",
+    "data/feature_runs.csv",
+    "data/groups.csv",
+    "data/ids.csv",
+    "data/leave_one_pair_out.csv",
+    "data/outliers.csv",
+    "data/pairs.csv",
+    "data/reachability.csv",
+    "data/response_decomposition.csv",
+    "data/results.json",
+    "data/runs.csv",
+    "data/runs.json",
+    "data/sensitivity.csv",
+    "data/sql-evidence.json",
+    "data/summaries.csv",
+    "data/terminations.csv",
+    "figures/01-study-flow.png",
+    "figures/01-study-flow.svg",
+    "figures/02-batch-distributions.png",
+    "figures/02-batch-distributions.svg",
+    "figures/03-tokens-pass-rate.png",
+    "figures/03-tokens-pass-rate.svg",
+    "figures/04-paired-differences.png",
+    "figures/04-paired-differences.svg",
+    "figures/05-feature-heatmap.png",
+    "figures/05-feature-heatmap.svg",
+    "figures/06-approval-path.png",
+    "figures/06-approval-path.svg",
+    "figures/figure-trace.json",
+    "supplement.md"
+  ],
+  "sqlite_logically_identical": true,
+  "docker": {
+    "original_paths_absent": true,
+    "network": "none",
+    "only_restored_inputs_code_and_runtime_mounted": true
+  },
+  "model_calls": 0,
+  "evaluations": 0,
+  "stdout": "{\"planned\": 60, \"started\": 60, \"ids\": 3420, \"cases\": 3480, \"available_score_runs\": 57, \"available_score_ids\": 3249, \"unavailable_score_runs_with_raw_outputs\": 3, \"unique_run_ids\": 60, \"input_hashes_verified\": true}\n{\"queries\": 15, \"result_rows\": 235}\n{\"figures\": 6, \"png\": 6, \"svg\": 6}\n{\"planned_rows\": 60, \"sections\": 8, \"model_calls\": 0, \"evaluations\": 0}"
+}

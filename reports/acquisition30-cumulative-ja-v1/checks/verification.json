@@ -1,0 +1,18 @@
+{
+  "source_hashes_verified": true,
+  "prior_20_numbers_and_adjudications_unchanged": true,
+  "planned": 60,
+  "started": 60,
+  "scored": 57,
+  "run_ids": 3420,
+  "cases": 3480,
+  "sqlite_queries_cross_checked": true,
+  "qualitative_source_bindings_verified": 40,
+  "saved_evaluation_observations_bound": 7,
+  "manuscript_claim_markers_verified": 20,
+  "figures": 6,
+  "legacy_original_files_verified": 320,
+  "model_calls": 0,
+  "evaluations": 0,
+  "report_sha256": "94d5802626e932986c242b778603f6cd008e4e50bdcbb720051ed8e7a0b02246"
+}

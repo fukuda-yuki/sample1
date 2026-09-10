@@ -1,0 +1,70 @@
+{
+  "model_called": false,
+  "two_isolated_docker_runs": true,
+  "only_503_run_stopped": true,
+  "shared_fixture_secret_retained": true,
+  "runs": [
+    {
+      "run_id": "4691c5de-623b-4028-8824-bfa0c0b50308",
+      "experiment_id": "776c2518-564e-470e-98ac-3c1b796ee5c0",
+      "model_called": false,
+      "mode": "503",
+      "elapsed": 1.790023099999999,
+      "end_reason": "provider_unavailable",
+      "cleanup": {
+        "run_id": "4691c5de-623b-4028-8824-bfa0c0b50308",
+        "status": "completed",
+        "preservation": {
+          "package_id": "run-4691c5de-623b-4028-8824-bfa0c0b50308",
+          "sha256": "604aeb466b501d4ff1c45c40b30df4ab7232939e6fd09f45b765eff23cac7be8"
+        },
+        "actions": [
+          {
+            "kind": "container",
+            "id": "5683f3d186f02234c4b9e9d4651afbad7056beaa0765df05faac53aaa6098b6c",
+            "name": "sample1-4691c5de-623b-4028-8824-bfa0c0b50308",
+            "status": "removed"
+          },
+          {
+            "kind": "container",
+            "id": "0619d9a267d88d68a4e656d4f3a6a7936f164b2d8964dfea2a0f1719c6bcfadf",
+            "name": "sample1-gateway-4691c5de-623b-4028-8824-bfa0c0b50308",
+            "status": "removed"
+          },
+          {
+            "kind": "network",
+            "id": "16213937bf56559f8c74dae100ac6881da72422ce7a89effccd0e1caf7aa7c0b",
+            "name": "sample1-private-4691c5de-623b-4028-8824-bfa0c0b50308",
+            "status": "removed"
+          },
+          {
+            "kind": "directory",
+            "name": "working",
+            "status": "removed"
+          }
+        ]
+      },
+      "receipt": {
+        "package_id": "run-4691c5de-623b-4028-8824-bfa0c0b50308",
+        "sha256": "604aeb466b501d4ff1c45c40b30df4ab7232939e6fd09f45b765eff23cac7be8"
+      },
+      "frozen_hash": "a1c18587a526ef304ec7dac5bcba0efa49f5a650cf731737856d523067a627f6"
+    },
+    {
+      "run_id": "f6017de8-7254-4106-b60e-0d2d30952a6f",
+      "experiment_id": "ae29d91f-96db-4d57-bf60-fe16f6c1bd1c",
+      "model_called": false,
+      "mode": "ok",
+      "elapsed": 7.9631957920000005,
+      "end_reason": "agent_completed",
+      "cleanup": {
+        "status": "not_requested"
+      },
+      "receipt": {
+        "package_id": "run-f6017de8-7254-4106-b60e-0d2d30952a6f",
+        "sha256": "46c5a206459b227263402725209362d793cd727e856b5d5b5d96b82c8a7018b5"
+      },
+      "frozen_hash": "336ead13d43572e5fcc1c6ebae63fe4d6c22550bded5a1e09a7ade2ee95ebb49"
+    }
+  ]
+}

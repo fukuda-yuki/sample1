@@ -1,0 +1,34 @@
+{
+  "native-five-plus-evaluation.json": {
+    "original": "results/acquisition20-20260911/preflight/docker/evidence.json",
+    "sha256": "924ddc3e02b01a792d2d8d5de7a72b19bd8b789bc88e49c95bf8dbb4453c422c"
+  },
+  "http503-docker.json": {
+    "original": "results/acquisition20-20260911/preflight/docker-503/evidence.json",
+    "sha256": "3f4dabc841e492bbac3dea912d52f9eaba7f990625bcc80209991136949e83ee"
+  },
+  "parallel-tests.log": {
+    "original": "results/acquisition20-20260911/preflight/parallel-tests.log",
+    "sha256": "0d1ce0ead40faedcdb4efa386e183679ca982f6a13571f1bf3445f75560b1b89"
+  },
+  "regression-tests.log": {
+    "original": "results/acquisition20-20260911/preflight/regression-tests.log",
+    "sha256": "87b22e4758f6572e59c12be5480313fe2d75002057f82af2d78249fcca7bd6d2"
+  },
+  "gateway-tests.log": {
+    "original": "results/acquisition20-20260911/preflight/gateway-tests.log",
+    "sha256": "9adaad1408106710a63c3797756d84e079c2eb8148825bb0146729a2198dc253"
+  },
+  "receipt-gate-test.log": {
+    "original": "results/acquisition20-20260911/preflight/receipt-gate-test.log",
+    "sha256": "d8a654efe02190d0bf0abeca2bd2028f36c7cf315e0f22deb78edb1dbdf3b46d"
+  },
+  "generation-proof.json": {
+    "original": "results/acquisition20-20260911/generation-proof.json",
+    "sha256": "9b0541eb94b71b64e40218e50c983bf9c99b8dc44ec37b4466e70d9891ae3ba0"
+  },
+  "ready.json": {
+    "original": "results/acquisition20-20260911/ready.json",
+    "sha256": "bc568460287b73d396df64bbf4030d4c6f6bfa51a92905db9c253943e2531b21"
+  }
+}

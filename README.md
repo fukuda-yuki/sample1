@@ -1,5 +1,7 @@
 # 仕様書内不整合と実装Runの探索実験
 
+[追加40件・累計60件の日本語評価レポート](reports/acquisition30-cumulative-ja-v1/report.md)（[HTML表示版](reports/acquisition30-cumulative-ja-v1/report.html)、[CSV・JSON・SQLite](reports/acquisition30-cumulative-ja-v1/data)、[再集計手順](reports/acquisition30-cumulative-ja-v1/reproduce.md)）。今回の実行・受入記録は [Issue #49](https://github.com/fukuda-yuki/sample1/issues/49)、取得方式は[最大5並列の手順](docs/parallel-acquisition-20.md)を参照する。
+
 [意味のある検証データを取得する新版の手順](docs/meaningful-evaluation.md)：N/K/limit、回収、原因・到達範囲、妥当性審査、同一提出物の再採点と復元再集計。現在の改善・受入は [Issue #26](https://github.com/fukuda-yuki/sample1/issues/26) と [並列実行 #25](https://github.com/fukuda-yuki/sample1/issues/25) を参照する。以下の過去pilotの停止条件は当時の記録として保持する。
 
 [Copilot CLI / Zen BYOKの実装・非モデル検証・操作手順](docs/copilot-byok.md)：

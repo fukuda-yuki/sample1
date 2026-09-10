@@ -1,0 +1,16 @@
+{
+  "experiment_id": "b040f39a-7153-4bfc-8bb6-6f5215cb585a",
+  "model_called": false,
+  "reference": {
+    "package_id": "parallel-generation-readiness-ad9ba475-bca2-484a-bb79-34f8fcbc069d",
+    "sha256": "1b259d994d4553d55497989cdea9f40d88d63afb3017700ba6ce3d38b8670190"
+  },
+  "restoration": {
+    "path": "receipts/32059582-b77e-4439-b8a0-15ef401699d3.json",
+    "sha256": "31b40bf9eb779dcfa942767b7bb48f9906e01102075e5573ed60d72be4051382"
+  },
+  "planned": 40,
+  "implementation_limit": 5,
+  "evaluation_during_generation": 1,
+  "evaluation_after_generation": 4
+}

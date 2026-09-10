@@ -1,0 +1,173 @@
+{
+  "real_model_runs": true,
+  "checks": [
+    {
+      "planned_run": "normal-001",
+      "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+      "worker_running": true,
+      "gateway_running": true,
+      "worker_secret_mount": false,
+      "secret_in_environment": false,
+      "isolated_network": "sample1-private-cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+      "allowed_distribution_files": [
+        "RUN_CONTRACT.md",
+        "spec.md"
+      ],
+      "http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "response_files": 16
+    },
+    {
+      "planned_run": "anti-001",
+      "run_id": "25a01c2b-cf66-4053-848c-9af10ef2ef81",
+      "worker_running": true,
+      "gateway_running": true,
+      "worker_secret_mount": false,
+      "secret_in_environment": false,
+      "isolated_network": "sample1-private-25a01c2b-cf66-4053-848c-9af10ef2ef81",
+      "allowed_distribution_files": [
+        "RUN_CONTRACT.md",
+        "spec.md"
+      ],
+      "http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "response_files": 19
+    },
+    {
+      "planned_run": "anti-002",
+      "run_id": "ca85fc9b-7678-41f4-88bb-257f702ea65b",
+      "worker_running": true,
+      "gateway_running": true,
+      "worker_secret_mount": false,
+      "secret_in_environment": false,
+      "isolated_network": "sample1-private-ca85fc9b-7678-41f4-88bb-257f702ea65b",
+      "allowed_distribution_files": [
+        "RUN_CONTRACT.md",
+        "spec.md"
+      ],
+      "http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "response_files": 19
+    },
+    {
+      "planned_run": "normal-002",
+      "run_id": "f7474040-55b4-40da-b89d-a9a016139246",
+      "worker_running": true,
+      "gateway_running": true,
+      "worker_secret_mount": false,
+      "secret_in_environment": false,
+      "isolated_network": "sample1-private-f7474040-55b4-40da-b89d-a9a016139246",
+      "allowed_distribution_files": [
+        "RUN_CONTRACT.md",
+        "spec.md"
+      ],
+      "http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "response_files": 18
+    },
+    {
+      "planned_run": "normal-003",
+      "run_id": "451385f8-693c-4881-927a-2fd87ad343e5",
+      "worker_running": true,
+      "gateway_running": true,
+      "worker_secret_mount": false,
+      "secret_in_environment": false,
+      "isolated_network": "sample1-private-451385f8-693c-4881-927a-2fd87ad343e5",
+      "allowed_distribution_files": [
+        "RUN_CONTRACT.md",
+        "spec.md"
+      ],
+      "http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "response_files": 18
+    }
+  ],
+  "secret_matches": 0
+}

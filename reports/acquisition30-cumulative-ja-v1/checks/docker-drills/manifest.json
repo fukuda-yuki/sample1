@@ -1,0 +1,99 @@
+{
+  "model_calls": 0,
+  "v6_assertions_executed": false,
+  "proofs": {
+    "fallback": {
+      "original": "results/acquisition20-20260911/supplemental-docker-v3/fallback/evidence.json",
+      "sha256": "1abf20850714209891226f53e0cdbb81031a0f1fb8a60109fdcd7bc1d4c5e6a6",
+      "result": {
+        "scenario": "fallback",
+        "model_calls": 0,
+        "real_credentials": false,
+        "client": "synthetic HTTP client in Docker; native CLI verified separately",
+        "started": 17,
+        "unstarted": 23,
+        "maximum": 40,
+        "start_ids_unique": true,
+        "out_of_order_completion": true,
+        "first_five_stopped_in_exact_reverse_order": true,
+        "max_implementation_processes": 5,
+        "max_occupied_slots": 5,
+        "max_evaluations": 1,
+        "no_new_start_after_observed_stop_until_explicit_resume": true,
+        "first_stop_reason": "operator_requested_stop",
+        "second_stop_reason": "operator_requested_stop",
+        "resumed_without_reusing_started_slots": true,
+        "saved_docker_evaluation_reused_after_registration_failure": true,
+        "all_actual_originals_verified": true,
+        "fallback_children": 2,
+        "controller_sha256": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e",
+        "script_sha256": "2f6ffc9af650c5902624f7fd8b33c4a19cdd8686aae0e3bf949e21c435b349b3"
+      },
+      "observed_storage_failures": 0,
+      "observed_registration_failures": 1,
+      "event_sha256": "81e2c3b8c131459f5320094fe588b93410b2dfd18aeefca2971868080ec9d5e0"
+    },
+    "retention": {
+      "original": "results/acquisition20-20260911/supplemental-docker-v3/retention/evidence.json",
+      "sha256": "d3491eb1bfeb25050741eff95ae3968224c168316feaa8c094e80260621b9d2b",
+      "result": {
+        "scenario": "retention",
+        "model_calls": 0,
+        "real_credentials": false,
+        "client": "synthetic HTTP client in Docker; native CLI verified separately",
+        "started": 13,
+        "unstarted": 27,
+        "maximum": 40,
+        "start_ids_unique": true,
+        "out_of_order_completion": true,
+        "first_five_stopped_in_exact_reverse_order": true,
+        "max_implementation_processes": 5,
+        "max_occupied_slots": 5,
+        "max_evaluations": 1,
+        "no_new_start_after_observed_stop_until_explicit_resume": true,
+        "first_stop_reason": "operator_requested_stop",
+        "second_stop_reason": "operator_requested_stop",
+        "resumed_without_reusing_started_slots": true,
+        "saved_docker_evaluation_reused_after_registration_failure": true,
+        "all_actual_originals_verified": true,
+        "fallback_children": 0,
+        "controller_sha256": "6332638159bd06d82011777fd261ddaefb693aa15ecbbe2078ab88c8749d470e",
+        "script_sha256": "2f6ffc9af650c5902624f7fd8b33c4a19cdd8686aae0e3bf949e21c435b349b3"
+      },
+      "observed_storage_failures": 1,
+      "observed_registration_failures": 1,
+      "event_sha256": "8c5b75bc0bd26c568cba23fcd5fb4ae3217758b3ed129cd61390d615d2b1a066"
+    },
+    "registration-resume": {
+      "original": "results/acquisition20-20260911/supplemental-docker-v3/registration-resume/evidence.json",
+      "sha256": "dfb918e191db57077d093492cc7f1059925cb8b1513e3947cdc7a4ad7883fbc2",
+      "result": {
+        "model_calls": 0,
+        "v6_assertions_executed": false,
+        "docker_generated_result_records": 58,
+        "production_evaluate_run_resume_verified": true,
+        "registration_interruption_injected": true,
+        "evaluation_uuid_reused": "53394c3c-02f8-4061-b5b4-1be5a8886dca",
+        "submission_hash": "92ee947e739367b5873e08c92d7701703985a2a95608d867ff842d29331c5828",
+        "result_hashes_unchanged": {
+          "summary.json": "3a97810e9aa58a366b99afe196f227fcdd48d39292335a6bb293d75402318079",
+          "results.jsonl": "3f08cc0a250995f8fffca2f8244ea7ce9f6404ab3bc46e028204f84c0ffd3d62"
+        },
+        "helper_or_evaluator_restarts": 0,
+        "cleanup_commands": 6,
+        "registered_attempts": 1,
+        "archived_and_restored": true
+      }
+    }
+  },
+  "earlier_fixture_failures": [
+    {
+      "directory": "supplemental-docker",
+      "reason": "Fixture network omitted required ownership label and isolated gateway mode; lifecycle refused to run."
+    },
+    {
+      "directory": "supplemental-docker-v2",
+      "reason": "Fixture expected a completed usage event for a stopped, stalled HTTP 503 body; corrected to use the preserved response-header failure record. Failed fixture originals retained before cleanup."
+    }
+  ]
+}

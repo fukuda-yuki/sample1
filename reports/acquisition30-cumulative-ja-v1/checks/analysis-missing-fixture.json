@@ -1,0 +1,10 @@
+{
+  "all_unstarted_slots_preserved": 40,
+  "unavailable_zero_not_scored": true,
+  "raw_placeholder_cases_retained": 58,
+  "original_prior_totals_verified": true,
+  "model_calls": 0,
+  "fixture": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/analysis-missing-fixture-15f0cabe-d95a-41eb-b364-c2cc94d0814b",
+  "analyze_sha256": "e6b6c5772308d1ff36c7eddab0fa16cc5b0e9f117c52af275146768b30424eb6",
+  "queries_sha256": "5d29e0fdeab97eae6b3890bf4d527ff6b13be083535da49b9361eb945c147b6c"
+}
