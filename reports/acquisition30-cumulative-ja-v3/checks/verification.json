@@ -1,0 +1,29 @@
+{
+  "population": {
+    "normal": 30,
+    "anti": 30
+  },
+  "analysis_unit": "Run independently within condition",
+  "schedule_pair_statistics": false,
+  "acquisition_strata_statistics": false,
+  "scores_available": 57,
+  "score_missing": 3,
+  "completed_zero_preserved": true,
+  "run_id_rows": 3420,
+  "case_rows": 3480,
+  "sql_queries_verified": 16,
+  "source_cases_match": true,
+  "original_quality_adjudications_preserved": true,
+  "threshold_source_runs_rechecked": 60,
+  "fixed_source_files_rechecked": 139,
+  "source_citations_rechecked": 210,
+  "csv_saved_records_reviewed": 57,
+  "request_trajectory_records": 900,
+  "claim_references": 17,
+  "japanese_figures": 6,
+  "discussion_prose_share": 0.3491,
+  "report_sha256": "9b9c081e3f15ecb3ab5c3b4474981db0738f4b8f6672d626724eb7bae5868277",
+  "database_logical_sha256": "388b7cd26ab89995ddc942d4c3787aa758aa3de2bf0fb7a44b5e1e59cfdc6103",
+  "model_runs": 0,
+  "evaluator_runs": 0
+}

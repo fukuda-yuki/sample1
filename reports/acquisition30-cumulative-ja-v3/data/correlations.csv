@@ -1,0 +1,13 @@
+﻿condition,x,y,n,spearman
+normal,recorded_total_tokens,passed_ids,28,0.06092229306467032
+normal,usage_requests,passed_ids,28,0.18280485119520556
+normal,tokens_per_recorded_request,passed_ids,28,0.10373255305606029
+normal,elapsed_seconds,passed_ids,28,0.1103187469008895
+anti,recorded_total_tokens,passed_ids,29,0.0698767562166216
+anti,usage_requests,passed_ids,29,0.06780303940005303
+anti,tokens_per_recorded_request,passed_ids,29,0.050123609582947655
+anti,elapsed_seconds,passed_ids,29,0.08469161619187707
+all,recorded_total_tokens,passed_ids,57,0.14849791657771563
+all,usage_requests,passed_ids,57,0.2010840242546643
+all,tokens_per_recorded_request,passed_ids,57,0.08010516845758793
+all,elapsed_seconds,passed_ids,57,0.07296740537104708

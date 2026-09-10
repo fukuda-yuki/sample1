@@ -1,0 +1,33 @@
+{
+  "revision": "v3",
+  "requested_population": {
+    "normal": 30,
+    "anti": 30
+  },
+  "analysis_unit": "one implementation Run",
+  "conditions": [
+    "normal",
+    "anti"
+  ],
+  "join_key": "run UUID",
+  "acquisition_metadata_role": "provenance only; no strata or matched pairs",
+  "uncertainty": {
+    "method": "independent within-condition Run bootstrap, percentile 95% intervals",
+    "resamples": 20000,
+    "seed": 20260911,
+    "units_not_resampled_independently": "evaluation IDs or cases"
+  },
+  "missingness": "Preserve source outputs; whole unavailable evaluations have no analyzed score. Completed zero remains zero. Tokens use all recorded totals.",
+  "analysis_scope": [
+    "two-group distributions and robust summaries",
+    "all 57 IDs and 20 functions, including fail versus blocked",
+    "cross-function failure concentration and low-tail reachability",
+    "recorded adoption decisions and fixed code",
+    "requests, input/output/cached components and extreme runs",
+    "missing-score bounds and exclusion sensitivity"
+  ],
+  "inference_status": "Exploratory reanalysis after outcomes are known; no confirmatory or preregistered claim is made.",
+  "new_model_runs": 0,
+  "new_evaluations": 0,
+  "old_reports_modified": false
+}

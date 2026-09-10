@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "planned_run": "anti-009",
+      "run_id": "dc4b4eaa-b0e8-4bf9-abbd-f777a2008ee6",
+      "evaluation_uuid": "0d517b73-c4e5-46f0-899b-e72979026898",
+      "evaluation_id": "T-011-01",
+      "trace": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/browser/application-T-011-01/trace.zip",
+        "sha256": "2a0fe10d43121b6e99d3cfb8009fa8d4955aeb8db8953875d0212eff379e358a"
+      },
+      "network_facts": [
+        {
+          "member": "1-trace.network",
+          "line": 30,
+          "method": "POST",
+          "url_path": "/api/applications",
+          "status": 200,
+          "request": {
+            "selected_fields": {
+              "amount": 500000
+            },
+            "resource_member": "resources/65c1b88c4f6c746bebae9eef9ec985b9833e6e6e.json",
+            "resource_sha256": "73f18146c2bc84db3fa0b28dfdb4a65bb40bf0f011ae290ba2937617eb95527d"
+          },
+          "response": {
+            "selected_fields": {
+              "message": "下書きを保存しました"
+            },
+            "resource_member": "resources/0df284852f98c9c0b4695349d92ce4a9e5aaa18e.json",
+            "resource_sha256": "4040a3fe886b812ab1aebadd5419902f43597f9ffc456de1bb66e7d5ffb1cb05"
+          }
+        },
+        {
+          "member": "1-trace.network",
+          "line": 31,
+          "method": "POST",
+          "url_path": "/api/applications/58/submit",
+          "status": 200,
+          "request": {
+            "selected_fields": {
+              "amount": 500000
+            },
+            "resource_member": "resources/65c1b88c4f6c746bebae9eef9ec985b9833e6e6e.json",
+            "resource_sha256": "73f18146c2bc84db3fa0b28dfdb4a65bb40bf0f011ae290ba2937617eb95527d"
+          },
+          "response": {
+            "selected_fields": {
+              "approverName": "部長 次郎",
+              "message": "申請を提出しました"
+            },
+            "resource_member": "resources/003cc24899a6f4e2a2d0df1e9a95e6fce7e85444.json",
+            "resource_sha256": "b34446835fbb0503eeebbf3526c9c143e32c0785d509229b234527ee39104db6"
+          }
+        },
+        {
+          "member": "1-trace.network",
+          "line": 97,
+          "method": "POST",
+          "url_path": "/api/applications/58/reject",
+          "status": 403,
+          "request": {
+            "selected_fields": {},
+            "resource_member": "resources/0d07547398b8d4b61ecd4ad2897ad2f4e2712edf.json",
+            "resource_sha256": "e07b740f9cb188bbac51aeb5650704a9485300e4d33f5ead1b5d6e014ce93a36"
+          },
+          "response": {
+            "selected_fields": {
+              "message": "この申請書を差し戻す権限がありません"
+            },
+            "resource_member": "resources/97a0b3be2c5ae0a5dc258869b2b120bc42040012.json",
+            "resource_sha256": "f84268e501fd1c36c9fe8dc9bf852675ba83998adbc19bbf7dd97febf5ac553e"
+          }
+        }
+      ],
+      "saved_case": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/results.jsonl",
+        "sha256": "74fff750c1478b32c527862b880a91de25399e5e34a5600e24e6e361d2e311e6",
+        "line_start": 35,
+        "line_end": 35
+      },
+      "raw_status": "fail",
+      "saved_measurement": {
+        "responsibility": "unconfirmed",
+        "stage": "business_assertion",
+        "cause": "requirement_unmet",
+        "business_assertion_reached": true,
+        "root_event": 226
+      },
+      "mail_summary": null,
+      "interpretation": "保存ネットワークには50万円提出→部長割当→課長からの差し戻し403が残る。差し戻し成功メッセージの不在だけを機能欠如と扱えない。",
+      "claim_limit": "この保存ケースの機序証拠。全非合格の責任を裁定せず、raw点・旧裁定を変更しない。"
+    },
+    {
+      "planned_run": "anti-009",
+      "run_id": "dc4b4eaa-b0e8-4bf9-abbd-f777a2008ee6",
+      "evaluation_uuid": "0d517b73-c4e5-46f0-899b-e72979026898",
+      "evaluation_id": "T-014-01",
+      "trace": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/browser/application-T-014-01/trace.zip",
+        "sha256": "c30e541729c1b3b77d34903e3edae1d8446cfec4a3eac07c29863f4f490c58b7"
+      },
+      "network_facts": [
+        {
+          "member": "1-trace.network",
+          "line": 30,
+          "method": "POST",
+          "url_path": "/api/applications",
+          "status": 200,
+          "request": {
+            "selected_fields": {
+              "amount": 500000
+            },
+            "resource_member": "resources/65c1b88c4f6c746bebae9eef9ec985b9833e6e6e.json",
+            "resource_sha256": "73f18146c2bc84db3fa0b28dfdb4a65bb40bf0f011ae290ba2937617eb95527d"
+          },
+          "response": {
+            "selected_fields": {
+              "message": "下書きを保存しました"
+            },
+            "resource_member": "resources/f94a74633d1d7c862c212c92d0ebd6c7604a7252.json",
+            "resource_sha256": "6ed8e5b5064c905f24099f8f37e4be800b045485fc9c73437bb08a78261e8b42"
+          }
+        },
+        {
+          "member": "1-trace.network",
+          "line": 31,
+          "method": "POST",
+          "url_path": "/api/applications/64/submit",
+          "status": 200,
+          "request": {
+            "selected_fields": {
+              "amount": 500000
+            },
+            "resource_member": "resources/65c1b88c4f6c746bebae9eef9ec985b9833e6e6e.json",
+            "resource_sha256": "73f18146c2bc84db3fa0b28dfdb4a65bb40bf0f011ae290ba2937617eb95527d"
+          },
+          "response": {
+            "selected_fields": {
+              "approverName": "部長 次郎",
+              "message": "申請を提出しました"
+            },
+            "resource_member": "resources/003cc24899a6f4e2a2d0df1e9a95e6fce7e85444.json",
+            "resource_sha256": "b34446835fbb0503eeebbf3526c9c143e32c0785d509229b234527ee39104db6"
+          }
+        }
+      ],
+      "saved_case": {
+        "path": "/mnt/c/Users/mwam0/Documents/ls/sample1-private-eval-linux/evaluations/0d517b73-c4e5-46f0-899b-e72979026898/result/results.jsonl",
+        "sha256": "74fff750c1478b32c527862b880a91de25399e5e34a5600e24e6e361d2e311e6",
+        "line_start": 41,
+        "line_end": 41
+      },
+      "raw_status": "fail",
+      "saved_measurement": {
+        "responsibility": "unconfirmed",
+        "stage": "business_assertion",
+        "cause": "requirement_unmet",
+        "business_assertion_reached": true,
+        "root_event": 181
+      },
+      "mail_summary": {
+        "attachment_name": "mail-observations",
+        "saved_reads": 9,
+        "mails": [
+          {
+            "blob_sha256": "ff12984ef3df7f7dca2ec9bca41161a459dd1fc718b97c0b8fc86ab65ae6947e",
+            "to": "bucho@example.com",
+            "subject": "【承認依頼】評価用申請",
+            "sent_at": "2026-09-10T09:34:03.1499185Z",
+            "body_published": false
+          }
+        ],
+        "expected_recipient_in_saved_test": "kacho@example.com"
+      },
+      "interpretation": "保存メールは部長宛に実在し、評価は課長宛を期待した。メール生成の欠如ではなく、閾値に伴う宛先の相違を確認できる。",
+      "claim_limit": "この保存ケースの機序証拠。全非合格の責任を裁定せず、raw点・旧裁定を変更しない。"
+    }
+  ],
+  "private_bodies_copied": false,
+  "new_observations": 0,
+  "read_method": "既存ZIP内のネットワークJSONと保存results.jsonlの添付をメモリ上で読む。アプリ・ブラウザ・評価器を起動しない。"
+}

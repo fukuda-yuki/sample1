@@ -1,0 +1,52 @@
+{
+  "report_sha256": "9b9c081e3f15ecb3ab5c3b4474981db0738f4b8f6672d626724eb7bae5868277",
+  "html_sha256": "5acede90ba8a66335a1f55b99d1e151bf6a81083b8bafae664f23bc4b1de57c7",
+  "renderer": "marked + local Chromium",
+  "browser": "152.0.4191.66",
+  "state": {
+    "title": "仕様書の不整合は、AI実装の何に現れるか",
+    "headings": [
+      "1. 背景と研究目的",
+      "2. 実験方法と指標",
+      "3. 結果",
+      "4. 考察",
+      "5. 結論",
+      "6. データと追跡方法"
+    ],
+    "images": [
+      {
+        "src": "figures/01-study-design.png",
+        "loaded": true
+      },
+      {
+        "src": "figures/02-condition-distributions.png",
+        "loaded": true
+      },
+      {
+        "src": "figures/03-tokens-and-scores.png",
+        "loaded": true
+      },
+      {
+        "src": "figures/04-feature-results.png",
+        "loaded": true
+      },
+      {
+        "src": "figures/05-distinct-failure-paths.png",
+        "loaded": true
+      },
+      {
+        "src": "figures/06-request-trajectories.png",
+        "loaded": true
+      }
+    ],
+    "tables": 5,
+    "horizontalOverflow": false
+  },
+  "narrow": {
+    "width": 800,
+    "horizontalOverflow": false
+  },
+  "remote_requests": [],
+  "study_app_runs": 0,
+  "evaluator_runs": 0
+}

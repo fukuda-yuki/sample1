@@ -1,0 +1,33 @@
+{
+  "selection": [
+    "largest token Run",
+    "highest-score normal Run",
+    "largest anti token Run"
+  ],
+  "sources": [
+    {
+      "label": "N-cf6129",
+      "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-001/attempt/raw-usage/events.jsonl",
+      "sha256": "fae0883410767545ea2f918d7a40f2201a2452c1af729b56400f50482726609c",
+      "known_requests": 549,
+      "total_tokens": 64175188
+    },
+    {
+      "label": "N-b81827",
+      "run_id": "b8182790-1837-4290-b467-47ac1231783b",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-017/attempt/raw-usage/events.jsonl",
+      "sha256": "e59827ae6050aaa357aafc928b9a8a4936ed9c95b20d3be740a8f78337a6ef0c",
+      "known_requests": 170,
+      "total_tokens": 13272983
+    },
+    {
+      "label": "A-41824f",
+      "run_id": "41824f90-f8f8-45bc-b801-1762e265cd0f",
+      "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-003/attempt/raw-usage/events.jsonl",
+      "sha256": "0dcd9ddfd77fc1ee5915f17e2aff48f4465672c4fdf5ee0bd0cf78b7e7bf4f2e",
+      "known_requests": 181,
+      "total_tokens": 14864139
+    }
+  ]
+}

@@ -1,0 +1,2516 @@
+{
+  "Q01_population": {
+    "sql": "SELECT condition,COUNT(*) AS runs,COUNT(passed_ids) AS scored,\n SUM(NOT score_available) AS whole_unavailable,SUM(NOT source_usage_complete) AS incomplete_usage,\n SUM(recorded_total_tokens) AS tokens,SUM(evaluation_validity='invalid') AS invalid,\n SUM(evaluation_validity='pending') AS pending,SUM(effective_quality IS NOT NULL) AS effective_quality_available\nFROM runs GROUP BY condition ORDER BY condition;",
+    "rows": [
+      {
+        "condition": "anti",
+        "runs": 30,
+        "scored": 29,
+        "whole_unavailable": 1,
+        "incomplete_usage": 6,
+        "tokens": 201409561,
+        "invalid": 1,
+        "pending": 29,
+        "effective_quality_available": 0
+      },
+      {
+        "condition": "normal",
+        "runs": 30,
+        "scored": 28,
+        "whole_unavailable": 2,
+        "incomplete_usage": 12,
+        "tokens": 280624545,
+        "invalid": 0,
+        "pending": 30,
+        "effective_quality_available": 0
+      }
+    ]
+  },
+  "Q02_group_summary": {
+    "sql": "SELECT condition,AVG(recorded_total_tokens) AS mean_tokens,MIN(recorded_total_tokens) AS min_tokens,\n MAX(recorded_total_tokens) AS max_tokens,AVG(passed_ids) AS mean_passed_ids,\n AVG(pass_rate) AS mean_pass_rate,MIN(passed_ids) AS min_passed,MAX(passed_ids) AS max_passed\nFROM runs GROUP BY condition ORDER BY condition;",
+    "rows": [
+      {
+        "condition": "anti",
+        "mean_tokens": 6713652.033333333,
+        "min_tokens": 3782278,
+        "max_tokens": 14864139,
+        "mean_passed_ids": 26.482758620689655,
+        "mean_pass_rate": 46.46098003629764,
+        "min_passed": 3,
+        "max_passed": 39
+      },
+      {
+        "condition": "normal",
+        "mean_tokens": 9354151.5,
+        "min_tokens": 3864560,
+        "max_tokens": 64175188,
+        "mean_passed_ids": 38.464285714285715,
+        "mean_pass_rate": 67.4812030075188,
+        "min_passed": 0,
+        "max_passed": 51
+      }
+    ]
+  },
+  "Q03_medians": {
+    "sql": "WITH token_order AS (\n SELECT condition,recorded_total_tokens AS value,ROW_NUMBER() OVER(PARTITION BY condition ORDER BY recorded_total_tokens) AS rn,\n COUNT(*) OVER(PARTITION BY condition) AS n FROM runs\n), score_order AS (\n SELECT condition,passed_ids AS value,ROW_NUMBER() OVER(PARTITION BY condition ORDER BY passed_ids) AS rn,\n COUNT(*) OVER(PARTITION BY condition) AS n FROM runs WHERE passed_ids IS NOT NULL\n)\nSELECT 'tokens' AS metric,condition,AVG(value) AS median FROM token_order WHERE rn IN ((n+1)/2,(n+2)/2) GROUP BY condition\nUNION ALL SELECT 'passed_ids',condition,AVG(value) FROM score_order WHERE rn IN ((n+1)/2,(n+2)/2) GROUP BY condition;",
+    "rows": [
+      {
+        "metric": "tokens",
+        "condition": "anti",
+        "median": 6265903.5
+      },
+      {
+        "metric": "tokens",
+        "condition": "normal",
+        "median": 7248219.0
+      },
+      {
+        "metric": "passed_ids",
+        "condition": "anti",
+        "median": 30.0
+      },
+      {
+        "metric": "passed_ids",
+        "condition": "normal",
+        "median": 41.0
+      }
+    ]
+  },
+  "Q04_function_results": {
+    "sql": "SELECT i.feature_id,f.title,i.condition,COUNT(DISTINCT i.run_id) AS runs,COUNT(DISTINCT i.test_id) AS item_count,\n SUM(i.passed) AS passed,100.0*AVG(i.passed) AS pass_rate,\n SUM(i.raw_status='fail') AS failed,SUM(i.raw_status='blocked') AS blocked\nFROM id_results i JOIN features f USING(feature_id) WHERE i.passed IS NOT NULL\nGROUP BY i.feature_id,i.condition ORDER BY i.feature_id,i.condition;",
+    "rows": [
+      {
+        "feature_id": "F-001",
+        "title": "ユーザー登録",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 4,
+        "passed": 98,
+        "pass_rate": 84.48275862068965,
+        "failed": 10,
+        "blocked": 8
+      },
+      {
+        "feature_id": "F-001",
+        "title": "ユーザー登録",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 4,
+        "passed": 101,
+        "pass_rate": 90.17857142857143,
+        "failed": 11,
+        "blocked": 0
+      },
+      {
+        "feature_id": "F-002",
+        "title": "ログイン・ログアウト",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 4,
+        "passed": 75,
+        "pass_rate": 64.65517241379311,
+        "failed": 31,
+        "blocked": 10
+      },
+      {
+        "feature_id": "F-002",
+        "title": "ログイン・ログアウト",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 4,
+        "passed": 76,
+        "pass_rate": 67.85714285714286,
+        "failed": 31,
+        "blocked": 5
+      },
+      {
+        "feature_id": "F-003",
+        "title": "申請書の新規作成",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 2,
+        "passed": 34,
+        "pass_rate": 58.620689655172406,
+        "failed": 16,
+        "blocked": 8
+      },
+      {
+        "feature_id": "F-003",
+        "title": "申請書の新規作成",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 2,
+        "passed": 37,
+        "pass_rate": 66.07142857142857,
+        "failed": 17,
+        "blocked": 2
+      },
+      {
+        "feature_id": "F-004",
+        "title": "申請内容の入力・編集",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 3,
+        "passed": 30,
+        "pass_rate": 34.48275862068966,
+        "failed": 45,
+        "blocked": 12
+      },
+      {
+        "feature_id": "F-004",
+        "title": "申請内容の入力・編集",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 3,
+        "passed": 42,
+        "pass_rate": 50.0,
+        "failed": 39,
+        "blocked": 3
+      },
+      {
+        "feature_id": "F-005",
+        "title": "申請の下書き保存",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 2,
+        "passed": 29,
+        "pass_rate": 50.0,
+        "failed": 21,
+        "blocked": 8
+      },
+      {
+        "feature_id": "F-005",
+        "title": "申請の下書き保存",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 2,
+        "passed": 28,
+        "pass_rate": 50.0,
+        "failed": 26,
+        "blocked": 2
+      },
+      {
+        "feature_id": "F-006",
+        "title": "申請の提出（申請番号採番・承認者決定）",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 6,
+        "passed": 65,
+        "pass_rate": 37.35632183908046,
+        "failed": 75,
+        "blocked": 34
+      },
+      {
+        "feature_id": "F-006",
+        "title": "申請の提出（申請番号採番・承認者決定）",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 6,
+        "passed": 145,
+        "pass_rate": 86.30952380952381,
+        "failed": 7,
+        "blocked": 16
+      },
+      {
+        "feature_id": "F-007",
+        "title": "申請一覧表示",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 3,
+        "passed": 35,
+        "pass_rate": 40.229885057471265,
+        "failed": 1,
+        "blocked": 51
+      },
+      {
+        "feature_id": "F-007",
+        "title": "申請一覧表示",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 3,
+        "passed": 49,
+        "pass_rate": 58.333333333333336,
+        "failed": 3,
+        "blocked": 32
+      },
+      {
+        "feature_id": "F-008",
+        "title": "申請の検索・絞り込み",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 4,
+        "passed": 65,
+        "pass_rate": 56.03448275862068,
+        "failed": 8,
+        "blocked": 43
+      },
+      {
+        "feature_id": "F-008",
+        "title": "申請の検索・絞り込み",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 4,
+        "passed": 83,
+        "pass_rate": 74.10714285714286,
+        "failed": 4,
+        "blocked": 25
+      },
+      {
+        "feature_id": "F-009",
+        "title": "申請詳細表示",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 2,
+        "passed": 33,
+        "pass_rate": 56.896551724137936,
+        "failed": 11,
+        "blocked": 14
+      },
+      {
+        "feature_id": "F-009",
+        "title": "申請詳細表示",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 2,
+        "passed": 32,
+        "pass_rate": 57.14285714285714,
+        "failed": 18,
+        "blocked": 6
+      },
+      {
+        "feature_id": "F-010",
+        "title": "承認者による承認処理",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 3,
+        "passed": 41,
+        "pass_rate": 47.12643678160919,
+        "failed": 28,
+        "blocked": 18
+      },
+      {
+        "feature_id": "F-010",
+        "title": "承認者による承認処理",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 3,
+        "passed": 62,
+        "pass_rate": 73.80952380952381,
+        "failed": 13,
+        "blocked": 9
+      },
+      {
+        "feature_id": "F-011",
+        "title": "承認者による差し戻し処理",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 2,
+        "passed": 1,
+        "pass_rate": 1.7241379310344827,
+        "failed": 45,
+        "blocked": 12
+      },
+      {
+        "feature_id": "F-011",
+        "title": "承認者による差し戻し処理",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 2,
+        "passed": 34,
+        "pass_rate": 60.71428571428571,
+        "failed": 16,
+        "blocked": 6
+      },
+      {
+        "feature_id": "F-012",
+        "title": "申請者による申請取り消し",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 2,
+        "passed": 0,
+        "pass_rate": 0.0,
+        "failed": 46,
+        "blocked": 12
+      },
+      {
+        "feature_id": "F-012",
+        "title": "申請者による申請取り消し",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 2,
+        "passed": 38,
+        "pass_rate": 67.85714285714286,
+        "failed": 12,
+        "blocked": 6
+      },
+      {
+        "feature_id": "F-013",
+        "title": "申請ステータス管理（遷移定義）",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 2,
+        "passed": 0,
+        "pass_rate": 0.0,
+        "failed": 46,
+        "blocked": 12
+      },
+      {
+        "feature_id": "F-013",
+        "title": "申請ステータス管理（遷移定義）",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 2,
+        "passed": 25,
+        "pass_rate": 44.642857142857146,
+        "failed": 25,
+        "blocked": 6
+      },
+      {
+        "feature_id": "F-014",
+        "title": "メール通知",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 2,
+        "passed": 0,
+        "pass_rate": 0.0,
+        "failed": 46,
+        "blocked": 12
+      },
+      {
+        "feature_id": "F-014",
+        "title": "メール通知",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 2,
+        "passed": 44,
+        "pass_rate": 78.57142857142857,
+        "failed": 6,
+        "blocked": 6
+      },
+      {
+        "feature_id": "F-015",
+        "title": "承認履歴表示",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 1,
+        "passed": 0,
+        "pass_rate": 0.0,
+        "failed": 23,
+        "blocked": 6
+      },
+      {
+        "feature_id": "F-015",
+        "title": "承認履歴表示",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 1,
+        "passed": 1,
+        "pass_rate": 3.571428571428571,
+        "failed": 23,
+        "blocked": 4
+      },
+      {
+        "feature_id": "F-016",
+        "title": "CSVエクスポート",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 3,
+        "passed": 32,
+        "pass_rate": 36.7816091954023,
+        "failed": 14,
+        "blocked": 41
+      },
+      {
+        "feature_id": "F-016",
+        "title": "CSVエクスポート",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 3,
+        "passed": 40,
+        "pass_rate": 47.61904761904761,
+        "failed": 18,
+        "blocked": 26
+      },
+      {
+        "feature_id": "F-017",
+        "title": "ダッシュボード",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 2,
+        "passed": 18,
+        "pass_rate": 31.03448275862069,
+        "failed": 14,
+        "blocked": 26
+      },
+      {
+        "feature_id": "F-017",
+        "title": "ダッシュボード",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 2,
+        "passed": 20,
+        "pass_rate": 35.714285714285715,
+        "failed": 15,
+        "blocked": 21
+      },
+      {
+        "feature_id": "F-018",
+        "title": "ユーザー一覧・編集（管理者機能）",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 3,
+        "passed": 67,
+        "pass_rate": 77.01149425287356,
+        "failed": 6,
+        "blocked": 14
+      },
+      {
+        "feature_id": "F-018",
+        "title": "ユーザー一覧・編集（管理者機能）",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 3,
+        "passed": 70,
+        "pass_rate": 83.33333333333334,
+        "failed": 9,
+        "blocked": 5
+      },
+      {
+        "feature_id": "F-019",
+        "title": "パスワード変更",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 3,
+        "passed": 64,
+        "pass_rate": 73.5632183908046,
+        "failed": 11,
+        "blocked": 12
+      },
+      {
+        "feature_id": "F-019",
+        "title": "パスワード変更",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 3,
+        "passed": 68,
+        "pass_rate": 80.95238095238095,
+        "failed": 13,
+        "blocked": 3
+      },
+      {
+        "feature_id": "F-020",
+        "title": "システム設定（管理者機能）",
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 4,
+        "passed": 81,
+        "pass_rate": 69.82758620689656,
+        "failed": 19,
+        "blocked": 16
+      },
+      {
+        "feature_id": "F-020",
+        "title": "システム設定（管理者機能）",
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 4,
+        "passed": 82,
+        "pass_rate": 73.21428571428571,
+        "failed": 26,
+        "blocked": 4
+      }
+    ]
+  },
+  "Q05_all_item_results": {
+    "sql": "SELECT test_id,MAX(title) AS title,condition,COUNT(*) AS runs,SUM(passed) AS passed,\n SUM(raw_status='fail') AS failed,SUM(raw_status='blocked') AS blocked,\n SUM(raw_status='error') AS error\nFROM id_results WHERE passed IS NOT NULL GROUP BY test_id,condition ORDER BY test_id,condition;",
+    "rows": [
+      {
+        "test_id": "T-001-01",
+        "title": "🟢 正常系: ユーザー新規登録",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 21,
+        "failed": 4,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-001-01",
+        "title": "🟢 正常系: ユーザー新規登録",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 4,
+        "blocked": 0,
+        "error": 0
+      },
+      {
+        "test_id": "T-001-02",
+        "title": "🔴 異常系: メールアドレス重複エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 23,
+        "failed": 2,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-001-02",
+        "title": "🔴 異常系: メールアドレス重複エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 25,
+        "failed": 3,
+        "blocked": 0,
+        "error": 0
+      },
+      {
+        "test_id": "T-001-03",
+        "title": "🔴 異常系: パスワード強度不足エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 27,
+        "failed": 2,
+        "blocked": 0,
+        "error": 0
+      },
+      {
+        "test_id": "T-001-03",
+        "title": "🔴 異常系: パスワード強度不足エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 26,
+        "failed": 2,
+        "blocked": 0,
+        "error": 0
+      },
+      {
+        "test_id": "T-001-04",
+        "title": "🔴 異常系: パスワード不一致エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 27,
+        "failed": 2,
+        "blocked": 0,
+        "error": 0
+      },
+      {
+        "test_id": "T-001-04",
+        "title": "🔴 異常系: パスワード不一致エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 26,
+        "failed": 2,
+        "blocked": 0,
+        "error": 0
+      },
+      {
+        "test_id": "T-002-01",
+        "title": "🟢 正常系: ログイン成功",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 18,
+        "failed": 9,
+        "blocked": 2,
+        "error": 0
+      },
+      {
+        "test_id": "T-002-01",
+        "title": "🟢 正常系: ログイン成功",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 18,
+        "failed": 7,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-002-02",
+        "title": "🟢 正常系: ログアウト成功",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 3,
+        "failed": 22,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-002-02",
+        "title": "🟢 正常系: ログアウト成功",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 4,
+        "failed": 23,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-002-03",
+        "title": "🔴 異常系: 認証失敗",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 25,
+        "failed": 0,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-002-03",
+        "title": "🔴 異常系: 認証失敗",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 27,
+        "failed": 0,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-002-04",
+        "title": "🔴 異常系: アカウントロック",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 29,
+        "failed": 0,
+        "blocked": 0,
+        "error": 0
+      },
+      {
+        "test_id": "T-002-04",
+        "title": "🔴 異常系: アカウントロック",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 27,
+        "failed": 1,
+        "blocked": 0,
+        "error": 0
+      },
+      {
+        "test_id": "T-003-01",
+        "title": "🟢 正常系: 申請種別選択と入力フォーム表示",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 21,
+        "failed": 4,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-003-01",
+        "title": "🟢 正常系: 申請種別選択と入力フォーム表示",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 22,
+        "failed": 5,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-003-02",
+        "title": "🔴 異常系: 申請種別未選択エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 13,
+        "failed": 12,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-003-02",
+        "title": "🔴 異常系: 申請種別未選択エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 15,
+        "failed": 12,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-004-01",
+        "title": "🟢 正常系: 申請内容の入力",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 17,
+        "failed": 8,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-004-01",
+        "title": "🟢 正常系: 申請内容の入力",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 21,
+        "failed": 6,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-004-02",
+        "title": "🔴 異常系: 申請金額範囲外エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 12,
+        "failed": 13,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-004-02",
+        "title": "🔴 異常系: 申請金額範囲外エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 19,
+        "failed": 8,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-004-03",
+        "title": "🔴 異常系: ファイルサイズ超過エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 1,
+        "failed": 24,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-004-03",
+        "title": "🔴 異常系: ファイルサイズ超過エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 2,
+        "failed": 25,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-005-01",
+        "title": "🟢 正常系: 下書き保存",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 16,
+        "failed": 9,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-005-01",
+        "title": "🟢 正常系: 下書き保存",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 18,
+        "failed": 9,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-005-02",
+        "title": "🟢 正常系: 下書き再編集",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 13,
+        "failed": 12,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-005-02",
+        "title": "🟢 正常系: 下書き再編集",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 10,
+        "failed": 17,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-01",
+        "title": "🟢 正常系: 申請提出（課長承認ルート）",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-01",
+        "title": "🟢 正常系: 申請提出（課長承認ルート）",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-02",
+        "title": "🟢 正常系: 申請提出（部長承認ルート）",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 21,
+        "failed": 2,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-02",
+        "title": "🟢 正常系: 申請提出（部長承認ルート）",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 23,
+        "failed": 2,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-03",
+        "title": "🟡 境界値テスト: 承認ルート境界値（999,999円 → 課長）",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-03",
+        "title": "🟡 境界値テスト: 承認ルート境界値（999,999円 → 課長）",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-04",
+        "title": "🟡 境界値テスト: 承認ルート境界値（1,000,000円 → 部長）",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 21,
+        "failed": 2,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-04",
+        "title": "🟡 境界値テスト: 承認ルート境界値（1,000,000円 → 部長）",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-05",
+        "title": "🟡 境界値テスト: 承認ルート境界値（999,998円・1,000,001円）",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-05",
+        "title": "🟡 境界値テスト: 承認ルート境界値（999,998円・1,000,001円）",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-06",
+        "title": "🔴 異常系: 必須項目未入力での提出エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 23,
+        "failed": 2,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-006-06",
+        "title": "🔴 異常系: 必須項目未入力での提出エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 26,
+        "failed": 1,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-007-01",
+        "title": "🟢 正常系: 申請一覧表示（一般ユーザー）",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 13,
+        "failed": 0,
+        "blocked": 16,
+        "error": 0
+      },
+      {
+        "test_id": "T-007-01",
+        "title": "🟢 正常系: 申請一覧表示（一般ユーザー）",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 17,
+        "failed": 0,
+        "blocked": 11,
+        "error": 0
+      },
+      {
+        "test_id": "T-007-02",
+        "title": "🟢 正常系: 申請一覧表示（課長）",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 13,
+        "failed": 0,
+        "blocked": 16,
+        "error": 0
+      },
+      {
+        "test_id": "T-007-02",
+        "title": "🟢 正常系: 申請一覧表示（課長）",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 19,
+        "failed": 0,
+        "blocked": 9,
+        "error": 0
+      },
+      {
+        "test_id": "T-007-03",
+        "title": "🟢 正常系: ページネーション",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 9,
+        "failed": 1,
+        "blocked": 19,
+        "error": 0
+      },
+      {
+        "test_id": "T-007-03",
+        "title": "🟢 正常系: ページネーション",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 13,
+        "failed": 3,
+        "blocked": 12,
+        "error": 0
+      },
+      {
+        "test_id": "T-008-01",
+        "title": "🟢 正常系: キーワード検索",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 10,
+        "failed": 1,
+        "blocked": 18,
+        "error": 0
+      },
+      {
+        "test_id": "T-008-01",
+        "title": "🟢 正常系: キーワード検索",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 16,
+        "failed": 0,
+        "blocked": 12,
+        "error": 0
+      },
+      {
+        "test_id": "T-008-02",
+        "title": "🟢 正常系: ステータスで絞り込み",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 11,
+        "failed": 1,
+        "blocked": 17,
+        "error": 0
+      },
+      {
+        "test_id": "T-008-02",
+        "title": "🟢 正常系: ステータスで絞り込み",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 16,
+        "failed": 1,
+        "blocked": 11,
+        "error": 0
+      },
+      {
+        "test_id": "T-008-03",
+        "title": "🔴 異常系: 日付範囲不正エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 22,
+        "failed": 3,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-008-03",
+        "title": "🔴 異常系: 日付範囲不正エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 3,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-008-04",
+        "title": "🟢 正常系: 検索結果0件",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 22,
+        "failed": 3,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-008-04",
+        "title": "🟢 正常系: 検索結果0件",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 27,
+        "failed": 0,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-009-01",
+        "title": "🟢 正常系: 申請詳細表示（申請者本人）",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 14,
+        "failed": 9,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-009-01",
+        "title": "🟢 正常系: 申請詳細表示（申請者本人）",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 9,
+        "failed": 17,
+        "blocked": 2,
+        "error": 0
+      },
+      {
+        "test_id": "T-009-02",
+        "title": "🔴 異常系: 他ユーザーの申請詳細へのアクセス拒否",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 19,
+        "failed": 2,
+        "blocked": 8,
+        "error": 0
+      },
+      {
+        "test_id": "T-009-02",
+        "title": "🔴 異常系: 他ユーザーの申請詳細へのアクセス拒否",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 23,
+        "failed": 1,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-010-01",
+        "title": "🟢 正常系: 課長による承認",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-010-01",
+        "title": "🟢 正常系: 課長による承認",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 14,
+        "failed": 11,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-010-02",
+        "title": "🟢 正常系: 部長による承認",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 20,
+        "failed": 3,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-010-02",
+        "title": "🟢 正常系: 部長による承認",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-010-03",
+        "title": "🔴 異常系: 承認権限のないユーザーによる承認不可",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 21,
+        "failed": 2,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-010-03",
+        "title": "🔴 異常系: 承認権限のないユーザーによる承認不可",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-011-01",
+        "title": "🟢 正常系: 差し戻し処理",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-011-01",
+        "title": "🟢 正常系: 差し戻し処理",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 14,
+        "failed": 11,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-011-02",
+        "title": "🔴 異常系: 差し戻しコメント未入力エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 1,
+        "failed": 22,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-011-02",
+        "title": "🔴 異常系: 差し戻しコメント未入力エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 20,
+        "failed": 5,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-012-01",
+        "title": "🟢 正常系: 承認待ち申請の取り消し",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-012-01",
+        "title": "🟢 正常系: 承認待ち申請の取り消し",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 14,
+        "failed": 11,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-012-02",
+        "title": "🔴 異常系: 承認済み申請の取り消し不可",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-012-02",
+        "title": "🔴 異常系: 承認済み申請の取り消し不可",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-013-01",
+        "title": "🟢 正常系: 差し戻し申請の再提出",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-013-01",
+        "title": "🟢 正常系: 差し戻し申請の再提出",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 1,
+        "failed": 24,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-013-02",
+        "title": "🔴 異常系: 不正なステータス遷移",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-013-02",
+        "title": "🔴 異常系: 不正なステータス遷移",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-014-01",
+        "title": "🟢 正常系: 申請提出時の承認者へのメール通知",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-014-01",
+        "title": "🟢 正常系: 申請提出時の承認者へのメール通知",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 20,
+        "failed": 5,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-014-02",
+        "title": "🟢 正常系: 承認完了時の申請者へのメール通知",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-014-02",
+        "title": "🟢 正常系: 承認完了時の申請者へのメール通知",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 24,
+        "failed": 1,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-015-01",
+        "title": "🟢 正常系: 承認履歴の表示",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 23,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-015-01",
+        "title": "🟢 正常系: 承認履歴の表示",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 1,
+        "failed": 23,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-016-01",
+        "title": "🟢 正常系: CSVエクスポート",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 0,
+        "failed": 12,
+        "blocked": 17,
+        "error": 0
+      },
+      {
+        "test_id": "T-016-01",
+        "title": "🟢 正常系: CSVエクスポート",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 0,
+        "failed": 17,
+        "blocked": 11,
+        "error": 0
+      },
+      {
+        "test_id": "T-016-02",
+        "title": "🟢 正常系: 検索条件を絞り込んだCSVエクスポート",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 10,
+        "failed": 2,
+        "blocked": 17,
+        "error": 0
+      },
+      {
+        "test_id": "T-016-02",
+        "title": "🟢 正常系: 検索条件を絞り込んだCSVエクスポート",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 14,
+        "failed": 1,
+        "blocked": 13,
+        "error": 0
+      },
+      {
+        "test_id": "T-016-03",
+        "title": "🔴 異常系: 一般ユーザーによるCSVエクスポート権限エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 22,
+        "failed": 0,
+        "blocked": 7,
+        "error": 0
+      },
+      {
+        "test_id": "T-016-03",
+        "title": "🔴 異常系: 一般ユーザーによるCSVエクスポート権限エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 26,
+        "failed": 0,
+        "blocked": 2,
+        "error": 0
+      },
+      {
+        "test_id": "T-017-01",
+        "title": "🟢 正常系: 一般ユーザーのダッシュボード表示",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 8,
+        "failed": 12,
+        "blocked": 9,
+        "error": 0
+      },
+      {
+        "test_id": "T-017-01",
+        "title": "🟢 正常系: 一般ユーザーのダッシュボード表示",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 6,
+        "failed": 13,
+        "blocked": 9,
+        "error": 0
+      },
+      {
+        "test_id": "T-017-02",
+        "title": "🟢 正常系: 課長のダッシュボード表示",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 10,
+        "failed": 2,
+        "blocked": 17,
+        "error": 0
+      },
+      {
+        "test_id": "T-017-02",
+        "title": "🟢 正常系: 課長のダッシュボード表示",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 14,
+        "failed": 2,
+        "blocked": 12,
+        "error": 0
+      },
+      {
+        "test_id": "T-018-01",
+        "title": "🟢 正常系: ユーザー情報編集",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 21,
+        "failed": 2,
+        "blocked": 6,
+        "error": 0
+      },
+      {
+        "test_id": "T-018-01",
+        "title": "🟢 正常系: ユーザー情報編集",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 22,
+        "failed": 3,
+        "blocked": 3,
+        "error": 0
+      },
+      {
+        "test_id": "T-018-02",
+        "title": "🔴 異常系: 自分自身の無効化エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 23,
+        "failed": 2,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-018-02",
+        "title": "🔴 異常系: 自分自身の無効化エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 23,
+        "failed": 4,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-018-03",
+        "title": "🔴 異常系: 一般ユーザーによるユーザー管理アクセス拒否",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 23,
+        "failed": 2,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-018-03",
+        "title": "🔴 異常系: 一般ユーザーによるユーザー管理アクセス拒否",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 25,
+        "failed": 2,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-019-01",
+        "title": "🟢 正常系: パスワード変更成功",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 14,
+        "failed": 11,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-019-01",
+        "title": "🟢 正常系: パスワード変更成功",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 14,
+        "failed": 13,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-019-02",
+        "title": "🔴 異常系: 現在のパスワード不一致エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 25,
+        "failed": 0,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-019-02",
+        "title": "🔴 異常系: 現在のパスワード不一致エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 27,
+        "failed": 0,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-019-03",
+        "title": "🔴 異常系: 同一パスワード設定エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 25,
+        "failed": 0,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-019-03",
+        "title": "🔴 異常系: 同一パスワード設定エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 27,
+        "failed": 0,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-020-01",
+        "title": "🟢 正常系: システム設定の変更",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 20,
+        "failed": 5,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-020-01",
+        "title": "🟢 正常系: システム設定の変更",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 20,
+        "failed": 7,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-020-02",
+        "title": "🟢 正常系: SMTPテスト送信",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 23,
+        "failed": 2,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-020-02",
+        "title": "🟢 正常系: SMTPテスト送信",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 26,
+        "failed": 1,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-020-03",
+        "title": "🔴 異常系: セッションタイムアウト範囲外エラー",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 20,
+        "failed": 5,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-020-03",
+        "title": "🔴 異常系: セッションタイムアウト範囲外エラー",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 20,
+        "failed": 7,
+        "blocked": 1,
+        "error": 0
+      },
+      {
+        "test_id": "T-020-04",
+        "title": "🔴 異常系: 一般ユーザーによるシステム設定アクセス拒否",
+        "condition": "anti",
+        "runs": 29,
+        "passed": 18,
+        "failed": 7,
+        "blocked": 4,
+        "error": 0
+      },
+      {
+        "test_id": "T-020-04",
+        "title": "🔴 異常系: 一般ユーザーによるシステム設定アクセス拒否",
+        "condition": "normal",
+        "runs": 28,
+        "passed": 16,
+        "failed": 11,
+        "blocked": 1,
+        "error": 0
+      }
+    ]
+  },
+  "Q06_identical_status_vectors": {
+    "sql": "WITH ordered AS (\n SELECT test_id,condition,run_id,raw_status FROM id_results WHERE passed IS NOT NULL ORDER BY condition,test_id,run_id\n), signatures AS (\n SELECT condition,test_id,GROUP_CONCAT(raw_status,',') AS status_vector FROM ordered GROUP BY condition,test_id\n)\nSELECT condition,COUNT(*) AS number_of_ids,GROUP_CONCAT(test_id,',') AS evaluation_ids,status_vector\nFROM signatures GROUP BY condition,status_vector HAVING COUNT(*)>1 ORDER BY condition,number_of_ids DESC;",
+    "rows": [
+      {
+        "condition": "anti",
+        "number_of_ids": 12,
+        "evaluation_ids": "T-006-01,T-006-03,T-006-05,T-010-01,T-011-01,T-012-01,T-012-02,T-013-01,T-013-02,T-014-01,T-014-02,T-015-01",
+        "status_vector": "fail,fail,fail,fail,blocked,fail,blocked,fail,blocked,fail,blocked,fail,fail,fail,fail,fail,fail,blocked,fail,fail,fail,fail,fail,fail,blocked,fail,fail,fail,fail"
+      },
+      {
+        "condition": "anti",
+        "number_of_ids": 3,
+        "evaluation_ids": "T-002-03,T-019-02,T-019-03",
+        "status_vector": "pass,pass,pass,pass,blocked,pass,blocked,pass,blocked,pass,pass,pass,pass,pass,pass,pass,pass,blocked,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass"
+      },
+      {
+        "condition": "anti",
+        "number_of_ids": 3,
+        "evaluation_ids": "T-006-02,T-006-04,T-010-03",
+        "status_vector": "pass,pass,pass,pass,blocked,pass,blocked,pass,blocked,pass,blocked,pass,pass,pass,pass,pass,fail,blocked,pass,pass,pass,pass,fail,pass,blocked,pass,pass,pass,pass"
+      },
+      {
+        "condition": "anti",
+        "number_of_ids": 2,
+        "evaluation_ids": "T-020-01,T-020-03",
+        "status_vector": "pass,pass,pass,pass,blocked,pass,blocked,pass,blocked,pass,pass,pass,pass,fail,pass,fail,pass,blocked,pass,fail,pass,pass,fail,pass,pass,fail,pass,pass,pass"
+      },
+      {
+        "condition": "anti",
+        "number_of_ids": 2,
+        "evaluation_ids": "T-001-03,T-001-04",
+        "status_vector": "fail,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,fail,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass"
+      },
+      {
+        "condition": "normal",
+        "number_of_ids": 9,
+        "evaluation_ids": "T-006-01,T-006-03,T-006-04,T-006-05,T-010-02,T-010-03,T-012-02,T-013-02,T-014-02",
+        "status_vector": "pass,pass,pass,pass,pass,blocked,pass,pass,pass,pass,pass,blocked,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,fail,pass,blocked,pass,pass,pass"
+      },
+      {
+        "condition": "normal",
+        "number_of_ids": 4,
+        "evaluation_ids": "T-002-03,T-008-04,T-019-02,T-019-03",
+        "status_vector": "pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,blocked,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass"
+      },
+      {
+        "condition": "normal",
+        "number_of_ids": 2,
+        "evaluation_ids": "T-001-03,T-001-04",
+        "status_vector": "pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,fail,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,fail,pass"
+      },
+      {
+        "condition": "normal",
+        "number_of_ids": 2,
+        "evaluation_ids": "T-020-01,T-020-03",
+        "status_vector": "pass,pass,fail,fail,pass,fail,pass,pass,pass,pass,pass,blocked,pass,fail,pass,pass,pass,pass,pass,pass,pass,pass,fail,pass,fail,fail,pass,pass"
+      }
+    ]
+  },
+  "Q07_threshold_decisions": {
+    "sql": "SELECT condition,static_threshold_yen,recorded_threshold_yen,explicit_conflict_recorded,COUNT(*) AS runs\nFROM runs GROUP BY condition,static_threshold_yen,recorded_threshold_yen,explicit_conflict_recorded\nORDER BY condition,recorded_threshold_yen;",
+    "rows": [
+      {
+        "condition": "anti",
+        "static_threshold_yen": 500000,
+        "recorded_threshold_yen": 500000,
+        "explicit_conflict_recorded": 1,
+        "runs": 30
+      },
+      {
+        "condition": "normal",
+        "static_threshold_yen": 1000000,
+        "recorded_threshold_yen": null,
+        "explicit_conflict_recorded": 0,
+        "runs": 5
+      },
+      {
+        "condition": "normal",
+        "static_threshold_yen": 1000000,
+        "recorded_threshold_yen": 1000000,
+        "explicit_conflict_recorded": 0,
+        "runs": 25
+      }
+    ]
+  },
+  "Q08_token_components": {
+    "sql": "SELECT condition,COUNT(*) AS runs,SUM(recorded_total_tokens) AS total_tokens,\n SUM(recorded_input_tokens) AS input_tokens,SUM(recorded_output_tokens) AS output_tokens,\n SUM(recorded_cached_input_tokens) AS cached_input_tokens,SUM(usage_requests) AS usage_requests,\n AVG(usage_requests) AS mean_requests,\n 1.0*SUM(recorded_total_tokens)/SUM(usage_requests) AS weighted_tokens_per_request\nFROM runs GROUP BY condition ORDER BY condition;",
+    "rows": [
+      {
+        "condition": "anti",
+        "runs": 30,
+        "total_tokens": 201409561,
+        "input_tokens": 199790157,
+        "output_tokens": 1619404,
+        "cached_input_tokens": 196103988,
+        "usage_requests": 3605,
+        "mean_requests": 120.16666666666667,
+        "weighted_tokens_per_request": 55869.50374479889
+      },
+      {
+        "condition": "normal",
+        "runs": 30,
+        "total_tokens": 280624545,
+        "input_tokens": 278903015,
+        "output_tokens": 1721530,
+        "cached_input_tokens": 273984611,
+        "usage_requests": 4277,
+        "mean_requests": 142.56666666666666,
+        "weighted_tokens_per_request": 65612.47252747252
+      }
+    ]
+  },
+  "Q09_extreme_and_low_scores": {
+    "sql": "SELECT label,run_id,condition,recorded_total_tokens,passed_ids,usage_requests,tokens_per_recorded_request,\n elapsed_seconds,evaluation_outcome,business_assertion_reached,source_failed_cases,source_blocked_cases\nFROM runs WHERE recorded_total_tokens>10000000 OR passed_ids<20 OR NOT score_available\nORDER BY recorded_total_tokens DESC;",
+    "rows": [
+      {
+        "label": "N-cf6129",
+        "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+        "condition": "normal",
+        "recorded_total_tokens": 64175188,
+        "passed_ids": null,
+        "usage_requests": 549,
+        "tokens_per_recorded_request": 116894.69581056466,
+        "elapsed_seconds": 3026.428787582,
+        "evaluation_outcome": "server_unavailable",
+        "business_assertion_reached": 0,
+        "source_failed_cases": 0,
+        "source_blocked_cases": 58
+      },
+      {
+        "label": "N-ee1408",
+        "run_id": "ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+        "condition": "normal",
+        "recorded_total_tokens": 15518424,
+        "passed_ids": null,
+        "usage_requests": 193,
+        "tokens_per_recorded_request": 80406.34196891192,
+        "elapsed_seconds": 3340.3755708709996,
+        "evaluation_outcome": "server_unavailable",
+        "business_assertion_reached": 0,
+        "source_failed_cases": 0,
+        "source_blocked_cases": 58
+      },
+      {
+        "label": "A-41824f",
+        "run_id": "41824f90-f8f8-45bc-b801-1762e265cd0f",
+        "condition": "anti",
+        "recorded_total_tokens": 14864139,
+        "passed_ids": 37,
+        "usage_requests": 181,
+        "tokens_per_recorded_request": 82122.31491712708,
+        "elapsed_seconds": 1500.859435399,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 49,
+        "source_failed_cases": 20,
+        "source_blocked_cases": 0
+      },
+      {
+        "label": "N-b81827",
+        "run_id": "b8182790-1837-4290-b467-47ac1231783b",
+        "condition": "normal",
+        "recorded_total_tokens": 13272983,
+        "passed_ids": 51,
+        "usage_requests": 170,
+        "tokens_per_recorded_request": 78076.3705882353,
+        "elapsed_seconds": 963.4255353439994,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 55,
+        "source_failed_cases": 6,
+        "source_blocked_cases": 0
+      },
+      {
+        "label": "N-51463b",
+        "run_id": "51463b84-66e0-4a29-9992-b74a598cf1cc",
+        "condition": "normal",
+        "recorded_total_tokens": 11217678,
+        "passed_ids": 46,
+        "usage_requests": 166,
+        "tokens_per_recorded_request": 67576.3734939759,
+        "elapsed_seconds": 959.6846324829994,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 56,
+        "source_failed_cases": 11,
+        "source_blocked_cases": 0
+      },
+      {
+        "label": "N-959de7",
+        "run_id": "959de722-b6ae-433c-80fe-fc5062db90e7",
+        "condition": "normal",
+        "recorded_total_tokens": 11119210,
+        "passed_ids": 38,
+        "usage_requests": 149,
+        "tokens_per_recorded_request": 74625.57046979865,
+        "elapsed_seconds": 1605.2721194879996,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 51,
+        "source_failed_cases": 14,
+        "source_blocked_cases": 5
+      },
+      {
+        "label": "A-25a01c",
+        "run_id": "25a01c2b-cf66-4053-848c-9af10ef2ef81",
+        "condition": "anti",
+        "recorded_total_tokens": 10679074,
+        "passed_ids": 3,
+        "usage_requests": 164,
+        "tokens_per_recorded_request": 65116.30487804878,
+        "elapsed_seconds": 865.826889192,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 6,
+        "source_failed_cases": 1,
+        "source_blocked_cases": 54
+      },
+      {
+        "label": "N-9b477a",
+        "run_id": "9b477a67-1f93-4d09-b58a-d7969894d590",
+        "condition": "normal",
+        "recorded_total_tokens": 10230592,
+        "passed_ids": 46,
+        "usage_requests": 172,
+        "tokens_per_recorded_request": 59480.186046511626,
+        "elapsed_seconds": 984.750398121,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 52,
+        "source_failed_cases": 8,
+        "source_blocked_cases": 3
+      },
+      {
+        "label": "A-8685c6",
+        "run_id": "8685c69d-7825-4148-9052-9543c7ede4fc",
+        "condition": "anti",
+        "recorded_total_tokens": 9566667,
+        "passed_ids": null,
+        "usage_requests": 177,
+        "tokens_per_recorded_request": 54048.96610169492,
+        "elapsed_seconds": 1513.8398115610003,
+        "evaluation_outcome": "server_unavailable",
+        "business_assertion_reached": 0,
+        "source_failed_cases": 0,
+        "source_blocked_cases": 58
+      },
+      {
+        "label": "A-38fba7",
+        "run_id": "38fba73c-e82c-49e2-9dd4-3fca7d63bdfd",
+        "condition": "anti",
+        "recorded_total_tokens": 8751236,
+        "passed_ids": 3,
+        "usage_requests": 157,
+        "tokens_per_recorded_request": 55740.35668789809,
+        "elapsed_seconds": 1102.721628065,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 6,
+        "source_failed_cases": 1,
+        "source_blocked_cases": 54
+      },
+      {
+        "label": "N-cd059f",
+        "run_id": "cd059f6d-258d-45e1-a395-eecbda0ac97a",
+        "condition": "normal",
+        "recorded_total_tokens": 7937543,
+        "passed_ids": 14,
+        "usage_requests": 139,
+        "tokens_per_recorded_request": 57104.625899280574,
+        "elapsed_seconds": 836.4944422829999,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 18,
+        "source_failed_cases": 13,
+        "source_blocked_cases": 31
+      },
+      {
+        "label": "N-724b28",
+        "run_id": "724b281a-c3d0-43a8-85df-6e8df56845e7",
+        "condition": "normal",
+        "recorded_total_tokens": 7878575,
+        "passed_ids": 0,
+        "usage_requests": 145,
+        "tokens_per_recorded_request": 54335.0,
+        "elapsed_seconds": 726.9645889079993,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 0,
+        "source_failed_cases": 5,
+        "source_blocked_cases": 53
+      },
+      {
+        "label": "A-7e5974",
+        "run_id": "7e5974e1-e419-4e9d-96f3-332c91617c78",
+        "condition": "anti",
+        "recorded_total_tokens": 6650722,
+        "passed_ids": 13,
+        "usage_requests": 112,
+        "tokens_per_recorded_request": 59381.44642857143,
+        "elapsed_seconds": 732.5660913129977,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 18,
+        "source_failed_cases": 36,
+        "source_blocked_cases": 9
+      },
+      {
+        "label": "A-47b5dc",
+        "run_id": "47b5dc69-6cad-48e4-9959-339ef37bccd4",
+        "condition": "anti",
+        "recorded_total_tokens": 5091795,
+        "passed_ids": 3,
+        "usage_requests": 102,
+        "tokens_per_recorded_request": 49919.55882352941,
+        "elapsed_seconds": 722.8375337469997,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 6,
+        "source_failed_cases": 1,
+        "source_blocked_cases": 54
+      },
+      {
+        "label": "A-c27674",
+        "run_id": "c276743a-2030-42c6-a0b7-e8c787f6f37b",
+        "condition": "anti",
+        "recorded_total_tokens": 4993359,
+        "passed_ids": 14,
+        "usage_requests": 93,
+        "tokens_per_recorded_request": 53692.032258064515,
+        "elapsed_seconds": 627.0852492200002,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 16,
+        "source_failed_cases": 35,
+        "source_blocked_cases": 9
+      },
+      {
+        "label": "A-8521b6",
+        "run_id": "8521b60c-d58e-4f17-8cd0-75cf45d82d8b",
+        "condition": "anti",
+        "recorded_total_tokens": 4984487,
+        "passed_ids": 3,
+        "usage_requests": 96,
+        "tokens_per_recorded_request": 51921.739583333336,
+        "elapsed_seconds": 576.054134553,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 6,
+        "source_failed_cases": 1,
+        "source_blocked_cases": 54
+      },
+      {
+        "label": "N-cbbb10",
+        "run_id": "cbbb10c7-8f02-4692-8214-a371b9bcc307",
+        "condition": "normal",
+        "recorded_total_tokens": 4664666,
+        "passed_ids": 17,
+        "usage_requests": 90,
+        "tokens_per_recorded_request": 51829.62222222222,
+        "elapsed_seconds": 610.8273929269999,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 19,
+        "source_failed_cases": 33,
+        "source_blocked_cases": 8
+      },
+      {
+        "label": "N-451385",
+        "run_id": "451385f8-693c-4881-927a-2fd87ad343e5",
+        "condition": "normal",
+        "recorded_total_tokens": 4030191,
+        "passed_ids": 19,
+        "usage_requests": 88,
+        "tokens_per_recorded_request": 45797.625,
+        "elapsed_seconds": 543.577822876,
+        "evaluation_outcome": "completed",
+        "business_assertion_reached": 26,
+        "source_failed_cases": 10,
+        "source_blocked_cases": 29
+      }
+    ]
+  },
+  "Q10_score_histogram": {
+    "sql": "SELECT condition,passed_ids,COUNT(*) AS runs FROM runs GROUP BY condition,passed_ids ORDER BY condition,passed_ids;",
+    "rows": [
+      {
+        "condition": "anti",
+        "passed_ids": null,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 3,
+        "runs": 4
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 13,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 14,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 21,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 24,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 25,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 26,
+        "runs": 2
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 28,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 29,
+        "runs": 2
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 30,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 31,
+        "runs": 2
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 32,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 33,
+        "runs": 3
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 34,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 36,
+        "runs": 1
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 37,
+        "runs": 2
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 38,
+        "runs": 2
+      },
+      {
+        "condition": "anti",
+        "passed_ids": 39,
+        "runs": 2
+      },
+      {
+        "condition": "normal",
+        "passed_ids": null,
+        "runs": 2
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 0,
+        "runs": 1
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 14,
+        "runs": 1
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 17,
+        "runs": 1
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 19,
+        "runs": 1
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 31,
+        "runs": 1
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 37,
+        "runs": 2
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 38,
+        "runs": 2
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 39,
+        "runs": 2
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 40,
+        "runs": 3
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 42,
+        "runs": 3
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 44,
+        "runs": 1
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 45,
+        "runs": 1
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 46,
+        "runs": 3
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 47,
+        "runs": 2
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 50,
+        "runs": 3
+      },
+      {
+        "condition": "normal",
+        "passed_ids": 51,
+        "runs": 1
+      }
+    ]
+  },
+  "Q11_coverage_by_score_range": {
+    "sql": "SELECT condition,CASE WHEN passed_ids IS NULL THEN 'unavailable' WHEN passed_ids<20 THEN '0_to_19'\n WHEN passed_ids<40 THEN '20_to_39' ELSE '40_to_57' END AS score_band,COUNT(*) AS runs,\n AVG(business_assertion_reached) AS mean_reached_cases,AVG(source_blocked_cases) AS mean_blocked_cases,\n SUM(recorded_total_tokens) AS tokens\nFROM runs GROUP BY condition,score_band ORDER BY condition,score_band;",
+    "rows": [
+      {
+        "condition": "anti",
+        "score_band": "0_to_19",
+        "runs": 6,
+        "mean_reached_cases": 9.666666666666666,
+        "mean_blocked_cases": 39.0,
+        "tokens": 41150673
+      },
+      {
+        "condition": "anti",
+        "score_band": "20_to_39",
+        "runs": 23,
+        "mean_reached_cases": 42.69565217391305,
+        "mean_blocked_cases": 6.130434782608695,
+        "tokens": 150692221
+      },
+      {
+        "condition": "anti",
+        "score_band": "unavailable",
+        "runs": 1,
+        "mean_reached_cases": 0.0,
+        "mean_blocked_cases": 58.0,
+        "tokens": 9566667
+      },
+      {
+        "condition": "normal",
+        "score_band": "0_to_19",
+        "runs": 4,
+        "mean_reached_cases": 15.75,
+        "mean_blocked_cases": 30.25,
+        "tokens": 24510975
+      },
+      {
+        "condition": "normal",
+        "score_band": "20_to_39",
+        "runs": 7,
+        "mean_reached_cases": 46.0,
+        "mean_blocked_cases": 7.142857142857143,
+        "tokens": 51235731
+      },
+      {
+        "condition": "normal",
+        "score_band": "40_to_57",
+        "runs": 17,
+        "mean_reached_cases": 53.35294117647059,
+        "mean_blocked_cases": 1.1176470588235294,
+        "tokens": 125184227
+      },
+      {
+        "condition": "normal",
+        "score_band": "unavailable",
+        "runs": 2,
+        "mean_reached_cases": 0.0,
+        "mean_blocked_cases": 58.0,
+        "tokens": 79693612
+      }
+    ]
+  },
+  "Q12_termination": {
+    "sql": "SELECT condition,raw_end_reason,exit_code,completion_declaration_captured,COUNT(*) AS runs,\n COUNT(passed_ids) AS scored,AVG(passed_ids) AS mean_passed_ids\nFROM runs GROUP BY condition,raw_end_reason,exit_code,completion_declaration_captured\nORDER BY condition,raw_end_reason,exit_code;",
+    "rows": [
+      {
+        "condition": "anti",
+        "raw_end_reason": "agent_completed",
+        "exit_code": 0,
+        "completion_declaration_captured": 0,
+        "runs": 16,
+        "scored": 16,
+        "mean_passed_ids": 28.6875
+      },
+      {
+        "condition": "anti",
+        "raw_end_reason": "agent_completed",
+        "exit_code": 0,
+        "completion_declaration_captured": 1,
+        "runs": 5,
+        "scored": 5,
+        "mean_passed_ids": 29.6
+      },
+      {
+        "condition": "anti",
+        "raw_end_reason": "agent_completed",
+        "exit_code": 137,
+        "completion_declaration_captured": 1,
+        "runs": 8,
+        "scored": 7,
+        "mean_passed_ids": 18.428571428571427
+      },
+      {
+        "condition": "anti",
+        "raw_end_reason": "agent_error",
+        "exit_code": 137,
+        "completion_declaration_captured": 1,
+        "runs": 1,
+        "scored": 1,
+        "mean_passed_ids": 32.0
+      },
+      {
+        "condition": "normal",
+        "raw_end_reason": "agent_completed",
+        "exit_code": 0,
+        "completion_declaration_captured": 0,
+        "runs": 18,
+        "scored": 16,
+        "mean_passed_ids": 36.625
+      },
+      {
+        "condition": "normal",
+        "raw_end_reason": "agent_completed",
+        "exit_code": 0,
+        "completion_declaration_captured": 1,
+        "runs": 5,
+        "scored": 5,
+        "mean_passed_ids": 39.8
+      },
+      {
+        "condition": "normal",
+        "raw_end_reason": "agent_completed",
+        "exit_code": 137,
+        "completion_declaration_captured": 1,
+        "runs": 7,
+        "scored": 7,
+        "mean_passed_ids": 41.714285714285715
+      }
+    ]
+  },
+  "Q13_unavailable_cost": {
+    "sql": "SELECT condition,score_available,COUNT(*) AS runs,SUM(recorded_total_tokens) AS tokens,\n AVG(recorded_total_tokens) AS mean_tokens\nFROM runs GROUP BY condition,score_available ORDER BY condition,score_available;",
+    "rows": [
+      {
+        "condition": "anti",
+        "score_available": 0,
+        "runs": 1,
+        "tokens": 9566667,
+        "mean_tokens": 9566667.0
+      },
+      {
+        "condition": "anti",
+        "score_available": 1,
+        "runs": 29,
+        "tokens": 191842894,
+        "mean_tokens": 6615272.206896552
+      },
+      {
+        "condition": "normal",
+        "score_available": 0,
+        "runs": 2,
+        "tokens": 79693612,
+        "mean_tokens": 39846806.0
+      },
+      {
+        "condition": "normal",
+        "score_available": 1,
+        "runs": 28,
+        "tokens": 200930933,
+        "mean_tokens": 7176104.75
+      }
+    ]
+  },
+  "Q14_other_direction": {
+    "sql": "WITH per_item AS (\n SELECT test_id,MAX(title) AS title,\n AVG(CASE WHEN condition='normal' THEN passed END) AS normal_rate,\n AVG(CASE WHEN condition='anti' THEN passed END) AS anti_rate\n FROM id_results GROUP BY test_id\n)\nSELECT test_id,title,normal_rate,anti_rate,normal_rate-anti_rate AS mean_ID_gap\nFROM per_item WHERE anti_rate>=normal_rate ORDER BY mean_ID_gap,test_id;",
+    "rows": [
+      {
+        "test_id": "T-009-01",
+        "title": "🟢 正常系: 申請詳細表示（申請者本人）",
+        "normal_rate": 0.32142857142857145,
+        "anti_rate": 0.4827586206896552,
+        "mean_ID_gap": -0.16133004926108374
+      },
+      {
+        "test_id": "T-005-02",
+        "title": "🟢 正常系: 下書き再編集",
+        "normal_rate": 0.35714285714285715,
+        "anti_rate": 0.4482758620689655,
+        "mean_ID_gap": -0.09113300492610837
+      },
+      {
+        "test_id": "T-017-01",
+        "title": "🟢 正常系: 一般ユーザーのダッシュボード表示",
+        "normal_rate": 0.21428571428571427,
+        "anti_rate": 0.27586206896551724,
+        "mean_ID_gap": -0.061576354679802964
+      },
+      {
+        "test_id": "T-020-04",
+        "title": "🔴 異常系: 一般ユーザーによるシステム設定アクセス拒否",
+        "normal_rate": 0.5714285714285714,
+        "anti_rate": 0.6206896551724138,
+        "mean_ID_gap": -0.049261083743842415
+      },
+      {
+        "test_id": "T-002-04",
+        "title": "🔴 異常系: アカウントロック",
+        "normal_rate": 0.9642857142857143,
+        "anti_rate": 1.0,
+        "mean_ID_gap": -0.0357142857142857
+      },
+      {
+        "test_id": "T-001-03",
+        "title": "🔴 異常系: パスワード強度不足エラー",
+        "normal_rate": 0.9285714285714286,
+        "anti_rate": 0.9310344827586207,
+        "mean_ID_gap": -0.0024630541871920597
+      },
+      {
+        "test_id": "T-001-04",
+        "title": "🔴 異常系: パスワード不一致エラー",
+        "normal_rate": 0.9285714285714286,
+        "anti_rate": 0.9310344827586207,
+        "mean_ID_gap": -0.0024630541871920597
+      },
+      {
+        "test_id": "T-016-01",
+        "title": "🟢 正常系: CSVエクスポート",
+        "normal_rate": 0.0,
+        "anti_rate": 0.0,
+        "mean_ID_gap": 0.0
+      }
+    ]
+  },
+  "Q15_category_results": {
+    "sql": "SELECT condition,category,COUNT(DISTINCT test_id) AS item_count,COUNT(*) AS observations,\n 100.0*AVG(passed) AS pass_rate\nFROM id_results WHERE passed IS NOT NULL GROUP BY condition,category ORDER BY category,condition;",
+    "rows": [
+      {
+        "condition": "anti",
+        "category": "boundary",
+        "item_count": 3,
+        "observations": 87,
+        "pass_rate": 24.137931034482758
+      },
+      {
+        "condition": "normal",
+        "category": "boundary",
+        "item_count": 3,
+        "observations": 84,
+        "pass_rate": 85.71428571428571
+      },
+      {
+        "condition": "anti",
+        "category": "negative",
+        "item_count": 22,
+        "observations": 638,
+        "pass_rate": 62.539184952978054
+      },
+      {
+        "condition": "normal",
+        "category": "negative",
+        "item_count": 22,
+        "observations": 616,
+        "pass_rate": 80.51948051948052
+      },
+      {
+        "condition": "anti",
+        "category": "normal",
+        "item_count": 32,
+        "observations": 928,
+        "pass_rate": 37.5
+      },
+      {
+        "condition": "normal",
+        "category": "normal",
+        "item_count": 32,
+        "observations": 896,
+        "pass_rate": 56.80803571428571
+      }
+    ]
+  },
+  "Q16_nine_workflow_items": {
+    "sql": "SELECT condition,COUNT(DISTINCT run_id) AS runs,COUNT(DISTINCT test_id) AS item_count,\n SUM(passed) AS passed,SUM(raw_status='fail') AS failed,SUM(raw_status='blocked') AS blocked,\n 1.0*SUM(passed)/COUNT(DISTINCT run_id) AS mean_passed_ids\nFROM id_results WHERE feature_id BETWEEN 'F-011' AND 'F-015' AND passed IS NOT NULL GROUP BY condition;",
+    "rows": [
+      {
+        "condition": "anti",
+        "runs": 29,
+        "item_count": 9,
+        "passed": 1,
+        "failed": 206,
+        "blocked": 54,
+        "mean_passed_ids": 0.034482758620689655
+      },
+      {
+        "condition": "normal",
+        "runs": 28,
+        "item_count": 9,
+        "passed": 142,
+        "failed": 82,
+        "blocked": 28,
+        "mean_passed_ids": 5.071428571428571
+      }
+    ]
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "population": "normal 30 / anti 30, no acquisition strata or matched-Run statistics",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "60 Run、57 ID/58ケースと、139ファイル・57 CSV記録・900応答の照合",
+      "queries": [
+        "Q01_population"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "evidence/source-readback.json",
+        "evidence/csv-failure-review.json",
+        "evidence/request-sources.json"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C02",
+      "claim": "条件別の得点欠測・usage欠測・裁定を保持",
+      "queries": [
+        "Q01_population"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/runs.json"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C03",
+      "claim": "二群の平均・中央値と独立Run bootstrap",
+      "queries": [
+        "Q02_group_summary",
+        "Q03_medians"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/bootstrap.csv",
+        "data/summaries.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C04",
+      "claim": "得点の範囲、40 ID以上の件数、分布の重なり",
+      "queries": [
+        "Q10_score_histogram"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/score_bands.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C05",
+      "claim": "欠測3件の仮想的な範囲計算",
+      "queries": [
+        "Q01_population"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/analysis.json"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C06",
+      "claim": "全記録の消費量、中央値・trimmed mean・不確実性",
+      "queries": [
+        "Q02_group_summary",
+        "Q03_medians"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/bootstrap.csv",
+        "data/summaries.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C07",
+      "claim": "最大Runと起動不能Runの消費、除外時の感度",
+      "queries": [
+        "Q09_extreme_and_low_scores",
+        "Q13_unavailable_cost"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/sensitivity.csv",
+        "data/concentration.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C08",
+      "claim": "観測された消費量と合格数、群内順位相関",
+      "queries": [
+        "Q09_extreme_and_low_scores"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/correlations.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C09",
+      "claim": "全20機能の分布、逆方向の項目",
+      "queries": [
+        "Q04_function_results",
+        "Q14_other_direction"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/features.csv",
+        "data/items.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C10",
+      "claim": "antiの12 IDとnormalの9 IDの状態列一致",
+      "queries": [
+        "Q06_identical_status_vectors"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/id_results.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C11",
+      "claim": "F-011〜F-015の9 IDの合格・fail・blocked",
+      "queries": [
+        "Q16_nine_workflow_items"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/id_results.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C12",
+      "claim": "両条件各30件の固定閾値と可視の判断記録",
+      "queries": [
+        "Q07_threshold_decisions"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "evidence/source-readback.json"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C13",
+      "claim": "承認者・表示・画面例外の具体例と低得点Runの到達範囲",
+      "queries": [
+        "Q09_extreme_and_low_scores",
+        "Q11_coverage_by_score_range"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "source/saved-observations.json"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C14",
+      "claim": "全57件のCSV失敗分類と1 Runの固定ダウンロード処理",
+      "queries": [
+        "Q05_all_item_results"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "evidence/csv-failure-review.json"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C15",
+      "claim": "入力・出力・cached input、usageを持つ応答数",
+      "queries": [
+        "Q08_token_components"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/statuses.csv",
+        "data/analysis.json"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C16",
+      "claim": "選択した3 Runの応答ごとの入力と累積",
+      "queries": [],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "evidence/request-sources.json",
+        "data/selected-request-trajectories.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    },
+    {
+      "id": "C17",
+      "claim": "invalidを除く場合の合格率の感度",
+      "queries": [
+        "Q01_population"
+      ],
+      "query_results": "data/sql-evidence.json",
+      "evidence_files": [
+        "data/sensitivity.csv"
+      ],
+      "scope": "Recorded observations or explicitly labeled exploratory calculation. No new implementation or evaluation; no causal recovery estimate."
+    }
+  ]
+}

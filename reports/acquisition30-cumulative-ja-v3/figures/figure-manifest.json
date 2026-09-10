@@ -1,0 +1,64 @@
+{
+  "font_name": "Yu Gothic",
+  "font_sha256": "cd24b5617c1e26572b0a7fe7e558f7121ca42c36f7b50e8d9216ac222a1c0a93",
+  "figures": [
+    {
+      "file": "01-study-design",
+      "title": "実験条件と分析対象",
+      "data_files": {
+        "runs.json": "da299262bae475bbfcfa59803bccf27d755b199a47bb0d5b3bfab0891a87ad2c"
+      },
+      "png_sha256": "e1c4154ccc91fe366ed05fcb30eb8f525af849b27c4e14ca195b21e509041734",
+      "svg_sha256": "3efb5dcd584c9008895ed4c9cc087f0a66365e61bc022c7e0881fb875ba4fca9"
+    },
+    {
+      "file": "02-condition-distributions",
+      "title": "二群の分布",
+      "data_files": {
+        "runs.json": "da299262bae475bbfcfa59803bccf27d755b199a47bb0d5b3bfab0891a87ad2c"
+      },
+      "png_sha256": "f4d8e3ace29feb37b2429e5f9d6a974a46445d23ada4c7274891c9799b0f9331",
+      "svg_sha256": "d6ae4e006593a24cb9e0255045c02df8b3fad7793d71c1d64057df8c62758ac6"
+    },
+    {
+      "file": "03-tokens-and-scores",
+      "title": "トークンと合格率",
+      "data_files": {
+        "runs.json": "da299262bae475bbfcfa59803bccf27d755b199a47bb0d5b3bfab0891a87ad2c"
+      },
+      "png_sha256": "458f31b114fc9a92acf0c9981ea64bd79955af9aa2b1fbfcb835c777d6a211f6",
+      "svg_sha256": "bd40cd1c30155ba6aeee5f39201a845b102e033ee9bd0a9458921b891ea00439"
+    },
+    {
+      "file": "04-feature-results",
+      "title": "機能別の平均合格率",
+      "data_files": {
+        "features.csv": "85d10e2b04a54604381639eecc4dcce74c57cdb4c97b570567d3e5801d26abda"
+      },
+      "png_sha256": "3e079f042feec89eb300c958f2af2a51e40ba3ae844c92596a2aacb47e36ead5",
+      "svg_sha256": "875a1b3c7a2f301d8c0741301cc1d9bae57565550cbae7117ad6094ef131b58e"
+    },
+    {
+      "file": "06-request-trajectories",
+      "title": "選択した3事例のusage推移",
+      "data_files": {
+        "selected-request-trajectories.csv": "2a0d34631bbd943353f0d64a622eefbd80adce6f52044c0426ebe851dc339bbb"
+      },
+      "png_sha256": "4a055223436417c24c271b88aa37ee9a717f5db54cd0193a48ab03be5b429559",
+      "svg_sha256": "821e0bf72cbb67f0614a0eb70d38395a320b958219b465cd703ec16bcc0cdeaa"
+    },
+    {
+      "file": "05-distinct-failure-paths",
+      "title": "保存証拠で区別する三つの経路",
+      "data_files": {
+        "runs.json": "da299262bae475bbfcfa59803bccf27d755b199a47bb0d5b3bfab0891a87ad2c"
+      },
+      "png_sha256": "9cec57f1e3749d177e2d53dd9c5d9643c68fdd559a5bc453d6dc8168d2326dd7",
+      "svg_sha256": "1fce59e5d046d203e1c98b0c91a3b374c398e085f6f40b4c8600c7f9e34498bf",
+      "evidence_files": {
+        "source/saved-observations.json": "4b069676b7176c781ce4c4f4a9865ecfa6bbbfb077515b11e39edd993164bf8e",
+        "evidence/csv-failure-review.json": "b67a552d64db88acea025ac1e707150e6495b8b4db75f925d331a8d94c660517"
+      }
+    }
+  ]
+}

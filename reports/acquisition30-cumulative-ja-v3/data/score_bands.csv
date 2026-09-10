@@ -1,0 +1,7 @@
+﻿condition,score_band,runs,tokens,mean_reached_cases,mean_blocked_cases,labels
+normal,0_to_19,4,24510975,15.75,30.25,"N-451385, N-724b28, N-cbbb10, N-cd059f"
+normal,20_to_39,7,51235731,46.0,7.142857142857143,"N-1e69ea, N-5864c2, N-959de7, N-b8bb85, N-ba9b31, N-bf51ba, N-daedcc"
+normal,40_to_57,17,125184227,53.35294117647059,1.1176470588235294,"N-00f64f, N-09dbce, N-2645ec, N-434b58, N-4fec65, N-51463b, N-6a3016, N-71ff89, N-7cce7b, N-833a4f, N-8562d6, N-9b477a, N-a95e10, N-b81827, N-cc1ad5, N-cf27fb, N-f74740"
+anti,0_to_19,6,41150673,9.666666666666666,39.0,"A-25a01c, A-38fba7, A-47b5dc, A-7e5974, A-8521b6, A-c27674"
+anti,20_to_39,23,150692221,42.69565217391305,6.130434782608695,"A-11440d, A-133cba, A-15c9af, A-256a2b, A-3528ca, A-41824f, A-5a7c90, A-600f4b, A-69c2fc, A-6a0f73, A-6af346, A-740a2f, A-76cac0, A-87a272, A-9305af, A-9a8c5f, A-aa86b7, A-ca85fc, A-cb52fe, A-ccac6a, A-cdcf39, A-dc4b4e, A-ea8716"
+anti,40_to_57,0,0,,,

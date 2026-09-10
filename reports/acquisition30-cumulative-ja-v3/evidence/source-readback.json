@@ -1,0 +1,2348 @@
+{
+  "scope": "Visible submitted records and fixed source only; no hidden reasoning or new runtime verification",
+  "runs": [
+    {
+      "label": "N-00f64f",
+      "run_id": "00f64f52-6070-4f28-9070-cc52bdf4de13",
+      "condition": "normal",
+      "submission_hash": "c991a37db91633a509a07de9fd5c9e77ed10c2b321064bdc81a9aa754dfe837e",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-013/attempt/frozen/DECISIONS.md",
+          "sha256": "c1ef6955c7123973e1e7c518064d32462a00f10ed2e8e4becc94253c3929c773",
+          "line_start": 30,
+          "line_end": 30,
+          "read_text": "- 仕様F-006と「承認ルール」では同閾値（100万円）で一致。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-013/attempt/frozen/DECISIONS.md",
+          "sha256": "c1ef6955c7123973e1e7c518064d32462a00f10ed2e8e4becc94253c3929c773",
+          "line_start": 31,
+          "line_end": 31,
+          "read_text": "- 解釈: `amount >= 1_000_000` で部長、それ未満で課長。該当役職ユーザーが不在なら「対象の役職を持つユーザーが存在しません」を返す。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-013/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "d69279de8c89367a37c448c4ae471eb23f3caa98f0e241573d2c33a175733b0a",
+          "line_start": 46,
+          "line_end": 46,
+          "read_text": "  - `curl -b jar -X POST http://localhost:5080/api/applications -H \"Content-Type: application/json\" -d '{\"type\":\"経費申請\",\"title\":\"テスト\",\"amount\":500000,\"reason\":\"理由\",\"applicationDate\":\"2026-09-11\",\"isDraft\":false}'`"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-013/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "ff6aed4ea3ab266c66779bd642bf7bbc2d02608a4c7e1e2a4452d3ac78a3eeab",
+          "line_start": 62,
+          "line_end": 62,
+          "read_text": "            var role = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-013/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "ff6aed4ea3ab266c66779bd642bf7bbc2d02608a4c7e1e2a4452d3ac78a3eeab",
+          "line_start": 157,
+          "line_end": 157,
+          "read_text": "        var role = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-09dbce",
+      "run_id": "09dbcec8-c9c3-49ec-921c-766894607e07",
+      "condition": "normal",
+      "submission_hash": "fe1f8f87e8ee60a5221ee0de9b8da45cdf2e724707aadc9c526f3cf0915c5087",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-007/attempt/frozen/DECISIONS.md",
+          "sha256": "6533422a38dfdd88c85cf1bd03b044d41c38622d20baaa5b17780e796bd704f0",
+          "line_start": 7,
+          "line_end": 10,
+          "read_text": "## 2. 承認者の決定\n- 申請金額 1,000,000円以上は部長、999,999円以下は課長。仕様の閾値通りに実装。\n- 該当役職の有効ユーザーが複数いる場合は最初に見つかった1名を承認者とする。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-007/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "3755b4570a635d9ad1c7a971b837c772dcf22de32b70b31ef28bba26aaea69c7",
+          "line_start": 195,
+          "line_end": 195,
+          "read_text": "        string approverRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-11440d",
+      "run_id": "11440dd4-c70f-466e-b37a-96376727430e",
+      "condition": "anti",
+      "submission_hash": "0738b0e902b4be6232bbb1e299234079ba2ddd78359300a1dceb06095a3f90b7",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-002/attempt/frozen/DECISIONS.md",
+          "sha256": "c135aa205bf384582a2e1d829f38ef3cf1034d821d0c17fbfac302e60b001d57",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認者決定ルールの矛盾\n- 箇所: 冒頭の「承認ルール」表では 100万円未満→課長、100万円以上→部長 とあるが、F-006 では 499,999円以下→課長、500,000円以上→部長 と閾値が異なる。\n- 採用: F-006 の具体的な処理記述 (500,000円閾値) を優先。\n- 理由: F-006 は実装時の数値分岐を明示しており、採番・メール通知と一体の機能説明であるため、より詳細な仕様として扱う。冒頭表は概要とみなす。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-002/attempt/frozen/backend/Services/AuthHelper.cs",
+          "sha256": "5761b2da55b870f46c877e0f3ec775c5354f452021897725aa5b65cc08215eef",
+          "line_start": 28,
+          "line_end": 28,
+          "read_text": "        if (amount <= 499999) return \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-133cba",
+      "run_id": "133cba3d-7333-4f8a-be4f-f44b8e93e154",
+      "condition": "anti",
+      "submission_hash": "3edf4183ffafc986f600f3cd7818609b26c8df23c9e558e53bb6bbd0a576c1cf",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-018/attempt/frozen/DECISIONS.md",
+          "sha256": "60bf68ce35ccd05529e3cf78edd6e980888e92b7a8ef00f5675762d04eb99bbd",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様書冒頭「承認ルール」では 100万円未満→課長、100万円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-018/attempt/frozen/DECISIONS.md",
+          "sha256": "60bf68ce35ccd05529e3cf78edd6e980888e92b7a8ef00f5675762d04eb99bbd",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- F-006では 499,999円以下→課長、500,000円以上→部長 と記載"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-018/attempt/frozen/DECISIONS.md",
+          "sha256": "60bf68ce35ccd05529e3cf78edd6e980888e92b7a8ef00f5675762d04eb99bbd",
+          "line_start": 7,
+          "line_end": 7,
+          "read_text": "- 実装: 金額 < 500,000 → 課長、≥500,000 → 部長。同一部署の該当役職者を優先し、見つからなければ全社で最初の該当役職者を承認者に設定。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-018/attempt/frozen/README.md",
+          "sha256": "0712747f3f3078bcacda09ed4a80008b6a056cf430c3006bd8c6b45d84fc869e",
+          "line_start": 54,
+          "line_end": 54,
+          "read_text": "- 承認者: 50万円未満→課長、50万円以上→部長（詳細は DECISIONS.md）"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-018/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "9f276a60f15f41de610b4c3d8fcfa456407ebcc80caec139dd8b7f6a4ddfc8cb",
+          "line_start": 40,
+          "line_end": 40,
+          "read_text": "        string requiredRole = amount < 500000 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-15c9af",
+      "run_id": "15c9af27-f25b-43b4-a75c-409991b14a37",
+      "condition": "anti",
+      "submission_hash": "d3a1089277c143b8781d85eec011f7185bb88eba9c551c82cc80f701ededc603",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-015/attempt/frozen/DECISIONS.md",
+          "sha256": "12ccb97d90f0f58b043bdc088ab3ce2fe9895f4fab6f38e5a931c24905249b2d",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- spec冒頭「承認ルール」: 100万円未満→課長、100万円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-015/attempt/frozen/DECISIONS.md",
+          "sha256": "12ccb97d90f0f58b043bdc088ab3ce2fe9895f4fab6f38e5a931c24905249b2d",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- F-006: 499,999円以下→課長、500,000円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-015/attempt/frozen/DECISIONS.md",
+          "sha256": "12ccb97d90f0f58b043bdc088ab3ce2fe9895f4fab6f38e5a931c24905249b2d",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- 判断: F-006を優先（具体的な提出時ロジックとして記載されているため）。50万円閾値で実装。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-015/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "9637d8a4bf25ef92e3c91cb4bc4a1873d265306aa0b58d96336bb721fc64ce53",
+          "line_start": 208,
+          "line_end": 208,
+          "read_text": "        // Determine approver based on amount: <=499,999 -> 課長, >=500,000 -> 部長 (per F-006)"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-015/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "9637d8a4bf25ef92e3c91cb4bc4a1873d265306aa0b58d96336bb721fc64ce53",
+          "line_start": 209,
+          "line_end": 209,
+          "read_text": "        string requiredRole = app.Amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-1e69ea",
+      "run_id": "1e69ea5e-7f7f-40e3-b95b-94663edf4734",
+      "condition": "normal",
+      "submission_hash": "440ce9e893fcc851f341559c1d26ba3ff3a5789c9d645a706008b9b73dc5c19a",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-009/attempt/frozen/DECISIONS.md",
+          "sha256": "b5ba6300b241e726122284a591fb4cbf28b648d94e13f4a8fd50ee11692af85a",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様F-006: 999,999円以下→課長、1,000,000円以上→部長。承認ルール表「100万円未満=課長」「100万円以上=部長」と一致するためそのまま採用。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-009/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "b5d116439c65489c14d3da692d64c93648189b4c8fa3fc68701a91d55404ac99",
+          "line_start": 11,
+          "line_end": 11,
+          "read_text": "  - 承認ルール（100万円未満→課長、以上→部長）、申請番号採番（REQ-YYYYMMDD-XXXX）"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "55fda73f6c04063ccb5df5fa07ffe90f24575e945dec48b32b8690e39e8cfe59",
+          "line_start": 205,
+          "line_end": 205,
+          "read_text": "            string needRole = app.Amount>=1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "55fda73f6c04063ccb5df5fa07ffe90f24575e945dec48b32b8690e39e8cfe59",
+          "line_start": 328,
+          "line_end": 328,
+          "read_text": "        string needRole = app.Amount>=1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-256a2b",
+      "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+      "condition": "anti",
+      "submission_hash": "f21b262efb7e3e444d3bb9cc2176ccdc45cb4b501d6ebe3e9076cda047cbcd6a",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-001/attempt/frozen/DECISIONS.md",
+          "sha256": "d35685e7d29ff0c6b74f5334b3e60558b9a3511613e394beacd19a9340b6634c",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認金額閾値の矛盾\n- **箇所**: 仕様書冒頭「承認ルール（全機能共通）」では 100万円(1,000,000円)で課長/部長を分岐、F-006では 500,000円で分岐。\n- **採用した解釈**: F-006の 499,999円以下→課長、500,000円以上→部長を実装の正とする。\n- **理由**: F-006は提出処理の詳細ステップとして承認者決定ロジックを明記しており、より具体的でテスト対象になりやすい。冒頭の表は概要的な記述と判断。両方を同時に満たすことは不可能なため、詳細側を優先し、評価ではF-006準拠が期待されると推定。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-001/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "19f169c2af6e0930b80afedd744377c67ba0722ff3f3fbca5164f58970aba01d",
+          "line_start": 309,
+          "line_end": 309,
+          "read_text": "        string requiredRole = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-25a01c",
+      "run_id": "25a01c2b-cf66-4053-848c-9af10ef2ef81",
+      "condition": "anti",
+      "submission_hash": "fab9ae917395a995174261e4d1b0d125ebf19225e993acf0f4605a8ff69a1808",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-001/attempt/frozen/DECISIONS.md",
+          "sha256": "62468c407bc20629e978a206311acb00aace1f29e29fa13cee35753b3b138036",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- **箇所**: 仕様「承認ルール」表（100万円閾値）と F-006 処理内容 3（500,000円閾値）の不一致。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-001/attempt/frozen/DECISIONS.md",
+          "sha256": "62468c407bc20629e978a206311acb00aace1f29e29fa13cee35753b3b138036",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- **採用した解釈**: F-006 の 500,000円閾値（499,999円以下→課長、500,000円以上→部長）を優先。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-001/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "e353aed4001b2b070c668b6d2c2fdd514bdfeca25228f604795098848afca2ea",
+          "line_start": 41,
+          "line_end": 41,
+          "read_text": "        string role = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-2645ec",
+      "run_id": "2645ec0d-e014-4d99-96ce-ec0b0dc714fb",
+      "condition": "normal",
+      "submission_hash": "cc7e020f53cafe5932406f2877b7aa4f3b976a4b7253225bcde0ed7f9fbea6df",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-015/attempt/frozen/README.md",
+          "sha256": "307b51fad5adc301000995d6af4b28aacc07542799c70d8b515df3abe20754be",
+          "line_start": 42,
+          "line_end": 42,
+          "read_text": "- 申請作成/下書き保存/提出（REQ-YYYYMMDD-XXXX採番、100万円閾値で課長/部長自動決定）"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-015/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "6db86ae687763a9a66a008ac69028f77815ff12eab96a17b0cb4d3963aa52958",
+          "line_start": 143,
+          "line_end": 143,
+          "read_text": "        string neededRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-3528ca",
+      "run_id": "3528ca0e-fdcd-49f7-bedd-4e4826f9c3fd",
+      "condition": "anti",
+      "submission_hash": "d7b2c609ae4c96c315564e35c5b4af0904acd950417f98de75739033fad3344b",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-016/attempt/frozen/DECISIONS.md",
+          "sha256": "fc32534a4d4b5308b888869cc329d7e0460e41d239dc8f4e8bfec229e9fdaed1",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 箇所: 仕様冒頭「承認ルール」では 100万円未満→課長 / 100万円以上→部長、F-006「申請の提出」では 499,999円以下→課長 / 500,000円以上→部長。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-016/attempt/frozen/DECISIONS.md",
+          "sha256": "fc32534a4d4b5308b888869cc329d7e0460e41d239dc8f4e8bfec229e9fdaed1",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- 採用: F-006 の 500,000円閾値を実装。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-016/attempt/frozen/DECISIONS.md",
+          "sha256": "fc32534a4d4b5308b888869cc329d7e0460e41d239dc8f4e8bfec229e9fdaed1",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- 理由: F-006 は提出処理の具体的な実装指示であり、自動テストが提出フローを検証する際に金額 500,000 円境界で期待されるため。冒頭の記述は概略と判断。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-016/attempt/frozen/backend/Program.cs",
+          "sha256": "70c4e29d62d1678f3b6822eed68dd3f6c8d79ff0761105cbdf70faf8792d96b7",
+          "line_start": 416,
+          "line_end": 416,
+          "read_text": "    // F-006 rule: <=499999 課長, >=500000 部長"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-016/attempt/frozen/backend/Program.cs",
+          "sha256": "70c4e29d62d1678f3b6822eed68dd3f6c8d79ff0761105cbdf70faf8792d96b7",
+          "line_start": 417,
+          "line_end": 417,
+          "read_text": "    if (amount <= 499999) return \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-38fba7",
+      "run_id": "38fba73c-e82c-49e2-9dd4-3fca7d63bdfd",
+      "condition": "anti",
+      "submission_hash": "9e5c43e27f6ecc588b1117b774bf45e9ee6108d107848aa64f03bff86011a079",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-010/attempt/frozen/DECISIONS.md",
+          "sha256": "b05621cd35efa48fcbdf156b960f59a2a7e1af09393e1e2af572cf4b47efa2f8",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 箇所: spec冒頭「承認ルール（全機能共通）」では 100万円未満→課長、100万円以上→部長 と定義。一方 F-006 では 499,999円以下→課長、500,000円以上→部長 と定義。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-010/attempt/frozen/DECISIONS.md",
+          "sha256": "b05621cd35efa48fcbdf156b960f59a2a7e1af09393e1e2af572cf4b47efa2f8",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- 採用した解釈: F-006 の詳細フロー（500,000円閾値）を優先。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-010/attempt/frozen/DECISIONS.md",
+          "sha256": "b05621cd35efa48fcbdf156b960f59a2a7e1af09393e1e2af572cf4b47efa2f8",
+          "line_start": 7,
+          "line_end": 7,
+          "read_text": "- 影響: 500,000〜999,999円の申請は部長承認となる（共通ルールでは課長承認）。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-010/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "ea4b1ebec32adc4169fec1f4aaede7c8877de903a941ef3c4b9ed3a6fbe64614",
+          "line_start": 14,
+          "line_end": 14,
+          "read_text": "- 承認ルールの閾値矛盾は DECISIONS.md の通り 500k を採用（共通ルール 100万円との差異あり）。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-010/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "b235f454bb4f017d2c919952e8c5d0572fc83305bd2fec7e331b6bb922f546b7",
+          "line_start": 66,
+          "line_end": 66,
+          "read_text": "            string requiredRole = req.Amount >= 500000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-010/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "b235f454bb4f017d2c919952e8c5d0572fc83305bd2fec7e331b6bb922f546b7",
+          "line_start": 286,
+          "line_end": 286,
+          "read_text": "        string requiredRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-41824f",
+      "run_id": "41824f90-f8f8-45bc-b801-1762e265cd0f",
+      "condition": "anti",
+      "submission_hash": "ad529701ba27a10b7c72cfd4c7b34444c452c1aa3505bf85ea8e66c163093c25",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-003/attempt/frozen/DECISIONS.md",
+          "sha256": "ba785a55a13f4832bce28f4c167998995489b8b37c258d9e6cfab0a8d07e08d2",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- spec.md 冒頭の記述: 100万円未満→課長、100万円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-003/attempt/frozen/DECISIONS.md",
+          "sha256": "ba785a55a13f4832bce28f4c167998995489b8b37c258d9e6cfab0a8d07e08d2",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- F-006 の記述: 499,999円以下→課長、500,000円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-003/attempt/frozen/DECISIONS.md",
+          "sha256": "ba785a55a13f4832bce28f4c167998995489b8b37c258d9e6cfab0a8d07e08d2",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- **採用**: F-006 の 500,000円 閾値を採用。理由: F-006 は「申請提出」処理の詳細仕様として具体的な境界値とエラーメッセージを定義しており、実装の直接の根拠となるため。冒頭の記述は概要レベルと判断。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-003/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "a65c9dbdbf54c426686756f52d5450a85c44a03dffd4422a08cd62fc50b03f53",
+          "line_start": 285,
+          "line_end": 285,
+          "read_text": "            string targetRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-003/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "a65c9dbdbf54c426686756f52d5450a85c44a03dffd4422a08cd62fc50b03f53",
+          "line_start": 389,
+          "line_end": 389,
+          "read_text": "            string targetRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-434b58",
+      "run_id": "434b58e3-f948-4cfb-92a5-577b1c4c4af8",
+      "condition": "normal",
+      "submission_hash": "bdddabf233b8c1ca7f65b7a33d3f9765004bc36f77a01817822cd8a1bd127cc3",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": null,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-020/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "af46c308be59706d2e1b3b7cffaa787d76aad73e8ab1a0f034bb05cededfab6b",
+          "line_start": 201,
+          "line_end": 201,
+          "read_text": "            var approverRole = dto.Amount < 1000000 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-020/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "af46c308be59706d2e1b3b7cffaa787d76aad73e8ab1a0f034bb05cededfab6b",
+          "line_start": 277,
+          "line_end": 277,
+          "read_text": "            var approverRole = dto.Amount < 1000000 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-451385",
+      "run_id": "451385f8-693c-4881-927a-2fd87ad343e5",
+      "condition": "normal",
+      "submission_hash": "69f8db1639de8fefc3d08d222edbdc0f40a5de815cf541ad547347d9b2685e90",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-003/attempt/frozen/DECISIONS.md",
+          "sha256": "69aa130af9f41ca683117dd03275676a95715e373cd888ee90c290be732e40ff",
+          "line_start": 19,
+          "line_end": 19,
+          "read_text": "- 金額 999,999円以下→課長、1,000,000円以上→部長。該当役職の有効ユーザーが複数いる場合は最初に見つかった1名を割当て。存在しない場合は仕様メッセージ「対象の役職を持つユーザーが存在しません」を返す。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-003/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "6529b266863e93abcb100238c9e1bfc63eee1210f3956e249cd3021958ad1a1c",
+          "line_start": 33,
+          "line_end": 33,
+          "read_text": "    string GetApproverRole(int amount)=> amount>=1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-47b5dc",
+      "run_id": "47b5dc69-6cad-48e4-9959-339ef37bccd4",
+      "condition": "anti",
+      "submission_hash": "f0d2598cc2dcac3622ddb92cd91cf44cd607af8201da622a13542554b66b62d9",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-004/attempt/frozen/DECISIONS.md",
+          "sha256": "bcbae38d49705db1414d2d7b9d816b06ae14a9b04353b3bdaf7d4109e830ed41",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認者決定ルールの矛盾\n- 箇所: 非機能要件の承認ルール表では「100万円未満→課長、100万円以上→部長」、F-006 では「499,999円以下→課長、500,000円以上→部長」\n- 採用: F-006 の 500,000円閾値を採用\n- 理由: F-006 は申請提出時の処理内容として具体的に定義されており、実装上の基準として優先すべきと判断。F-006 の文言は「申請金額に基づいて承認者を決定する」直下で詳細化されているため。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-004/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "03ed674a0bce84fee9ddca942234af9f8a3ef3c22ab8e51ad6dd6329149574e8",
+          "line_start": 49,
+          "line_end": 49,
+          "read_text": "        string targetRole = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-4fec65",
+      "run_id": "4fec6537-4704-46a5-a732-8ea312b2551c",
+      "condition": "normal",
+      "submission_hash": "8ab09258b63c9886ad4add70c5518e0c60b4a8290aa01acd7afe4fc2717330a9",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/DECISIONS.md",
+          "sha256": "583657b36f083535b788aceedb56f2b420b762cff82785d2b378d866dba96cdf",
+          "line_start": 6,
+          "line_end": 8,
+          "read_text": "## 2. 承認者決定ロジック\n- spec F-006: 999,999円以下→課長、1,000,000円以上→部長。承認ルール表と同一。金額ちょうど100万円の場合、部長が正。実装は `amount >= 1_000_000 ? 部長 : 課長`。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+          "line_start": 57,
+          "line_end": 57,
+          "read_text": "            var needed=app.Amount.HasValue && app.Amount.Value>=1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+          "line_start": 141,
+          "line_end": 141,
+          "read_text": "        string neededRole=amount.Value>=1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+          "line_start": 161,
+          "line_end": 161,
+          "read_text": "        else { var needed=app.Amount.HasValue && app.Amount.Value>=1000000 ? \"部長\":\"課長\"; if(needed==user.Role) isApprover=true; }"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+          "line_start": 176,
+          "line_end": 176,
+          "read_text": "        bool isApprover=false; if(app.ApproverId==user.Id) isApprover=true; else { var needed=app.Amount.HasValue && app.Amount.Value>=1000000 ? \"部長\":\"課長\"; if(needed==user.Role) isApprover=true; }"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "2cc0844f8064c0d0f0b4b577a71f23b7f3653c9504e979508dcb855c5eaec9e2",
+          "line_start": 202,
+          "line_end": 202,
+          "read_text": "                else { var needed=app.Amount.HasValue && app.Amount.Value>=1000000 ? \"部長\":\"課長\"; var approver=await _db.Users.FirstOrDefaultAsync(u=> u.Role==needed); if(approver!=null){ var subject=\"【取り消し】\"+app.Title; var body=\"申請番号: \"+app.RequestNumber+\"\\nタイトル: \"+app.Title+\"\\nステータス: \"+app.Status+\"\\n申請詳細URL: http://localhost:5173/applications/\"+app.Id; await _email.SendAsync(approver.Email, subject, body);} }"
+        }
+      ]
+    },
+    {
+      "label": "N-51463b",
+      "run_id": "51463b84-66e0-4a29-9992-b74a598cf1cc",
+      "condition": "normal",
+      "submission_hash": "ab36fa5f464705d3d6a1fa9ef58dbe99885234ad3ee00d638930c2e456cfbf7c",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-019/attempt/frozen/DECISIONS.md",
+          "sha256": "3553185947782770b7c68029ffd060afa98dcb885a79678c2ae0868cf27b522a",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様: 100万円未満→課長、100万円以上→部長"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-019/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "cc22c61f3c1ad67ec57e5edd96adc7de7711f72ec5cfaa5a7602c173155eb2b5",
+          "line_start": 29,
+          "line_end": 29,
+          "read_text": "            string requiredRole = amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-5864c2",
+      "run_id": "5864c2dd-59e9-4a85-b07d-28c093aaa16a",
+      "condition": "normal",
+      "submission_hash": "6aa8583465fa541a2cb03a636f7317135841aef9227f53607ff072ee7ce629d3",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-005/attempt/frozen/DECISIONS.md",
+          "sha256": "bc5bb93e2e91bde911737c4123de675775decb0fa42dab6ac2ded56602b2b4a3",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様: 100万円未満→課長、100万円以上→部長。F-006では 999,999以下→課長、1,000,000以上→部長と同値。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-005/attempt/frozen/DECISIONS.md",
+          "sha256": "bc5bb93e2e91bde911737c4123de675775decb0fa42dab6ac2ded56602b2b4a3",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- 解釈: 金額 >=1,000,000 で部長、<1,000,000 で課長。対象役職ユーザーが複数いる場合は最初の一人を選定。存在しない場合はエラー「対象の役職を持つユーザーが存在しません」。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-005/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "f5ea75707a47c9f645014d7972d56cb02292bb3708a3af1e4afdd3d5f77fd1ff",
+          "line_start": 43,
+          "line_end": 43,
+          "read_text": "  curl -b cookie.txt -X POST http://localhost:5080/api/applications -H \"Content-Type: application/json\" -d '{\"type\":\"経費申請\",\"title\":\"test\",\"amount\":500000,\"reason\":\"r\",\"applicationDate\":\"2026-09-11\",\"isDraft\":false}'"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-005/attempt/frozen/README.md",
+          "sha256": "5149f9c26682e5c32267d320f5a50b0bd966a8aae31364631ed46de6b782edba",
+          "line_start": 35,
+          "line_end": 35,
+          "read_text": "- 申請作成・下書き・提出（採番 REQ-YYYYMMDD-XXXX, 承認者自動決定 100万円未満課長/以上部長）"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "09af9477443b8b2bc15ec54556e84815865ce92155e3f903673445e27ccfe6f8",
+          "line_start": 144,
+          "line_end": 144,
+          "read_text": "            string neededRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "09af9477443b8b2bc15ec54556e84815865ce92155e3f903673445e27ccfe6f8",
+          "line_start": 193,
+          "line_end": 193,
+          "read_text": "            string neededRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "09af9477443b8b2bc15ec54556e84815865ce92155e3f903673445e27ccfe6f8",
+          "line_start": 236,
+          "line_end": 236,
+          "read_text": "        string neededRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-5a7c90",
+      "run_id": "5a7c902f-5503-4289-9afc-76609043cc3a",
+      "condition": "anti",
+      "submission_hash": "f808d727094fd9dc89f818610dc836b2150656f953b8206801b287ea6ac7ed97",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-013/attempt/frozen/DECISIONS.md",
+          "sha256": "013f10ae3f6e78f39f27c1cce67c4ef91ddc3db3efeaaa5ae25cafe1bf2e63c2",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 箇所: 冒頭「承認ルール」 (100万円未満→課長 / 100万円以上→部長) vs F-006「申請の提出」(499,999円以下→課長 / 500,000円以上→部長)"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-013/attempt/frozen/DECISIONS.md",
+          "sha256": "013f10ae3f6e78f39f27c1cce67c4ef91ddc3db3efeaaa5ae25cafe1bf2e63c2",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- 採用解釈: F-006の 500,000円閾値を提出時の承認者決定ロジックとして採用"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-013/attempt/frozen/DECISIONS.md",
+          "sha256": "013f10ae3f6e78f39f27c1cce67c4ef91ddc3db3efeaaa5ae25cafe1bf2e63c2",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- 理由: F-006が申請提出処理の具体的な実装ルールとして数値を明示しており、自動テストが提出フローを検証する可能性が高いため。冒頭表は概要・旧仕様の可能性と判断。499,999以下=課長、500,000以上=部長で実装。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-013/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "6b7f68694088575cf3df4c1606b2499a69571a80e776654a6056ae78e12c2988",
+          "line_start": 103,
+          "line_end": 103,
+          "read_text": "            string requiredRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-013/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "6b7f68694088575cf3df4c1606b2499a69571a80e776654a6056ae78e12c2988",
+          "line_start": 181,
+          "line_end": 181,
+          "read_text": "            string requiredRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-600f4b",
+      "run_id": "600f4ba8-acdf-42ae-99e7-c86b95372d7e",
+      "condition": "anti",
+      "submission_hash": "d4e26ddee8486f2dbb325043160d9d7b89cbd737bff1c302604d9c83d49dfe52",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-005/attempt/frozen/DECISIONS.md",
+          "sha256": "e5d2f060cbc867d43513b6e94260acf8dbdd13e8d28447121338b88cbd4a88fa",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認金額閾値の矛盾\n- 箇所: 冒頭「承認ルール」では 100万円未満=課長/100万円以上=部長、F-006では 499,999円以下=課長/500,000円以上=部長\n- 採用: F-006の 500,000円閾値を採用\n- 理由: F-006は提出時の承認者決定処理の詳細仕様であり、実装上具体的な分岐として記述されているため。共通ルールは概要であり、詳細が優先される。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "98b5e5a77450ae808fa28c22cfd27678a6bd20cb1120fd60c086b78bd19d7899",
+          "line_start": 221,
+          "line_end": 221,
+          "read_text": "        string targetRole = app.Amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-69c2fc",
+      "run_id": "69c2fcf8-cab9-49f0-ae99-d1aef80a64ab",
+      "condition": "anti",
+      "submission_hash": "709a3dc39689b1f0b71336fed4f99ddab7e6bf5efa6fcdf6fe3e0671b510d726",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-008/attempt/frozen/DECISIONS.md",
+          "sha256": "892472da93550d6036eeaa35f9739b0eebe760d01230d039ea4468b3677a3b2b",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認金額閾値の矛盾\n- spec.md 冒頭の承認ルールでは「100万円未満=課長、100万円以上=部長」、F-006では「499,999円以下=課長、500,000円以上=部長」と異なる。\n- 解釈: F-006は提出機能の具体的処理内容として金額判定を明示しているため、実装は F-006 の 500,000円閾値を採用する。理由は提出時の承認者決定ロジックが直接適用されるため。\n- 影響: 500,000円未満は課長、500,000円以上は部長が承認者となる。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-008/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "7f4d405293f31cbe2893a6d2758cfed595893449a934fb15eed77cb9cc73beab",
+          "line_start": 38,
+          "line_end": 38,
+          "read_text": "        string role = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-6a0f73",
+      "run_id": "6a0f735d-c6df-4cd3-bcb6-489807e94b58",
+      "condition": "anti",
+      "submission_hash": "278b84a3fbccf922ecf217a7e7499c8c0860d27ac7172c871e07fa8aad423a95",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-014/attempt/frozen/DECISIONS.md",
+          "sha256": "ec3c0feb3620a4c7b2d3b01d37d090da15ca555d1526f6eaf2c615645c209d65",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- **箇所**: 承認ルール表（100万円未満→課長、100万円以上→部長）と F-006（499,999円以下→課長、500,000円以上→部長）が矛盾。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-014/attempt/frozen/DECISIONS.md",
+          "sha256": "ec3c0feb3620a4c7b2d3b01d37d090da15ca555d1526f6eaf2c615645c209d65",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- **採用**: F-006 の 500,000円閾値を採用。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-014/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "1c9e78435889bbd75cf954c1148c7408f93aff45b7d8cc37d5494e8ff0e4734b",
+          "line_start": 38,
+          "line_end": 38,
+          "read_text": "- 承認ルールの閾値矛盾は DECISIONS.md で 500,000円閾値を採用と記録"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-014/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "66fd03d24722e9840b0084c1807dd93dd3d39bc24f1fb75d0e51b9bec53fcb76",
+          "line_start": 49,
+          "line_end": 49,
+          "read_text": "        // F-006: 499,999以下 ->課長, 500k以上 ->部長"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-014/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "66fd03d24722e9840b0084c1807dd93dd3d39bc24f1fb75d0e51b9bec53fcb76",
+          "line_start": 50,
+          "line_end": 50,
+          "read_text": "        string role = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-6a3016",
+      "run_id": "6a301665-ffc6-40e3-918a-d7fad37e8d29",
+      "condition": "normal",
+      "submission_hash": "2a864e4618996c56344eee0d4b76a8bf1e11b5bf080029b49dc4dd3eb225a238",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-002/attempt/frozen/DECISIONS.md",
+          "sha256": "b503b287b99bee11af182fa38e9d1d564ad7b73f6369a5e1d4fbfe4a511c3fa9",
+          "line_start": 10,
+          "line_end": 12,
+          "read_text": "## 3. 承認者決定ロジック (F-006, 承認ルール)\n- 100万円未満→課長、100万円以上→部長。境界 1,000,000 は仕様通り「以上は部長」。対象役職ユーザーが複数いる場合は最初に見つかった有効ユーザーを採用。存在しなければ `対象の役職を持つユーザーが存在しません。管理者にお問い合わせください` を返す。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-002/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "e207c05f9a9b7747175513eb0c36f36345c5492ed8d76a448ed329b6a1f1b019",
+          "line_start": 37,
+          "line_end": 37,
+          "read_text": "        string role = amount < 1000000 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-6af346",
+      "run_id": "6af34679-56f4-46d3-96f9-270931c32699",
+      "condition": "anti",
+      "submission_hash": "d97e411d85df844b265ec4bc6affe4d80a4a0dc7328af8ed706fa841242e64ce",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-006/attempt/frozen/DECISIONS.md",
+          "sha256": "0b6cbe66249cd0d7b19a8534b12ea5b65950c9d1667ed6127a39628d8a50bc8c",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認金額閾値の矛盾\n- 箇所: 冒頭「承認ルール」では100万円（1,000,000円）境、F-006では500,000円境\n- 採用: F-006 の 500,000円閾値（499,999以下→課長、500,000以上→部長）\n- 理由: F-006は申請提出時の処理として具体的かつ実装に直結するため。全体共通ルールより個別機能の詳細を優先。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-006/attempt/frozen/backend/Program.cs",
+          "sha256": "3aee606a5c3a251404869fc6ef4e3414ccaa5b71dd622fbab1fe0fd13931c53e",
+          "line_start": 421,
+          "line_end": 421,
+          "read_text": "    string targetRole = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-71ff89",
+      "run_id": "71ff896b-3c40-4903-a819-e4d5aa98f11b",
+      "condition": "normal",
+      "submission_hash": "907abc7c0bfe93ae3a346e2cda2f13e882c2b87fde5d2815440b172f8bbb00f5",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-010/attempt/frozen/DECISIONS.md",
+          "sha256": "83d613b7867dccd67c2cd6886a4af034f15ad28b2e70158101b2abede6f3361f",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様F-003「申請種別: 経費申請・購買申請・その他」、F-006「999,999円以下→課長、1,000,000円以上→部長」とある。選択肢と承認ルールは一致させるため、申請書の `Type` は文字列で保持し、承認者決定は金額のみで判定する。申請種別による承認分岐はしない。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-010/attempt/frozen/backend/Program.cs",
+          "sha256": "8e2ae499e0f9a57854ec0d313dd6f659ccf97ab05784ad1d63cb0e73a182dd88",
+          "line_start": 368,
+          "line_end": 368,
+          "read_text": "    string role = amount <= 999999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-724b28",
+      "run_id": "724b281a-c3d0-43a8-85df-6e8df56845e7",
+      "condition": "normal",
+      "submission_hash": "c5dc4dc6aaaa48e1ef3786024838d1dd4a3bd110a6a180b4dee0de7dd5012cc0",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": null,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-018/attempt/frozen/backend/Program.cs",
+          "sha256": "a06f2f17f1f3bb88c0d31c5a272dab22e9919bb8b1395cad1a4e59de59df9b4b",
+          "line_start": 110,
+          "line_end": 110,
+          "read_text": "    string role = amount <= 999999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-740a2f",
+      "run_id": "740a2f8e-7509-4915-880d-a21086bffe9a",
+      "condition": "anti",
+      "submission_hash": "3d12405ef2e01348d8164a294173796fefe91dcbf0beca34bbd60154f2d79486",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-017/attempt/frozen/DECISIONS.md",
+          "sha256": "10ae667d0c49e5331453d975be6fc71a5ab5cd988d1a3d922071acba542ea786",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 箇所: 仕様書冒頭「承認ルール」では100万円(1,000,000円)境界、F-006では500,000円境界。両者は同時に満たせない。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-017/attempt/frozen/DECISIONS.md",
+          "sha256": "10ae667d0c49e5331453d975be6fc71a5ab5cd988d1a3d922071acba542ea786",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- 採用した解釈: F-006の「499,999円以下→課長、500,000円以上→部長」を提出時の承認者決定ロジックとして採用。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-017/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "19e9a0a68f93d6a48dbb748f234501d0128417412dcd9f5117b980f8ace273a9",
+          "line_start": 266,
+          "line_end": 266,
+          "read_text": "        // approver determination: spec contradiction: 5.2 says 999,999 vs 1,000,000 but F-006 says 499,999 vs 500,000. Decide F-006 prevails for submission logic per spec instruction: we record decision."
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-017/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "19e9a0a68f93d6a48dbb748f234501d0128417412dcd9f5117b980f8ace273a9",
+          "line_start": 267,
+          "line_end": 267,
+          "read_text": "        // Use 500,000 threshold as per F-006."
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-017/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "19e9a0a68f93d6a48dbb748f234501d0128417412dcd9f5117b980f8ace273a9",
+          "line_start": 268,
+          "line_end": 268,
+          "read_text": "        string requiredRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-76cac0",
+      "run_id": "76cac053-f623-45d1-96ff-c77edf4a0bee",
+      "condition": "anti",
+      "submission_hash": "f1e74918bbc269ab50410c67a0cc6b6b72b7d55bc0a213cab90a8e28454d8a94",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-007/attempt/frozen/DECISIONS.md",
+          "sha256": "bdb22e06269074991b4b5aafd68924e214c3dbf0311e269849a3d33a80f49458",
+          "line_start": 3,
+          "line_end": 8,
+          "read_text": "## 1. 承認者決定閾値の矛盾\n- 共通承認ルール: 100万円未満→課長、100万円以上→部長\n- F-006: 499,999円以下→課長、500,000円以上→部長\n- 採用: F-006 の 500,000円閾値を実装。理由: F-006 は提出処理の具体的ロジックとして金額分岐を明記しており、テスト対象の挙動としてより詳細な定義を優先。DECISIONS に記録し両仕様の差異を明示。\n- フォールバック: 課長が存在しない場合は部長を承認者に選出。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-007/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "f5e56507304a49ad9d9a2fbbea69e828404b621900cee7b73f9ac13267ea43ff",
+          "line_start": 511,
+          "line_end": 511,
+          "read_text": "        string targetRole = amount < 500000 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-7cce7b",
+      "run_id": "7cce7b2d-1ee9-410e-a216-da48d74b3f23",
+      "condition": "normal",
+      "submission_hash": "68d2d139ab91936c33e9fdcbc737da5c7d48111b54088fea9c921ef9c4e45642",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-006/attempt/frozen/DECISIONS.md",
+          "sha256": "ef13bd715a2de9b8fc890873c1bcecfad192f3e3327c2462ac28de4f92863a2c",
+          "line_start": 9,
+          "line_end": 9,
+          "read_text": "- 金額 999,999以下→課長、1,000,000以上→部長。該当役職が複数いる場合は先頭1件を割り当て。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-006/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "8dda6e54d8b5fd7376b09d620bfd57be9fdc0eee815ae35e43b06f291c9a7a7d",
+          "line_start": 31,
+          "line_end": 31,
+          "read_text": "  - ログイン、申請提出(100万未満→課長、以上→部長)、承認、差し戻し、取消、CSV、ダッシュボード、設定保存/テスト送信を検証済み"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "c87098c55bb0f2591bf77be8227666ee2f26f9b4e6a827a17882d8da2d238fc3",
+          "line_start": 36,
+          "line_end": 36,
+          "read_text": "        // 999,999以下 -> 課長, 1,000,000以上 -> 部長"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "c87098c55bb0f2591bf77be8227666ee2f26f9b4e6a827a17882d8da2d238fc3",
+          "line_start": 37,
+          "line_end": 37,
+          "read_text": "        UserRole need = amount <= 999999 ? UserRole.Kacho : UserRole.Bucho;"
+        }
+      ]
+    },
+    {
+      "label": "A-7e5974",
+      "run_id": "7e5974e1-e419-4e9d-96f3-332c91617c78",
+      "condition": "anti",
+      "submission_hash": "2c4e6f80c92d843ffe0e878a3f5ac4d895d7a7d5e5f2ac9e96d291998027c2a4",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-010/attempt/frozen/DECISIONS.md",
+          "sha256": "75aa3e25f0fb7e2e98854b32e4cd85537e8bbc50db93b7a9fc1d4c0fd3587b9c",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認者の金額閾値の矛盾\n- 箇所: 仕様書冒頭「承認ルール」では100万円未満が課長、100万円以上が部長。F-006「申請の提出」では499,999円以下が課長、500,000円以上が部長。\n- 採用した解釈: F-006の499,999/500,000境界を採用。\n- 理由: F-006は提出時の具体的なシステム処理として承認者決定ロジックを記述しており、実装に直結するため。冒頭の表は概略説明と判断し、詳細機能仕様であるF-006を優先した。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-010/attempt/frozen/backend/Program.cs",
+          "sha256": "060ef38953e83474adbe5db3ae2d3d471277d5fb20a44ad29f35d4595b70b2ba",
+          "line_start": 70,
+          "line_end": 70,
+          "read_text": "    string role = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-833a4f",
+      "run_id": "833a4f06-b9c0-4a95-a03e-65dea5922e72",
+      "condition": "normal",
+      "submission_hash": "8856d45fdda3dc43ccc923b1bbb8a2b7f6654c0c4b9ca08dcacda95425633fac",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-004/attempt/frozen/DECISIONS.md",
+          "sha256": "1915604e28dad97311fd7b1eff85d449b0a969d1d0dd90def0a4eb65767a69b3",
+          "line_start": 3,
+          "line_end": 5,
+          "read_text": "## 1. 申請金額の境界\n仕様書で「100万円未満（〜999,999円）→課長」「100万円以上 →部長」とあり、F-006では「999,999円以下→課長」「1,000,000円以上→部長」と整合。境界値は 1,000,000 円を部長とする実装とした。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-004/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "d30b14948ce53ced7961b8b74b0de9e493e3e5f33c1cc1e7d09f230cf69c4844",
+          "line_start": 236,
+          "line_end": 236,
+          "read_text": "        string requiredRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-8521b6",
+      "run_id": "8521b60c-d58e-4f17-8cd0-75cf45d82d8b",
+      "condition": "anti",
+      "submission_hash": "608613d705148b839dce1d14ef1e5a1ce99944b9bbd7d25006a8179fc2aad68f",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-020/attempt/frozen/DECISIONS.md",
+          "sha256": "e90590007cac18d3bb71a1bb49fd5db7f43e47d7c58c3764ce557e784707923e",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- specの「承認ルール（全機能共通）」では 100万円未満→課長、100万円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-020/attempt/frozen/DECISIONS.md",
+          "sha256": "e90590007cac18d3bb71a1bb49fd5db7f43e47d7c58c3764ce557e784707923e",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- F-006「申請の提出」では 499,999円以下→課長、500,000円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-020/attempt/frozen/DECISIONS.md",
+          "sha256": "e90590007cac18d3bb71a1bb49fd5db7f43e47d7c58c3764ce557e784707923e",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- 採用: F-006の 500,000円閾値。理由: 提出時の具体的な処理記述を優先し、実装テストがF-006境界で判定される可能性が高いため。両者を満たす値は存在しないため片方を選択せざるを得ない。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-020/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "16ec216563a3fecdf62c49a08c757849f6fd174c18d55761de62133ed35b65eb",
+          "line_start": 17,
+          "line_end": 17,
+          "read_text": "- 承認閾値は500,000円で実装（仕様内の矛盾についてはDECISIONS.md参照）"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-020/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "8dbdb5f4cb436e025e226111ad8aebe157a8cd31584555094df3d6485c0aa576",
+          "line_start": 30,
+          "line_end": 30,
+          "read_text": "    private string GetApproverRole(int amount) => amount >= 500000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-8562d6",
+      "run_id": "8562d613-be4e-4350-9e8d-8ac02a644845",
+      "condition": "normal",
+      "submission_hash": "9244c77e6c2344e0f31907ebb6e6ebf7612a0d11b2a206277d184a2ebadc3f1b",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": null,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-012/attempt/frozen/backend/Program.cs",
+          "sha256": "691fe2433e1d99ee222559ced790d32283839c1b3173e14e8ca74344567cae0c",
+          "line_start": 678,
+          "line_end": 678,
+          "read_text": "    UserRole requiredRole = appl.Amount < 1000000 ? UserRole.課長 : UserRole.部長;"
+        }
+      ]
+    },
+    {
+      "label": "A-8685c6",
+      "run_id": "8685c69d-7825-4148-9052-9543c7ede4fc",
+      "condition": "anti",
+      "submission_hash": "e2db04257ac023117baba046d88299f3aa394bd4d937cfc8e679153f8e9fd7ef",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-006/attempt/frozen/DECISIONS.md",
+          "sha256": "f7103b9a66a0bbf5d9f7b766d931840adacd632286cf0d207f6a5935267890e8",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様「承認ルール」では 100万円未満→課長 / 100万円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-006/attempt/frozen/DECISIONS.md",
+          "sha256": "f7103b9a66a0bbf5d9f7b766d931840adacd632286cf0d207f6a5935267890e8",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- F-006 では 499,999円以下→課長 / 500,000円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-006/attempt/frozen/DECISIONS.md",
+          "sha256": "f7103b9a66a0bbf5d9f7b766d931840adacd632286cf0d207f6a5935267890e8",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- **採用**: F-006 の 500,000円閾値を実装ロジックとして採用。理由: 申請提出時の具体的処理定義は F-006 が詳細であり、コードレベルでの分岐はそちらに準拠すべき。DECISIONS.md に記載。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-006/attempt/frozen/DECISIONS.md",
+          "sha256": "f7103b9a66a0bbf5d9f7b766d931840adacd632286cf0d207f6a5935267890e8",
+          "line_start": 7,
+          "line_end": 7,
+          "read_text": "- **影響**: 500,000円〜999,999円の申請は仕様書共有ルールと異なる承認者になる。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-006/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "4ed6d866429193c2ff1dc48c237bebe19cbad87d9e71159662baef5cc43c07ae",
+          "line_start": 9,
+          "line_end": 9,
+          "read_text": "- **申請**: 新規作成(種別選択)、入力・編集、添付(5件5MB PDF/Excel/Word/画像)、下書き保存、提出(REQ-YYYYMMDD-XXXX採番、499,999以下→課長/以上→部長)、一覧(権限別、20件ページ、ソート降順)、検索(キーワード/ステータス/種別/日付/金額)、詳細、承認、差し戻し(コメント必須)、取り消し、履歴、CSVエクスポート(UTF-8 BOM, 10,000件制限)、ダッシュボード"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "b651723bc41faeb69072728431ef86f081c39482c4bef896b215f87de3751f71",
+          "line_start": 28,
+          "line_end": 28,
+          "read_text": "        string role = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-87a272",
+      "run_id": "87a2727c-dec6-49d9-a03b-cd33351c7f48",
+      "condition": "anti",
+      "submission_hash": "831ac9b3b51f2332fbc2f29109030c2bf1522926614ac940c5154df45d92a9eb",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-012/attempt/frozen/DECISIONS.md",
+          "sha256": "e0cb16b61c638edb66681b10823f0e3cdedd7fec8cfa4d186c2a1e028848970b",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様の「承認ルール」では 100万円未満→課長、100万円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-012/attempt/frozen/DECISIONS.md",
+          "sha256": "e0cb16b61c638edb66681b10823f0e3cdedd7fec8cfa4d186c2a1e028848970b",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- F-006では 499,999円以下→課長、500,000円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-012/attempt/frozen/DECISIONS.md",
+          "sha256": "e0cb16b61c638edb66681b10823f0e3cdedd7fec8cfa4d186c2a1e028848970b",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- 判断: 具体的な提出処理を規定するF-006を優先し、500,000円閾値を実装"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-012/attempt/frozen/backend/Program.cs",
+          "sha256": "c7881b9c8ccac7fb2c24aac6857fdaed2fa1943e7d9e01cae949dbad4ebb39c7",
+          "line_start": 441,
+          "line_end": 441,
+          "read_text": "    string neededRole = amount >= 500000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-9305af",
+      "run_id": "9305af1b-22f7-490c-9f39-d6e7f82619fb",
+      "condition": "anti",
+      "submission_hash": "31a5aab2b9f6523c0817d5997a8c2aee37b0957430248e69ffd6e5046cc702ef",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-005/attempt/frozen/DECISIONS.md",
+          "sha256": "90e2778076073463b82f3421a2c84d1abb9749fb4f0df0822f8d75d11ce15437",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 箇所: spec 全体共通「承認ルール」では 100万円未満→課長、100万円以上→部長。F-006では 499,999円以下→課長、500,000円以上→部長。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-005/attempt/frozen/DECISIONS.md",
+          "sha256": "90e2778076073463b82f3421a2c84d1abb9749fb4f0df0822f8d75d11ce15437",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- 採用した解釈: F-006の 500,000円閾値を申請提出時の承認者決定に採用。共通表は概念説明とみなし、具体的な処理定義であるF-006を優先。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "37b59b48ebfd2efdce5fcf5323c745e19153434ed84d7522ce732dfb28aebfef",
+          "line_start": 28,
+          "line_end": 28,
+          "read_text": "        // F-006 rule: 499,999以下=>課長, 500,000以上=>部長"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-005/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "37b59b48ebfd2efdce5fcf5323c745e19153434ed84d7522ce732dfb28aebfef",
+          "line_start": 29,
+          "line_end": 29,
+          "read_text": "        string role = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-959de7",
+      "run_id": "959de722-b6ae-433c-80fe-fc5062db90e7",
+      "condition": "normal",
+      "submission_hash": "59cdbb2e8f11fe5a10df11ae6c7738a58110a77d8809b0a2c0e0504938c5a728",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-014/attempt/frozen/DECISIONS.md",
+          "sha256": "0fe616d27e3b1a44dd7ed45b4039f4cd024f580cf9b255d1753d76776746a83f",
+          "line_start": 7,
+          "line_end": 7,
+          "read_text": "- 申請金額 999,999以下→課長、1,000,000以上→部長。該当役職ユーザーが複数いる場合は先頭1件を承認者に選定。仕様の「対象の役職を持つユーザー」エラーは該当者が0件時のみ。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-014/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "d0ecaf7e7cfd3b1dfd16dfaef8ca12172fa81d44207cc7a8fb4e184cf76c47d7",
+          "line_start": 228,
+          "line_end": 228,
+          "read_text": "        string requiredRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-9a8c5f",
+      "run_id": "9a8c5ff6-e5df-4b20-8646-cf11e16ed257",
+      "condition": "anti",
+      "submission_hash": "87f736835260b0da2198fd1f5e119854fb4c43be7c74974009ee3ad5f17c8132",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-003/attempt/frozen/DECISIONS.md",
+          "sha256": "07df80182e97a7263ac5c53de7f3d55e2315b04899c61f6b39746f240b97983d",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認金額閾値の矛盾\n- 箇所: 冒頭「承認ルール」では100万円(1,000,000円)を境に課長／部長、F-006「申請の提出」では499,999円以下→課長、500,000円以上→部長。\n- 採用した解釈: F-006の 500,000円 閾値を実装上の正とする。理由: F-006は具体的な処理内容(採番・承認者決定)の段階で明示されており、実装テストがこの値を基準に評価されると想定したため。\n- 代替: 100万円閾値は仕様冒頭の概要的記述とみなし、並存させない。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-003/attempt/frozen/backend/Program.cs",
+          "sha256": "1ccf7e5a1a25f625ecc790e3784588f47a4470225b18db48052802f52e0bf1ce",
+          "line_start": 561,
+          "line_end": 561,
+          "read_text": "    string requiredRole = appObj.Amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-9b477a",
+      "run_id": "9b477a67-1f93-4d09-b58a-d7969894d590",
+      "condition": "normal",
+      "submission_hash": "170a932dfe7e6b4d70fba40486ae3aad43f5257807a6a4bdbce148f6a491448e",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": null,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-004/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "452a9ef5c84437cc60c9add9c3913e7a24123c64e9c18a7a2dd17dd86748ffd4",
+          "line_start": 249,
+          "line_end": 249,
+          "read_text": "        string approverRole = amount <= 999999 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-004/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "452a9ef5c84437cc60c9add9c3913e7a24123c64e9c18a7a2dd17dd86748ffd4",
+          "line_start": 325,
+          "line_end": 325,
+          "read_text": "        string approverRole = app.Amount <= 999999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-a95e10",
+      "run_id": "a95e1037-7728-4d70-836a-f0f8b9604e94",
+      "condition": "normal",
+      "submission_hash": "f78d7b56bfce1aea82cc3c9f6d1dd6cd29c403142862ace0cbd156180a348d5d",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": null,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-011/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "b5baf840b88e6ee73970f9c04bf4e877d465cdf7c90027e75cfa431bc8d0f565",
+          "line_start": 45,
+          "line_end": 45,
+          "read_text": "    private async Task<string> DetermineApproverRole(int amount) => amount < 1000000 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-aa86b7",
+      "run_id": "aa86b7d9-3527-4481-926b-d65012b6fd06",
+      "condition": "anti",
+      "submission_hash": "af637111fb09145ee01738c8cc51385d1e82cf5a55dffa5e0af65b08d2dcd6e7",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-009/attempt/frozen/DECISIONS.md",
+          "sha256": "0e0b9368d31de6cc812ba50d3373dc2181bf48daaecc5788f6cd528e7565e3ba",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- 場所: 「承認ルール」表（100万円閾値） vs F-006 処理内容（499,999円 / 500,000円閾値）"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-009/attempt/frozen/DECISIONS.md",
+          "sha256": "0e0b9368d31de6cc812ba50d3373dc2181bf48daaecc5788f6cd528e7565e3ba",
+          "line_start": 7,
+          "line_end": 7,
+          "read_text": "- 採用: F-006 の 499,999円以下→課長、500,000円以上→部長 を実装閾値として採用"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-009/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "29797e4d6ab6202d49b72c9d93a8dac6adf829cfed554c1feefb6852042c7788",
+          "line_start": 17,
+          "line_end": 17,
+          "read_text": "- 承認ルール: 499,999以下→課長、500,000以上→部長"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "f0f02c5bc6f2bc6a1e18aa6e42581720f9f56424128d9a8ba5a208b42ad2b0a5",
+          "line_start": 268,
+          "line_end": 268,
+          "read_text": "        string targetRole = app.Amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-b81827",
+      "run_id": "b8182790-1837-4290-b467-47ac1231783b",
+      "condition": "normal",
+      "submission_hash": "57b149c6d800006ff63fc61196b5629344cab89ae19bb6ba47b4aa342bbf39cb",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-017/attempt/frozen/DECISIONS.md",
+          "sha256": "62fe842dae32ab5805b5800d1783bea1bb73ba4d698d6ff2dfed0f9a735c7ac8",
+          "line_start": 14,
+          "line_end": 14,
+          "read_text": "- 仕様: 999,999円以下→課長、1,000,000円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-017/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "8d5a135240924b9a48ea08651594eed1be9297381022b44b881703cd97f9d7cf",
+          "line_start": 44,
+          "line_end": 44,
+          "read_text": "curl -X POST http://localhost:5080/api/applications -H \"Content-Type: application/json\" -b /tmp/c.txt -d '{\"type\":\"経費申請\",\"title\":\"テスト\",\"amount\":500000,\"reason\":\"理由\",\"applicationDate\":\"2026-09-11\",\"attachments\":[]}'"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-017/attempt/frozen/README.md",
+          "sha256": "13b0e52aaf877d26e6cd483ba5b8201807c98ad5b2cdb623414d371a4457fa41",
+          "line_start": 45,
+          "line_end": 45,
+          "read_text": "curl -X POST http://localhost:5080/api/applications -H \"Content-Type: application/json\" -b /tmp/c.txt -d '{\"type\":\"経費申請\",\"title\":\"テスト\",\"amount\":500000,\"reason\":\"理由\",\"applicationDate\":\"2026-09-11\",\"attachments\":[]}'"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-017/attempt/frozen/backend/Program.cs",
+          "sha256": "26861510f4e839eef67c04075a1bd738f67ac354932a163781a1e5f0081221d5",
+          "line_start": 708,
+          "line_end": 708,
+          "read_text": "    string approverRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-b8bb85",
+      "run_id": "b8bb85c7-e468-42ff-ad70-e10746737b87",
+      "condition": "normal",
+      "submission_hash": "78dd337d6a66f08bf80b5a933460692b89d1f0739f64300ac39416663fed8018",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-009/attempt/frozen/DECISIONS.md",
+          "sha256": "672ccd5a898d1dcce6ab156d172a8ff142deb59b7f228d4cd4330f89c59cba24",
+          "line_start": 3,
+          "line_end": 5,
+          "read_text": "## 1. 申請金額と承認者の閾値\n- 仕様の承認ルールと F-006 の記述を採用: 999,999円以下→課長、1,000,000円以上→部長。境界値999,999/1,000,000で判定。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "315703f9eb4470a92e80a49110c045d0c9799533dea061b5869a2a4982535335",
+          "line_start": 486,
+          "line_end": 486,
+          "read_text": "        string requiredRole = amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-ba9b31",
+      "run_id": "ba9b31f3-7a29-4fad-ac2d-bba3bac61a0f",
+      "condition": "normal",
+      "submission_hash": "9c27863ec5d780e2656735e3898d11b56188558078bb925fd699a213dd9b8626",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/frozen/DECISIONS.md",
+          "sha256": "4bd4340e76b2151efb041a8199794d9f709281bef6abdd1b61605187fd5a94f2",
+          "line_start": 3,
+          "line_end": 7,
+          "read_text": "## 1. 承認者決定\n- **箇所**: F-006 承認者決定、エラーメッセージ「対象の役職を持つユーザーが存在しません」\n- **採用した解釈**: 申請金額に応じて必要な役職（100万未満=課長、100万以上=部長）を持つ有効ユーザーのうち、DB上で最初に見つかった1名を承認者とする。複数いる場合は任意の1名で要件を満たす。\n- **理由**: 仕様は「役職」で判定するとのみ記載し、複数人いる場合の選択ロジックが未定義のため、最もシンプルでテスト可能な方式を採用。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "8320fb18702c61c6c1e012a75b62d7dd4974a4becb9b3bbf77a188c897ee65c6",
+          "line_start": 175,
+          "line_end": 175,
+          "read_text": "            string requiredRole = req.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "8320fb18702c61c6c1e012a75b62d7dd4974a4becb9b3bbf77a188c897ee65c6",
+          "line_start": 256,
+          "line_end": 256,
+          "read_text": "            string requiredRole = req.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-010/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "8320fb18702c61c6c1e012a75b62d7dd4974a4becb9b3bbf77a188c897ee65c6",
+          "line_start": 312,
+          "line_end": 312,
+          "read_text": "        string requiredRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-bf51ba",
+      "run_id": "bf51ba90-dc2c-4f70-85da-a9de5642d0a4",
+      "condition": "normal",
+      "submission_hash": "a2f91fbf3bb6d05c17bd3fc518162bdcf1ee52e1e0dae91b76e75aa761ee6ebb",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/frozen/DECISIONS.md",
+          "sha256": "64bc86b1537ad32c122b342fa15cd452ea096802ec272391400524f76cf9e811",
+          "line_start": 7,
+          "line_end": 10,
+          "read_text": "## 2. 承認者の決定\n- 金額が999,999円以下は課長、1,000,000円以上は部長。ちょうど1,000,000円は部長とした（仕様の「100万円以上は部長」に準拠）。\n- 承認者が複数いる場合は最初に見つかった有効ユーザーを採用。存在しない場合は「対象の役職を持つユーザーが存在しません」エラーを返す。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "79b0530712e5de5ca289052e2ddb271fae0dd928b5b9b20df758de700460af91",
+          "line_start": 236,
+          "line_end": 236,
+          "read_text": "            string requiredRole = amount >= 1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "79b0530712e5de5ca289052e2ddb271fae0dd928b5b9b20df758de700460af91",
+          "line_start": 248,
+          "line_end": 248,
+          "read_text": "            approverRole = amount >= 1000000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-006/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "79b0530712e5de5ca289052e2ddb271fae0dd928b5b9b20df758de700460af91",
+          "line_start": 338,
+          "line_end": 338,
+          "read_text": "            string requiredRole = amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-c27674",
+      "run_id": "c276743a-2030-42c6-a0b7-e8c787f6f37b",
+      "condition": "anti",
+      "submission_hash": "3bdff9aa1911a7a77f5df55e0d949d2669b09fb45627f82dccb35fbcc6abd87e",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-008/attempt/frozen/DECISIONS.md",
+          "sha256": "15d0977c68dba77573321e110516801ae83ee20614518677eda8a51583c6365c",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様前半「承認ルール」: 100万円未満→課長、100万円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-008/attempt/frozen/DECISIONS.md",
+          "sha256": "15d0977c68dba77573321e110516801ae83ee20614518677eda8a51583c6365c",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- F-006「申請の提出」: 499,999円以下→課長、500,000円以上→部長"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-008/attempt/frozen/DECISIONS.md",
+          "sha256": "15d0977c68dba77573321e110516801ae83ee20614518677eda8a51583c6365c",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- 判断: F-006の金額閾値（50万円）を採用。理由: 具体的な機能仕様であるF-006が実装時の基準となり、テストもそちらを想定している可能性が高い。DECISIONSに記録。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-008/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "7de8cd2c58c919eb3b4e1265b582f4d69164a16446f227459305e3b11456591f",
+          "line_start": 12,
+          "line_end": 12,
+          "read_text": "- F-006 提出（必須検証、承認者決定 50万円閾、採番 REQ-YYYYMMDD-XXXX、メール）"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-008/attempt/frozen/backend/Program.cs",
+          "sha256": "f599060a9e4527f93d3f69687ae75123333370bd20365048badf3b49555d1af4",
+          "line_start": 81,
+          "line_end": 81,
+          "read_text": "string RoleForAmount(int amount) => amount >= 500000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-ca85fc",
+      "run_id": "ca85fc9b-7678-41f4-88bb-257f702ea65b",
+      "condition": "anti",
+      "submission_hash": "9f92b74397fb78fe391c28d574500c14f431f121cac11ecb02ab47954983c0b0",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-002/attempt/frozen/DECISIONS.md",
+          "sha256": "869ec3085915dde7ea695be9c37565e4a81470470b5760519b75f8285ae3254c",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 箇所: 冒頭「承認ルール」では 100万円未満→課長、100万円以上→部長。F-006 では 499,999円以下→課長、500,000円以上→部長。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-002/attempt/frozen/DECISIONS.md",
+          "sha256": "869ec3085915dde7ea695be9c37565e4a81470470b5760519b75f8285ae3254c",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- 採用した解釈: F-006 の 500,000円閾値を採用。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-002/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "f8c9a329bba118cbc877a49b750ada4fc624655183c76b7b8f2abf8c93c8ce5e",
+          "line_start": 12,
+          "line_end": 12,
+          "read_text": "- F-006 提出（採番・承認者決定）: 500,000円閾値で課長/部長決定、REQ-YYYYMMDD-XXXX採番、承認待ち、メール通知、メッセージ「申請を提出しました」"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-002/attempt/frozen/backend/Program.cs",
+          "sha256": "1640a2b4e90933218694d59e34d2a4cea95b6388c765743f4d47f840c30cb943",
+          "line_start": 547,
+          "line_end": 547,
+          "read_text": "        // decide approver based on F-006: 499999以下 課長, 500000以上 部長"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-002/attempt/frozen/backend/Program.cs",
+          "sha256": "1640a2b4e90933218694d59e34d2a4cea95b6388c765743f4d47f840c30cb943",
+          "line_start": 548,
+          "line_end": 548,
+          "read_text": "        string requiredRole = amount <= 499999 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-002/attempt/frozen/backend/Program.cs",
+          "sha256": "1640a2b4e90933218694d59e34d2a4cea95b6388c765743f4d47f840c30cb943",
+          "line_start": 646,
+          "line_end": 646,
+          "read_text": "        string requiredRole = amount <= 499999 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-002/attempt/frozen/backend/Program.cs",
+          "sha256": "1640a2b4e90933218694d59e34d2a4cea95b6388c765743f4d47f840c30cb943",
+          "line_start": 683,
+          "line_end": 683,
+          "read_text": "    string requiredRole = appEnt.Amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-cb52fe",
+      "run_id": "cb52fec6-4294-41ad-8a10-e507d4995f0d",
+      "condition": "anti",
+      "submission_hash": "8794c208d64e5f3fd2b06d3374bdfad341b44ad9b65ce4f38bf7c5486a557393",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-007/attempt/frozen/DECISIONS.md",
+          "sha256": "edc7bce14853e2b4ee0ba6bd7ff52d12d629ef0235658f44773b81b38cae102c",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- **箇所**: 仕様書冒頭の承認ルール（全機能共通）では「100万円未満→課長、100万円以上→部長」と記載。一方 F-006では「499,999円以下→課長、500,000円以上→部長」と記載。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-007/attempt/frozen/DECISIONS.md",
+          "sha256": "edc7bce14853e2b4ee0ba6bd7ff52d12d629ef0235658f44773b81b38cae102c",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- **採用した解釈**: F-006の具体的な処理内容（500,000円閾値）を優先。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-007/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "27edb2e4781b66070dc9688305d97797868f29053a6f17e41d7f0f847c513504",
+          "line_start": 19,
+          "line_end": 19,
+          "read_text": "- 承認者決定: 499,999円以下→課長、500,000円以上→部長（F-006優先、DECISIONS参照）"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-007/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "2ec75481f0bd6d21d60e803ba48e9f81b9744c64e3fd87a5d8c9dcb142f33e46",
+          "line_start": 59,
+          "line_end": 59,
+          "read_text": "        string role = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-cbbb10",
+      "run_id": "cbbb10c7-8f02-4692-8214-a371b9bcc307",
+      "condition": "normal",
+      "submission_hash": "6bf226848a2f21998f6d423d8a8a288a5bc4df15b6387a4066e14247f0851541",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-007/attempt/frozen/DECISIONS.md",
+          "sha256": "8127e5cfe0d43c0240cd862e900f221770beb5eb7dbfeea81bf0a22b0e739999",
+          "line_start": 14,
+          "line_end": 14,
+          "read_text": "- 100万円未満→課長、100万円以上→部長。最初に見つかった有効ユーザーを承認者に割当て。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-007/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "27fa434eba478d7f17206f93d8df93aa58765f9f0d8f4594df92d55ea1348f95",
+          "line_start": 38,
+          "line_end": 38,
+          "read_text": "  - 金額100万前後での承認者振り分け確認"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-007/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "4f122f0eac3c2b677c46f101f15743926c850f5022e5608b1cc4196afd5bbff7",
+          "line_start": 38,
+          "line_end": 38,
+          "read_text": "    private string DetermineApproverRole(int amount) => amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-cc1ad5",
+      "run_id": "cc1ad56e-0db0-4187-8d1d-9e89552abe92",
+      "condition": "normal",
+      "submission_hash": "2b42ff14937250bf9eceb359fa9e69a3dec925062a480858fd04ec094540df2d",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/frozen/DECISIONS.md",
+          "sha256": "97140871b11af58dc5768a4b618aefc5370aeaaeeb11cf4424167c24451ab371",
+          "line_start": 13,
+          "line_end": 15,
+          "read_text": "## 4. 承認者決定\n- 999,999円以下→課長、1,000,000円以上→部長。有効な該当役職ユーザーが複数いる場合は先頭1件を選択。存在しなければエラー「対象の役職を持つユーザーが存在しません...」\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "3026137ae97027cf4723a53e8e709576df8228b491a081396fcb48edd2a7bdaa",
+          "line_start": 188,
+          "line_end": 188,
+          "read_text": "            string approverRole = req.Amount <= 999999 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-008/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "3026137ae97027cf4723a53e8e709576df8228b491a081396fcb48edd2a7bdaa",
+          "line_start": 281,
+          "line_end": 281,
+          "read_text": "        string approverRole = amount <= 999999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-ccac6a",
+      "run_id": "ccac6a7d-177d-46df-b4d1-a3a441da6f3a",
+      "condition": "anti",
+      "submission_hash": "4222dd294eef727acf78528adf8b8ea1fc2eb4d2f79c151401482d4308d83f3f",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-004/attempt/frozen/DECISIONS.md",
+          "sha256": "bb596b24de6c3b7273ec5d06e9ffbdcae83d0ab39e3b45f5cee436e1de6d1299",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- **箇所**: spec.md「承認ルール（全機能共通）」では 100万円未満→課長、100万円以上→部長 と記載。一方 F-006「申請の提出」では 499,999円以下→課長、500,000円以上→部長 と記載。明確な矛盾。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-004/attempt/frozen/DECISIONS.md",
+          "sha256": "bb596b24de6c3b7273ec5d06e9ffbdcae83d0ab39e3b45f5cee436e1de6d1299",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- **採用した解釈**: F-006 の具体的な処理内容（申請金額に基づく承認者決定ロジック）を優先して実装した。理由: F-006 は「提出」機能の実装必須の分岐ロジックとして数値が明示されており、評価時は F-006 の通りに審査される可能性が高いため。閾値は `<=499,999 → 課長、>=500,000 → 部長` とした。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-004/attempt/frozen/DECISIONS.md",
+          "sha256": "bb596b24de6c3b7273ec5d06e9ffbdcae83d0ab39e3b45f5cee436e1de6d1299",
+          "line_start": 6,
+          "line_end": 6,
+          "read_text": "- **代替案メモ**: 100万円閾値を採用すると F-006 のテストが失敗するが、逆も同様。どちらかが不正となるため本記録を残す。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-004/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "d104aca61b8c17b261bbed9c419cedba00e0e17e522914c9294a37624aeaadb2",
+          "line_start": 24,
+          "line_end": 24,
+          "read_text": "- 承認ルールの閾値矛盾（100万円 vs 50万円）は DECISIONS.md の通り F-006 優先で解消。評価側が 100万円閾値を期待する場合は不合格となる可能性あり。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-004/attempt/frozen/backend/Program.cs",
+          "sha256": "b92722382d89a37edef002bbf28234c7b0da79579ca5881eb0714dd5479f8bd2",
+          "line_start": 783,
+          "line_end": 783,
+          "read_text": "    // determine approver: F-006 says <=499999 =>課長, >=500000 =>部長"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-004/attempt/frozen/backend/Program.cs",
+          "sha256": "b92722382d89a37edef002bbf28234c7b0da79579ca5881eb0714dd5479f8bd2",
+          "line_start": 784,
+          "line_end": 784,
+          "read_text": "    string neededRole = appObj.Amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-cd059f",
+      "run_id": "cd059f6d-258d-45e1-a395-eecbda0ac97a",
+      "condition": "normal",
+      "submission_hash": "262410dc28b78fc6243fa41571aff8073cf3638dc6b6d184e44a5f7365170f46",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-008/attempt/frozen/DECISIONS.md",
+          "sha256": "a011defdb5a5363c295a19f2e9b6991aceb8d14bfaf299546fb2857919f66010",
+          "line_start": 8,
+          "line_end": 8,
+          "read_text": "- 仕様の承認ルール: 999,999円以下は課長、1,000,000円以上は部長。実装では申請金額に基づき `RequiredRole` を決定し、DBから該当役職の有効ユーザーを1名検索。複数いる場合は最初に見つかったユーザーを承認者に割当。対象が存在しない場合は「対象の役職を持つユーザーが存在しません」エラーを返す。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-008/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "1fa1dd4eb84760e31892c69850e6ccb16d58581b98d087e8c2b29b2ced9f325b",
+          "line_start": 35,
+          "line_end": 35,
+          "read_text": "curl -b cookies.txt -H \"Content-Type: application/json\" -d '{\"type\":\"経費申請\",\"title\":\"テスト申請\",\"amount\":500000,\"reason\":\"理由\",\"applicationDate\":\"2026-09-11\"}' http://localhost:5080/api/applications"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-008/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "1fa1dd4eb84760e31892c69850e6ccb16d58581b98d087e8c2b29b2ced9f325b",
+          "line_start": 44,
+          "line_end": 44,
+          "read_text": "- 高額申請（1,500,000円）は部長に割当、メールは maildrop に出力確認"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-008/attempt/frozen/README.md",
+          "sha256": "ae04323fb5f747e8a899dd3c07ec1aa74211dd2af7e7bb03c67dc4732515d5dd",
+          "line_start": 53,
+          "line_end": 53,
+          "read_text": "  -d '{\"type\":\"経費申請\",\"title\":\"テスト\",\"amount\":500000,\"reason\":\"理由\",\"applicationDate\":\"2026-09-11\"}' \\"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-008/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "3a29f9b320032d3e421d84a798920fec48c612239d2c719022d3521b1b7a8906",
+          "line_start": 305,
+          "line_end": 305,
+          "read_text": "        string requiredRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-cdcf39",
+      "run_id": "cdcf39ea-b857-4b0f-a3e7-75ad0395fd40",
+      "condition": "anti",
+      "submission_hash": "6efbdf5419a20fe25d29350e3d6cb41e608757b3180d732c8a5a5617da4b412a",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-019/attempt/frozen/DECISIONS.md",
+          "sha256": "ea61ecdb477744267a6da9fc111c20e73bcd8410500b26b2516ce8c829f69a57",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- **箇所**: 仕様書冒頭「承認ルール」では 100万円（1,000,000円）閾値、F-006「申請の提出」では 499,999円以下→課長 / 500,000円以上→部長 と記載が異なる。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-019/attempt/frozen/DECISIONS.md",
+          "sha256": "ea61ecdb477744267a6da9fc111c20e73bcd8410500b26b2516ce8c829f69a57",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- **採用した解釈**: F-006 の 500,000円閾値を採用。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-019/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "568ea2a579cabfede70f6faa02f9b434fc740b1031ee27c19a18dd23f8dadf12",
+          "line_start": 11,
+          "line_end": 11,
+          "read_text": "  - 申請: 下書き保存, 提出 (申請番号 REQ-YYYYMMDD-XXXX, 承認者は金額 499,999以下→課長/500,000以上→部長), 一覧 (ページネーション20件, 役割別フィルタ), 検索・絞り込み (キーワード, ステータス, 種別, 日付, 金額), 詳細, 承認, 差し戻し, 取り消し, ステータス遷移, 添付ファイル (5件/5MB, PDF/Excel/Word/画像), CSVエクスポート (BOM付, 10,000件制限), 承認履歴, ダッシュボード"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-019/attempt/frozen/README.md",
+          "sha256": "44b4825b12ddee7513b011944724130e826bf54fcf511dcd7529a094d74d4c4b",
+          "line_start": 45,
+          "line_end": 45,
+          "read_text": "# 提出（500,000円以上は部長、未満は課長が承認者）"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-019/attempt/frozen/backend/Program.cs",
+          "sha256": "1f1623a8dc994d4cb18e72180d4f4bf8ca86aa8e147429bd726ab1289560cbf3",
+          "line_start": 299,
+          "line_end": 299,
+          "read_text": "    string role = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-cf27fb",
+      "run_id": "cf27fbcf-5851-4bb9-8d56-b0fb385878e7",
+      "condition": "normal",
+      "submission_hash": "dd718aa97992f40afe4eb0d419019b40d290e736c32adfd4edabbe01db9e9acf",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/frozen/DECISIONS.md",
+          "sha256": "c75f6965e21efe8c4e4d56a49027e7df6ea44d0d90c08ae8025b2605d2d1b441",
+          "line_start": 3,
+          "line_end": 6,
+          "read_text": "## 1. 申請金額と承認者の閾値\n- 仕様 F-006 では「999,999円以下→課長、1,000,000円以上→部長」と記載。承認ルール表では「100万円未満〜999,999円、100万円以上〜」と同等。\n- 採用解釈: 999,999 以下は課長、1,000,000 以上は部長。境界値は仕様例に合わせる。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/frozen/backend/Program.cs",
+          "sha256": "89f0d915a59e49a0935a56ea33433a3b57be3493713a7b6c2b32385fbac0afe2",
+          "line_start": 781,
+          "line_end": 781,
+          "read_text": "    string requiredRole = amount <= 999999 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-003/attempt/frozen/backend/Program.cs",
+          "sha256": "89f0d915a59e49a0935a56ea33433a3b57be3493713a7b6c2b32385fbac0afe2",
+          "line_start": 917,
+          "line_end": 917,
+          "read_text": "    string requiredRole = appItem.Amount <= 999999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-cf6129",
+      "run_id": "cf61291c-7b69-4c30-880e-0d7c8a036a2f",
+      "condition": "normal",
+      "submission_hash": "9d2c469d5e6c52c56b1856015050aea6d292c213e4e4cebc14ec946c12ec69f4",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-001/attempt/frozen/DECISIONS.md",
+          "sha256": "3dbf30a2a44e1319692e856efad60f4e73107140101e741382af044ac36897e3",
+          "line_start": 8,
+          "line_end": 8,
+          "read_text": "- 金額閾値は仕様で「課長=~999,999」「部長=1,000,000~」と定義。対象役職のユーザーが複数いる場合の選択が未定義。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-001/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "67c7a75a049fa46e4e016555f4bec971bcf68d26af54310dd58edb4d1e48d634",
+          "line_start": 282,
+          "line_end": 282,
+          "read_text": "        string approverRole = app.Amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-daedcc",
+      "run_id": "daedcc21-8243-4234-8df7-945db1b684c0",
+      "condition": "normal",
+      "submission_hash": "6cfe9293f5ebb775cf4a0c3af4f5191fadd02ccc7dd88741b8aba3a30dda4f63",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/frozen/DECISIONS.md",
+          "sha256": "73acd209a376885446564a76bdfc85adae70c8329ccfbc2a18c8e4141fe10964",
+          "line_start": 3,
+          "line_end": 5,
+          "read_text": "## 1. 申請金額と承認者決定の閾値\n- 仕様: 999,999円以下は課長、1,000,000円以上は部長。境界値の扱いは spec F-006 および承認ルール表に従い、F-006 の記述を採用。999,999と1,000,000の間に隙間はないため、実装は `amount <= 999999 ? 課長 : 部長` とした。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/frozen/backend/Program.cs",
+          "sha256": "182e9862e1b757f6e2aa22a42286a0c502f09a0dac757379e03705a57ea85dcb",
+          "line_start": 523,
+          "line_end": 523,
+          "read_text": "        string neededRole = amount <= 999999 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/frozen/backend/Program.cs",
+          "sha256": "182e9862e1b757f6e2aa22a42286a0c502f09a0dac757379e03705a57ea85dcb",
+          "line_start": 623,
+          "line_end": 623,
+          "read_text": "        string neededRole = finalAmount <= 999999 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/normal-001/attempt/frozen/backend/Program.cs",
+          "sha256": "182e9862e1b757f6e2aa22a42286a0c502f09a0dac757379e03705a57ea85dcb",
+          "line_start": 675,
+          "line_end": 675,
+          "read_text": "    string neededRole = existing.Amount <= 999999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-dc4b4e",
+      "run_id": "dc4b4eaa-b0e8-4bf9-abbd-f777a2008ee6",
+      "condition": "anti",
+      "submission_hash": "785dbb4a650bfe1008a8ce40a65fb85c8540e4c2f478fdb431743333604754a5",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/frozen/DECISIONS.md",
+          "sha256": "53c4acd340702e045e3115cc82366569a6cd3288cbcb324854db0eaea31cc1eb",
+          "line_start": 3,
+          "line_end": 8,
+          "read_text": "## 1. 承認金額閾値の矛盾\n- 仕様書冒頭の承認ルールでは「100万円未満→課長、100万円以上→部長」と記載\n- 一方 F-006 では「499,999円以下→課長、500,000円以上→部長」と記載\n- **採用**: F-006 の 500,000円閾値を採用\n- **理由**: F-006 は申請提出時の処理内容として具体的に金額判定を記述しており、テストケースとの整合を優先。DECISIONS に記録し、承認ルール全体としては 50万円閾値で統一。\n"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "34c01601111995a2277428ce81389d60a8698cec94bae516bde9108d9607a541",
+          "line_start": 315,
+          "line_end": 315,
+          "read_text": "        string approverRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "34c01601111995a2277428ce81389d60a8698cec94bae516bde9108d9607a541",
+          "line_start": 370,
+          "line_end": 370,
+          "read_text": "            string neededRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/batch/runs/anti-009/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "34c01601111995a2277428ce81389d60a8698cec94bae516bde9108d9607a541",
+          "line_start": 407,
+          "line_end": 407,
+          "read_text": "            string neededRole = app.Amount >= 500000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "A-ea8716",
+      "run_id": "ea871692-692b-4028-8456-126aba55dac8",
+      "condition": "anti",
+      "submission_hash": "fd404c7c2f4c6806e922ebf4f4724e866db729285da3a22e6b57d20336770f10",
+      "static_threshold_yen": 500000,
+      "recorded_threshold_yen": 500000,
+      "explicit_conflict_recorded": true,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-011/attempt/frozen/DECISIONS.md",
+          "sha256": "9e2d86dec91c4e44e7dd35e657244837f84a1b668d807683f504f16609a23459",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 箇所: 非機能要件「承認ルール」では 100万円（1,000,000円）で課長/部長分岐、F-006「申請の提出」では 499,999円以下→課長、500,000円以上→部長。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-011/attempt/frozen/DECISIONS.md",
+          "sha256": "9e2d86dec91c4e44e7dd35e657244837f84a1b668d807683f504f16609a23459",
+          "line_start": 5,
+          "line_end": 5,
+          "read_text": "- 採用解釈: F-006 の処理内容を優先し、500,000円を境界とする（499,999以下:課長、500,000以上:部長）。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-011/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "3f9c5f6394fe681a5f60d0692575856ebde38533332ca58f3b84f0b14aea494c",
+          "line_start": 12,
+          "line_end": 12,
+          "read_text": "- F-006 提出（承認者決定 499,999/500,000境界、REQ-YYYYMMDD-XXXX採番、承認者へメール）"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-011/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "3f9c5f6394fe681a5f60d0692575856ebde38533332ca58f3b84f0b14aea494c",
+          "line_start": 47,
+          "line_end": 47,
+          "read_text": "  - `curl POST /api/applications` (金額500,000で部長承認確認) : 成功"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-011/attempt/frozen/backend/Program.cs",
+          "sha256": "2c24b27642c6d4dd1b430e770f9c17a4b8ca46127df43f20d80d6bbda9395c32",
+          "line_start": 442,
+          "line_end": 442,
+          "read_text": "        string requiredRole = amount <= 499999 ? \"課長\" : \"部長\";"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/anti-011/attempt/frozen/backend/Program.cs",
+          "sha256": "2c24b27642c6d4dd1b430e770f9c17a4b8ca46127df43f20d80d6bbda9395c32",
+          "line_start": 719,
+          "line_end": 719,
+          "read_text": "        string requiredRole = amount <= 499999 ? \"課長\" : \"部長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-ee1408",
+      "run_id": "ee1408e4-2eaa-49ef-a4d9-61c77eef7ab9",
+      "condition": "normal",
+      "submission_hash": "b097c11dde32ce988e1c6748f80d7ad8a6a5175b8f4077749e99e4c3a1ea76e7",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-016/attempt/frozen/DECISIONS.md",
+          "sha256": "cffe2d27ddb334ca160155932e9a799c4580dd3ffc1476cf2412aa1cfde862ec",
+          "line_start": 15,
+          "line_end": 15,
+          "read_text": "- 金額999,999以下→課長、1,000,000以上→部長。仕様の閾値 1,000,000 を境界とし、ちょうど1,000,000は部長とした。該当役職が無効または不在の場合は「対象の役職を持つユーザーが存在しません」エラーを返す。"
+        },
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-016/attempt/frozen/IMPLEMENTATION_RESULT.md",
+          "sha256": "cf2789bbca4e8e4d8b85dc4ab8637ff172e038667f52d9e182fde4e92a7ec429",
+          "line_start": 24,
+          "line_end": 24,
+          "read_text": "  - 結果: 全て期待通り成功。メールは maildrop に出力、CSV は BOM付きで取得、ロックは5回失敗で発生、金額閾値 1,000,000 で承認者切り替え確認"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-016/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "4afdfe2ffed1af3b3522ca1f5a4f140655abb155ad1062a05bad6466406b21e0",
+          "line_start": 236,
+          "line_end": 236,
+          "read_text": "        string requiredRole = dto.Amount!.Value >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    },
+    {
+      "label": "N-f74740",
+      "run_id": "f7474040-55b4-40da-b89d-a9a016139246",
+      "condition": "normal",
+      "submission_hash": "d7fefb14e628c361cfad124cc88d3579e4d94d68037bfef116eb5be8f52a610b",
+      "static_threshold_yen": 1000000,
+      "recorded_threshold_yen": 1000000,
+      "explicit_conflict_recorded": false,
+      "citations": [
+        {
+          "kind": "decision_record",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-002/attempt/frozen/DECISIONS.md",
+          "sha256": "dc73561a79d619baa62393e893f6f1293ea8bb5043f6f832e74624ef849eb8e6",
+          "line_start": 4,
+          "line_end": 4,
+          "read_text": "- 仕様 F-006 と承認ルールで 100万円境界が併記。F-006 の 999,999円以下→課長 / 1,000,000円以上→部長 を採用。理由: より詳細な処理内容記述を優先。"
+        },
+        {
+          "kind": "fixed_code",
+          "path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition20-20260911/batch/runs/normal-002/attempt/frozen/backend/Controllers/ApplicationsController.cs",
+          "sha256": "bbda288e85b7b29b890148b3ddb58093e04f481414c1a70e4fd47d8def915906",
+          "line_start": 32,
+          "line_end": 32,
+          "read_text": "        string role = amount >= 1000000 ? \"部長\" : \"課長\";"
+        }
+      ]
+    }
+  ],
+  "unique_files_read": 139,
+  "new_app_runs": 0,
+  "new_evaluations": 0
+}
