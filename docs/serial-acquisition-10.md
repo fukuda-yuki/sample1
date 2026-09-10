@@ -3,8 +3,8 @@
 2026-09-10のユーザー承認に基づく新規バッチ。過去のpilot・受入Runは標本に含めない。
 
 - 各条件10開始、合計20開始。Muse Spark 1.2 Contributor、各3600秒、effort未指定、実装子agentなし。
-- seed=20260910のペア内無作為順を開始前に固定。K=1、dispatch limit=1。Run停止・固定・保全・復元・usage/monitor照合後だけ次を開始する。
-- 上流503時だけ同条件の次枠で1.3 Contributor→Omen Alpha→MiMo-V2.5へ進む。成功後は1.2へ戻す。代替も枠を消費し、異モデルは別集計。429、回収・計測障害、代替全滅は停止する。
+- seed=20260910のペア内無作為順を開始前に固定。K=1、dispatch limit=1。Run停止・固定・原本保全・復元後に次を開始する。usage/monitor/採点の判定状態は別に保持する。
+- 上流503時だけ同条件の次枠で1.3 Contributor→Omen Alpha→MiMo-V2.5へ進む。成功後は1.2へ戻す。代替も枠を消費し、異モデルは別集計。継続的429、回収・原本保存障害、代替全滅は停止する。
 - HTTP503応答自体のusage未提供と、成功応答の計測欠損を区別する。全リクエストの終端と成功応答のnative照合が成立し、503拒否だけが欠測である場合は承認済み代替を許可する。その場合も総量null、usage_complete=falseと観測下限は維持する。
 - 各実装は新規・隔離環境で自条件specとRUN_CONTRACTだけを受け取る。AP-001は変更しない。
 
@@ -32,7 +32,15 @@ python scripts/copilot_batch.py export <batch> --validity <validity.json>
 python scripts/check_copilot_analysis_restore.py <parent-of-batch> <new-restore-output> --archive <archive> --validity <validity.json>
 ```
 
-rawと妥当性裁定を分け、v6既知制約・前提波及・未到達を記録する。57 ID・58ケース・等配点を維持し、評価不能を0点としない。将来の評価版は旧結果を残して別選択を作り、同一提出hashを新しい評価UUIDで採点する。再採点のための実装改変は行わない。
+rawと妥当性裁定を分け、v6既知制約・前提波及・未到達を記録する。57 ID・58ケース・等配点を維持し、評価不能を0点としない。将来の評価版は旧結果を残して別選択を作り、同一提出hashを新しい評価UUIDで採点する。再採点のための実装改変は行わない。評価器の実証された不具合は適宜修正できるが、修正完了を実装データ取得の前提にしない。
+
+## preserve-first-v2による再開
+
+ユーザーは既存anti 1開始を保持し、残normal 10・anti 9を同じ予定表から取得する方針を承認した。完了宣言後の残存プロセス停止は妥当な終了境界として扱う。CLI終了コードと完了宣言を別に記録し、親span欠落・monitor失敗・採点invalidを原本破棄や取得中断の理由にしない。
+
+gateway原本の会計、native call対応、親span構造、monitor状態を新しい処理UUIDで独立記録する。`measurements/<UUID>/measurement.json`と明示的な`measurement-ref.json`で処理選択を保存し、旧usage/telemetry/評価は上書きしない。総トークンの出典は`total_tokens_basis`へ記録する。過去の停止判断は別の`acquisition-continuation.json`で継続判断を追加し、旧停止記録を成功へ書き換えない。
+
+取得の完了は、20開始の原本を保存・復元でき、実装をやり直さずに計測・評価を更新できること。欠測は残し、全Runの有効品質や親span完全性の成立とは分離する。
 
 ## 保存・提出
 

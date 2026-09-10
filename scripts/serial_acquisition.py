@@ -12,6 +12,8 @@ import sys
 
 from preserve import read, digest, verify_receipt, restore, ensure_package, write_new
 from telemetry_link import atomic, link
+import sqlite3
+import uuid
 
 MODELS = ('muse-spark-1.2-contributor', 'muse-spark-1.3-contributor', 'omen-alpha', 'mimo-v2.5')
 CHECKS = {'contract_isolation', 'native_protocol_usage', 'stop_recovery', 'monitor', 'runtime_restoration', 'serial_budget'}
@@ -52,6 +54,15 @@ def verify_completion(root, row, archive):
         if digest(run/name) != expected:raise ValueError('Prior acquisition evidence changed')
     from run_experiment import verify_snapshot
     verify_snapshot(run/'frozen', read(run/'snapshot.json'))
+    revision = run.parent/'acquisition-continuation.json'
+    if revision.exists():
+        continuation = read(revision)
+        if continuation['prior_completion_sha256'] != digest(run.parent/'acquisition-completion.json'):
+            raise ValueError('Continuation source changed')
+        if continuation['run_id'] != row['run_id'] or continuation['policy'] != 'preserve-first-v2':
+            raise ValueError('Wrong continuation decision')
+        verify_receipt(archive, continuation['restoration'])
+        if continuation['may_continue'] and completion['stop_reason'] == 'incomplete_usage_or_monitor': return
     if not completion['may_continue']:
         raise ValueError('Prior Run requires stop: '+completion['stop_reason'])
 
@@ -132,8 +143,23 @@ def collect_run(root, config, row, run, locator):
     archive = archive_root(read(Path(config['authorization_file'])))
     original = read(run/'preservation.json')
     original_restoration = restore(archive, original, run.parent/'restored-original', resume=True)
-    link(run, locator, ingest=True, initialize=not Path(locator['database_path']).exists())
-    names = ('manifest.json','snapshot.json','frozen','telemetry','telemetry-link.json','raw-usage','usage.json')
+    manifest = read(run/'manifest.json')
+    if not manifest.get('processes_stopped') or not manifest.get('submission_fixed'):
+        raise ValueError('Run stop or fixed submission unconfirmed')
+    from run_experiment import verify_snapshot
+    verify_snapshot(run/'frozen', read(run/'snapshot.json'))
+    try:
+        link(run, locator, ingest=True, initialize=not Path(locator['database_path']).exists())
+    except (OSError, ValueError, KeyError, TypeError, sqlite3.Error, subprocess.SubprocessError) as error:
+        # The original is already independently preserved and restored. Persist
+        # postprocessing failure; it is not a new-generation failure.
+        if not (run/'telemetry-link.json').exists():
+            atomic(run/'telemetry-link.json', dict(run_id=row['run_id'],status='failed',error_type=type(error).__name__))
+    from telemetry_link import project_measurement
+    processing = run/'measurements'/str(uuid.uuid4())
+    project_measurement(run, processing)
+    atomic(run/'measurement-ref.json', dict(path=str((processing/'measurement.json').relative_to(run)),sha256=digest(processing/'measurement.json')))
+    names = ('manifest.json','snapshot.json','frozen','telemetry','telemetry-link.json','raw-usage','usage.json','measurements','measurement-ref.json')
     linked = ensure_package(archive, 'linked-'+row['run_id'], {n:run/n for n in names},
                             metadata={'kind':'copilot-linked-run','run_id':row['run_id']})
     atomic(run/'linked-preservation.json', linked)
@@ -141,7 +167,6 @@ def collect_run(root, config, row, run, locator):
     atomic(run/'linked-restoration.json', linked_restoration)
     m, usage, telemetry = read(run/'manifest.json'), read(run/'usage.json'), read(run/'telemetry-link.json')
     reason = ''
-    if not usage.get('usage_complete') or telemetry.get('status') != 'readback_verified':reason = 'incomplete_usage_or_monitor'
     if m['end_reason'] in ('environment_failure','operator_aborted'):reason = m['end_reason']
     if m['end_reason'] == 'provider_unavailable':
         # An explicit HTTP refusal may have no provider usage. Keep totals null,
@@ -157,7 +182,8 @@ def collect_run(root, config, row, run, locator):
     result = dict(run_id=row['run_id'],manifest_sha256=digest(run/'manifest.json'),
                   original_restoration=original_restoration,linked_restoration=linked_restoration,
                   hashes={n:digest(run/n) for n in ('snapshot.json','usage.json','telemetry-link.json')},
-                  may_continue=not reason,stop_reason=reason,model_id=m['model_id'],end_reason=m['end_reason'])
+                  may_continue=not reason,stop_reason=reason,model_id=m['model_id'],end_reason=m['end_reason'],
+                  acquisition_policy='preserve-first-v2', measurement=read(run/'measurement-ref.json'))
     atomic(run.parent/'acquisition-completion.json', result)
     return result
 

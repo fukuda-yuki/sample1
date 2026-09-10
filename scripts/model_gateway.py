@@ -103,6 +103,7 @@ class Handler(BaseHTTPRequestHandler):
         if event['provider'] in ('opencode-zen', 'opencode-go'):
             event['provider_session_id'] = event['run_id']
         admitted = False
+        response_spool = None
         try:
             if event['provider'] in ('opencode-zen', 'opencode-go'):
                 # Only the gateway mounts this file. No credential in argv/env/logs.
@@ -149,10 +150,19 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header('Connection', 'close')
             self.end_headers()
             event['http_status'] = response.status
+            if os.environ.get('PRESERVE_MODEL_RESPONSES') == '1':
+                directory = Path(os.environ.get('USAGE_DIRECTORY', '/usage')) / 'responses'
+                directory.mkdir(exist_ok=True)
+                response_spool = (directory / (request_id + '.sse')).open('xb')
+                event['response_file'] = 'responses/' + request_id + '.sse'
             while True:
                 line = response.readline()
                 if not line:
                     break
+                if response_spool:
+                    # Never persist an upstream response that echoes authorization.
+                    safe_line = line.replace(headers['Authorization'].removeprefix('Bearer ').encode(), b'[REDACTED]')
+                    response_spool.write(safe_line)
                 if line.startswith(b'data: '):
                     try:
                         item = json.loads(line[6:])
@@ -174,6 +184,7 @@ class Handler(BaseHTTPRequestHandler):
                             data = item.get('response', {})
                             usage = data.get('usage')
                             if usage is not None:
+                                event['native_usage'] = usage
                                 event['usage'] = {key: usage[key] for key in (
                                     'input_tokens', 'output_tokens', 'total_tokens',
                                     'input_tokens_details', 'output_tokens_details') if key in usage}
@@ -196,6 +207,10 @@ class Handler(BaseHTTPRequestHandler):
         except (OSError, KeyError, ValueError, http.client.HTTPException):
             event['status'] = 'gateway_or_upstream_error'
         finally:
+            if response_spool:
+                response_spool.flush()
+                os.fsync(response_spool.fileno())
+                response_spool.close()
             if admitted:
                 record('events.jsonl', event)
             self.close_connection = True

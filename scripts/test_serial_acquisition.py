@@ -62,6 +62,57 @@ class SerialAcquisitionTests(unittest.TestCase):
         c,i=load(self.root);i['runs'][1]['run_id']='out-of-order'
         with self.assertRaises(ValueError):next_slot(self.root,c,i)
 
+    def acquisition_fixture(self):
+        from test_telemetry_link import fixture
+        from preserve import pack
+        from gateway_usage import collect
+        c,i=load(self.root);row=i['runs'][0]
+        run=self.root/'runs'/row['planned_run']/'attempt'
+        rid,_=fixture(run,experiment_id=c['experiment_id']);row.update(run_id=rid,status='awaiting_collection')
+        m=read(run/'manifest.json');m.update(model_id=MODELS[0],phase='data-acquisition')
+        atomic(run/'manifest.json',m);atomic(run/'usage.json',collect(run/'raw-usage'))
+        atomic(self.root/'run-index.json',i)
+        archive=Path(self.temp.name)/'archive'
+        atomic(Path(c['authorization_file']),{'preservation':{'archive':{'linux':str(archive),'windows':str(archive)}}})
+        ref=pack(archive,'original-'+rid,{n:run/n for n in ('manifest.json','snapshot.json','frozen','raw-usage','telemetry','usage.json')})
+        atomic(run/'preservation.json',ref)
+        return c,i,row,run
+
+    def test_monitor_failure_retains_originals_and_allows_next_slot(self):
+        from serial_acquisition import collect_run
+        from telemetry_link import selected_measurement
+        c,i,row,run=self.acquisition_fixture()
+        before=(run/'raw-usage/events.jsonl').read_bytes()
+        with patch('serial_acquisition.link',side_effect=ValueError('synthetic monitor unavailable')):
+            result=collect_run(self.root,c,row,run,{'database_path':str(Path(self.temp.name)/'db')})
+        self.assertTrue(result['may_continue'])
+        self.assertEqual(next_slot(self.root,c,i)['planned_run'],i['runs'][1]['planned_run'])
+        self.assertEqual((run/'raw-usage/events.jsonl').read_bytes(),before)
+        self.assertEqual(selected_measurement(run)['total_tokens'],27)
+        self.assertEqual(selected_measurement(run)['monitor']['status'],'failed')
+
+    def test_unconfirmed_stop_or_failed_restore_prevents_continuation(self):
+        from serial_acquisition import collect_run
+        c,i,row,run=self.acquisition_fixture()
+        with patch('serial_acquisition.restore',side_effect=OSError('archive unavailable')):
+            with self.assertRaises(OSError): collect_run(self.root,c,row,run,{})
+        with patch('serial_acquisition.restore',return_value={}),patch('serial_acquisition.link') as link:
+            m=read(run/'manifest.json');m['processes_stopped']=False;atomic(run/'manifest.json',m)
+            with self.assertRaises(ValueError): collect_run(self.root,c,row,run,{})
+            link.assert_not_called()
+
+    def test_completion_requires_final_response_then_turn_end_and_idle(self):
+        import json
+        from run_copilot import completion_declaration
+        encode=lambda events:'\n'.join(json.dumps(e) for e in events)
+        events=[{'type':'assistant.turn_start'}, {'type':'assistant.message','data':{'content':'Done.'}},
+                {'type':'assistant.turn_end'},{'type':'assistant.idle'}]
+        self.assertIsNotNone(completion_declaration(encode(events)))
+        self.assertIsNone(completion_declaration(encode(events[:2]+events[3:])))
+        self.assertIsNone(completion_declaration(encode(events+[{'type':'assistant.turn_start'}])))
+        events[1]['data']['toolRequests']=[{'name':'bash'}]
+        self.assertIsNone(completion_declaration(encode(events)))
+
     def test_503_refusal_is_not_a_missing_successful_usage_record(self):
         import json
         from serial_acquisition import confirmed_503_accounting
@@ -94,6 +145,10 @@ class SerialAcquisitionTests(unittest.TestCase):
         atomic(run/'telemetry-link.json',dict(run_id=rid,submission_hash=digest(run/'snapshot.json'),
             native_sha256=digest(run/'telemetry/native.jsonl'),gateway_usage_hash=canonical(collect(run/'raw-usage')),
             usage_complete=True,status='readback_verified',model_calls=[{'tokens':[21,6]}]))
+        from telemetry_link import project_measurement
+        projection=run/'measurements'/'fixture-processing'
+        project_measurement(run,projection)
+        atomic(run/'measurement-ref.json',dict(path='measurements/fixture-processing/measurement.json',sha256=digest(projection/'measurement.json')))
         validity=Path(self.temp.name)/'validity.json';atomic(validity,dict(schema_version=1,attempts=[]))
         before=export(self.root,validity,output=Path(self.temp.name)/'before')
         archive=Path(self.temp.name)/'archive'

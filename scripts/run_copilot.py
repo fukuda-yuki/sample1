@@ -18,6 +18,30 @@ PROMPT = 'Read /workspace/RUN_CONTRACT.md and /workspace/spec.md. Complete imple
 SMOKE = 'Create probe.txt containing 42. Run a shell command that reads it and checks its value. After the tool result, explain the observed value.'
 
 
+def completion_declaration(log):
+    """A final no-tool response followed by turn end and idle ends generation."""
+    message = declaration = None
+    ended = False
+    for line in log.splitlines():
+        try: event = json.loads(line)
+        except ValueError: continue
+        if not isinstance(event, dict): continue
+        kind, data = event.get('type'), event.get('data') or {}
+        if kind == 'assistant.turn_start':
+            message = declaration = None
+            ended = False
+        elif kind == 'assistant.message':
+            message = event if data.get('content') and not data.get('toolRequests') else None
+            declaration = None
+        elif kind == 'assistant.turn_end': ended = True
+        elif kind == 'assistant.idle' and message and ended:
+            import hashlib
+            declaration = dict(message_id=message.get('id'), message_timestamp=message.get('timestamp'),
+                content_sha256=hashlib.sha256(message['data']['content'].encode()).hexdigest(),
+                idle_id=event.get('id'), idle_timestamp=event.get('timestamp'))
+    return declaration
+
+
 def validate_config(c):
     for key, value in {'agent': 'github-copilot-cli',
                        'agent_version': CLI_VERSION, 'effort': None,
@@ -108,6 +132,7 @@ def execute(distribution, config, output, secret, *, opt_in=False, run_id=None):
                '--env', 'RUN_ID=' + run_id, '--env', 'MODEL_ID=' + config['model_id'],
                '--env', 'EXPERIMENT_ID=' + config['experiment_id'],
                '--env', 'WIRE_API=' + config['wire_api'],
+               '--env', 'PRESERVE_MODEL_RESPONSES=' + ('1' if config.get('phase') == 'data-acquisition' else '0'),
                '--env', 'MODEL_HTTP_503_POLICY=' + config.get('model_http_503_policy',''),
                '--label', 'sample1.run_id=' + run_id,
                '--env', 'PROVIDER=' + config['provider'], '--env', 'PYTHONDONTWRITEBYTECODE=1',

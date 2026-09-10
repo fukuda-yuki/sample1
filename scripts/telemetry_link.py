@@ -276,6 +276,69 @@ def link(run, locator, *, ingest=False, initialize=False):
         raise
 
 
+def project_measurement(run, destination):
+    """Append a source-bound v2 projection without altering legacy evidence.
+
+    Gateway accounting, native call correspondence, trace hierarchy and monitor
+    delivery are independent observations. A hierarchy defect does not erase
+    successfully captured gateway usage.
+    """
+    from preserve import write_new
+    destination.mkdir(parents=True, exist_ok=False)
+    manifest = read(run/'manifest.json')
+    gateway = collect(run/'raw-usage')
+    if (run/'raw-usage/started.jsonl').exists():
+        try:
+            starts=[json.loads(line) for line in (run/'raw-usage/started.jsonl').read_text().splitlines() if line.strip()]
+            if any(e.get('run_id') != manifest['run_id'] for e in starts):
+                gateway.update(usage_complete=False,total_tokens=None,missing=gateway['missing']+[{'reason':'gateway_run_mismatch'}])
+        except (ValueError, TypeError): pass  # collect already reports malformed raw records.
+    native, adapter, calls, relations, sessions = [], [], [], [], []
+    try:
+        payload, ignored, adapter = native_to_otlp(run/'telemetry/native.jsonl')
+        expected = inventory(payload, manifest['run_id'], manifest['experiment_id'])
+        reconciled, sessions, relations, calls = reconcile(run/'raw-usage', expected, manifest['run_id'])
+        native = [p for p in reconciled['missing'] if p not in gateway['missing']]
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        adapter = [{'reason':'native_processing_failed', 'error_type':type(error).__name__}]
+    hierarchy = [p for p in native if p.get('reason') == 'parent_span_missing']
+    correspondence = [p for p in native if p.get('reason') != 'parent_span_missing'] + adapter
+    try: monitor = read(run/'telemetry-link.json') if (run/'telemetry-link.json').exists() else {}
+    except (OSError,ValueError): monitor = {'status':'failed'}
+    from preserve import tree
+    result = dict(schema_version=2, processing_id=destination.name, run_id=manifest['run_id'],
+        submission_hash=digest(run/'snapshot.json'), processor_sha256=digest(Path(__file__)),
+        input_hashes={n:digest(run/n) for n in ('manifest.json','snapshot.json','telemetry/native.jsonl','telemetry-link.json') if (run/n).exists()},
+        raw_usage_hashes=tree(run/'raw-usage'), gateway=gateway,
+        native_calls=dict(verified=not correspondence and bool(calls), problems=correspondence, count=len(calls)),
+        trace_structure=dict(complete=not hierarchy and not adapter, problems=hierarchy+adapter),
+        monitor=dict(status=monitor.get('status','not_attempted')),
+        total_tokens=gateway['total_tokens'], usage_complete=gateway['usage_complete'],
+        observed_tokens=gateway['observed_tokens'], total_tokens_basis='fixed-upstream-gateway')
+    write_new(destination/'measurement.json', result)
+    return result
+
+
+def selected_measurement(run):
+    """Validate an explicit processing selection against immutable raw inputs."""
+    reference = run/'measurement-ref.json'
+    if not reference.exists(): return None
+    from preserve import tree, safe_name
+    ref = read(reference); name = ref['path']; safe_name(name)
+    target = run/name
+    if digest(target) != ref['sha256']: raise ValueError('Measurement selection changed')
+    value = read(target)
+    if value['run_id'] != read(run/'manifest.json')['run_id'] or value['submission_hash'] != digest(run/'snapshot.json'):
+        raise ValueError('Measurement identity changed')
+    for name, expected in value['input_hashes'].items():
+        if digest(run/name) != expected: raise ValueError('Measurement source changed')
+    if tree(run/'raw-usage') != value['raw_usage_hashes']: raise ValueError('Raw accounting changed')
+    current=collect(run/'raw-usage')
+    if not any(p.get('reason')=='gateway_run_mismatch' for p in value['gateway']['missing']) and value['gateway'] != current:
+        raise ValueError('Selected gateway accounting mismatch')
+    return value
+
+
 if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('run',type=Path)

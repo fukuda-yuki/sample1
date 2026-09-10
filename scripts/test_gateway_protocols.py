@@ -51,7 +51,7 @@ class Protocols(unittest.TestCase):
             response=Response(body);response.status=status
             env={'MODEL_ID':'omen-alpha' if wire=='completions' else 'muse-spark-1.2-contributor',
                  'RUN_ID':'run-a','EXPERIMENT_ID':'experiment-a','PROVIDER':'opencode-go',
-                 'WIRE_API':wire,'MODEL_HTTP_503_POLICY':'stop_run_and_cleanup','USAGE_DIRECTORY':temporary,'EFFORT':''}
+                 'WIRE_API':wire,'MODEL_HTTP_503_POLICY':'stop_run_and_cleanup','USAGE_DIRECTORY':temporary,'EFFORT':'','PRESERVE_MODEL_RESPONSES':'1'}
             with patch.dict('os.environ',env),patch('model_gateway.Path.read_text',return_value='fixture-secret'),patch('model_gateway.http.client.HTTPSConnection') as upstream:
                 upstream.return_value.getresponse.return_value=response
                 server=ThreadingHTTPServer(('127.0.0.1',0),gateway.Handler)
@@ -81,6 +81,9 @@ class Protocols(unittest.TestCase):
             events=[json.loads(line) for line in (directory/'events.jsonl').read_text().splitlines()]
             text=''.join(p.read_text() for p in directory.glob('*.json*'))
             self.assertNotIn('fixture-secret',text)
+            spools=list((directory/'responses').glob('*.sse'))
+            self.assertEqual(len(spools),1)
+            self.assertEqual(spools[0].read_bytes(),body.replace(b'fixture-secret',b'[REDACTED]'))
             result=collect(directory)
             failure=json.loads((directory/'provider-failure.json').read_text()) if (directory/'provider-failure.json').exists() else None
             gateway.FAILED.clear()
@@ -98,6 +101,9 @@ class Protocols(unittest.TestCase):
     def test_chat_missing_usage_remains_null(self):
         result,_,_=self.exercise('completions',b'data: [DONE]\n\n')
         self.assertFalse(result['usage_complete']);self.assertIsNone(result['total_tokens'])
+
+    def test_echoed_secret_is_redacted_only_in_saved_response(self):
+        self.exercise('completions',b'data: {"content":"fixture-secret"}\n\ndata: [DONE]\n\n')
 
     def test_503_at_headers_stops_only_new_requests_for_both_protocols(self):
         for wire in ('responses','completions'):

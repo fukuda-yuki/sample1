@@ -409,7 +409,13 @@ def export(root,validity,*,output=None,restoration_map=None):
         runs,cases=collect(selections,ledger,validity_path=validity,validation=batch_phase(config)=='copilot-validation')
         for r in runs:
             t=links[r['run_id']]
-            if not t.get('usage_complete') or t.get('status')!='readback_verified':
+            slot = next(s for s in index['runs'] if s['run_id']==r['run_id'])
+            from telemetry_link import selected_measurement
+            measurement = selected_measurement(root/'runs'/slot['planned_run']/'attempt')
+            if measurement is not None:
+                r.update(usage_complete=measurement['usage_complete'],total_tokens=measurement['total_tokens'],
+                         observed_tokens=measurement['observed_tokens'])
+            elif not t.get('usage_complete') or t.get('status')!='readback_verified':
                 r.update(usage_complete=False,total_tokens=None)
         rows,details=aggregate(runs,cases,read(ledger),validation=batch_phase(config)=='copilot-validation')
     else:rows,details,cases=[],[],[]
@@ -428,6 +434,13 @@ def export(root,validity,*,output=None,restoration_map=None):
         if batch_phase(config)=='data-acquisition' and not slot['run_id']:
             row['experiment_version']=config['experiment_version']+'-'+actual_model
         row['source_availability']=source_states.get(slot['run_id'],'not_acquired')
+        from telemetry_link import selected_measurement
+        measurement = selected_measurement(root/'runs'/slot['planned_run']/'attempt') if slot['run_id'] else None
+        row['processing_id'] = measurement['processing_id'] if measurement else None
+        row['total_tokens_basis'] = measurement['total_tokens_basis'] if measurement else 'legacy-reconciled'
+        row['trace_structure_complete'] = measurement['trace_structure']['complete'] if measurement else None
+        row['native_calls_verified'] = measurement['native_calls']['verified'] if measurement else None
+        row['monitor_status'] = measurement['monitor']['status'] if measurement else None
         row['missing_originals_json']=json.dumps(missing_originals.get(slot['run_id'],[]))
         if missing_originals.get(slot['run_id']):
             row.update(missing_reason='missing_originals: '+','.join(missing_originals[slot['run_id']]),

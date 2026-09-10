@@ -45,6 +45,29 @@ def fixture(root, run_id=None, experiment_id=None, *, sessions=2):
 
 
 class LinkTests(unittest.TestCase):
+    def test_parent_missing_does_not_erase_gateway_total_in_new_projection(self):
+        from telemetry_link import project_measurement, selected_measurement
+        from preserve import digest
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)/'run';fixture(root)
+            path=root/'telemetry/native.jsonl'
+            lines=[json.loads(l) for l in path.read_text().splitlines()]
+            path.write_text(''.join(json.dumps(e)+'\n' for e in lines if e['attributes']['gen_ai.operation.name']=='chat'))
+            atomic(root/'usage.json',{'usage_complete':False,'total_tokens':None})
+            atomic(root/'telemetry-link.json',{'status':'readback_verified'})
+            old=(root/'usage.json').read_bytes()
+            output=root/'measurements'/'new-processing'
+            result=project_measurement(root,output)
+            self.assertEqual(result['total_tokens'],27)
+            self.assertTrue(result['usage_complete'])
+            self.assertTrue(result['native_calls']['verified'])
+            self.assertFalse(result['trace_structure']['complete'])
+            self.assertEqual((root/'usage.json').read_bytes(),old)
+            atomic(root/'measurement-ref.json',{'path':'measurements/new-processing/measurement.json','sha256':digest(output/'measurement.json')})
+            self.assertEqual(selected_measurement(root),result)
+            with (root/'raw-usage/events.jsonl').open('a') as f:f.write('\n')
+            with self.assertRaises(ValueError):selected_measurement(root)
+
     def test_multiple_traces_retry_dedupe_and_missing(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)

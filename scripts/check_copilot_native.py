@@ -12,7 +12,7 @@ from run_copilot import worker_command
 from run_codex import GATEWAY_IMAGE
 
 
-def main(image, output):
+def main(image, output, completion=False):
     output.mkdir(parents=True, exist_ok=False)
     run_id = str(uuid.uuid4())
     dist = output / 'distribution'
@@ -29,6 +29,9 @@ def main(image, output):
              agent_version='1.0.83-5', tool_versions={}, subagent_policy='disabled', execution_order=0,
              environment={'image': image}, budget={'kind':'wall_clock_seconds','value':90,'scope':'container'})
     c['command'] = worker_command(c, run_id)
+    if completion:
+        c.update(phase='data-acquisition',model_http_503_policy='stop_run',usage_raw_directory=str(spool.resolve()))
+        c['command'][-1]='sleep 120 &\n'+c['command'][-1].replace(' && exec ', ' && ')+'; wait'
     try:
         docker('network','create','--internal','--opt','com.docker.network.bridge.gateway_mode_ipv4=isolated',
                '--label','sample1.run_id='+run_id,net)
@@ -50,12 +53,23 @@ def main(image, output):
         from telemetry_link import native_to_otlp,inventory,reconcile
         payload,_,problems=native_to_otlp(output/'run/telemetry/native.jsonl')
         usage,sessions,_,calls=reconcile(output/'run/raw-usage',inventory(payload,run_id,c['experiment_id']),run_id)
-        assert not problems and usage['total_tokens']==36 and sessions==[run_id]
+        assert not problems and sessions==[run_id]
+        if completion:
+            from gateway_usage import collect
+            gateway=collect(output/'run/raw-usage')
+            assert gateway['usage_complete'] and gateway['total_tokens']==36
+            assert len(calls)==2 and sum(sum(call['tokens']) for call in calls)==36
+            assert all(p['reason']=='parent_span_missing' for p in usage['missing'])
+            assert result['stop_trigger']=='copilot_completion_declaration'
+            assert result['processes_stopped'] and result['submission_fixed'] and result['elapsed_seconds']<60
+        else: assert usage['total_tokens']==36
         write_json(output/'run/usage.json',usage)
         write_json(output/'evidence.json', {'kind':'real-cli-fake-provider','model_called':False,
                    'run_id':run_id,'end_reason':result['end_reason'],
                    'file_edit':True,'tool_execution':True,'continuation':True,
-                   'delegation_tools_absent':True,'native_response_reconciliation':True,'total_tokens':36})
+                   'delegation_tools_absent':True,'native_response_reconciliation':True,'gateway_total_tokens':36,
+                   'completion_boundary_test':completion, 'trace_structure_complete':not usage['missing'],
+                   'elapsed_seconds':result['elapsed_seconds'],'actual_exit_code':result['exit_code']})
         print(json.dumps(json.loads((output/'evidence.json').read_text())))
     finally:
         for argv in [('rm','-f',server),('network','rm',net)]:
@@ -66,5 +80,6 @@ if __name__ == '__main__':
     p=argparse.ArgumentParser()
     p.add_argument('--image',required=True)
     p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--background-completion',action='store_true')
     a=p.parse_args()
-    main(a.image,a.output)
+    main(a.image,a.output,a.background_completion)
