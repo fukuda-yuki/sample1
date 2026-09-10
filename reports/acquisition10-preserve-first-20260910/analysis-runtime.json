@@ -1,0 +1,9 @@
+{
+  "python": "3.12.3",
+  "sqlite": "3.45.1",
+  "matplotlib": "3.10.8",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python_executable": "/home/mwam0/.venvs/sample1-acquisition10/bin/python",
+  "source_commit": "702c26e687a4e1c126b74561261cee27635f3ffb",
+  "scope": "Runtime used for export and report generation; evaluation Docker image and per-Run environment are separately pinned."
+}

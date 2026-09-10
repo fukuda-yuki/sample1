@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "analysis_id": "51f9cd42-e031-447d-82e5-5318fcf4a76e",
+  "source_data": "analysis-results.json",
+  "source_data_sha256": "c935fc13f1e9cd538a2073886ede0468967ad646f97aed0623dd890f62e5de99",
+  "query_source": "queries.sql",
+  "font": {
+    "family": "Yu Gothic",
+    "file": "/mnt/c/Windows/Fonts/YuGothR.ttc",
+    "sha256": "cd24b5617c1e26572b0a7fe7e558f7121ca42c36f7b50e8d9216ac222a1c0a93"
+  },
+  "language": "日本語。評価ID、HTTP状態、v6は識別子として保持。",
+  "renderer": "Matplotlib; SVG text converted to paths",
+  "zero_baselines": "分布・散布図・棒の数量軸は0始点。条件差の図は0を基準線として含む。",
+  "process_formula": "差 Cn*Un−Ca*Ua = (Cn−Ca)*(Un+Ua)/2 + (Un−Ua)*(Cn+Ca)/2。C=HTTP200件数、U=総token/C。",
+  "figures": [
+    {
+      "id": "01-distributions",
+      "title": "全20件の分布：消費量と記録済み通過率",
+      "analytical_question": "全件を含めた中心とばらつきはどう違うか",
+      "query_ids": [
+        "runs"
+      ],
+      "field_paths": [
+        "tables.runs[].total_tokens",
+        "tables.runs[].raw_score"
+      ],
+      "grain": "1点=1 Run",
+      "denominator": "各条件10件、得点は各Run57評価ID",
+      "family": "条件別点分布と中央値",
+      "supported_takeaway": "不整合条件の記録済み通過率は中央値が低く、低得点側への分布が広い。",
+      "files": [
+        {
+          "path": "figures/01-distributions.png",
+          "sha256": "58d90757be2ada97a073237a15d9d532eb090bcf6e631d4be5f5f6b27544c0b5"
+        },
+        {
+          "path": "figures/01-distributions.svg",
+          "sha256": "21d19956c19ec91e28888d7413de3309e4b8d30507cf38d353249d8374baec2f"
+        }
+      ],
+      "palette": {
+        "両パネルの実装点": {
+          "通常条件": "#27658B",
+          "不整合条件": "#AD7421"
+        },
+        "中央値": "#213443"
+      },
+      "non_color_encoding": "通常は丸、不整合は三角。条件の横軸ラベルと中央値の太線を併記。"
+    },
+    {
+      "id": "02-pair-differences",
+      "title": "同じ予定ペアで比較する：不整合条件 − 通常条件",
+      "analytical_question": "集計差は一部のペアに依存するか",
+      "query_ids": [
+        "pairs"
+      ],
+      "field_paths": [
+        "tables.pairs[].token_difference",
+        "tables.pairs[].score_difference_pp"
+      ],
+      "grain": "1点=固定1ペアの条件差",
+      "denominator": "10ペア、各ペア2 Run",
+      "family": "対応差の点とゼロ基準線",
+      "supported_takeaway": "トークンは8ペアで少なく、記録済み通過IDは8ペアで少ない。例外と同点も残す。",
+      "files": [
+        {
+          "path": "figures/02-pair-differences.png",
+          "sha256": "f237bef5c08ef1018ac9fef128380282f1f8cf32c15ddc9fb7ea5e868af7d40f"
+        },
+        {
+          "path": "figures/02-pair-differences.svg",
+          "sha256": "337f6ff762e3e1acf74ba5d2f836bb44b8c6435c7fb29d0bb0cca4ef78c3db0c"
+        }
+      ],
+      "palette": {
+        "両パネルのペア差": "#27658B",
+        "ゼロからの接続線": "#BBC6CE",
+        "差ゼロの基準線": "#213443"
+      },
+      "non_color_encoding": "ひし形は各ペアの条件差。ペア番号・符号付き実数とゼロ線で識別。色は条件を表さない。"
+    },
+    {
+      "id": "03-token-score",
+      "title": "消費量だけでは記録済み通過率を説明できない",
+      "analytical_question": "同じ消費量なら同じ成果になるか",
+      "query_ids": [
+        "runs",
+        "pareto"
+      ],
+      "field_paths": [
+        "tables.runs[].total_tokens",
+        "tables.runs[].raw_score",
+        "tables.pareto[].planned_run"
+      ],
+      "grain": "1点=1 Run",
+      "denominator": "全20 Run、57評価ID/Run",
+      "family": "日本語個体ラベル付き散布図",
+      "supported_takeaway": "約600万トークンでも記録済み通過率には幅があり、消費量だけによる説明は不十分。",
+      "files": [
+        {
+          "path": "figures/03-token-score.png",
+          "sha256": "695ade98b4602b100d8d7b73e5985b432397a0a7a1eaacc1b37b786ef370c675"
+        },
+        {
+          "path": "figures/03-token-score.svg",
+          "sha256": "e119759d9ed93936ff2424f47dab5a101a1db57fd6c5b0d3355dbf9025b80be2"
+        }
+      ],
+      "palette": {
+        "実装点": {
+          "通常条件": "#27658B",
+          "不整合条件": "#AD7421"
+        },
+        "観測上の非劣位点の輪": "#213443"
+      },
+      "non_color_encoding": "通常は丸、不整合は三角。全Runの日本語ラベルと非劣位点の外輪を付す。"
+    },
+    {
+      "id": "04-feature-heatmap",
+      "title": "どの機能で差が出たか：20件 × 20機能",
+      "analytical_question": "全体点だけでは隠れる機能別の共通パターンは何か",
+      "query_ids": [
+        "feature_runs",
+        "features"
+      ],
+      "field_paths": [
+        "tables.feature_runs[].pass_percent",
+        "tables.feature_runs[].requested_ids",
+        "tables.features[].feature_title"
+      ],
+      "grain": "1セル=1 Run×1機能",
+      "denominator": "20 Run×20機能、各セルの分母は当該機能の評価ID数",
+      "family": "数値入り機能ヒートマップ",
+      "supported_takeaway": "低得点が全機能に均等に生じるのか、承認経路に関係する機能へ集まるのかを確認できる。",
+      "files": [
+        {
+          "path": "figures/04-feature-heatmap.png",
+          "sha256": "fb76ba73d771fc2b82d8cfc4382038ec4e958baec495c1b6d2e929951504276c"
+        },
+        {
+          "path": "figures/04-feature-heatmap.svg",
+          "sha256": "dd3bb919de3d5715a87047fda09044ee70514eb42672b7e2326e5ace96ad9986"
+        }
+      ],
+      "palette": {
+        "記録済み通過率0%": "#F7F4EB",
+        "記録済み通過率50%": "#A6C3D2",
+        "記録済み通過率100%": "#27658B"
+      },
+      "non_color_encoding": "条件は行順・行名・区切り線で識別。各セルに百分率を記載。色は条件でなく通過率。"
+    },
+    {
+      "id": "05-gap-decomposition",
+      "title": "通過IDの総差144件を、依存関係別に分解する",
+      "analytical_question": "総差はどの依存群へ集中しているか",
+      "query_ids": [
+        "groups",
+        "ids"
+      ],
+      "field_paths": [
+        "group_gaps",
+        "tables.groups[].passed_ids",
+        "tables.groups[].requested_ids"
+      ],
+      "grain": "1値=条件内10 Runの群別通過ID合計",
+      "denominator": "直接30・下流100・その他440 ID判定/条件、合計570",
+      "family": "差の分解と群内率の比較",
+      "supported_takeaway": "閾値に直接・間接に関係する13 ID群に総差の62.5%が集まる。",
+      "files": [
+        {
+          "path": "figures/05-gap-decomposition.png",
+          "sha256": "c77db166bf6987413bec922e21d6a07d29571978436a8147cf7ae921cd7376d4"
+        },
+        {
+          "path": "figures/05-gap-decomposition.svg",
+          "sha256": "b6f98399cded5ab21456ee518b46e571f8020379a862e5fad564b6799c0d2f03"
+        }
+      ],
+      "palette": {
+        "左パネルの群": {
+          "直接3 ID": "#27658B",
+          "下流10 ID": "#AD7421",
+          "その他44 ID": "#68737A"
+        },
+        "右パネルの条件": {
+          "通常条件": "#27658B",
+          "不整合条件": "#AD7421"
+        }
+      },
+      "non_color_encoding": "左は群名と差の数値で識別。右は通常が丸、不整合が三角で、通過数/分母を併記。"
+    },
+    {
+      "id": "06-dependency-path",
+      "title": "保存証拠で追う：閾値の相違が下流の評価に届く経路",
+      "analytical_question": "機能欠如以外の経路で評価が失敗する実例はあるか",
+      "query_ids": [
+        "threshold_fingerprint",
+        "groups"
+      ],
+      "field_paths": [
+        "evidence/private-evidence-index.json:cases[anti-009,T-011-01].network_facts",
+        "evidence/private-evidence-index.json:cases[anti-009,T-014-01].mail_summary",
+        "evidence/dependency-map.json:items"
+      ],
+      "grain": "保存済み2評価ケースの機序",
+      "denominator": "不整合09の2ケース、全Runへの原因帰属はしない",
+      "family": "保存証拠の関係図",
+      "supported_takeaway": "役割・宛先の相違により、不通過が機能の不存在を意味しない例を確認できる。",
+      "files": [
+        {
+          "path": "figures/06-dependency-path.png",
+          "sha256": "a0776a2cd5d6066290f2f32dd90006ff778618501b4cf975f7e10e0f10182c37"
+        },
+        {
+          "path": "figures/06-dependency-path.svg",
+          "sha256": "95ff301dc8b02c0d32843b9639c487b8362f88d455b35d3d67cc10fadaaa7e0d"
+        }
+      ],
+      "palette": {
+        "保存実装の分岐の枠": "#AD7421",
+        "固定評価の準備・期待の枠": "#27658B",
+        "保存経路・期待経路の矢印": "#68737A",
+        "注記の背景": "#E9EEF1"
+      },
+      "non_color_encoding": "枠内の文章で実装側と評価側を区別。保存経路は実線、評価の準備・期待は破線。"
+    },
+    {
+      "id": "07-process",
+      "title": "トークン差の内訳：応答数と1応答あたりの量",
+      "analytical_question": "トークン差は応答数と1応答あたりの量にどう分かれるか",
+      "query_ids": [
+        "runs",
+        "process"
+      ],
+      "field_paths": [
+        "tables.runs[].http_200",
+        "tables.runs[].total_tokens",
+        "process_decomposition"
+      ],
+      "grain": "左:1点=1 Run、右:条件内合計の差",
+      "denominator": "20 Run、HTTP200通常1270回・不整合1154回",
+      "family": "散布図と対称算術分解",
+      "supported_takeaway": "総差約825万のうち約642万は応答数差、約183万は1応答量差に対応する算術成分。",
+      "files": [
+        {
+          "path": "figures/07-process.png",
+          "sha256": "fbb6ce8441570f208728d42fd57dd6ececf35d33a077ffa22e56b4c2c9b5333b"
+        },
+        {
+          "path": "figures/07-process.svg",
+          "sha256": "527b408e118aca1d80ada28abbefa285da0a0059929e6b230f62fa23f8ce7eab"
+        }
+      ],
+      "palette": {
+        "左パネルの実装点": {
+          "通常条件": "#27658B",
+          "不整合条件": "#AD7421"
+        },
+        "右パネルの算術成分": {
+          "応答数の差": "#27658B",
+          "1応答あたり量の差": "#AD7421"
+        }
+      },
+      "non_color_encoding": "左は条件の丸・三角とRun名。右は算術成分の項目名と直接数値。"
+    },
+    {
+      "id": "08-sensitivity",
+      "title": "比較の頑健性：時間帯・先行条件・1ペア除外",
+      "analytical_question": "比較の向きは集計範囲を変えても残るか",
+      "query_ids": [
+        "pairs"
+      ],
+      "field_paths": [
+        "sensitivity",
+        "bootstrap",
+        "leave_one_pair_out"
+      ],
+      "grain": "各点=指定した固定ペア集合の平均差",
+      "denominator": "全10、前後各5、先行条件別6/4、1ペア除外9。推論単位はRun/ペア",
+      "family": "平均差・bootstrap区間・除外感度の点群",
+      "supported_takeaway": "raw通過率差は複数の切り口で負。トークン差は前後半で大きく変わり、全10ペアの区間はゼロをまたぐ。",
+      "files": [
+        {
+          "path": "figures/08-sensitivity.png",
+          "sha256": "293fda4f0c92a87c5f46d59f0aee0f02f47fc240d35d56e67fbb8996acff076b"
+        },
+        {
+          "path": "figures/08-sensitivity.svg",
+          "sha256": "ae8cd034e4570af76f37d4a551f0b56d266c32689df158866c859587ffe7b078"
+        }
+      ],
+      "palette": {
+        "部分集計の平均差と全10ペアの95%区間": "#27658B",
+        "1ペア除外の平均差と範囲": "#AD7421",
+        "差ゼロの基準線": "#213443"
+      },
+      "non_color_encoding": "部分集計は丸、除外感度はひし形。全10ペアの区間と除外感度の範囲は位置・注記で区別。色は条件を表さない。"
+    }
+  ]
+}

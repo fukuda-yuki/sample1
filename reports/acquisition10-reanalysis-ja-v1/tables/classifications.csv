@@ -1,0 +1,16 @@
+﻿condition,axis,label,cases
+anti,cause,none,265
+anti,cause,requirement_unmet,139
+anti,cause,target_discovery,115
+anti,cause,unconfirmed,61
+anti,responsibility,evaluator,2
+anti,responsibility,instruction_ambiguity,3
+anti,responsibility,none,265
+anti,responsibility,unconfirmed,310
+normal,cause,none,412
+normal,cause,requirement_unmet,72
+normal,cause,target_discovery,65
+normal,cause,unconfirmed,31
+normal,responsibility,implementation,1
+normal,responsibility,none,412
+normal,responsibility,unconfirmed,167

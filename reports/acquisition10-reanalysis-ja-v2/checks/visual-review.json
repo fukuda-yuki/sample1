@@ -1,0 +1,33 @@
+{
+  "scope": "Root agent visual inspection of all six figures, opening, discussion and conclusion; final revision method section inspected after rerendering.",
+  "report_sha256": "780b8c5a93d7c84f19d33ed0a7a386cc4230d8f3f73b11c3137fb377f3739e41",
+  "figures": {
+    "01-study-flow.png": "5c9c5d338bcffdeee5d6d866f7d5e71362b48181e90fbad6d2a247f5037d895e",
+    "02-distributions.png": "e79e2de0bfbec23f071ca2ab5f5a52c2b9d9f0b0dbb035693c3df3b785fd475e",
+    "03-pair-differences.png": "bf956c8414e7f624da5199d37c52b6b06ec8b8b1faea18a706d7838da0467cc5",
+    "04-token-score.png": "f9cc4443be9deef1c0aea3ad327355edcb49f7ad30e27d18263b1281d35bd340",
+    "05-feature-heatmap.png": "8d0860eed90780e971239bc9b1ac9e61dc111313daa25f3124d1e5edd68b47d9",
+    "06-approval-path.png": "361e3efe93601639d1665f1f3b8b9ecf6087d263bb495bcf04196a999006a44e"
+  },
+  "screenshots": {
+    "01-opening.png": "b3a9b2cbdd4be7250278687423cbfc800270bdfefec6e189f4d3f5fc16739cef",
+    "figure-1-in-report.png": "3f5d2769764af63cef30ae15a7c0c1ebafd01ddad6a0d55861e0bf12317230a4",
+    "figure-2-in-report.png": "3f5de2f55d2c49055eaa8a5109c17bfebe8377dd0ab2ed70eb0952a53fdd121e",
+    "figure-3-in-report.png": "4cb9bc5cfe74a41ee653c54e5a262e4a604836c46d1db80818c6db2e3ce0db91",
+    "figure-4-in-report.png": "17098425d2194f2086ca7979e4c70003ba4810c7849acb5fd15bcd1f1b889029",
+    "figure-5-in-report.png": "abef6a33b4a21f59459ee7a402bf02966e49f51dc29a65ea796e45779812ccbe",
+    "figure-6-in-report.png": "f07f19d68aa74eb42fba54fef2423328588a2faf63cbd8d03455ebfb3f194b2f",
+    "section-2.png": "f0aaf1c2ac04d33aefbbeb2aca4fb368179fe67fa73dabdc375aaebec0036d7d",
+    "section-4.png": "2c53177744484b83bc61aa4f847e34047501c5dd4ded57a2282a06bcdc26291c",
+    "section-5.png": "6e563c1d769d94f6c8776ced0a53a4869db7cfb27de173ef4266ade231f79c90"
+  },
+  "japanese_legible": true,
+  "six_figures_loaded_in_browser": true,
+  "all_20_points_visible_in_distribution_and_scatter": true,
+  "figure_3_labels_clear_of_axis_after_correction": true,
+  "figure_6_box_edges_visible_after_correction": true,
+  "table_and_paragraph_layout_checked": true,
+  "limitations": "Human-scale visual judgment by the current agent; not a claim of universal accessibility or of study-app usability.",
+  "initial_report_sha256": "c435ffbac221fb92f42257930e7eb5b40ea53a689a34b38002d9461e91f6918f",
+  "final_revision_checked": "W1 wording and W2 evaluation-method sentence; final section-2 screenshot inspected. All six figure hashes unchanged from prior complete visual inspection."
+}

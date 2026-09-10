@@ -1,0 +1,19 @@
+{
+  "analysis_id": "51f9cd42-e031-447d-82e5-5318fcf4a76e",
+  "authorization": "User approved the reanalysis plan in this task.",
+  "token_policy": "All 20 observed_tokens sums are accepted as confirmed whole-Run totals for this report.",
+  "source_flags_unchanged": true,
+  "formal_scoring_unchanged": "57 equally weighted IDs; T-006-05 requires both cases.",
+  "new_observations": false,
+  "new_evaluations": false,
+  "unit": "Run",
+  "paired_unit": "fixed original pair",
+  "bootstrap": {
+    "seed": 20260910,
+    "replicates": 20000,
+    "interval": "percentile 95%"
+  },
+  "selection": "All 20 acquired Runs; supplementary subsets are labeled sensitivity analyses.",
+  "dependency_coding": "Post-hoc static reading of the retained v6 evaluator; not a rescoring or causal attribution.",
+  "primary_artifact": "Japanese Markdown, as explicitly approved; PNG and SVG scientific figures."
+}

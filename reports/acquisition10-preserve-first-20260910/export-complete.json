@@ -1,0 +1,49 @@
+{
+  "files": {
+    "analysis.sqlite": {
+      "sha256": "c5816c01c64f735e2cfb919df1d4fe8f1ce551d432c4201feff74fe9fe807d33",
+      "bytes": 409600,
+      "executable": true
+    },
+    "missing-runs.csv": {
+      "sha256": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+      "bytes": 139329,
+      "executable": true
+    },
+    "plot-input-muse-spark-1.2-contributor.csv": {
+      "sha256": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+      "bytes": 139329,
+      "executable": true
+    },
+    "plot-input.csv": {
+      "sha256": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+      "bytes": 139329,
+      "executable": true
+    },
+    "provenance.json": {
+      "sha256": "c55f3523ccfe7324d0e0a6c8ee5c272dbc49ed8e5ea98aa37f2c41a7c6cb4c09",
+      "bytes": 24986,
+      "executable": true
+    },
+    "runs.csv": {
+      "sha256": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+      "bytes": 139329,
+      "executable": true
+    },
+    "test-results.jsonl": {
+      "sha256": "e94911beb1d689db70dfe8fc8d0d1a4df30db9cfe92fd8e0af31b0c3edec78bc",
+      "bytes": 335817,
+      "executable": true
+    },
+    "tokens-quality.missing-runs.csv": {
+      "sha256": "2f163745d21ab71f697b122f458d65a229861a9de96f95dbf029a871316a945a",
+      "bytes": 139329,
+      "executable": true
+    },
+    "tokens-quality.png": {
+      "sha256": "50dcd63cb4485e1ebc45a4e2e8ff22957aec2b9efab818bc296c13c12145ead8",
+      "bytes": 115919,
+      "executable": true
+    }
+  }
+}

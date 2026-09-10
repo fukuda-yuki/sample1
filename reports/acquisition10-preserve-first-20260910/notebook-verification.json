@@ -1,0 +1,14 @@
+{
+  "executed_cells": 7,
+  "success": true,
+  "source_files": [
+    "runs.json",
+    "summary.json",
+    "analysis.sqlite",
+    "planned-runs.json",
+    "paired-runs.json",
+    "ap001-raw-diagnostics.json",
+    "test-results.jsonl"
+  ],
+  "row_count": 20
+}

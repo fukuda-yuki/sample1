@@ -26,7 +26,7 @@ def collect(selections, ledger_path=ROOT / 'evaluation/requirements-ledger.json'
         directory = Path(selected['run_directory'])
         manifest_file, usage_file = directory / 'manifest.json', directory / 'usage.json'
         manifest, usage = read(manifest_file), read(usage_file)
-        phases = ('copilot-validation',) if validation else ('pilot', 'comparison')
+        phases = ('copilot-validation',) if validation else ('pilot', 'comparison', 'data-acquisition')
         if manifest['phase'] not in phases:
             raise ValueError('Run phase is outside the selected analysis mode')
         base = dict(run_id=manifest['run_id'], phase=manifest['phase'],

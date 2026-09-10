@@ -1,0 +1,5 @@
+﻿condition,has_http_400,runs,mean_tokens,mean_passed,http_400
+anti,0,9,6005891.222222222,25.0,0
+anti,1,1,8981662.0,33.0,4
+normal,0,5,6455265.2,42.2,0
+normal,1,5,7802195.6,38.2,25

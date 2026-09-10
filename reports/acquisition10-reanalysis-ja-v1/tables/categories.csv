@@ -1,0 +1,7 @@
+﻿category,condition,requested_ids,passed_ids,pass_percent
+boundary,anti,30,7,23.333333333333332
+boundary,normal,30,30,100.0
+negative,anti,220,140,63.63636363636363
+negative,normal,220,189,85.9090909090909
+normal,anti,320,111,34.6875
+normal,normal,320,183,57.1875

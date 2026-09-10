@@ -1,0 +1,25 @@
+{
+  "original_table_counts": {
+    "runs": 20,
+    "case_results": 1160,
+    "evaluations": 20,
+    "telemetry_refs": 20,
+    "provenance": 1
+  },
+  "runs": 20,
+  "run_ids": 1140,
+  "cases": 1160,
+  "source_hashes_match": true,
+  "all_required_cases_match": true,
+  "all_id_scores_match": true,
+  "all_evaluation_uuids_match": true,
+  "all_submission_hashes_match": true,
+  "original_sqlite_opened_read_only": true,
+  "source_validity_counts": {
+    "invalid": 1,
+    "pending": 19
+  },
+  "recorded_total_tokens": 134321987,
+  "new_implementation_runs": 0,
+  "new_evaluations": 0
+}

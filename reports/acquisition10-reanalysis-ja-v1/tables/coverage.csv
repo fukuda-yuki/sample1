@@ -1,0 +1,3 @@
+﻿condition,requested_cases,business_assertions_reached,prerequisite_blocked,evaluation_unresolved,raw_pass_cases
+anti,580,352,127,178,265
+normal,580,486,50,96,412

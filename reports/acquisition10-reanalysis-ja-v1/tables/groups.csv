@@ -1,0 +1,7 @@
+﻿dependency_group,condition,requested_ids,passed_ids,pass_percent
+direct_threshold,anti,30,0,0.0
+direct_threshold,normal,30,30,100.0
+downstream_threshold,anti,100,1,1.0
+downstream_threshold,normal,100,61,61.0
+other,anti,440,257,58.40909090909091
+other,normal,440,311,70.68181818181819

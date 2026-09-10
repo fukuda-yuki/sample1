@@ -78,6 +78,8 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
     management_files = MANAGEMENT_FILES
     if config.get('agent') == 'github-copilot-cli':
         management_files += ('run_copilot.py', 'copilot_scope.py', 'run_cleanup.py', 'prepare_workspace.py', 'telemetry_link.py', 'copilot_parallel.py', 'copilot_batch_worker.py', 'copilot_recovery.py', 'copilot_batch.py')
+    if config.get('phase') == 'data-acquisition':
+        management_files += ('serial_acquisition.py',)
     for filename in management_files:
         data = Path(__file__).with_name(filename).read_bytes()
         (sources / filename).write_bytes(data)
@@ -132,6 +134,7 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
             wait_process = subprocess.Popen(['docker','wait',name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             try:
                 deadline = time.monotonic() + remaining
+                next_completion_check = 0
                 while wait_process.poll() is None:
                     if signal.exists():
                         failure = json.loads(signal.read_text())
@@ -141,10 +144,32 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                         manifest['stop_trigger'] = 'model_http_503'
                         manifest['provider_failure'] = failure
                         break
+                    if config.get('phase') == 'data-acquisition':
+                        events = Path(config['usage_raw_directory'])/'events.jsonl'
+                        if events.exists():
+                            records=[]
+                            for line in events.read_text().splitlines():
+                                try: records.append(json.loads(line))
+                                except ValueError: continue
+                            if sum(e.get('http_status') == 429 for e in records) >= 2:
+                                reason='agent_error';manifest['stop_trigger']='repeated_http_429'
+                                break
+                    if config.get('phase') == 'data-acquisition' and time.monotonic() >= next_completion_check:
+                        from run_copilot import completion_declaration
+                        logs = subprocess.run(['docker','logs','--tail','1000',manifest['runtime_resources'][name]],
+                            capture_output=True, text=True, timeout=10)
+                        declaration = completion_declaration(logs.stdout) if logs.returncode == 0 else None
+                        next_completion_check = time.monotonic() + 2
+                        if declaration:
+                            reason = 'agent_completed'
+                            manifest.update(stop_trigger='copilot_completion_declaration', completion_declaration=declaration)
+                            break
                     if time.monotonic() >= deadline:
                         raise subprocess.TimeoutExpired(['docker','wait',name], remaining)
                     time.sleep(0.2)
-                if reason == 'provider_unavailable':
+                if reason == 'agent_completed' or manifest.get('stop_trigger') == 'repeated_http_429':
+                    result = subprocess.CompletedProcess(['docker','wait',name], 0, '', '')
+                elif reason == 'provider_unavailable':
                     result = subprocess.CompletedProcess(['docker','wait',name], 0, '137', '')
                 else:
                     stdout,stderr = wait_process.communicate()
@@ -163,8 +188,8 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
         budget_waiting = False
         if result.returncode:
             raise RuntimeError('docker wait failed')
-        exit_code = int(result.stdout.strip())
-        if reason != 'provider_unavailable':
+        exit_code = int(result.stdout.strip()) if result.stdout.strip() else None
+        if reason not in ('provider_unavailable','agent_completed'):
             reason = 'agent_completed' if exit_code == 0 else 'agent_error'
     except subprocess.TimeoutExpired as failure:
         reason = 'budget_exhausted' if budget_waiting else 'environment_failure'
@@ -184,6 +209,11 @@ def run(distribution, config, output, *, network='none', run_id_override=None, s
                                        capture_output=True, text=True, timeout=30, check=True)
                 stopped = state.stdout.strip() == 'false'
                 if stopped:
+                    if manifest.get('stop_trigger') in ('copilot_completion_declaration','repeated_http_429'):
+                        actual_exit = subprocess.run(['docker', 'inspect', '--format', '{{.State.ExitCode}}', resource_id],
+                            capture_output=True, text=True, timeout=30, check=True)
+                        exit_code = int(actual_exit.stdout.strip())
+                        manifest['stop_method'] = 'owned_worker_kill_after_' + manifest['stop_trigger']
                     logs = subprocess.run(['docker', 'logs', resource_id], capture_output=True, text=True, timeout=30)
                     (output / 'agent.stdout.log').write_text(logs.stdout, encoding='utf-8')
                     (output / 'agent.stderr.log').write_text(logs.stderr, encoding='utf-8')

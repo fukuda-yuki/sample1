@@ -1,0 +1,12 @@
+{
+  "public_runs": 20,
+  "public_cases": 1160,
+  "sqlite_integrity": "ok",
+  "safe_case_schema": true,
+  "private_evaluator_and_binary_evidence_excluded": true,
+  "local_document_links_exist": true,
+  "generic_credential_pattern_matches": 0,
+  "git_preserves_file_bytes": 36,
+  "expected_post_seal_link": "delivery-preservation.json",
+  "scope": "Public files only; independent exact-key scan is recorded separately."
+}

@@ -1,0 +1,125 @@
+{
+  "matplotlib": "3.10.8",
+  "numpy": "2.5.3",
+  "japanese_font_sha256": "cd24b5617c1e26572b0a7fe7e558f7121ca42c36f7b50e8d9216ac222a1c0a93",
+  "figures": [
+    {
+      "figure": "01-study-flow",
+      "files": [
+        "01-study-flow.png",
+        "01-study-flow.svg"
+      ],
+      "source_data": [
+        "source/run-contract.md",
+        "source/normal-spec.md",
+        "source/anti-spec.md",
+        "source/planned-runs.json"
+      ],
+      "source_results_sha256": "111400e9232809b2768ecf49429d7d0044d60aac1c50635effde927560aabb7f",
+      "generator_sha256": "d2fcef6220eca00706c14c0a8f8e752e06cdde27183d16625a4d56dfeef115cc",
+      "caption_claim": "各条件10 Runを実装・固定し、共通v6の保存結果を再分析した。",
+      "limitations": [
+        "この図の再分析は新しい実装や再採点ではない。"
+      ]
+    },
+    {
+      "figure": "02-distributions",
+      "files": [
+        "02-distributions.png",
+        "02-distributions.svg"
+      ],
+      "source_data": [
+        "data/runs.csv"
+      ],
+      "source_results_sha256": "111400e9232809b2768ecf49429d7d0044d60aac1c50635effde927560aabb7f",
+      "generator_sha256": "d2fcef6220eca00706c14c0a8f8e752e06cdde27183d16625a4d56dfeef115cc",
+      "caption_claim": "全20点と各条件の中央値を表示。",
+      "limitations": [
+        "記録されていないusageは補完していない。",
+        "合格率は保存済みv6の出力。"
+      ]
+    },
+    {
+      "figure": "03-pair-differences",
+      "files": [
+        "03-pair-differences.png",
+        "03-pair-differences.svg"
+      ],
+      "source_data": [
+        "data/pairs.csv"
+      ],
+      "source_results_sha256": "111400e9232809b2768ecf49429d7d0044d60aac1c50635effde927560aabb7f",
+      "generator_sha256": "d2fcef6220eca00706c14c0a8f8e752e06cdde27183d16625a4d56dfeef115cc",
+      "caption_claim": "トークンと合格ID数はそれぞれ8ペアで不整合条件が少ない。",
+      "limitations": [
+        "ペアは事前の実行順ブロックであり、共有モデル乱数ではない。"
+      ]
+    },
+    {
+      "figure": "04-token-score",
+      "files": [
+        "04-token-score.png",
+        "04-token-score.svg"
+      ],
+      "source_data": [
+        "data/runs.csv"
+      ],
+      "source_results_sha256": "111400e9232809b2768ecf49429d7d0044d60aac1c50635effde927560aabb7f",
+      "generator_sha256": "d2fcef6220eca00706c14c0a8f8e752e06cdde27183d16625a4d56dfeef115cc",
+      "caption_claim": "約600万トークンでも保存済み合格ID数は26から50に分かれる。",
+      "limitations": [
+        "点の位置は費用対効果や製品品質の順位を確定しない。"
+      ]
+    },
+    {
+      "figure": "05-feature-heatmap",
+      "files": [
+        "05-feature-heatmap.png",
+        "05-feature-heatmap.svg"
+      ],
+      "source_data": [
+        "data/features.csv"
+      ],
+      "source_results_sha256": "111400e9232809b2768ecf49429d7d0044d60aac1c50635effde927560aabb7f",
+      "generator_sha256": "d2fcef6220eca00706c14c0a8f8e752e06cdde27183d16625a4d56dfeef115cc",
+      "caption_claim": "同一の57 IDを20機能にまとめた記述集計。",
+      "limitations": [
+        "機能ごとのID数は異なる。",
+        "未到達や原因未確定を含む保存済み合否。"
+      ]
+    },
+    {
+      "figure": "06-approval-path",
+      "files": [
+        "06-approval-path.png",
+        "06-approval-path.svg"
+      ],
+      "source_data": [
+        "source/private-evidence-index.json"
+      ],
+      "source_results_sha256": "111400e9232809b2768ecf49429d7d0044d60aac1c50635effde927560aabb7f",
+      "generator_sha256": "d2fcef6220eca00706c14c0a8f8e752e06cdde27183d16625a4d56dfeef115cc",
+      "caption_claim": "別々の2ケースで部長割当と課長の操作・宛先期待との相違が記録されている。",
+      "limitations": [
+        "2ケースは同じ申請レコードではない。",
+        "残る失点の原因裁定ではない。"
+      ]
+    }
+  ],
+  "output_hashes": {
+    "01-study-flow.png": "5c9c5d338bcffdeee5d6d866f7d5e71362b48181e90fbad6d2a247f5037d895e",
+    "01-study-flow.svg": "4678dcd4336d493140fd4c9a37e5cd8bd3bad9dfcb968dcea5efaa70fc91c9dc",
+    "02-distributions.png": "e79e2de0bfbec23f071ca2ab5f5a52c2b9d9f0b0dbb035693c3df3b785fd475e",
+    "02-distributions.svg": "50b4cf952ae71a0f14447879758129685fe5a55bf70372e18383db3998787ca1",
+    "03-pair-differences.png": "bf956c8414e7f624da5199d37c52b6b06ec8b8b1faea18a706d7838da0467cc5",
+    "03-pair-differences.svg": "0ed100f0079ce4ba1e3764d60ed616124c46a76724dd50c7e754b852f82b2e44",
+    "04-token-score.png": "f9cc4443be9deef1c0aea3ad327355edcb49f7ad30e27d18263b1281d35bd340",
+    "04-token-score.svg": "1b9dab3e1d34cb65a28f3063db0c3dc49a5b24f325d8756c824b23c46c22f550",
+    "05-feature-heatmap.png": "8d0860eed90780e971239bc9b1ac9e61dc111313daa25f3124d1e5edd68b47d9",
+    "05-feature-heatmap.svg": "fe96e393a9e098616783b4453c2f236aa7765edcd879948b5b5577cf686b16a6",
+    "06-approval-path.png": "361e3efe93601639d1665f1f3b8b9ecf6087d263bb495bcf04196a999006a44e",
+    "06-approval-path.svg": "efe5ae7a5d1fc656995832abd9751d11f12112b2469d1e63937b8365ed162e3e"
+  },
+  "visual_review_receipt": "checks/visual-review.json (separate inspection; not certified by renderer)",
+  "svg_text_as_paths": true
+}

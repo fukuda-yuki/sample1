@@ -1,0 +1,7 @@
+﻿condition,group,ids_per_run,requested_ids,passed_ids,recorded_pass_rate
+normal,direct_threshold,3,30,30,100.0
+normal,downstream_threshold,10,100,61,61.0
+normal,other,44,440,311,70.68181818181819
+anti,direct_threshold,3,30,0,0.0
+anti,downstream_threshold,10,100,1,1.0
+anti,other,44,440,257,58.40909090909091

@@ -1,0 +1,4 @@
+﻿group,ids_per_run,normal_passed,anti_passed,gap
+direct_threshold,3,30,0,30
+downstream_threshold,10,61,1,60
+other,44,311,257,54

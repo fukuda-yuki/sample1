@@ -1,0 +1,118 @@
+{
+  "experiment_id": "dcacece4-120a-4258-bbd8-c09940dbb67c",
+  "acquisition_complete": true,
+  "planned": 20,
+  "started": 20,
+  "collected": 20,
+  "not_started": 0,
+  "condition_counts": {
+    "normal": {
+      "planned": 10,
+      "started": 10,
+      "collected": 10,
+      "normal_runner_completion": 10,
+      "other_ended": 0,
+      "not_started": 0
+    },
+    "anti": {
+      "planned": 10,
+      "started": 10,
+      "collected": 10,
+      "normal_runner_completion": 9,
+      "other_ended": 1,
+      "not_started": 0
+    }
+  },
+  "model_counts": {
+    "muse-spark-1.2-contributor": 20
+  },
+  "statistics": [
+    {
+      "model": "muse-spark-1.2-contributor",
+      "condition": "normal",
+      "n": 10,
+      "token_n": 5,
+      "token_mean": 6455265.2,
+      "token_median": 6165950,
+      "token_min": 5014337,
+      "token_max": 7991897,
+      "observed_token_n": 10,
+      "observed_token_mean": 7128730.4,
+      "observed_token_median": 7248219.0,
+      "raw_n": 10,
+      "raw_pass_mean_percent": 70.52631578947368,
+      "raw_pass_median_percent": 70.17543859649123,
+      "raw_pass_min_percent": 54.3859649122807,
+      "raw_pass_max_percent": 87.71929824561404,
+      "quality_n": 0,
+      "quality_mean": null,
+      "quality_median": null
+    },
+    {
+      "model": "muse-spark-1.2-contributor",
+      "condition": "anti",
+      "n": 10,
+      "token_n": 9,
+      "token_mean": 6005891.222222222,
+      "token_median": 6079458,
+      "token_min": 3965456,
+      "token_max": 9125827,
+      "observed_token_n": 10,
+      "observed_token_mean": 6303468.3,
+      "observed_token_median": 6139945.0,
+      "raw_n": 10,
+      "raw_pass_mean_percent": 45.26315789473684,
+      "raw_pass_median_percent": 52.63157894736842,
+      "raw_pass_min_percent": 5.2631578947368425,
+      "raw_pass_max_percent": 68.42105263157895,
+      "quality_n": 0,
+      "quality_mean": null,
+      "quality_median": null
+    }
+  ],
+  "primary_anti_minus_normal": {
+    "token_mean": -449373.9777777782,
+    "token_median": -86492,
+    "observed_token_mean": -825262.1000000006,
+    "observed_token_median": -1108274.0,
+    "raw_pass_mean_percent": -25.263157894736842,
+    "raw_pass_median_percent": -17.543859649122815,
+    "quality_mean": null,
+    "quality_median": null
+  },
+  "processing_policy": "preserve-first-v2",
+  "quality_status": "See per-Run validity; no missing value is zero",
+  "paired_primary_differences": {
+    "total_tokens_anti_minus_normal": {
+      "n": 4,
+      "mean": -1546420.5,
+      "median": -1707381.0
+    },
+    "quality_percent_anti_minus_normal": {
+      "n": 0,
+      "mean": null,
+      "median": null
+    },
+    "raw_v6_percent_anti_minus_normal": {
+      "n": 10,
+      "mean": -25.263157894736846,
+      "median": -21.05263157894737
+    }
+  },
+  "paired_token_directions": {
+    "anti_lower": 4,
+    "equal": 0,
+    "anti_higher": 0,
+    "missing_pairs": 6
+  },
+  "evaluation_completed": 20,
+  "evaluation_valid": 0,
+  "observed_token_sum": 134321987,
+  "confirmed_token_sum": 86329347,
+  "missing_totals": 6,
+  "submissions_without_recognized_lockfile": 0,
+  "validity_counts": {
+    "invalid": 1,
+    "pending": 19
+  }
+}

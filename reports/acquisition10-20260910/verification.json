@@ -1,0 +1,446 @@
+{
+  "experiment_id": "dcacece4-120a-4258-bbd8-c09940dbb67c",
+  "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+  "evaluation_id": "55cb359f-b3d4-4718-9ff0-7d22e8a8d291",
+  "status": "stopped_with_preserved_and_reported_submission",
+  "twenty_start_objective_met": false,
+  "management_code_commit": "3769176e425de9077e8012331ffd16e644be3180",
+  "evaluator_hash": "a097b9baf7bfa605cb054deac151be6ade1b88bcdcb36f6fce89685e199d3cc3",
+  "agent_version": "1.0.83-5",
+  "environment": {
+    "image": "sha256:d70dc026cbd41542004ed010b6f40650be8dd7f7531fd59fd6a3d05ef3e407cb",
+    "timezone": "Asia/Tokyo"
+  },
+  "submission_hash": "f21b262efb7e3e444d3bb9cc2176ccdc45cb4b501d6ebe3e9076cda047cbcd6a",
+  "raw_counts": {
+    "denominator": 57,
+    "pass": 32,
+    "fail": 17,
+    "blocked": 8,
+    "error": 0
+  },
+  "coverage": {
+    "required_cases": 58,
+    "raw_statuses": {
+      "pass": 33,
+      "fail": 17,
+      "blocked": 8
+    },
+    "business_assertion_reached": 41,
+    "prerequisite_blocked": 8,
+    "nonpass_cases_with_adjudication": 5,
+    "other_nonpass_causes_unconfirmed": 20
+  },
+  "evaluation_validity": "invalid",
+  "effective_quality": null,
+  "total_tokens": null,
+  "usage_complete": false,
+  "tests": {
+    "tests-final.log": {
+      "sha256": "6bc8258b7d08ff9717494decaeb5585fc7fd76ef5c3bdc3fdc1519826237ca81",
+      "result": "----------------------------------------------------------------------\nRan 40 tests in 21.596s\n\nOK"
+    },
+    "serial-final.log": {
+      "sha256": "47582606d713a8031ae8c58bf2f13573639703a73ffe3ac18de5ffe144b607e2",
+      "result": "----------------------------------------------------------------------\nRan 8 tests in 2.573s\n\nOK"
+    },
+    "analysis-tests.log": {
+      "sha256": "9150c5ce3e38ae451ff6dc37273a3581efc53252c06b2b45b80f35aa7eef0f9f",
+      "result": "----------------------------------------------------------------------\nRan 29 tests in 0.523s\n\nOK"
+    }
+  },
+  "checks": {
+    "native/evidence.json": {
+      "sha256": "327290922de6243c32fc076161f636e846e3e67858cb7019ed1af98f55b14c47",
+      "result": {
+        "kind": "real-cli-fake-provider",
+        "model_called": false,
+        "run_id": "8b6300f1-82b1-466c-9eb6-5a83bac69592",
+        "end_reason": "agent_completed",
+        "file_edit": true,
+        "tool_execution": true,
+        "continuation": true,
+        "delegation_tools_absent": true,
+        "native_response_reconciliation": true,
+        "total_tokens": 36
+      }
+    },
+    "lifecycle.json": {
+      "sha256": "e3509591d15417d14db34c3696ba30322aabe3af6d32425a335f88f5d554227e",
+      "result": {
+        "kind": "protocol_integration",
+        "model_called": false,
+        "results": [
+          {
+            "case": "isolation",
+            "end_reason": "agent_completed",
+            "processes_stopped": true,
+            "submission_fixed": true,
+            "elapsed_seconds": 0.3230057799999031
+          },
+          {
+            "case": "error",
+            "end_reason": "agent_error",
+            "processes_stopped": true,
+            "submission_fixed": true,
+            "elapsed_seconds": 0.22192967999990287
+          },
+          {
+            "case": "timeout",
+            "end_reason": "budget_exhausted",
+            "processes_stopped": true,
+            "submission_fixed": true,
+            "elapsed_seconds": 2.0953016529999786
+          },
+          {
+            "case": "descendant_stopped",
+            "passed": true
+          }
+        ]
+      }
+    },
+    "isolation.json": {
+      "sha256": "7babe138964021f12492e44e22e0d26d2c6fff2a30f0beb89a5845a672b43530",
+      "result": {
+        "host_canaries_denied": 4,
+        "github_egress_denied": true,
+        "arbitrary_gateway_path_denied": true,
+        "remote_tools_denied": true,
+        "model_change_denied": true,
+        "kind": "gateway_isolation_integration",
+        "model_called": false,
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "worker_image": "sha256:ef3f18f22a92cc7cf24870468bba127ded8aeb18c8030a6b082ffa58b91c6b09",
+        "credentials_mounted": false,
+        "provider_requests_sent": 0
+      }
+    },
+    "runtime.json": {
+      "sha256": "27d7b7f53b93a9b832ef6459abcf491704f72bfaf821ec2b1145f43b9e4a4702",
+      "result": {
+        "dotnet_restore_offline": true,
+        "sqlite_native_query": true,
+        "npm_ci_offline": true,
+        "backend_http_5080": true,
+        "vite_http_5173": true,
+        "react_module_transformed": true,
+        "nuget_packages": "/opt/nuget-cache",
+        "kind": "offline_runtime_calibration",
+        "image": "sha256:d70dc026cbd41542004ed010b6f40650be8dd7f7531fd59fd6a3d05ef3e407cb",
+        "model_called": false
+      }
+    },
+    "monitor.json": {
+      "sha256": "9e8716dcfe5cc10a2a8cc4a03e3251b9d6e262ece39fdac5ea513bc87bd3a77b",
+      "result": {
+        "run_id": "8b6300f1-82b1-466c-9eb6-5a83bac69592",
+        "experiment_id": "4e27aba0-fb65-4b62-b36f-441fbe6c0eb5",
+        "monitor": {
+          "instance_id": "acquisition10-dcacece4-120a-4258-bbd8-c09940dbb67c",
+          "database_path": "/mnt/c/Users/mwam0/Documents/ls/sample1/results/acquisition10-20260910/monitor/monitor.db",
+          "import_command": [
+            "python3",
+            "/mnt/c/Users/mwam0/Documents/ls/sample1/results/go-live-20260909/import-monitor.py",
+            "/mnt/c/Program Files/dotnet/dotnet.exe",
+            "/mnt/c/Users/mwam0/Documents/Codex/copilot-agent-observability/src/CopilotAgentObservability.ConfigCli/bin/Debug/net10.0/CopilotAgentObservability.ConfigCli.dll"
+          ],
+          "kind": "actual-monitor-raw-import-and-readback",
+          "build_files_sha256": {
+            "/mnt/c/Users/mwam0/Documents/ls/sample1/results/go-live-20260909/import-monitor.py": "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "/mnt/c/Program Files/dotnet/dotnet.exe": "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "/mnt/c/Users/mwam0/Documents/Codex/copilot-agent-observability/src/CopilotAgentObservability.ConfigCli/bin/Debug/net10.0/CopilotAgentObservability.ConfigCli.dll": "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          }
+        },
+        "native_sha256": "31c75c97cd49da4d0af8089fd2755f8034fcb20249e55b810aac7f98e6c0b386",
+        "otlp_sha256": "dc0466d121a2fbe38417e23613f3809e3c3f9b9e0e20ec65726a61d6c8aaa909",
+        "status": "readback_verified",
+        "ignored_signals": {
+          "metric": 12
+        },
+        "adapter_problems": [],
+        "session_ids": [
+          "8b6300f1-82b1-466c-9eb6-5a83bac69592"
+        ],
+        "trace_ids": [
+          "ba1c625c9b2a89ffc5d31f6697e35bda"
+        ],
+        "relationships": [
+          {
+            "trace_id": "ba1c625c9b2a89ffc5d31f6697e35bda",
+            "span_id": "6e6b114cec5c1a53",
+            "parent_span_id": "96ceefa04c158328",
+            "session_id": "8b6300f1-82b1-466c-9eb6-5a83bac69592",
+            "parent_session_id": null
+          },
+          {
+            "trace_id": "ba1c625c9b2a89ffc5d31f6697e35bda",
+            "span_id": "4c0e32b4c6ceea7a",
+            "parent_span_id": "96ceefa04c158328",
+            "session_id": "8b6300f1-82b1-466c-9eb6-5a83bac69592",
+            "parent_session_id": null
+          },
+          {
+            "trace_id": "ba1c625c9b2a89ffc5d31f6697e35bda",
+            "span_id": "aa998d75145a280f",
+            "parent_span_id": "96ceefa04c158328",
+            "session_id": "8b6300f1-82b1-466c-9eb6-5a83bac69592",
+            "parent_session_id": null
+          },
+          {
+            "trace_id": "ba1c625c9b2a89ffc5d31f6697e35bda",
+            "span_id": "96ceefa04c158328",
+            "parent_span_id": "",
+            "session_id": "8b6300f1-82b1-466c-9eb6-5a83bac69592",
+            "parent_session_id": null
+          }
+        ],
+        "model_calls": [
+          {
+            "tokens": [
+              10,
+              3
+            ],
+            "trace_id": "ba1c625c9b2a89ffc5d31f6697e35bda",
+            "span_id": "4c0e32b4c6ceea7a",
+            "session_id": "8b6300f1-82b1-466c-9eb6-5a83bac69592",
+            "response_id": "resp_1",
+            "request_id": "fixture-1"
+          },
+          {
+            "tokens": [
+              20,
+              3
+            ],
+            "trace_id": "ba1c625c9b2a89ffc5d31f6697e35bda",
+            "span_id": "aa998d75145a280f",
+            "session_id": "8b6300f1-82b1-466c-9eb6-5a83bac69592",
+            "response_id": "resp_2",
+            "request_id": "fixture-2"
+          }
+        ],
+        "ingestion": {
+          "records": [
+            {
+              "raw_record_id": 1,
+              "payload_sha256": "dc0466d121a2fbe38417e23613f3809e3c3f9b9e0e20ec65726a61d6c8aaa909"
+            }
+          ],
+          "schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "projection_complete": false
+        },
+        "usage_complete": true,
+        "submission_hash": "43eb527f931e16c9f820dd84728d8c79089f98114d0cf973aaa98e253042ce23",
+        "gateway_usage_hash": "1400504491b84a72964a0cead6bc463910705f6115b77c1e1f35509a9305af30"
+      }
+    },
+    "live-boundary.json": {
+      "sha256": "adfae215c33cc992930e8848a86c4a7bd48cc4005e6a0c3e94fbed17cc3825bf",
+      "result": {
+        "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+        "actual_worker_inspected": true,
+        "actual_gateway_inspected": true,
+        "credential_in_container_environment": false,
+        "worker_secret_mount": false,
+        "gateway_readonly_secret_mount": true,
+        "worker_internal_network_only": true,
+        "model_id": "muse-spark-1.2-contributor"
+      }
+    },
+    "gate-negative.json": {
+      "sha256": "8e95f61e35a3a3325ca73a7cec7c208a620df5539bf129d7468b62659fa6df89",
+      "result": {
+        "model_called": false,
+        "existing_authorization_verified_without_new_start": true,
+        "negative_cases_rejected": [
+          "model_id",
+          "condition",
+          "experiment_id",
+          "planned_run",
+          "budget",
+          "input_hashes",
+          "authorization",
+          "consumed_start"
+        ]
+      }
+    }
+  },
+  "archives": {
+    "generation_readiness": {
+      "experiment_id": "dcacece4-120a-4258-bbd8-c09940dbb67c",
+      "model_called": false,
+      "reference": {
+        "package_id": "generation-ready-current-82150c3d-296b-48f9-81b6-a50d9be4e85c",
+        "sha256": "f1e4936a632531ee2770a940108781a198fb93a4aabaef596c451efc4abbe90e"
+      },
+      "restoration": {
+        "path": "receipts/3f424ad0-f67f-4498-b54f-f378a17560e2.json",
+        "sha256": "25cae6825a349d637ba39a3f31ae264165fcf8d13a4fb3887ae0e7a0e609b314"
+      },
+      "planned": 20,
+      "max_parallel": 1,
+      "dispatch_limit": 1
+    },
+    "unscored_run_original": {
+      "package_id": "copilot-256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+      "sha256": "cff2ca0e0dac277c8e7c94c5e8fa25fa2d057438a189d43430fec26a39742aca"
+    },
+    "linked_run": {
+      "package_id": "linked-256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+      "sha256": "49c8bbc15457976ab460da30b53a1538210928474977014b3274f1dbcbb60e1a"
+    },
+    "run_completion_and_restorations": {
+      "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+      "manifest_sha256": "6c99ace7e480afc99bb258c6524a757185fd9d70234a0d65c4b5e7c955146932",
+      "original_restoration": {
+        "path": "receipts/255d69d2-612a-4d68-87b8-f4994c90c3c7.json",
+        "sha256": "815ab1fd5ebe1f7f4d278b642dc1051ab6fb49ca7b41b05e10ee165a18488663"
+      },
+      "linked_restoration": {
+        "path": "receipts/377d04b2-14d6-47bb-85fe-292dad263196.json",
+        "sha256": "37a4d84f285628fe8617626559b787950703cdfa5e132a7952e565d5671b277c"
+      },
+      "hashes": {
+        "snapshot.json": "f21b262efb7e3e444d3bb9cc2176ccdc45cb4b501d6ebe3e9076cda047cbcd6a",
+        "usage.json": "a08f6146fd2154361c0d951c0e86dd10b4b975a8a6faeb6008863942e737d9be",
+        "telemetry-link.json": "209678559ee2e3d66a752fda5366809defdcf77f56656cb5572e2f76fbcf9b87"
+      },
+      "may_continue": false,
+      "stop_reason": "incomplete_usage_or_monitor",
+      "model_id": "muse-spark-1.2-contributor",
+      "end_reason": "agent_error"
+    },
+    "evaluation": {
+      "package_id": "evaluation-55cb359f-b3d4-4718-9ff0-7d22e8a8d291",
+      "sha256": "1e873fdabbda18a06288ae6111ade8505453f01514108ab2561e698dd972709e"
+    },
+    "evaluation_restoration": {
+      "path": "receipts/dc5a9718-eecf-409a-af45-1211d3a3baa8.json",
+      "sha256": "988fc3bbc7dd070e3ab6239617a53618cb7f60de7d68088fec90b351ac08428b"
+    },
+    "review": {
+      "reference": {
+        "package_id": "acquisition-review-55cb359f-b3d4-4718-9ff0-7d22e8a8d291",
+        "sha256": "dfeb7a9fd3e46cb6cbac1e62e998925ddaedf8595e81fc4af30a8c96bc9ac3c6"
+      },
+      "restoration": {
+        "path": "receipts/2c2c72d3-2c36-46d2-a801-0ec1bd51bec0.json",
+        "sha256": "d9de8a3d84ac1fd18f0a70c0deca8f96a02fc65d57814a856f3316572eb947c9"
+      }
+    },
+    "management_intervention": {
+      "reference": {
+        "package_id": "completion-intervention-e63c2f56-04c0-4972-b176-d5affc97f49f",
+        "sha256": "bd8b69595f1a0d74b793c66804f881e9782c4419f12a59cd03bef10e5766277b"
+      },
+      "restoration": {
+        "path": "receipts/aa6dcd5a-375a-4ca8-a8eb-2d5de2127450.json",
+        "sha256": "366bf2f7303be0289a9ce38a0876eeeba7cda81ec296b6e9c2ab139a7a01e50f"
+      }
+    },
+    "isolated_analysis": {
+      "package_id": "analysis-5d64708b-2963-4eb5-a7d1-d0f7eb7e59c5",
+      "sha256": "86483f23bfddae86bfdbc5b1fe947687b2dc79ff2023d5dd31d620f1c9962b01"
+    }
+  },
+  "isolated_reaggregation": {
+    "kind": "real-analysis-relocation",
+    "model_called": false,
+    "real_acceptance": true,
+    "trial_source_absent": true,
+    "historical_originals_unchanged": true,
+    "csv_identical": true,
+    "sqlite_all_tables_logically_identical": true,
+    "package": {
+      "package_id": "analysis-5d64708b-2963-4eb5-a7d1-d0f7eb7e59c5",
+      "sha256": "86483f23bfddae86bfdbc5b1fe947687b2dc79ff2023d5dd31d620f1c9962b01"
+    },
+    "source_reads_denied": true,
+    "unmapped_export_rejected": true,
+    "restored_only_export": true,
+    "counts": {
+      "experiment_id": "dcacece4-120a-4258-bbd8-c09940dbb67c",
+      "synthetic": false,
+      "input_hashes": {
+        "normal/spec.md": "60591f585f9a0bc57085819acc4462f0bd596c360fac79cff249fee8d510b1a0",
+        "anti/spec.md": "4efee9a74d163f6fabad8c5392e395717869e074b34d81cb46489124f714c551",
+        "implementation_prompt.md": "27af7a6aead9c72c87142d762d733dbc58c1f373315024a2ebdab4f599e15ec2",
+        "evaluation/requirements-ledger.json": "5d6f0d13d547983b4e30a070e813b36c2ce5588e9b2cf29f3f3df47dd15bbf13",
+        "evaluation/case-manifest.json": "4fd6035db38162a8ecd4f43d695026ff984fa6798ce970656b95725b8bfc1461"
+      },
+      "planned": 20,
+      "phase": "data-acquisition",
+      "started": 1,
+      "not_started": 19,
+      "evaluated": 0,
+      "evaluation_attempted": 1,
+      "evaluation_completed": 1,
+      "evaluation_valid": 0,
+      "evaluation_invalid": 1,
+      "evaluation_pending": 0,
+      "evaluation_unavailable": 0,
+      "usage_complete": 0,
+      "plotted": 0,
+      "code_hashes": {
+        "scripts/copilot_batch.py": "e9c13cbf7b22ce642d8bf2fe9d5b87d8b95fcdef4529ebed7740c3a712b671b0",
+        "scripts/telemetry_link.py": "2db3d52de5c63b01ecba0c26c6b93e0adfd2e5d8372dd191ff9bbab14d43476d",
+        "analysis/collect_runs.py": "de52f7e5500f66e113f19a8edfc2308ce229d03c6c22ee1475a18fc6c2bd22c9",
+        "analysis/aggregate.py": "74729573a8213fe95fd3cd63cf16f51b5a44e12eac72f77a608676c9e089e95d",
+        "analysis/plot.py": "65674114efc8165da021d2e0ed9e28e18d6840b9c8bd901ad50b2b6c3d9c0d2a"
+      },
+      "telemetry_refs": [
+        {
+          "run_id": "256a2bf5-a8db-4a43-81bc-17bc38eda0d3",
+          "native_sha256": "5270240706c098652e32d7067daf11193390b2a1da015456983d1df45e9b7179",
+          "otlp_sha256": "2b309efdbee034e35c2beca6a5b0c7a4f53fed835a8935491a8c45ad62fbe71c",
+          "session_ids": [
+            "256a2bf5-a8db-4a43-81bc-17bc38eda0d3"
+          ],
+          "trace_ids": [
+            "905541071251c7c1c619dff94252d27d"
+          ],
+          "submission_hash": "f21b262efb7e3e444d3bb9cc2176ccdc45cb4b501d6ebe3e9076cda047cbcd6a",
+          "monitor_instance": "acquisition10-dcacece4-120a-4258-bbd8-c09940dbb67c",
+          "monitor_build_hashes": [
+            "ffdab6cd28e22a05c60203eb70546633cf23c037ccaed2c7938d10e019ba9e74",
+            "b3cc37e128b832146ec3a8dd467476ffa84021c4f92684261ab035afeff2de7e",
+            "b4237bd102d66e3919ea06ea5d467786f00699a9fd4c526b9fb05f26b752072a"
+          ],
+          "monitor_schema": [
+            [
+              "monitor",
+              12
+            ],
+            [
+              "skill_projection",
+              1
+            ]
+          ],
+          "ingestion_records": [
+            {
+              "raw_record_id": 2,
+              "payload_sha256": "2b309efdbee034e35c2beca6a5b0c7a4f53fed835a8935491a8c45ad62fbe71c"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "40-test suite and 8 serial tests overlap; these are not 48 unique tests.",
+    "Initial test execution lacked matplotlib; successful analysis tests used the pinned analysis venv.",
+    "First relocation destination was inside the forbidden source root, so the audit guard correctly rejected restored reads. Original failed drill retained; a fresh sibling destination passed.",
+    "real_acceptance in the relocation evidence denotes actual-data restoration only, not experiment completion or valid quality.",
+    "Completion candidate synthetic checks do not prove real CLI parent-span flush. Candidate is archived but absent from production.",
+    "Legacy provenance evaluated=0 is not the executed-evaluation count: evaluation_completed=1 and evaluation_invalid=1.",
+    "No additional implementation starts are authorized by the current stopped scope."
+  ]
+}

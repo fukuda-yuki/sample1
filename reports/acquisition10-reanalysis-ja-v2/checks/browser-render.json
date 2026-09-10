@@ -1,0 +1,70 @@
+{
+  "report_sha256": "780b8c5a93d7c84f19d33ed0a7a386cc4230d8f3f73b11c3137fb377f3739e41",
+  "preview_sha256": "6314c2523815515f8ce290727fb566552a1689302003724c71cd4346fa5603b8",
+  "renderer": "marked + Chromium (Playwright)",
+  "browser_version": "152.0.4191.66",
+  "state": {
+    "title": "仕様書内の不整合とAI実装の消費トークン・評価結果",
+    "h2": [
+      "1. 背景と研究目的",
+      "2. 実験方法と指標の意味",
+      "3. 結果：全体像から具体例へ",
+      "4. 考察と限界",
+      "5. 結論"
+    ],
+    "tables": 7,
+    "images": [
+      {
+        "alt": "図1　実装と保存記録の再分析の手順",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図2　全20 Runの記録済みトークンと保存済み合格率の分布",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図3　固定10ペアのトークン差と保存済み合格率差",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図4　記録済み総トークンと保存済みv6の合格率",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 1870
+      },
+      {
+        "alt": "図5　20機能×2条件の保存済み合格率",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      },
+      {
+        "alt": "図6　anti-009の保存ケースで確認できる承認者の相違",
+        "loaded": true,
+        "width": 900,
+        "naturalWidth": 2040
+      }
+    ],
+    "horizontalOverflow": false
+  },
+  "narrow": {
+    "width": 800,
+    "horizontalOverflow": false,
+    "images": [
+      704,
+      704,
+      704,
+      704,
+      704,
+      704
+    ]
+  },
+  "remoteRequests": [],
+  "scope": "Rendering this report only; no study app or evaluator was run."
+}
